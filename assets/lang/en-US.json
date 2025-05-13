@@ -1,0 +1,22 @@
+{
+  "onBoardingTitle1": "Connect with Industry Leaders" ,
+  "onBoardingTitle2": "Discover & List Your Properties" ,
+  "onBoardingTitle3": "Request with Total Precision" ,
+  "onBoardingSubTitle1": "Easily connect with top real estate agencies and freelancers. Build your network, share opportunities, and collaborate on projects that matter" ,
+  "onBoardingSubTitle2": "Explore a wide range of properties tailored to your needs. List your properties with comprehensive details and reach the right audience effortlessly" ,
+  "onBoardingSubTitle3": "Easily request properties that match your exact criteria. Let the right opportunities come to you, ensuring you find the perfect match every time",
+  "skip": "Skip",
+  "getStarted": "Get Started",
+  "start": "Start",
+  "next": "Next",
+  "phoneNumber": "Phone Number",
+  "password": "Password",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "dontHave": "don't have a account ?",
+  "forgetPass": "Forget Password ?",
+  "remember": "remember me",
+  "fieldRequired": "filed is required !",
+  "phoneValid": "phone number must be valid !",
+  "passValid": "password must contains 9 characters or more !"
+}
