@@ -18,8 +18,8 @@ class CustomDropDownButton extends StatelessWidget {
     this.value,
   });
   final String? title;
-  final List<String> dropDownList;
-  final void Function(String? newValue) callBack;
+  final List<dynamic> dropDownList;
+  final void Function(dynamic newValue) callBack;
   final String hintText;
   final Color? fillColor;
   final TextStyle? hintStyle;
@@ -29,7 +29,7 @@ class CustomDropDownButton extends StatelessWidget {
   // final Color? selectedColor;
   @override
   Widget build(BuildContext context) {
-    return DropdownButtonFormField<String>(
+    return DropdownButtonFormField<dynamic>(
       value: value,
       dropdownColor: backgroundClr,
       icon: Icon(
@@ -55,8 +55,8 @@ class CustomDropDownButton extends StatelessWidget {
         ),
       ),
       items:
-          dropDownList.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(value: value, child: Text(value));
+          dropDownList.map<DropdownMenuItem<dynamic>>((dynamic value) {
+            return DropdownMenuItem<dynamic>(value: value, child: Text(value));
           }).toList(),
       onChanged: callBack,
     );

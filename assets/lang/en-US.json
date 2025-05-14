@@ -18,5 +18,21 @@
   "remember": "remember me",
   "fieldRequired": "filed is required !",
   "phoneValid": "phone number must be valid !",
-  "passValid": "password must contains 9 characters or more !"
+  "passValid": "password must contains 9 characters or more !",
+  "selectAccType": "Select your account type",
+  "selectRoleDes": "Select the role that best describes your professional profile",
+  "agency": "Agency",
+  "agencyDes": "For businesses and real estate agencies",
+  "freelance": "Freelance agent",
+  "freelanceDes": "For independent real estate agents",
+  "continue": "continue",
+  "createAcc": "Create account",
+  "fullName": "Full name",
+  "email": "Email",
+  "city": "City",
+  "serviceArea": "Service area",
+  "agencyName": "Agency name",
+  "address": "Address",
+  "select": "Select ..",
+  "validEmail": "Email must be validate !"
 }

@@ -1,89 +1,29 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/features/auth/data/models/cities_model.dart';
+import 'package:final_lnk/features/auth/data/models/create_freelance_account_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/errors/failure.dart';
+import '../../../../core/logic/start_model.dart';
+import '../../data/models/user_selection.dart';
 import '../../domain/usecases/signup_usecase.dart';
 part 'auth_state.dart';
+
+enum AccountType { none, agency, freelancer }
 
 class AuthCubit extends Cubit<AuthState> {
   final SignupUseCase signupUseCase;
   AuthCubit({required this.signupUseCase}) : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
-  /*bool isVisible = true;
-  bool isVisibleConfirm = true;
-  CountryCode? selectedCountryCode;*/
-  /*int _countdownTime = 60; // إعداد الوقت لبداية العد التنازلي
-  Timer? _timer;*/
+  AccountType selectedAccountType = AccountType.none;
+  final appModel = AllStartModel();
+  final userSelection = UserSelection();
 
-  /*void startCountdown() {
-    _countdownTime = 60;
-    emit(AuthCountdownStarted(countdownTime: _countdownTime));
-    _startTimer();
-  }*/
-
-  /* void _startTimer() {
-    _timer?.cancel();
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (_countdownTime > 0) {
-        _countdownTime--;
-        emit(AuthCountdownUpdated(countdownTime: _countdownTime));
-      } else {
-        _timer?.cancel();
-      }
-    });
-  }*/
-
-  /* void cancelCountdown() {
-    _timer?.cancel();
-    _countdownTime = 0;
-    emit(AuthCountdownCancelled());
-  }*/
-
-  /* isVisibleFirstMethod() {
-    isVisible = !isVisible;
-    emit(AuthShowPassword());
+  void selectAccountType(AccountType type) {
+    selectedAccountType = type;
+    emit(AccountTypeSelected(type));
   }
-
-  isVisibleSecondMethod() {
-    isVisibleConfirm = !isVisibleConfirm;
-    emit(AuthShowPassword());
-  }
-
-  changeCountryCode(val) {
-    selectedCountryCode = val;
-    emit(AuthChangeCode());
-  }*/
-
-  /*Future<void> signup(UserModel userModel) async {
-    emit(AuthLoading());
-    final Either<Failure, Unit> result =
-    await signupUseCase.callSignupUser(userModel: userModel);
-    result.fold(
-          (failure) => emit(AuthError(failure.errMessage)),
-          (_) => emit(AuthSuccess()),
-    );
-  }*/
-
-  /* Future<void> forgetPassword({required TextEditingController text}) async {
-    emit(OtpLoading());
-    final Either<Failure, Unit> result =
-    await forgetPasswordUseCase.callForgetPassword(text: text);
-    result.fold(
-          (failure) => emit(OtpError(failure.errMessage)),
-          (_) => emit(OtpSuccess()),
-    );
-  }
-
-  Future<void> verify() async {
-    emit(VerifyLoading());
-    final Either<Failure, Unit> result =
-    await forgetPasswordUseCase.callVerify();
-    result.fold(
-          (failure) => emit(VerifyError(failure.errMessage)),
-          (_) => emit(VerifySuccess()),
-    );
-  }*/
 
   Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());
@@ -96,23 +36,47 @@ class AuthCubit extends Cubit<AuthState> {
     });
   }
 
-  /*Future<void> changePass() async {
-    emit(ChangeLoading());
-    final Either<Failure, Unit> result =
-    await forgetPasswordUseCase.callChangePass();
-    result.fold(
-          (failure) => emit(ChangeError()),
-          (_) => emit(ChangeSuccess()),
-    );
+  getCities({required String lang}) async {
+    emit(GetCityLoading());
+    final result = await signupUseCase.getCitiesCall(lang: lang);
+    result.fold((failure) => {emit(GetCityError())}, (success) {
+      appModel.citiesModel = success;
+      emit(GetCitySuccess());
+    });
   }
 
-  Future<void> verifyChange() async {
-    emit(VerifyLoading());
-    final Either<Failure, Unit> result =
-    await forgetPasswordUseCase.callVerifyChange();
-    result.fold(
-          (failure) => emit(VerifyError(failure.errMessage)),
-          (_) => emit(VerifySuccess()),
+  getAreas({required String lang}) async {
+    emit(GetCityLoading());
+    final result = await signupUseCase.gerAreas(
+      lang: lang,
+      id: userSelection.cityId!,
     );
-  }*/
+    result.fold((failure) => {emit(GetCityError())}, (success) {
+      appModel.areasModel = success;
+      emit(GetCitySuccess());
+    });
+  }
+
+  changeValue() {
+    emit(FillForm());
+  }
+
+  void selectServiceAreas({
+    required List<String> names,
+    required List<String> ids,
+  }) {
+    userSelection.serviceArea = names;
+    userSelection.serviceAreaId = ids;
+    emit(FillForm());
+  }
+
+  Future<void> signup(CreateFreelancAccountModel userModel) async {
+    emit(RegisterLoading());
+    final Either<Failure, Unit> result = await signupUseCase
+        .createFreeLanceAccount(model: userModel);
+    result.fold(
+      (failure) => emit(RegisterError(failure.errMessage)),
+      (_) => emit(RegisterSuccess()),
+    );
+  }
 }

@@ -13,3 +13,25 @@ class LoginError extends AuthState {
   final String error;
   LoginError(this.error);
 }
+
+class AccountTypeSelected extends AuthState {
+  final AccountType selectedType;
+  AccountTypeSelected(this.selectedType);
+}
+
+class GetCityLoading extends AuthState {}
+
+class GetCitySuccess extends AuthState {}
+
+class GetCityError extends AuthState {}
+
+class FillForm extends AuthState {}
+
+  class RegisterLoading extends AuthState {}
+
+class RegisterSuccess extends AuthState {}
+
+class RegisterError extends AuthState {
+  final String error;
+  RegisterError(this.error);
+}

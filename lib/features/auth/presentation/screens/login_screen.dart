@@ -7,6 +7,7 @@ import 'package:final_lnk/test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/resp_calc.dart';
@@ -31,7 +32,14 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   @override
+  void dispose() {
+    print('dispose');
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print('login');
     final authCubit = BlocProvider.of<AuthCubit>(context);
     return GestureDetector(
       onTap: () {
@@ -92,7 +100,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           CustomAlerts.showMySnackBar(context, state.error);
                         }
                       },
+                      buildWhen: (previous, current) {
+                        return current is LoginLoading || current is LoginError;
+                      },
                       builder: (context, state) {
+                        print('login after build');
                         return PrimaryButton(
                           callBack: () {
                             if (form.currentState!.validate()) {
@@ -112,7 +124,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         Text(LangKeys.dontHave),
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                              context,
+                              screens.selectAccTypeScreen,
+                              arguments: AuthCubit.get(context),
+                            );
+                          },
                           child: Text(
                             LangKeys.signUp,
                             style: getStyleBold13(

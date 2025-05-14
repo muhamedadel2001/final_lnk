@@ -31,4 +31,14 @@ class Validations {
     }
     return null;
   }
+  static String? emailValidation(String? val) {
+    if (val == null || val.trim().isEmpty) {
+      return LangKeys.fieldRequired;
+    } else {
+      if (!val.contains('@')) {
+        return LangKeys.validEmail;
+      }
+    }
+    return null;
+  }
 }

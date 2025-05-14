@@ -6,6 +6,9 @@ import 'package:final_lnk/features/auth/data/repositories/auth_repositories_impl
 import 'package:final_lnk/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:final_lnk/features/auth/presentation/screens/login_screen.dart';
+import 'package:final_lnk/features/auth/presentation/screens/register_agency_screen.dart';
+import 'package:final_lnk/features/auth/presentation/screens/register_freelancer_screen.dart';
+import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/on_boarding_screen.dart';
@@ -43,6 +46,33 @@ class AppRouter {
                       ),
                     ),
                 child: LoginScreen(),
+              ),
+        );
+      case screens.selectAccTypeScreen:
+        final cubit = routeSettings.arguments as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: SelectAccountTypeScreen(),
+              ),
+        );
+      case screens.agencyScreen:
+        final cubit = routeSettings.arguments as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: RegisterAgencyScreen(),
+              ),
+        );
+      case screens.freelanceScreen:
+        final cubit = routeSettings.arguments as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: RegisterFreelancerScreen(),
               ),
         );
     }

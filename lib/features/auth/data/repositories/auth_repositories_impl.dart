@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/features/auth/data/models/areas_model.dart';
+import 'package:final_lnk/features/auth/data/models/create_freelance_account_model.dart';
 
 import '../../../../core/databases/api/api_consumer.dart';
 import '../../../../core/databases/cache/my_cache.dart';
@@ -7,6 +9,7 @@ import '../../../../core/errors/exceptions.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/networking/api_constants.dart';
 import '../../domain/repositories/auth_repositories.dart';
+import '../models/cities_model.dart';
 
 class AuthRepositoriesImpl implements AuthRepositories {
   final ApiConsumer apiConsumer;
@@ -79,7 +82,58 @@ class AuthRepositoriesImpl implements AuthRepositories {
     }
   }
 
-  /* @override
+  @override
+  Future<Either<Failure, CitiesModel>> getCities({required String lang}) async {
+    try {
+      final response = await apiConsumer.get(
+        ApiConstants.cityEndpoint,
+        queryParameters: {"lang": lang},
+      );
+      return Right(CitiesModel.fromJson(response));
+    } catch (failure) {
+      return Left(Failure(errMessage: 'Something went wrong !'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, AreasModel>> getAreas({
+    required String lang,
+    required String id,
+  }) async {
+    try {
+      final response = await apiConsumer.get(
+        '${ApiConstants.areaEndpoint}$id',
+        queryParameters: {"lang": lang},
+      );
+      return Right(AreasModel.fromJson(response));
+    } catch (failure) {
+      return Left(Failure(errMessage: 'Something went wrong !'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, Unit>> createFreeLanceAccount({
+    required CreateFreelancAccountModel model,
+  }) async {
+    try {
+      final Map<String, dynamic> jsonData = await model.toJson();
+      final result = await apiConsumer.post(
+        ApiConstants.signupEndpoint,
+        data: jsonData,
+      );
+      return const Right(unit); // Success case
+    } on ServerException catch (serverException) {
+      return Left(Failure(errMessage: serverException.errorModel.errorMessage));
+    } on Failure catch (failure) {
+      return Left(Failure(errMessage: failure.errMessage));
+    } catch (e) {
+      print('zzz');
+      return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
+    }
+  }
+}
+
+/* @override
   Future<Either<Failure, Unit>> changePassword() async {
     try {
       await apiConsumer.post(
@@ -99,7 +153,7 @@ class AuthRepositoriesImpl implements AuthRepositories {
     }
   }
 */
-  /* @override
+/* @override
   Future<Either<Failure, Unit>> verifyChange() async {
     try {
       await apiConsumer.post(
@@ -118,4 +172,3 @@ class AuthRepositoriesImpl implements AuthRepositories {
       return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
     }
   }*/
-}

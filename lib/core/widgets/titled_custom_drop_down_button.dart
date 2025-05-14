@@ -11,11 +11,13 @@ class TitledCustomDropDownButton extends StatelessWidget {
     required this.callBack,
     required this.dropDownList,
     required this.hintText,
+    this.value,
   });
   final String title;
-  final void Function(String? val) callBack;
-  final List<String> dropDownList;
+  final void Function(dynamic val) callBack;
+  final List<dynamic> dropDownList;
   final String hintText;
+  final String? value;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,6 +26,7 @@ class TitledCustomDropDownButton extends StatelessWidget {
         Text(title, style: getStyle20(context)),
         SizedBox(height: RespCalc().heightRatio(12)),
         CustomDropDownButton(
+          value: value,
           title: title,
           dropDownList: dropDownList,
           callBack: callBack,

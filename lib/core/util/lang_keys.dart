@@ -23,4 +23,20 @@ class LangKeys {
   static String get fieldRequired => 'fieldRequired'.tr();
   static String get phoneValid => 'phoneValid'.tr();
   static String get passValid => 'passValid'.tr();
+  static String get selectAccType => 'selectAccType'.tr();
+  static String get selectRoleDes => 'selectRoleDes'.tr();
+  static String get agency => 'agency'.tr();
+  static String get agencyDes => 'agencyDes'.tr();
+  static String get freelance => 'freelance'.tr();
+  static String get freelanceDes => 'freelanceDes'.tr();
+  static String get continueButton => 'continue'.tr();
+  static String get createAcc => 'createAcc'.tr();
+  static String get fullName => 'fullName'.tr();
+  static String get email => 'email'.tr();
+  static String get city => 'city'.tr();
+  static String get serviceArea => 'serviceArea'.tr();
+  static String get agencyName => 'agencyName'.tr();
+  static String get address => 'address'.tr();
+  static String get select => 'select'.tr();
+  static String get validEmail => 'validEmail'.tr();
 }

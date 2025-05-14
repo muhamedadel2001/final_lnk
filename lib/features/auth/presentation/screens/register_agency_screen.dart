@@ -1,15 +1,13 @@
-/*
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:lnk/core/logic/resp_calc.dart';
-import 'package:lnk/core/util/colors.dart';
-import 'package:lnk/core/util/const.dart';
-import 'package:lnk/core/util/fonts.dart';
-import 'package:lnk/core/widgets/primary_button.dart';
-import 'package:lnk/core/widgets/titled_custom_drop_down_button.dart';
-import 'package:lnk/features/auth/presentation/widgets/bottom_app_bar.dart';
-import 'package:lnk/core/widgets/titled_custom_text_field.dart';
-import 'package:lnk/features/auth/presentation/widgets/selected_service_areas.dart';
-import 'package:lnk/generated/l10n.dart';
+
+import '../../../../core/logic/resp_calc.dart';
+import '../../../../core/util/colors.dart';
+import '../../../../core/widgets/primary_button.dart';
+import '../../../../core/widgets/titled_custom_drop_down_button.dart';
+import '../../../../core/widgets/titled_custom_text_field.dart';
+import '../widgets/bottom_app_bar.dart';
 
 class RegisterAgencyScreen extends StatelessWidget {
   const RegisterAgencyScreen({super.key});
@@ -21,8 +19,8 @@ class RegisterAgencyScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: backgroundClr,
         centerTitle: true,
-        title: Text('Create Your Account', style: style25),
-        bottom: const BottomAppBarr(title: 'Agency', widgetHeight: 15),
+        title: Text(LangKeys.createAcc, style: getStyle25(context)),
+        bottom: BottomAppBarr(title: LangKeys.agency, widgetHeight: 15),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
@@ -31,32 +29,39 @@ class RegisterAgencyScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TitledCustomTextField(
-                  title: S.of(context).agency_name,
-                  controller: TextEditingController()),
+                title: LangKeys.agencyName,
+                controller: TextEditingController(),
+              ),
               SizedBox(height: RespCalc().heightRatio(18)),
               TitledCustomTextField(
-                  title: S.of(context).email,
-                  controller: TextEditingController()),
+                title: LangKeys.email,
+                controller: TextEditingController(),
+              ),
               SizedBox(height: RespCalc().heightRatio(18)),
               TitledCustomTextField(
-                  title: S.of(context).PhoneNom,
-                  controller: TextEditingController()),
+                title: LangKeys.phoneNumber,
+                controller: TextEditingController(),
+              ),
               SizedBox(height: RespCalc().heightRatio(18)),
               TitledCustomTextField(
-                  title: S.of(context).Password,
-                  controller: TextEditingController()),
+                title: LangKeys.password,
+                controller: TextEditingController(),
+              ),
               SizedBox(height: RespCalc().heightRatio(18)),
               TitledCustomTextField(
-                  title: S.of(context).address,
-                  controller: TextEditingController()),
+                title: LangKeys.password,
+                controller: TextEditingController(),
+              ),
               SizedBox(height: RespCalc().heightRatio(18)),
               TitledCustomDropDownButton(
-                  title: 'City',
-                  callBack: (String? val) {},
-                  dropDownList: cities,
-                  hintText: 'Select any of the following '),
-               SizedBox(height: RespCalc().heightRatio(35)),
-              const SelectedServiceAreas(),
+                value: '',
+                title: LangKeys.city,
+                callBack: (val) {},
+                dropDownList: [],
+                hintText: 'Select any of the following ',
+              ),
+              SizedBox(height: RespCalc().heightRatio(35)),
+              // const SelectedServiceAreas(),
               SizedBox(height: RespCalc().heightRatio(18)),
               PrimaryButton(callBack: () {}, text: 'Continue'),
               SizedBox(height: RespCalc().heightRatio(50)),
@@ -67,4 +72,3 @@ class RegisterAgencyScreen extends StatelessWidget {
     );
   }
 }
-*/

@@ -87,3 +87,6 @@ const List<String> ourCities = ['Alexandria'];
 
 late TextEditingController phoneController;
 late TextEditingController passwordController;
+late TextEditingController emailController;
+late TextEditingController name;
+late TextEditingController address;
