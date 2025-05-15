@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/features/auth/data/models/areas_model.dart';
 import 'package:final_lnk/features/auth/data/models/create_freelance_account_model.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../../../../core/databases/api/api_consumer.dart';
 import '../../../../core/databases/cache/my_cache.dart';
@@ -16,12 +20,13 @@ class AuthRepositoriesImpl implements AuthRepositories {
 
   AuthRepositoriesImpl({required this.apiConsumer});
 
-  /*@override
-  Future<Either<Failure, Unit>> forgetPassword(
-      {required TextEditingController text}) async {
+  @override
+  Future<Either<Failure, Unit>> forgetPassword({
+    required TextEditingController text,
+  }) async {
     try {
       await apiConsumer.post(
-        ApiConstants.forgetPasswordEndpoint,
+        ApiConstants.forgetEndpoint,
         data: {"email": text.text},
       );
       return const Right(unit); // Success case
@@ -32,16 +37,15 @@ class AuthRepositoriesImpl implements AuthRepositories {
     } catch (e) {
       return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
     }
-  }*/
+  }
 
-  /* @override
   Future<Either<Failure, Unit>> verify() async {
     try {
       await apiConsumer.post(
         ApiConstants.verifyEndpoint,
         data: {
-          "email": emailSignupController.text,
-          "otp": pinOtpController.text
+          "email": emailController.text,
+          "otp": int.parse(pinOtpController.text),
         },
       );
       return const Right(unit); // Success case
@@ -52,7 +56,8 @@ class AuthRepositoriesImpl implements AuthRepositories {
     } catch (e) {
       return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
     }
-  }*/
+  }
+
   @override
   Future<Either<Failure, Unit>> login({
     required String email,
@@ -131,16 +136,15 @@ class AuthRepositoriesImpl implements AuthRepositories {
       return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
     }
   }
-}
 
-/* @override
+  @override
   Future<Either<Failure, Unit>> changePassword() async {
     try {
-      await apiConsumer.post(
+      await apiConsumer.put(
         ApiConstants.changePassEndpoint,
         data: {
-          "email": writeEmailController.text,
-          "newPassword": newPasswordController.text
+          "email": emailController.text,
+          "password": passwordController.text,
         },
       );
       return const Right(unit); // Success case
@@ -152,23 +156,4 @@ class AuthRepositoriesImpl implements AuthRepositories {
       return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
     }
   }
-*/
-/* @override
-  Future<Either<Failure, Unit>> verifyChange() async {
-    try {
-      await apiConsumer.post(
-        ApiConstants.verifyEndpoint,
-        data: {
-          "email": writeEmailController.text,
-          "otp": pinOtpController.text
-        },
-      );
-      return const Right(unit); // Success case
-    } on ServerException catch (serverException) {
-      return Left(Failure(errMessage: serverException.errorModel.errorMessage));
-    } on Failure catch (failure) {
-      return Left(Failure(errMessage: failure.errMessage));
-    } catch (e) {
-      return Left(Failure(errMessage: 'Unexpected error occurred: $e'));
-    }
-  }*/
+}

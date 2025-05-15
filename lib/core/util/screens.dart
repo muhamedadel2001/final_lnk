@@ -3,3 +3,6 @@ const String loginScreen = 'login_screen';
 const String selectAccTypeScreen = 'select_acc_type_screen';
 const String freelanceScreen = 'freelance_screen';
 const String agencyScreen = 'agency_screen';
+const String otpScreen = 'otp_screen';
+const String forgetScreen = 'forget_screen';
+const String changePassScreen = 'change_pass_screen';

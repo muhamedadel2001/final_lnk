@@ -9,9 +9,21 @@ class CustomAlerts {
       SnackBar(
         content: Text(
           content,
-          style: getStyle13(context).copyWith(color: backgroundClr),
+          style: getStyle16(context).copyWith(color: backgroundClr),
         ),
         backgroundColor: dangerClr,
+      ),
+    );
+  }
+
+  static showMySuccessSnackBar(BuildContext context, String content) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          content,
+          style: getStyle16(context).copyWith(color: backgroundClr),
+        ),
+        backgroundColor: Colors.lightGreen,
       ),
     );
   }

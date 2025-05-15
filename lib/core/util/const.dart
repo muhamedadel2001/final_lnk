@@ -90,3 +90,4 @@ late TextEditingController passwordController;
 late TextEditingController emailController;
 late TextEditingController name;
 late TextEditingController address;
+late TextEditingController pinOtpController;

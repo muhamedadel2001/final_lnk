@@ -79,4 +79,41 @@ class AuthCubit extends Cubit<AuthState> {
       (_) => emit(RegisterSuccess()),
     );
   }
+
+  Future<void> verify() async {
+    emit(VerifyLoading());
+    final Either<Failure, Unit> result = await signupUseCase.callVerify();
+    result.fold(
+      (failure) => emit(VerifyError(failure.errMessage)),
+      (_) => emit(VerifySuccess()),
+    );
+  }
+
+  Future<void> forgetPassword({required TextEditingController text}) async {
+    emit(OtpLoading());
+    final Either<Failure, Unit> result = await signupUseCase.callForgetPassword(
+      text: text,
+    );
+    result.fold(
+      (failure) => emit(OtpError(failure.errMessage)),
+      (_) => emit(OtpSuccess()),
+    );
+  }
+
+  Future<void> resendPass({required TextEditingController text}) async {
+    emit(ResendLoading());
+    final Either<Failure, Unit> result = await signupUseCase.callForgetPassword(
+      text: text,
+    );
+    result.fold(
+      (failure) => emit(ResendError(failure.errMessage)),
+      (_) => emit(ResendSuccess()),
+    );
+  }
+
+  Future<void> changePass() async {
+    emit(ChangeLoading());
+    final Either<Failure, Unit> result = await signupUseCase.callChangePass();
+    result.fold((failure) => emit(ChangeError()), (_) => emit(ChangeSuccess()));
+  }
 }

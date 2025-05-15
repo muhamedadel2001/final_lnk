@@ -5,9 +5,12 @@ import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/features/auth/data/repositories/auth_repositories_impl.dart';
 import 'package:final_lnk/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:final_lnk/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/login_screen.dart';
+import 'package:final_lnk/features/auth/presentation/screens/otp_verfication_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/register_agency_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/register_freelancer_screen.dart';
+import 'package:final_lnk/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
@@ -73,6 +76,35 @@ class AppRouter {
               (_) => BlocProvider.value(
                 value: cubit,
                 child: RegisterFreelancerScreen(),
+              ),
+        );
+      case screens.otpScreen:
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final isRegister = args['isRegister'] as String;
+        final cubit = args['cubit'] as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: OtpVerificationScreen(isRegister: isRegister),
+              ),
+        );
+      case screens.forgetScreen:
+        final cubit = routeSettings.arguments as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: ForgetPasswordScreen(),
+              ),
+        );
+      case screens.changePassScreen:
+        final cubit = routeSettings.arguments as AuthCubit;
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: ResetPasswordScreen(),
               ),
         );
     }

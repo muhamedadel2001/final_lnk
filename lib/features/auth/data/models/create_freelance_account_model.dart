@@ -5,9 +5,12 @@ class CreateFreelancAccountModel {
   final String phone;
   final String? password;
   final String? city;
+  final String? address;
   final List<String>? locations;
-  CreateFreelancAccountModel({
+  CreateFreelancAccountModel(
+     {
     required this.typeOfUser,
+     this.address,
     required this.password,
     required this.locations,
     required this.name,
@@ -17,6 +20,7 @@ class CreateFreelancAccountModel {
   });
   Future<Map<String, dynamic>> toJson() async => {
     'name': name,
+    'address': address,
     'email': email,
     'phone': phone,
     'city': city,

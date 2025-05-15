@@ -14,12 +14,12 @@ import '../../../../core/logic/get_inputs_list.dart';
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/lang_keys.dart';
-import '../../../../core/util/screens.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../../../../core/widgets/titled_custom_drop_down_button.dart';
 import '../../../../core/widgets/titled_custom_text_field.dart';
 import '../widgets/bottom_app_bar.dart';
 import '../widgets/selected_service_areas.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 
 class RegisterFreelancerScreen extends StatefulWidget {
   const RegisterFreelancerScreen({super.key});
@@ -45,6 +45,16 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    name.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    form.currentState?.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundClr,
@@ -58,6 +68,12 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
         listener: (context, state) {
           if (state is RegisterError) {
             CustomAlerts.showMySnackBar(context, state.error);
+          } else if (state is RegisterSuccess) {
+            Navigator.pushNamed(
+              context,
+              screens.otpScreen,
+              arguments: {"cubit": cubit, "isRegister": 'true'},
+            );
           }
         },
         builder: (context, state) {
@@ -138,7 +154,10 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
                               );
                             }
                           },
-                          text: LangKeys.continueButton,
+                          text:
+                              state is RegisterLoading
+                                  ? "..."
+                                  : LangKeys.continueButton,
                         )
                         : CheckPrimaryButton(text: LangKeys.continueButton),
                     SizedBox(height: RespCalc().heightRatio(35)),

@@ -33,5 +33,18 @@
  "agencyName": "اسم الوكالة",
  "address": "العنوان",
  "select": "اختر ..",
- "validEmail": "يجب ادخال ايمال صالح "
+ "validEmail": "يجب ادخال ايمال صالح ",
+ "verifyCode": "التحقق من الرمز ",
+ "verifyCodeDes": "تم ارسال الكود الخاص بك الي بريدك الالكتروني",
+ "resend": "اعادة الارسال",
+ "submit": "تأكيد",
+ "didntReceive": "لم يتم الازسال ؟",
+ "otpVerified": "تم تفعيل الكود بنجاح !",
+ "forgetPassTitle": "نسيان كلمة السر",
+ "forgetPassDes": "سيتم إرسال رمز التحقق إليك، يرجى تزويدنا ببريدك الالكتروني لإرساله.",
+ "sendCode": "ارسال الكود",
+ "sendSuccess": "تم ارسال الكود",
+ "resetPassword": "تغيير كلمة السر",
+ "resetPasswordSuccess": "تم تغيير كلمة السر بنجاح",
+ "start": "ابدأ"
 }

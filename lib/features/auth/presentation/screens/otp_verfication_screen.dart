@@ -1,103 +1,155 @@
-/*
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/features/auth/presentation/widgets/pin_widget_otp.dart';
 import 'package:flutter/material.dart';
-import 'package:lnk/core/logic/resp_calc.dart';
-import 'package:lnk/core/util/colors.dart';
-import 'package:lnk/core/util/const.dart';
-import 'package:lnk/core/util/fonts.dart';
-import 'package:lnk/core/util/screens.dart';
-import 'package:lnk/core/widgets/primary_button.dart';
-import 'package:lnk/features/auth/presentation/widgets/box_text_field.dart';
-import 'package:lnk/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class OtpVerficationScreen extends StatelessWidget {
-  const OtpVerficationScreen({super.key, required this.isReg});
-  final bool isReg;
+import '../../../../core/logic/custom_alerts.dart';
+import '../../../../core/logic/resp_calc.dart';
+import '../../../../core/util/colors.dart';
+import '../../../../core/util/const.dart';
+import '../../../../core/widgets/primary_button.dart';
+import '../manager/auth_cubit.dart';
+import '../widgets/box_text_field.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
+
+class OtpVerificationScreen extends StatefulWidget {
+  final String isRegister;
+  const OtpVerificationScreen({super.key, required this.isRegister});
+
+  @override
+  State<OtpVerificationScreen> createState() => _OtpVerificationScreenState();
+}
+
+class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
+  final GlobalKey<FormState> _otpFormKey = GlobalKey<FormState>();
+
+  late AuthCubit cubit;
+  @override
+  void initState() {
+    cubit = BlocProvider.of<AuthCubit>(context);
+    pinOtpController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _otpFormKey.currentState?.dispose();
+    pinOtpController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 17),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(height: RespCalc().heightRatio(18)),
-                Image.asset(kLogo),
-                SizedBox(height: RespCalc().heightRatio(30)),
-                Text(S.of(context).VerifyCode,
-                    style: style20.copyWith(
-                        fontSize: 23, fontWeight: FontWeight.w700)),
-                SizedBox(height: RespCalc().heightRatio(30)),
-                SizedBox(
-                  width: RespCalc().widthRatio(219),
-                  child: Text(
-                    '${S.of(context).VerficatoinCodeTitleOtp}--------1234',
-                    style: style13,
-                    textAlign: TextAlign.center,
-                  ),
+    print('otp');
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        appBar: AppBar(),
+        body: SafeArea(
+          child: Form(
+            key: _otpFormKey,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 17),
+              child: SingleChildScrollView(
+                child: BlocConsumer<AuthCubit, AuthState>(
+                  listener: (context, state) {
+                    if (state is VerifySuccess) {
+                      CustomAlerts.showMySuccessSnackBar(
+                        context,
+                        LangKeys.otpVerified,
+                      );
+                      if (widget.isRegister == 'true') {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          screens.loginScreen,
+                          (route) => false,
+                        );
+                      } else {
+                        Navigator.pushNamed(
+                          context,
+                          screens.changePassScreen,
+                          arguments: cubit,
+                        );
+                      }
+                    }
+                    if (state is VerifyError) {
+                      CustomAlerts.showMySnackBar(context, state.error);
+                    }
+                    if (state is ResendSuccess) {
+                      CustomAlerts.showMySuccessSnackBar(
+                        context,
+                        LangKeys.sendSuccess,
+                      );
+                    }
+                  },
+                  builder: (context, state) {
+                    print('otp builder');
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: RespCalc().heightRatio(18)),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(80.sp),
+                          child: Image.asset(kLogo, width: 80.w, height: 80.h),
+                        ),
+                        SizedBox(height: RespCalc().heightRatio(30)),
+                        Text(
+                          LangKeys.verifyCode,
+                          style: getStyle20(
+                            context,
+                          ).copyWith(fontSize: 25, fontWeight: FontWeight.w700),
+                        ),
+                        SizedBox(height: RespCalc().heightRatio(30)),
+                        SizedBox(
+                          width: RespCalc().widthRatio(219),
+                          child: Text(
+                            LangKeys.verifyCodeDes,
+                            style: getStyle13(context).copyWith(fontSize: 16),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        SizedBox(height: RespCalc().heightRatio(60)),
+                        PinWidgetOtp(),
+                        SizedBox(height: RespCalc().heightRatio(40)),
+
+                        SizedBox(height: RespCalc().heightRatio(40)),
+                        PrimaryButton(
+                          callBack:
+                              () => {
+                                if (_otpFormKey.currentState!.validate() &&
+                                    pinOtpController.text.length >= 4 &&
+                                    pinOtpController.text.trim().isNotEmpty)
+                                  {cubit.verify()},
+                              },
+                          text: LangKeys.submit,
+                        ),
+                        SizedBox(height: RespCalc().heightRatio(42)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(LangKeys.didntReceive),
+                            InkWell(
+                              onTap: () {
+                                cubit.resendPass(text: emailController);
+                              },
+                              child: Text(
+                                LangKeys.resend,
+                                style: getStyleBold13(
+                                  context,
+                                ).copyWith(color: primaryClr),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  },
                 ),
-                SizedBox(height: RespCalc().heightRatio(60)),
-                FittedBox(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      BoxTextField(
-                        controller: TextEditingController(),
-                      ),
-                      BoxTextField(
-                        controller: TextEditingController(),
-                      ),
-                      BoxTextField(
-                        controller: TextEditingController(),
-                      ),
-                      BoxTextField(
-                        controller: TextEditingController(),
-                      ),
-                      // BoxTextField(
-                      //   controller: TextEditingController(),
-                      // ),
-                      // BoxTextField(
-                      //   controller: TextEditingController(),
-                      // ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: RespCalc().heightRatio(40)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Expires in ',
-                      style: styleBold13,
-                    ),
-                    Text(
-                      '04:15',
-                      style: style13,
-                    ),
-                  ],
-                ),
-                SizedBox(height: RespCalc().heightRatio(40)),
-                PrimaryButton(
-                    callBack: () =>
-                        Navigator.of(context).pushNamed(kResetPassword),
-                    text: S.of(context).Submit),
-                SizedBox(height: RespCalc().heightRatio(42)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(S.of(context).HaveNotReceivedCode),
-                    InkWell(
-                      onTap: () {},
-                      child: Text(
-                        ' ${S.of(context).Resend}',
-                        style: styleBold13.copyWith(color: primaryClr),
-                      ),
-                    )
-                  ],
-                ),
-              ],
+              ),
             ),
           ),
         ),
@@ -105,4 +157,5 @@ class OtpVerficationScreen extends StatelessWidget {
     );
   }
 }
+
 //219 32*/

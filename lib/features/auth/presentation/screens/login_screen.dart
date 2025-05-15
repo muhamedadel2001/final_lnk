@@ -24,16 +24,21 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> form = GlobalKey();
+  late TextEditingController phoneLoginController;
+  late TextEditingController passwordLoginController;
   @override
   void initState() {
-    phoneController = TextEditingController();
-    passwordController = TextEditingController();
+    print('hiiii');
+    phoneLoginController = TextEditingController();
+    passwordLoginController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    print('dispose');
+    phoneLoginController.dispose();
+    passwordLoginController.dispose();
+    form.currentState?.dispose();
     super.dispose();
   }
 
@@ -67,13 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       validator: Validations.egyptianPhoneValidation,
                       keyboardType: TextInputType.number,
                       title: LangKeys.phoneNumber,
-                      controller: phoneController,
+                      controller: phoneLoginController,
                     ),
                     SizedBox(height: RespCalc().heightRatio(30)),
                     TitledCustomTextField(
                       validator: Validations.passwordValidation,
                       title: LangKeys.password,
-                      controller: passwordController,
+                      controller: passwordLoginController,
                       obsecureText: true,
                     ),
                     SizedBox(height: RespCalc().heightRatio(20)),
@@ -109,8 +114,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           callBack: () {
                             if (form.currentState!.validate()) {
                               authCubit.login(
-                                email: phoneController.text,
-                                password: passwordController.text,
+                                email: phoneLoginController.text,
+                                password: passwordLoginController.text,
                               );
                             }
                           },
@@ -143,7 +148,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: RespCalc().heightRatio(19)),
                     InkWell(
                       onTap: () {
-                        //  Navigator.of(context).pushNamed(kForgetPassword),
+                        Navigator.pushNamed(
+                          context,
+                          screens.forgetScreen,
+                          arguments: authCubit,
+                        );
                       },
                       child: Text(
                         LangKeys.forgetPass,

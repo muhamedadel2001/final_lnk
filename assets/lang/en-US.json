@@ -34,5 +34,17 @@
   "agencyName": "Agency name",
   "address": "Address",
   "select": "Select ..",
-  "validEmail": "Email must be validate !"
+  "validEmail": "Email must be validate !",
+  "verifyCode": "Verify code ",
+  "verifyCodeDes": "code has been sent to your email",
+  "resend": "Resend code",
+  "submit": "Submit",
+  "didntReceive": "Didn't receive code ?",
+  "otpVerified": "Otp has been verified success ",
+  "forgetPassTitle": "Forget Password",
+  "forgetPassDes": "A verification code will be sent to you, please provide us with your email  to send it to you.",
+  "sendCode": "Send code",
+  "sendSuccess": "code has been sent success",
+  "resetPassword": "Reset password",
+  "resetPasswordSuccess": "Password has been changed success!"
 }

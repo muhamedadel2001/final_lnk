@@ -39,4 +39,16 @@ class LangKeys {
   static String get address => 'address'.tr();
   static String get select => 'select'.tr();
   static String get validEmail => 'validEmail'.tr();
+  static String get verifyCode => 'verifyCode'.tr();
+  static String get verifyCodeDes => 'verifyCodeDes'.tr();
+  static String get resend => 'resend'.tr();
+  static String get submit => 'submit'.tr();
+  static String get didntReceive => 'didntReceive'.tr();
+  static String get otpVerified => 'otpVerified'.tr();
+  static String get forgetPassTitle => 'forgetPassTitle'.tr();
+  static String get forgetPassDes => 'forgetPassDes'.tr();
+  static String get sendCode => 'sendCode'.tr();
+  static String get sendSuccess => 'sendSuccess'.tr();
+  static String get resetPassword => 'resetPassword'.tr();
+  static String get resetPasswordSuccess => 'resetPasswordSuccess'.tr();
 }
