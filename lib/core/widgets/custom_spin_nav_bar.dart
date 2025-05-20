@@ -86,7 +86,7 @@ class _SpinCircleBottomBarState extends State<SpinCircleBottomBar> {
         const IconThemeData(color: Colors.black);
     final TextStyle textStyle =
         expandableBottomBarDetails.titleStyle ??
-        const TextStyle(
+        TextStyle(
           color: Colors.black45,
           fontWeight: FontWeight.normal,
           fontSize: 12,

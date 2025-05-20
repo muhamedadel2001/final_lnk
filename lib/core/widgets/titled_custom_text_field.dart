@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/fonts.dart';
@@ -42,7 +43,7 @@ class TitledCustomTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: labelStyle ?? getStyle20(context)),
-        SizedBox(height: RespCalc().heightRatio(12)),
+        SizedBox(height: 12.h),
         CustomTextField(
           validator: validator,
           controller: controller,

@@ -46,5 +46,19 @@
  "sendSuccess": "تم ارسال الكود",
  "resetPassword": "تغيير كلمة السر",
  "resetPasswordSuccess": "تم تغيير كلمة السر بنجاح",
- "start": "ابدأ"
+ "start": "ابدأ",
+ "settings": "الاعدادات",
+ "notifications":"تلقي الاشعارات",
+ "terms": "الشروط و الاحكام",
+ "language": "اللغة",
+ "contactUs": "تواصل معنا",
+ "logout": "تسجيل الخروج",
+ "deleteAcc": "حذف الحساب",
+ "home": "الرئيسية",
+ "properties": "العقارات",
+ "requests": "الطلبات",
+ "post": "عقار",
+ "request": "طلب",
+ "menu": "القائمة",
+ "profile": "الحساب الشخصي"
 }

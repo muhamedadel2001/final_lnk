@@ -3,7 +3,7 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
-import 'package:final_lnk/test.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -90,14 +90,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is LoginSuccess) {
-                          /*  Navigator.of(context).pushNamedAndRemoveUntil(
-                              kHome,
-                              (Route<dynamic> route) => false,
-                            );*/
+                          Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            screens.homeLandingScreen,
+                            (route) => false,
+                          );
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => TestScreen(),
+                              builder: (context) => HomeScreen(),
                             ),
                             (route) => false,
                           );

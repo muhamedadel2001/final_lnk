@@ -6,3 +6,5 @@ const String agencyScreen = 'agency_screen';
 const String otpScreen = 'otp_screen';
 const String forgetScreen = 'forget_screen';
 const String changePassScreen = 'change_pass_screen';
+const String homeLandingScreen = 'home_landing_screen';
+const String languageScreen = 'language_screen';

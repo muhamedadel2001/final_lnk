@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons:
   dartz:
   flutter_screenutil:
+  flutter_svg:
   data_connection_checker_tv:
   flutter_native_splash:
   easy_localization:

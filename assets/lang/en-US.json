@@ -46,5 +46,19 @@
   "sendCode": "Send code",
   "sendSuccess": "code has been sent success",
   "resetPassword": "Reset password",
-  "resetPasswordSuccess": "Password has been changed success!"
+  "resetPasswordSuccess": "Password has been changed success!",
+  "settings": "Settings",
+  "notifications":"Notifications",
+  "terms": "Terms and Conditions",
+  "language": "Language",
+  "contactUs": "Contact us",
+  "logout": "Logout",
+  "deleteAcc": "Delete account",
+  "home": "Home",
+  "properties": "Properties",
+  "requests": "Requests",
+  "post": "Post",
+  "request": "Request",
+  "menu": "Menu",
+  "profile": "Profile"
 }

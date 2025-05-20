@@ -51,4 +51,18 @@ class LangKeys {
   static String get sendSuccess => 'sendSuccess'.tr();
   static String get resetPassword => 'resetPassword'.tr();
   static String get resetPasswordSuccess => 'resetPasswordSuccess'.tr();
+  static String get settings => 'settings'.tr();
+  static String get language => 'language'.tr();
+  static String get notifications => 'notifications'.tr();
+  static String get terms => 'terms'.tr();
+  static String get contactUs => 'contactUs'.tr();
+  static String get logout => 'logout'.tr();
+  static String get deleteAcc => 'deleteAcc'.tr();
+  static String get home => 'home'.tr();
+  static String get requests => 'requests'.tr();
+  static String get properties => 'properties'.tr();
+  static String get post => 'post'.tr();
+  static String get request => 'request'.tr();
+  static String get menu => 'menu'.tr();
+  static String get profile => 'profile'.tr();
 }

@@ -12,12 +12,16 @@ import 'package:final_lnk/features/auth/presentation/screens/register_agency_scr
 import 'package:final_lnk/features/auth/presentation/screens/register_freelancer_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/settings/presentation/manager/settings_cubit.dart';
+import '../../features/settings/presentation/screens/widgets/language_screen.dart';
 import '../util/screens.dart' as screens;
 
 class AppRouter {
@@ -105,6 +109,23 @@ class AppRouter {
               (_) => BlocProvider.value(
                 value: cubit,
                 child: ResetPasswordScreen(),
+              ),
+        );
+      case screens.homeLandingScreen:
+        return MaterialPageRoute(
+          builder:
+              (_) => BlocProvider(
+                create: (context) => HomeLandingCubit(),
+                child: HomeLanding(),
+              ),
+        );
+      case screens.languageScreen:
+        final cubit = routeSettings.arguments as SettingsCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: const LanguageScreen(),
               ),
         );
     }

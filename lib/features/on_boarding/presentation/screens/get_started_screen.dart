@@ -91,7 +91,11 @@ class GetStartedScreen extends StatelessWidget {
               child: PrimaryButton(
                 callBack: () {
                   MyCache.getString(key: MyCacheKeys.token) != ''
-                      ? Navigator.pushNamed(context, screens.loginScreen)
+                      ? Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        screens.homeLandingScreen,
+                        (route) => false,
+                      )
                       : Navigator.pushNamed(context, screens.onBoardingScreen);
                 },
 
