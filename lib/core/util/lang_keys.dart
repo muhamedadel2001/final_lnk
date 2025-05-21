@@ -65,4 +65,12 @@ class LangKeys {
   static String get request => 'request'.tr();
   static String get menu => 'menu'.tr();
   static String get profile => 'profile'.tr();
+  static String get termsString => 'termsString'.tr();
+  static String get contactTitle => 'contactTitle'.tr();
+  static String get callUs => 'callUs'.tr();
+  static String get emailUs => 'emailUs'.tr();
+  static String get willRespond => 'willRespond'.tr();
+  static String get respondCall => 'respondCall'.tr();
+  static String get message => 'message'.tr();
+  static String get typeMessage => 'typeMessage'.tr();
 }

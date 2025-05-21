@@ -17,6 +17,9 @@ import 'package:final_lnk/features/home_landing/presentation/screens/home_landin
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/on_boarding_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/contact_us_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/profile_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/terms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -127,6 +130,16 @@ class AppRouter {
                 value: cubit,
                 child: const LanguageScreen(),
               ),
+        );
+      case screens.termsScreen:
+        return MaterialPageRoute<String>(builder: (_) => const TermsScreen());
+      case screens.contactScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const ContactUsScreen(),
+        );
+      case screens.profileScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const AgentProfileScreen(),
         );
     }
     return null;

@@ -60,5 +60,13 @@
   "post": "Post",
   "request": "Request",
   "menu": "Menu",
-  "profile": "Profile"
+  "profile": "Profile",
+  "termsString": "\uD83D\uDCDD Terms and Conditions – LNK\nLast Updated: May 20, 2025\n\nWelcome to LNK, a digital platform that connects companies and brokers to facilitate real estate sales and rentals. By using our app, you agree to the following Terms and Conditions:\n\n1.\u2060 \u2060Definitions\n\"User\": Refers to any company or broker using the application.\n\n\"Service\": The digital platform provided by LNK.\n\n2.\u2060 \u2060Account Registration and Use\nYou must be a legally registered company or a certified broker to use this app.\n\nYou are responsible for the accuracy of your registration data and for maintaining the confidentiality of your account credentials.\n\n3.\u2060 \u2060User Obligations\nUse the platform only for lawful business purposes.\n\nDo not use the service for fraudulent, illegal, or unauthorized purposes.\n\nDo not share your login credentials with third parties.\n\n4.\u2060 \u2060Intellectual Property\nAll copyrights, designs, and content within the app are the property of LNK. You may not copy, reuse, or redistribute any content without written permission.\n\n5.\u2060 \u2060Disclaimer\nLNK is not responsible for any off-platform transactions or damages resulting from misuse of the platform.\n\n6.\u2060 \u2060Changes to Terms\nLNK reserves the right to modify these Terms at any time. Continued use of the platform after changes implies acceptance of the updated terms.",
+  "contactTitle": "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+  "callUs": "Call us",
+  "emailUs": "Email us",
+  "willRespond": "We'll respond within 24h",
+  "respondCall": "Sat-Thu from 8am to 5pm",
+  "message": "Message",
+  "typeMessage": "Type your message here ..."
 }

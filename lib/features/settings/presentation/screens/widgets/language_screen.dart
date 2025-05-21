@@ -56,7 +56,7 @@ class _SettingSelectLanguageScreenState extends State<LanguageScreen> {
                         icon: Icons.language,
                         language: 'English',
                         value: 'en',
-                        flagPath: 'assets/imgs/English.svg',
+                        flagPath: 'assets/imgs/um.svg',
                         isSelected:
                             SettingsCubit.get(context).language == 'en'
                                 ? true
@@ -75,7 +75,7 @@ class _SettingSelectLanguageScreenState extends State<LanguageScreen> {
                         icon: Icons.language,
                         language: 'العربية',
                         value: 'ar',
-                        flagPath: 'assets/imgs/English.svg',
+                        flagPath: 'assets/imgs/eg.svg',
                         isSelected:
                             SettingsCubit.get(context).language == 'ar'
                                 ? true

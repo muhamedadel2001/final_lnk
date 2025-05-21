@@ -22,6 +22,7 @@ class SettingsScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
+                SizedBox(height: 40.h),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -34,7 +35,9 @@ class SettingsScreen extends StatelessWidget {
                 MenuItem(
                   iconData: Icons.person,
                   title: LangKeys.profile,
-                  callBack: () {},
+                  callBack: () {
+                    Navigator.pushNamed(context, screens.profileScreen);
+                  },
                   hasIcon: true,
                   isDanger: false,
                 ),
@@ -69,7 +72,9 @@ class SettingsScreen extends StatelessWidget {
                   isDanger: false,
                   title: LangKeys.contactUs,
                   hasIcon: true,
-                  callBack: () {},
+                  callBack: () {
+                    Navigator.pushNamed(context, screens.contactScreen);
+                  },
                 ),
                 const SizedBox(height: 12),
                 MenuItem(
@@ -77,7 +82,8 @@ class SettingsScreen extends StatelessWidget {
                   isDanger: false,
                   title: LangKeys.terms,
                   hasIcon: true,
-                  callBack: () => {},
+                  callBack:
+                      () => {Navigator.pushNamed(context, screens.termsScreen)},
                 ),
                 const SizedBox(height: 12),
                 MenuItem(
@@ -94,6 +100,7 @@ class SettingsScreen extends StatelessWidget {
                     style: getStyleBold16(context).copyWith(color: primaryClr),
                   ),
                 ),
+                SizedBox(height: 35.h),
               ],
             ),
           ),

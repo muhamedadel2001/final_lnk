@@ -8,3 +8,6 @@ const String forgetScreen = 'forget_screen';
 const String changePassScreen = 'change_pass_screen';
 const String homeLandingScreen = 'home_landing_screen';
 const String languageScreen = 'language_screen';
+const String termsScreen = 'terms_screen';
+const String contactScreen = 'contact_screen';
+const String profileScreen = 'profile_screen';
