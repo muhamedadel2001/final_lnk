@@ -1,25 +1,29 @@
 import 'package:final_lnk/core/util/colors.dart';
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/settings/presentation/screens/widgets/accounts_widgets.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/personal_details_widget.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/posts_widget.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/requests_widget.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/util/lang_keys.dart';
 
-class AgentProfileScreen extends StatefulWidget {
-  const AgentProfileScreen({super.key});
-
+class ProfileScreen extends StatefulWidget {
+  final bool isAgency;
+  const ProfileScreen({super.key, required this.isAgency});
   @override
-  State<AgentProfileScreen> createState() => _AgentProfileScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _AgentProfileScreenState extends State<AgentProfileScreen>
+class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   @override
   void initState() {
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(
+      length: widget.isAgency ? 4 : 3,
+      vsync: this,
+    );
     super.initState();
   }
 
@@ -48,7 +52,12 @@ class _AgentProfileScreenState extends State<AgentProfileScreen>
                 children: [
                   Row(
                     children: [
-                      Icon(Icons.arrow_back_ios_new, size: 22.sp),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios_new, size: 22.sp),
+                      ),
                       SizedBox(width: 8.w),
                       Container(
                         width: 65.w,
@@ -61,7 +70,7 @@ class _AgentProfileScreenState extends State<AgentProfileScreen>
                           shape: BoxShape.circle,
                           border: Border.all(
                             color: geryBorderImageClr,
-                            width: 5,
+                            width: 3.w,
                           ),
                         ),
                       ),
@@ -72,14 +81,11 @@ class _AgentProfileScreenState extends State<AgentProfileScreen>
                           children: [
                             Text(
                               'Adam mohamed ali',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: getStyleBold16(context),
                             ),
                             Text(
                               LangKeys.freelance,
-                              style: TextStyle(fontSize: 12.sp),
+                              style: getStyle13(context),
                             ),
                           ],
                         ),
@@ -93,10 +99,12 @@ class _AgentProfileScreenState extends State<AgentProfileScreen>
           ),
           SizedBox(height: 10.h),
           TabBar(
+            labelPadding: EdgeInsets.zero,
+            labelStyle: getStyle13(context),
+            padding: EdgeInsets.symmetric(horizontal: 5),
             indicatorSize: TabBarIndicatorSize.tab,
             indicatorWeight: 0,
             indicatorColor: Colors.red,
-            isScrollable: true,
             dividerColor: Colors.transparent,
             controller: _tabController,
             labelColor: Colors.white,
@@ -105,16 +113,32 @@ class _AgentProfileScreenState extends State<AgentProfileScreen>
               borderRadius: BorderRadius.circular(24.r),
               color: primaryClr,
             ),
-            tabs: [
-              Tab(text: 'Personal details'),
-              Tab(text: 'Posts'),
-              Tab(text: 'Requests'),
-            ],
+            tabs:
+                widget.isAgency
+                    ? [
+                      Tab(text: LangKeys.personalDetails),
+                      Tab(text: LangKeys.posts),
+                      Tab(text: LangKeys.requests),
+                      Tab(text: LangKeys.accounts),
+                    ]
+                    : [
+                      Tab(text: LangKeys.personalDetails),
+                      Tab(text: LangKeys.posts),
+                      Tab(text: LangKeys.requests),
+                    ],
           ),
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: [PersonalDetailsTab(), PostsTab(), RequestsTab()],
+              children:
+                  widget.isAgency
+                      ? [
+                        PersonalDetailsTab(),
+                        PostsTab(),
+                        RequestsTab(),
+                        AccountsWidgets(),
+                      ]
+                      : [PersonalDetailsTab(), PostsTab(), RequestsTab()],
             ),
           ),
         ],

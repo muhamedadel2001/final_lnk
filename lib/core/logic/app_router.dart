@@ -17,8 +17,10 @@ import 'package:final_lnk/features/home_landing/presentation/screens/home_landin
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/on_boarding_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/add_sub_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/contact_us_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/profile_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/sub_acc_setails_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/terms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -138,9 +140,16 @@ class AppRouter {
           builder: (_) => const ContactUsScreen(),
         );
       case screens.profileScreen:
+        final isAgency = routeSettings.arguments as bool;
         return MaterialPageRoute<String>(
-          builder: (_) => const AgentProfileScreen(),
+          builder: (_) => ProfileScreen(isAgency: isAgency),
         );
+      case screens.subAccDetailsScreenScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const SubAccountDetailsScreen(),
+        );
+      case screens.addSubScreen:
+        return MaterialPageRoute<String>(builder: (_) => const AddSubScreen());
     }
     return null;
   }

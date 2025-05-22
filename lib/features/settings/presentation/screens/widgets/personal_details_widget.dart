@@ -1,3 +1,5 @@
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,7 +17,7 @@ class PersonalDetailsTab extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: Text("Edit", style: TextStyle(color: Colors.grey)),
+            child: Text(LangKeys.edit, style: getStyleBold13(context)),
           ),
           SizedBox(height: 10.h),
           ...details.map(

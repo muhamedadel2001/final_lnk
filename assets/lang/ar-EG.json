@@ -68,5 +68,18 @@
  "willRespond": "سوف نقوم بالرد خلال ٢٤ ساعة",
  "respondCall": "الاحد-الخميس من ٨ صباحا الي ٥ مساءا",
  "message": "رسالة",
- "typeMessage": "اكتب رسالتك هنا ..."
+ "typeMessage": "اكتب رسالتك هنا ...",
+ "personalDetails": "الحساب",
+ "posts": "المعروض",
+ "edit": "تغيير",
+ "items": "عناصر",
+ "accounts": "حسابات",
+ "subAccounts": "حسابات - فرعية",
+ "addSub": "اضافة حساب",
+ "view": "عرض",
+ "broker": "وكيل",
+ "role": "الوظيفة",
+ "recentActivity": "الانشطة الحديثة",
+ "add": "اضافة"
+
 }

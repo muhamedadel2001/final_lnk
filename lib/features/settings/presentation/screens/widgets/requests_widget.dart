@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../../../../core/util/fonts.dart';
+import '../../../../../core/util/lang_keys.dart';
+
 class RequestsTab extends StatelessWidget {
   const RequestsTab({super.key});
   @override
@@ -16,7 +19,10 @@ class RequestsTab extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 8.h),
-            Text("4 requests", style: TextStyle(fontSize: 14.sp)),
+            Text(
+              "${context.locale.languageCode == 'ar' ? '٤' : '4'} ${LangKeys.items}",
+              style: getStyle13(context),
+            ),
             ListView.builder(
               padding: EdgeInsets.only(top: 20.h),
               physics: NeverScrollableScrollPhysics(),
@@ -51,7 +57,7 @@ class RequestCard extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             "Request for Residential Apartment in New Cairo",
-            style: TextStyle(fontSize: 12.sp, fontWeight: FontWeight.bold),
+            style: getStyleBold13(context),
           ),
           SizedBox(height: 8.h),
           Row(
@@ -62,7 +68,7 @@ class RequestCard extends StatelessWidget {
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   "sidi bishr",
-                  style: TextStyle(fontSize: 10.sp),
+                  style: getStyle10(context),
                 ),
               ),
               SvgPicture.asset('assets/imgs/range.svg', width: 15.w),
@@ -71,7 +77,7 @@ class RequestCard extends StatelessWidget {
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   "1.500.000 : 2.000.000",
-                  style: TextStyle(fontSize: 10.sp),
+                  style: getStyle10(context),
                 ),
               ),
             ],
@@ -81,17 +87,14 @@ class RequestCard extends StatelessWidget {
             children: [
               Icon(Icons.check_circle_outline, size: 15.sp, color: primaryClr),
               Expanded(
-                child: Text(
-                  " Fully Finishing",
-                  style: TextStyle(fontSize: 10.sp),
-                ),
+                child: Text(" Fully Finishing", style: getStyle10(context)),
               ),
               SvgPicture.asset('assets/imgs/distance.svg', width: 15.w),
               Expanded(
                 child: Text(
                   overflow: TextOverflow.ellipsis,
                   "400m",
-                  style: TextStyle(fontSize: 10.sp),
+                  style: getStyle10(context),
                 ),
               ),
             ],
@@ -110,7 +113,7 @@ class RequestCard extends StatelessWidget {
               ),
               child: Text(
                 "View",
-                style: TextStyle(color: Colors.white, fontSize: 10.sp),
+                style: getStyle10(context).copyWith(color: Colors.white),
               ),
             ),
           ),

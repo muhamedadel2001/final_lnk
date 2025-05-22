@@ -11,3 +11,5 @@ const String languageScreen = 'language_screen';
 const String termsScreen = 'terms_screen';
 const String contactScreen = 'contact_screen';
 const String profileScreen = 'profile_screen';
+const String addSubScreen = 'add_sub_screen';
+const String subAccDetailsScreenScreen = 'sub_acc_details_screen_screen';

@@ -36,7 +36,11 @@ class SettingsScreen extends StatelessWidget {
                   iconData: Icons.person,
                   title: LangKeys.profile,
                   callBack: () {
-                    Navigator.pushNamed(context, screens.profileScreen);
+                    Navigator.pushNamed(
+                      context,
+                      screens.profileScreen,
+                      arguments: true,
+                    );
                   },
                   hasIcon: true,
                   isDanger: false,

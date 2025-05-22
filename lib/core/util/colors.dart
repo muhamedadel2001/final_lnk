@@ -12,3 +12,4 @@ Color textSecondaryClr = const Color(0xff5F5E5B);
 Color successClr = const Color(0xff52796F);
 Color dangerClr = const Color(0xffBC4749);
 Color geryBorderImageClr = const Color(0xffF5F4F8);
+Color geryBorderActivityClr = const Color(0xffCCCCCC);

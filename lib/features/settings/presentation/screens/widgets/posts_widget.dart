@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/colors.dart';
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,7 +18,10 @@ class PostsTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 8.h),
-          Text("4 property", style: TextStyle(fontSize: 14.sp)),
+          Text(
+            "${context.locale.languageCode == 'ar' ? '٤' : '4'} ${LangKeys.items}",
+            style: getStyle13(context),
+          ),
           Expanded(
             child: GridView.builder(
               padding: EdgeInsets.only(top: 20.h),
@@ -44,7 +50,9 @@ class PropertyCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
         color: Colors.white,
-        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4.r)],
+        boxShadow: [
+          BoxShadow(color: Colors.black.withOpacity(0.5), blurRadius: 2.r),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,10 +76,7 @@ class PropertyCard extends StatelessWidget {
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     "Classic Apartment For sale",
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: getStyleBold13(context),
                   ),
                   Row(
                     children: [
@@ -86,7 +91,7 @@ class PropertyCard extends StatelessWidget {
                         child: Text(
                           overflow: TextOverflow.ellipsis,
                           "sidi bishr",
-                          style: TextStyle(fontSize: 10.sp),
+                          style: getStyle10(context),
                         ),
                       ),
                       SvgPicture.asset('assets/imgs/distance.svg', width: 12.w),
@@ -96,7 +101,7 @@ class PropertyCard extends StatelessWidget {
                         child: Text(
                           overflow: TextOverflow.ellipsis,
                           "400m",
-                          style: TextStyle(fontSize: 10.sp),
+                          style: getStyle10(context),
                         ),
                       ),
                     ],
@@ -109,7 +114,7 @@ class PropertyCard extends StatelessWidget {
                         child: Text(
                           overflow: TextOverflow.ellipsis,
                           "2.000.000 EG",
-                          style: TextStyle(fontSize: 10.sp),
+                          style: getStyle10(context),
                         ),
                       ),
                     ],
@@ -124,7 +129,7 @@ class PropertyCard extends StatelessWidget {
                           child: Text(
                             overflow: TextOverflow.ellipsis,
                             "Apartment",
-                            style: TextStyle(fontSize: 10.sp),
+                            style: getStyle10(context),
                           ),
                         ),
                         Container(
@@ -138,10 +143,9 @@ class PropertyCard extends StatelessWidget {
                           ),
                           child: Text(
                             "View details",
-                            style: TextStyle(
-                              fontSize: 10.sp,
-                              color: Colors.white,
-                            ),
+                            style: getStyle10(
+                              context,
+                            ).copyWith(color: Colors.white),
                           ),
                         ),
                       ],

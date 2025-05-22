@@ -73,4 +73,16 @@ class LangKeys {
   static String get respondCall => 'respondCall'.tr();
   static String get message => 'message'.tr();
   static String get typeMessage => 'typeMessage'.tr();
+  static String get personalDetails => 'personalDetails'.tr();
+  static String get posts => 'posts'.tr();
+  static String get edit => 'edit'.tr();
+  static String get items => 'items'.tr();
+  static String get accounts => 'accounts'.tr();
+  static String get subAccounts => 'subAccounts'.tr();
+  static String get addSub => 'addSub'.tr();
+  static String get view => 'view'.tr();
+  static String get broker => 'broker'.tr();
+  static String get role => 'role'.tr();
+  static String get recentActivity => 'recentActivity'.tr();
+  static String get add => 'add'.tr();
 }

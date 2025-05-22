@@ -47,13 +47,13 @@ class CheckPrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(circularRadius ?? 15),
         ),
       ).copyWith(
-        overlayColor: MaterialStateProperty.all(
+        overlayColor: WidgetStateProperty.all(
           Colors.transparent,
         ), // منع تأثير الضغط
-        shadowColor: MaterialStateProperty.all(
+        shadowColor: WidgetStateProperty.all(
           Colors.transparent,
         ), // منع الظل عند الضغط
-        elevation: MaterialStateProperty.all(0), // منع رفع الزرار وقت الضغط
+        elevation: WidgetStateProperty.all(0), // منع رفع الزرار وقت الضغط
       ),
       child: Text(text ?? 'UnTitled', style: style ?? getStyle20(context)),
     );

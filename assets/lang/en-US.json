@@ -23,7 +23,7 @@
   "selectRoleDes": "Select the role that best describes your professional profile",
   "agency": "Agency",
   "agencyDes": "For businesses and real estate agencies",
-  "freelance": "Freelance agent",
+  "freelance": "Freelancer",
   "freelanceDes": "For independent real estate agents",
   "continue": "continue",
   "createAcc": "Create account",
@@ -68,5 +68,17 @@
   "willRespond": "We'll respond within 24h",
   "respondCall": "Sat-Thu from 8am to 5pm",
   "message": "Message",
-  "typeMessage": "Type your message here ..."
+  "typeMessage": "Type your message here ...",
+  "personalDetails": "Personal",
+  "posts": "Posts",
+  "edit": "Edit",
+  "items": "Items",
+  "accounts": "Accounts",
+  "subAccounts": "Sub-accounts",
+  "addSub": "Add sub",
+  "view": "view",
+  "broker": "Broker",
+  "role": "Role",
+  "recentActivity": "Recent activity",
+  "add": "Add"
 }
