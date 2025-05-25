@@ -42,7 +42,7 @@ class _HomeLandingState extends State<HomeLanding> {
 
               // الزرين اللي فوق زر الـ FAB
               Positioned(
-                bottom: 100.h,
+                bottom: 40.h,
                 left: 0.5.sw - 40.w,
                 child: AnimatedOpacity(
                   opacity: isDialOpen ? 1.0 : 0.0,

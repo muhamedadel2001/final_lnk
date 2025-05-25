@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:final_lnk/features/home_landing/presentation/screens/home_screen.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/home_screen.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/properties_screen.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/requests_screen.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';

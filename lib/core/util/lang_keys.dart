@@ -85,4 +85,27 @@ class LangKeys {
   static String get role => 'role'.tr();
   static String get recentActivity => 'recentActivity'.tr();
   static String get add => 'add'.tr();
+  static String get propertiesOffered => 'propertiesOffered'.tr();
+  static String get viewAll => 'viewAll'.tr();
+  static String get description => 'description'.tr();
+  static String get photos => 'photos'.tr();
+  static String get propertyDetails => 'propertyDetails'.tr();
+  static String get rooms => 'rooms'.tr();
+  static String get bathrooms => 'bathrooms'.tr();
+  static String get area => 'area'.tr();
+  static String get floor => 'floor'.tr();
+  static String get reception => 'reception'.tr();
+  static String get balcony => 'balcony'.tr();
+  static String get finishingType => 'finishingType'.tr();
+  static String get furnishing => 'furnishing'.tr();
+  static String get additionalFeatures => 'additionalFeatures'.tr();
+  static String get location => 'location'.tr();
+  static String get call => 'call'.tr();
+  static String get paymentMethod => 'paymentMethod'.tr();
+  static String get cash => 'cash'.tr();
+  static String get installments => 'installments'.tr();
+  static String get price => 'price'.tr();
+  static String get aboutProperty => 'aboutProperty'.tr();
+  static String get type => 'type'.tr();
+  static String get category => 'category'.tr();
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../util/fonts.dart';
 
@@ -15,7 +16,6 @@ class PropertyDetailsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 85,
       margin: const EdgeInsets.only(right: 35, bottom: 14, top: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,7 +27,7 @@ class PropertyDetailsItem extends StatelessWidget {
               Text(' $nom', style: getStyle20(context)),
             ],
           ),
-          Text(title, style: getStyle16(context)),
+          Text(title, style: getStyle16(context).copyWith(fontSize: 14.sp)),
         ],
       ),
     );

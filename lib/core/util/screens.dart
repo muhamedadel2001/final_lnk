@@ -13,3 +13,6 @@ const String contactScreen = 'contact_screen';
 const String profileScreen = 'profile_screen';
 const String addSubScreen = 'add_sub_screen';
 const String subAccDetailsScreenScreen = 'sub_acc_details_screen_screen';
+const String singlePropertyScreen = 'single_property_screen';
+const String singleRequestScreen = 'single_request_screen';
+const String photoListScreen = 'photoList_screen';

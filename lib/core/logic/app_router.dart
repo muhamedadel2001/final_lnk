@@ -14,6 +14,9 @@ import 'package:final_lnk/features/auth/presentation/screens/reset_password_scre
 import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/single_requset_view_screen.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/single_residential_property_view.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/photo_gallery_screen.dart';
 import 'package:final_lnk/features/on_boarding/manager/cubit/on_boarding_cubit.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/get_started_screen.dart';
 import 'package:final_lnk/features/on_boarding/presentation/screens/on_boarding_screen.dart';
@@ -150,6 +153,18 @@ class AppRouter {
         );
       case screens.addSubScreen:
         return MaterialPageRoute<String>(builder: (_) => const AddSubScreen());
+      case screens.singlePropertyScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const SingleResidentialPropertyView(),
+        );
+      case screens.photoListScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const PhotoGalleryScreen(),
+        );
+      case screens.singleRequestScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const SingleRequsetViewScreen(),
+        );
     }
     return null;
   }
