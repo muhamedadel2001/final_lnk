@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/resp_calc.dart';
 import 'featured_property_item.dart';
@@ -9,9 +10,9 @@ class FeaturedPropeties extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 225, maxHeight: 275),
+      constraints: BoxConstraints(minHeight: 225.h, maxHeight: 250.h),
       child: SizedBox(
-        height: RespCalc().heightRatio(275),
+        height: 250.h,
         child: ListView.builder(
           // clipBehavior: Clip.none,
           itemBuilder: (context, index) => const FeaturedPropertyItem(),

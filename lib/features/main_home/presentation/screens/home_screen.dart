@@ -5,13 +5,11 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/featur
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_requests.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -41,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               SizedBox(height: 40.h),
               CustomAppbarHome(userName: 'Moahmed'),
-              SizedBox(height: RespCalc().heightRatio(40)),
+              SizedBox(height: 30.h),
               Row(
                 children: [
                   Text(LangKeys.propertiesOffered, style: getStyle20(context)),
@@ -57,9 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: RespCalc().heightRatio(20)),
+              SizedBox(height: 15.h),
               const FeaturedPropeties(),
-              SizedBox(height: RespCalc().heightRatio(35)),
+              SizedBox(height: 30.h),
               Row(
                 children: [
                   Text(LangKeys.requests, style: getStyle20(context)),
@@ -75,9 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: RespCalc().heightRatio(20)),
+              SizedBox(height: 12.h),
               const FeaturedRequests(),
-              SizedBox(height: RespCalc().heightRatio(25)),
+              SizedBox(height: 25.h),
             ],
           ),
         ),

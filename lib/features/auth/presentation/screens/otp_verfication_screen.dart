@@ -91,32 +91,32 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: RespCalc().heightRatio(18)),
+                        SizedBox(height: 18.h),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80.sp),
                           child: Image.asset(kLogo, width: 80.w, height: 80.h),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(30)),
+                        SizedBox(height: 30.h),
                         Text(
                           LangKeys.verifyCode,
                           style: getStyle20(
                             context,
                           ).copyWith(fontSize: 25, fontWeight: FontWeight.w700),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(30)),
+                        SizedBox(height: 30.h),
                         SizedBox(
-                          width: RespCalc().widthRatio(219),
+                          width: 219.w,
                           child: Text(
                             LangKeys.verifyCodeDes,
                             style: getStyle13(context).copyWith(fontSize: 16),
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(60)),
+                        SizedBox(height: 60.h),
                         PinWidgetOtp(),
-                        SizedBox(height: RespCalc().heightRatio(40)),
+                        SizedBox(height: 40.h),
 
-                        SizedBox(height: RespCalc().heightRatio(40)),
+                        SizedBox(height: 40.h),
                         PrimaryButton(
                           callBack:
                               () => {
@@ -127,7 +127,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                               },
                           text: LangKeys.submit,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(42)),
+                        SizedBox(height: 42.h),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

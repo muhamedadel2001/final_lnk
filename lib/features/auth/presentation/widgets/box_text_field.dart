@@ -1,6 +1,7 @@
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
@@ -12,8 +13,8 @@ class BoxTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 9, right: 9),
-      width: RespCalc().widthRatio(61),
-      height: RespCalc().heightRatio(60),
+      width: 61.w,
+      height: 60.h,
       child: TextFormField(
         keyboardType: TextInputType.number,
         controller: controller,

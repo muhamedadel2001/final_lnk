@@ -1,5 +1,6 @@
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/photo_list_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/resp_calc.dart';
 
@@ -9,7 +10,7 @@ class PhotosListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: RespCalc().heightRatio(70),
+      height: 70.h,
       child: ListView.builder(
         itemBuilder: (context, index) {
           return const PhotoListItem(

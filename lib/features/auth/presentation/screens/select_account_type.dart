@@ -35,15 +35,15 @@ class SelectAccountTypeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(80.sp),
                   child: Image.asset(kLogo, width: 80.w, height: 80.h),
                 ),
-                SizedBox(height: RespCalc().heightRatio(30)),
+                SizedBox(height: 30.h),
                 Text(LangKeys.selectAccType, style: getStyle20(context)),
-                SizedBox(height: RespCalc().heightRatio(30)),
+                SizedBox(height: 30.h),
                 Text(
                   LangKeys.selectRoleDes,
                   style: getStyle16(context),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: RespCalc().heightRatio(96)),
+                SizedBox(height: 96.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -65,7 +65,7 @@ class SelectAccountTypeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: RespCalc().heightRatio(42)),
+                SizedBox(height:42.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

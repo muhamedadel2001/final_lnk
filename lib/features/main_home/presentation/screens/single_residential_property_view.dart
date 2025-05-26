@@ -6,6 +6,7 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/photos
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/pirce_property_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/property_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
@@ -58,7 +59,7 @@ class SingleResidentialPropertyView extends StatelessWidget {
               Text('Classic Apartment For sale', style: getStyle20(context)),
               const SizedBox(height: 20),
               Container(
-                height: RespCalc().heightRatio(204),
+                height: 204.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
@@ -69,7 +70,7 @@ class SingleResidentialPropertyView extends StatelessWidget {
                     Image.asset(
                       'assets/imgs/zc.png',
                       width: double.infinity,
-                      height: RespCalc().heightRatio(204),
+                      height: 204.h,
                       fit: BoxFit.cover,
                     ),
                     const Align(

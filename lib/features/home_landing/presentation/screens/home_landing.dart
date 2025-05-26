@@ -2,58 +2,45 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/logic/resp_calc.dart';
-import '../../../../core/util/colors.dart';
-import '../../../../core/util/fonts.dart';
-import '../../../../core/util/lang_keys.dart';
+import 'package:final_lnk/core/util/colors.dart';
+import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 import '../manager/home_landing_cubit.dart';
 
-class HomeLanding extends StatefulWidget {
+class HomeLanding extends StatelessWidget {
   const HomeLanding({super.key});
 
   @override
-  State<HomeLanding> createState() => _HomeLandingState();
-}
-
-class _HomeLandingState extends State<HomeLanding> {
-  bool isDialOpen = false;
-
-  @override
   Widget build(BuildContext context) {
+    print('landing screen');
     final landingCubit = BlocProvider.of<HomeLandingCubit>(context);
 
     return BlocBuilder<HomeLandingCubit, HomeLandingState>(
-      buildWhen: (prev, current) => current is ScreenChanged,
+      buildWhen: (previous, current) => current is ScreenChanged,
       builder: (context, state) {
+        print('landing screen builder');
         return Scaffold(
           body: Stack(
             children: [
-              BlocBuilder<HomeLandingCubit, HomeLandingState>(
-                builder: (context, state) {
-                  List<Widget?> screens = landingCubit.screens;
-                  return IndexedStack(
-                    index: landingCubit.index,
-                    children:
-                        screens.map((screen) => screen ?? Container()).toList(),
-                  );
-                },
+              IndexedStack(
+                index: landingCubit.index,
+                children:
+                    landingCubit.screens
+                        .map((screen) => screen ?? const SizedBox.shrink())
+                        .toList(),
               ),
-
-              // الزرين اللي فوق زر الـ FAB
-              Positioned(
-                bottom: 40.h,
-                left: 0.5.sw - 40.w,
-                child: AnimatedOpacity(
-                  opacity: isDialOpen ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 250),
+              if (landingCubit.isDialOpen)
+                Positioned(
+                  bottom: 40.h,
+                  left: 0.5.sw - 40.w,
                   child: Column(
                     children: [
                       _FloatingActionButtonMini(
                         iconPath: 'assets/imgs/nav_bar_assets/add-request.png',
                         label: LangKeys.request,
                         onTap: () {
-                          setState(() => isDialOpen = false);
+                          landingCubit.closeDial();
                         },
                       ),
                       SizedBox(height: 12.h),
@@ -61,13 +48,17 @@ class _HomeLandingState extends State<HomeLanding> {
                         iconPath: 'assets/imgs/nav_bar_assets/add-post.png',
                         label: LangKeys.post,
                         onTap: () {
-                          setState(() => isDialOpen = false);
+                          Navigator.pushNamed(
+                            context,
+                            screens.firstAddPropertyScreen,
+                            arguments: landingCubit,
+                          );
+                          landingCubit.closeDial();
                         },
                       ),
                     ],
                   ),
                 ),
-              ),
             ],
           ),
 
@@ -76,7 +67,7 @@ class _HomeLandingState extends State<HomeLanding> {
             shape: const CircularNotchedRectangle(),
             notchMargin: 12.0.w,
             child: Container(
-              height: max(76.h, RespCalc().heightRatio(76)),
+              height: max(76.h, 76.h),
               decoration: const BoxDecoration(color: Colors.transparent),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -87,7 +78,7 @@ class _HomeLandingState extends State<HomeLanding> {
                     label: LangKeys.home,
                     isActive: landingCubit.index == 0,
                     onTap: () {
-                      setState(() => isDialOpen = false);
+                      landingCubit.closeDial();
                       landingCubit.onTransition(0);
                     },
                   ),
@@ -97,7 +88,7 @@ class _HomeLandingState extends State<HomeLanding> {
                     label: LangKeys.properties,
                     isActive: landingCubit.index == 1,
                     onTap: () {
-                      setState(() => isDialOpen = false);
+                      landingCubit.closeDial();
                       landingCubit.onTransition(1);
                     },
                   ),
@@ -108,7 +99,7 @@ class _HomeLandingState extends State<HomeLanding> {
                     label: LangKeys.requests,
                     isActive: landingCubit.index == 2,
                     onTap: () {
-                      setState(() => isDialOpen = false);
+                      landingCubit.closeDial();
                       landingCubit.onTransition(2);
                     },
                   ),
@@ -118,7 +109,7 @@ class _HomeLandingState extends State<HomeLanding> {
                     label: LangKeys.menu,
                     isActive: landingCubit.index == 3,
                     onTap: () {
-                      setState(() => isDialOpen = false);
+                      landingCubit.closeDial();
                       landingCubit.onTransition(3);
                     },
                   ),
@@ -132,12 +123,10 @@ class _HomeLandingState extends State<HomeLanding> {
           floatingActionButton: FloatingActionButton(
             backgroundColor: primaryClr,
             child: Icon(
-              isDialOpen ? Icons.close : Icons.add,
+              landingCubit.isDialOpen ? Icons.close : Icons.add,
               color: Colors.white,
             ),
-            onPressed: () {
-              setState(() => isDialOpen = !isDialOpen);
-            },
+            onPressed: landingCubit.toggleDial,
           ),
         );
       },

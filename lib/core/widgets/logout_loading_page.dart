@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/colors.dart';
@@ -14,11 +15,9 @@ class LogoutLoadingPage extends StatelessWidget {
       color: Colors.black54,
       child: Center(
         child: SizedBox(
-          width: RespCalc().minRation(100),
-          height: RespCalc().minRation(100),
-          child: CircularProgressIndicator(
-            color: primaryClr,
-          ),
+          width: 100.w,
+          height: 100.h,
+          child: CircularProgressIndicator(color: primaryClr),
         ),
       ),
     );

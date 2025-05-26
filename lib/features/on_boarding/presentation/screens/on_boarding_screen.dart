@@ -3,6 +3,7 @@ import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/fonts.dart';
 import '../../data/on_boarding_model.dart';
@@ -89,8 +90,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: Column(
                       children: [
                         Container(
-                          height: RespCalc().heightRatio(345),
-                          width: RespCalc().widthRatio(307),
+                          height: 345.h,
+                          width: 307.w,
                           decoration: BoxDecoration(
                             color: Colors.black45,
                             borderRadius: BorderRadius.circular(50),
@@ -103,21 +104,21 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(20)),
+                        SizedBox(height: 20.h),
                         DotIndicator(),
-                        SizedBox(height: RespCalc().heightRatio(60)),
+                        SizedBox(height: 60.h),
                         Text(
                           boardingModel.title,
                           style: getStyle25(context),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(25)),
+                        SizedBox(height: 25.h),
                         Text(
                           boardingModel.subTitle,
                           style: getStyle16(context),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(25)),
+                        SizedBox(height: 25.h),
                         OnBoardingButton(),
                       ],
                     ),

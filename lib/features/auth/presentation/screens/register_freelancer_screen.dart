@@ -8,6 +8,7 @@ import 'package:final_lnk/features/auth/data/models/create_freelance_account_mod
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/get_inputs_list.dart';
@@ -90,26 +91,26 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
                       title: LangKeys.fullName,
                       controller: name,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.emailValidation,
                       title: LangKeys.email,
                       controller: emailController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.egyptianPhoneValidation,
                       title: LangKeys.phoneNumber,
                       controller: phoneController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.passwordValidation,
                       obsecureText: true,
                       title: LangKeys.password,
                       controller: passwordController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomDropDownButton(
                       value: cubit.userSelection.city,
                       title: LangKeys.city,
@@ -130,11 +131,11 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
                       dropDownList: GetLists.getCityNames(cubit.appModel),
                       hintText: LangKeys.select,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                     cubit.userSelection.cityId != null
                         ? SelectedServiceAreas()
                         : SizedBox(),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     cubit.userSelection.serviceAreaId == null
                         ? CheckPrimaryButton(text: LangKeys.continueButton)
                         : cubit.userSelection.serviceAreaId!.isNotEmpty
@@ -160,7 +161,7 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
                                   : LangKeys.continueButton,
                         )
                         : CheckPrimaryButton(text: LangKeys.continueButton),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                   ],
                 ),
               ),

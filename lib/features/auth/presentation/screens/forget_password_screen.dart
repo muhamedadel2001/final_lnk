@@ -71,32 +71,32 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: RespCalc().heightRatio(18)),
+                        SizedBox(height: 18.h),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80.sp),
                           child: Image.asset(kLogo, width: 80.w, height: 80.h),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(30)),
+                        SizedBox(height: 30.h),
                         Text(
                           LangKeys.forgetPassTitle,
                           style: getStyle20(
                             context,
                           ).copyWith(fontSize: 25, fontWeight: FontWeight.w700),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(90)),
+                        SizedBox(height: 90.h),
                         Text(
                           LangKeys.forgetPassDes,
                           style: getStyle13(context).copyWith(fontSize: 16),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(42)),
+                        SizedBox(height: 42.h),
                         TitledCustomTextField(
                           validator: Validations.emailValidation,
                           keyboardType: TextInputType.emailAddress,
                           title: LangKeys.email,
                           controller: emailController,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(92)),
+                        SizedBox(height: 92.h),
                         PrimaryButton(
                           callBack:
                               () => {

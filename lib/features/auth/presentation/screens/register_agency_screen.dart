@@ -3,6 +3,7 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/databases/cache/my_cache.dart';
 import '../../../../core/databases/cache/my_cache_keys.dart';
@@ -91,32 +92,32 @@ class _RegisterAgencyScreenState extends State<RegisterAgencyScreen> {
                       title: LangKeys.agencyName,
                       controller: name,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.emailValidation,
                       title: LangKeys.email,
                       controller: emailController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.egyptianPhoneValidation,
                       title: LangKeys.phoneNumber,
                       controller: phoneController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       obsecureText: true,
                       validator: Validations.passwordValidation,
                       title: LangKeys.password,
                       controller: passwordController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.globalValidation,
                       title: LangKeys.address,
                       controller: address,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     TitledCustomDropDownButton(
                       value: cubit.userSelection.city,
                       title: LangKeys.city,
@@ -137,11 +138,11 @@ class _RegisterAgencyScreenState extends State<RegisterAgencyScreen> {
                       dropDownList: GetLists.getCityNames(cubit.appModel),
                       hintText: LangKeys.select,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                     cubit.userSelection.cityId != null
                         ? SelectedServiceAreas()
                         : SizedBox(),
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     cubit.userSelection.serviceAreaId == null
                         ? CheckPrimaryButton(text: LangKeys.continueButton)
                         : cubit.userSelection.serviceAreaId!.isNotEmpty
@@ -165,7 +166,7 @@ class _RegisterAgencyScreenState extends State<RegisterAgencyScreen> {
                           text: LangKeys.continueButton,
                         )
                         : CheckPrimaryButton(text: LangKeys.continueButton),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                   ],
                 ),
               ),

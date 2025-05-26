@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/fonts.dart';
@@ -24,7 +25,7 @@ class TitledCustomDropDownButton extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(title, style: getStyle20(context)),
-        SizedBox(height: RespCalc().heightRatio(12)),
+        SizedBox(height: 12.h),
         CustomDropDownButton(
           value: value,
           title: title,

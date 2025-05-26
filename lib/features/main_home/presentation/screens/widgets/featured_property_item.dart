@@ -19,10 +19,10 @@ class FeaturedPropertyItem extends StatelessWidget {
         Navigator.pushNamed(context, screens.singlePropertyScreen);
       },
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 350, minWidth: 220),
+        constraints: BoxConstraints(maxWidth: 350.w, minWidth: 220.w),
         child: Container(
           margin: const EdgeInsets.only(left: 8, right: 8, bottom: 20, top: 0),
-          width: RespCalc().widthRatio(260),
+          width: 260.w,
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -39,7 +39,7 @@ class FeaturedPropertyItem extends StatelessWidget {
             children: [
               Image.asset(
                 'assets/imgs/Union.png',
-                height: RespCalc().heightRatio(130),
+                height: 130.h,
                 width: double.infinity,
                 fit: BoxFit.cover,
               ),
@@ -78,14 +78,14 @@ class FeaturedPropertyItem extends StatelessWidget {
                                 ? Alignment.centerLeft
                                 : Alignment.centerRight,
                         child: Padding(
-                          padding: EdgeInsets.only(top: 15.h),
+                          padding: EdgeInsets.only(top: 10.h),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Image.asset(
                                 'assets/imgs/properties_icons/location.png',
-                                height: RespCalc().minRation(14),
-                                width: RespCalc().minRation(6),
+                                height: 10.h,
+                                width: 9.h,
                               ),
                               Flexible(
                                 child: Text(

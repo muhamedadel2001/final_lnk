@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_bottom_sliver_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/resp_calc.dart';
 
@@ -15,7 +16,7 @@ class RequestSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       clipBehavior: Clip.none,
       title: Text(title, style: getStyle20(context)),
-      expandedHeight: max(RespCalc().heightRatio(150), 170),
+      expandedHeight: max(150.h, 170.h),
       floating: true,
       pinned: true,
       shape: const RoundedRectangleBorder(

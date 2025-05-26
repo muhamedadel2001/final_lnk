@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/resp_calc.dart';
 import 'featured_request_item.dart';
@@ -9,9 +10,9 @@ class FeaturedRequests extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minHeight: 150, maxHeight: 220),
+      constraints: BoxConstraints(minHeight: 150.h, maxHeight: 190.h),
       child: SizedBox(
-        height: RespCalc().heightRatio(220),
+        height: 190.h,
         child: ListView.builder(
           itemBuilder: (context, index) => const FeaturedRequestItem(),
           itemCount: 5,

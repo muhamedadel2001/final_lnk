@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../util/colors.dart';
 import '../util/fonts.dart';
@@ -41,9 +42,9 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         style: getStyle16(
           context,
-        ).copyWith(color: textSecondaryClr, height: textHeight ?? 1.8),
+        ).copyWith(color: textSecondaryClr, height: textHeight ?? 1.8.h),
         //text height -> 2.5,
-        cursorHeight: cursourHeight ?? 30,
+        cursorHeight: cursourHeight ?? 30.h,
         obscureText: obsecureText ?? false,
         enableSuggestions: true,
         maxLength: maxLength,

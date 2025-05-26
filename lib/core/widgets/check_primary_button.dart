@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/colors.dart';
@@ -38,10 +39,7 @@ class CheckPrimaryButton extends StatelessWidget {
           vertical: verticalPadding ?? 16,
         ),
         textStyle: getStyle20(context),
-        minimumSize: Size(
-          RespCalc().widthRatio(width ?? 260),
-          RespCalc().heightRatio(height ?? 62),
-        ),
+        minimumSize: Size(260.w, 60.h),
         shape: RoundedRectangleBorder(
           side: BorderSide(color: Colors.transparent),
           borderRadius: BorderRadius.circular(circularRadius ?? 15),

@@ -42,30 +42,34 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
+  @override
   Widget build(BuildContext context) {
-    RespCalc().initResponsive(context);
-    return ScreenUtilInit(
-      designSize: const Size(360, 800),
-      builder:
-          (context, child) => MediaQuery(
-            data: MediaQuery.of(
-              context,
-            ).copyWith(textScaler: const TextScaler.linear(1.0)),
-            child: MaterialApp(
-              debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              localizationsDelegates: [...context.localizationDelegates],
-              supportedLocales: [...context.supportedLocales],
-              locale: context.locale,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: primaryClr),
-                scaffoldBackgroundColor: backgroundClr,
-                appBarTheme: AppBarTheme(backgroundColor: backgroundClr),
-                useMaterial3: true,
-              ),
-              onGenerateRoute: AppRouter().onGenerateRoute,
-            ),
-          ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: primaryClr),
+        scaffoldBackgroundColor: backgroundClr,
+        appBarTheme: AppBarTheme(backgroundColor: backgroundClr),
+        useMaterial3: true,
+      ),
+      onGenerateRoute: AppRouter().onGenerateRoute,
+      builder: (context, child) {
+        return ScreenUtilInit(
+          designSize: const Size(360, 800),
+          builder: (_, __) {
+            return MediaQuery(
+              data: MediaQuery.of(
+                context,
+              ).copyWith(textScaler: const TextScaler.linear(1.0)),
+              child: child!,
+            );
+          },
+        );
+      },
     );
   }
 }

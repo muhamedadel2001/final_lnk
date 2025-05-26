@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/resp_calc.dart';
 import '../../../../../core/util/colors.dart';
@@ -17,7 +18,7 @@ class FeaturedRequestItem extends StatelessWidget {
         Navigator.pushNamed(context, screens.singleRequestScreen);
       },
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 350, minWidth: 220),
+        constraints: BoxConstraints(maxWidth: 350.w, minWidth: 220.w),
         child: Container(
           margin: const EdgeInsets.only(left: 8, right: 8, bottom: 20, top: 0),
           padding: const EdgeInsets.only(
@@ -26,7 +27,7 @@ class FeaturedRequestItem extends StatelessWidget {
             top: 14,
             bottom: 12,
           ),
-          width: RespCalc().widthRatio(250),
+          width: 250.w,
           decoration: BoxDecoration(
             color: backgroundClr,
             borderRadius: BorderRadius.circular(15),
@@ -74,13 +75,13 @@ class FeaturedRequestItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/imgs/properties_icons/location.png',
-                              height: RespCalc().minRation(14),
-                              width: RespCalc().minRation(14),
+                              height: 14.h,
+                              width: 10.w,
                             ),
                             ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 120),
+                              constraints: BoxConstraints(maxWidth: 120.w),
                               child: SizedBox(
-                                width: RespCalc().widthRatio(100),
+                                width: 100.w,
                                 child: Text(
                                   ' New Cairo',
                                   style: getStyleBold13(
@@ -90,11 +91,11 @@ class FeaturedRequestItem extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(width: RespCalc().widthRatio(5)),
+                            SizedBox(width: 5.w),
                             Image.asset(
                               'assets/imgs/properties_icons/range.png',
-                              height: RespCalc().minRation(14),
-                              width: RespCalc().minRation(14),
+                              height: 14.h,
+                              width: 10.w,
                             ),
                             Flexible(
                               child: Text(
@@ -117,13 +118,13 @@ class FeaturedRequestItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/imgs/properties_icons/finishing.png',
-                              height: RespCalc().minRation(14),
-                              width: RespCalc().minRation(14),
+                              height: 14.h,
+                              width: 10.w,
                             ),
                             ConstrainedBox(
-                              constraints: const BoxConstraints(maxWidth: 120),
+                              constraints: BoxConstraints(maxWidth: 120.w),
                               child: SizedBox(
-                                width: RespCalc().widthRatio(100),
+                                width: 100.w,
                                 child: Text(
                                   ' Fully Finished',
                                   style: getStyleBold13(
@@ -133,11 +134,11 @@ class FeaturedRequestItem extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(width: RespCalc().widthRatio(5)),
+                            SizedBox(width: 5.w),
                             Image.asset(
                               'assets/imgs/properties_icons/area.png',
-                              height: RespCalc().minRation(14),
-                              width: RespCalc().minRation(14),
+                              height: 14.h,
+                              width: 10.w,
                             ),
                             Flexible(
                               child: Text(

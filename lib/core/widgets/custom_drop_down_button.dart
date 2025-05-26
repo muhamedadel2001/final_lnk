@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/colors.dart';
@@ -36,15 +37,19 @@ class CustomDropDownButton extends StatelessWidget {
         dropIcon ?? Icons.keyboard_arrow_down_outlined,
         color: iconColor,
       ),
-      menuMaxHeight: RespCalc().heightRatio(300),
+      menuMaxHeight: 300.h,
       decoration: InputDecoration(
         filled: true,
         fillColor: fillColor ?? backgroundClr,
         hintText: hintText,
         hintStyle:
             hintStyle ??
-            getStyle16(context).copyWith(color: textSecondaryClr, height: 1.8),
-        labelStyle: getStyle16(context).copyWith(color: accentClr, height: 1.8),
+            getStyle16(
+              context,
+            ).copyWith(color: textSecondaryClr, height: 1.8, fontSize: 12.sp),
+        labelStyle: getStyle16(
+          context,
+        ).copyWith(color: accentClr, height: 1.8, fontSize: 12.sp),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: primaryClr, width: 1.6),
           borderRadius: BorderRadius.circular(12),

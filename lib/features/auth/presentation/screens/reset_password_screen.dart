@@ -70,24 +70,24 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: RespCalc().heightRatio(18)),
+                        SizedBox(height: 18.h),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80.sp),
                           child: Image.asset(kLogo, width: 80.w, height: 80.h),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(35)),
+                        SizedBox(height: 35.h),
                         Text(
                           LangKeys.resetPassword,
                           style: getStyle39(context).copyWith(fontSize: 31),
                         ),
-                        SizedBox(height: RespCalc().heightRatio(35)),
+                        SizedBox(height: 35.h),
                         TitledCustomTextField(
                           obsecureText: true,
                           title: LangKeys.password,
                           controller: passwordController,
                           validator: Validations.passwordValidation,
                         ),
-                        SizedBox(height: RespCalc().heightRatio(250)),
+                        SizedBox(height: 250.h),
                         PrimaryButton(
                           callBack: () {
                             if (form.currentState!.validate()) {

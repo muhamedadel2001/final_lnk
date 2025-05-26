@@ -59,33 +59,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: RespCalc().heightRatio(18)),
+                    SizedBox(height: 18.h),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(80.sp),
                       child: Image.asset(kLogo, width: 80.w, height: 80.h),
                     ),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                     Text(LangKeys.signIn, style: getStyle39(context)),
-                    SizedBox(height: RespCalc().heightRatio(35)),
+                    SizedBox(height: 35.h),
                     TitledCustomTextField(
                       validator: Validations.egyptianPhoneValidation,
                       keyboardType: TextInputType.number,
                       title: LangKeys.phoneNumber,
                       controller: phoneLoginController,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(30)),
+                    SizedBox(height: 30.h),
                     TitledCustomTextField(
                       validator: Validations.passwordValidation,
                       title: LangKeys.password,
                       controller: passwordLoginController,
                       obsecureText: true,
                     ),
-                    SizedBox(height: RespCalc().heightRatio(20)),
+                    SizedBox(height: 20.h),
                     /*   const Align(
                       alignment: Alignment.centerLeft,
                       child: RememberMeBox(),
                     ),*/
-                    SizedBox(height: RespCalc().heightRatio(30)),
+                    SizedBox(height: 30.h),
                     BlocConsumer<AuthCubit, AuthState>(
                       listener: (context, state) {
                         if (state is LoginSuccess) {
@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                     ),
-                    SizedBox(height: RespCalc().heightRatio(19)),
+                    SizedBox(height: 18.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -138,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: RespCalc().heightRatio(19)),
+                    SizedBox(height: 18.h),
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(

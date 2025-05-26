@@ -14,6 +14,10 @@ import 'package:final_lnk/features/auth/presentation/screens/reset_password_scre
 import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/widgets/first_page_add_property.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/widgets/forth_page_add_property.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/widgets/second_page_add_property.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/widgets/third_page_add_property.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/single_requset_view_screen.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/single_residential_property_view.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/photo_gallery_screen.dart';
@@ -164,6 +168,42 @@ class AppRouter {
       case screens.singleRequestScreen:
         return MaterialPageRoute<String>(
           builder: (_) => const SingleRequsetViewScreen(),
+        );
+      case screens.firstAddPropertyScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: FirstPageAddProperty(),
+              ),
+        );
+      case screens.secondAddPropertyScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: SecondPageAddProperty(),
+              ),
+        );
+      case screens.thirdAddPropertyScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: ThirdPageAddProperty(),
+              ),
+        );
+      case screens.fourthAddPropertyScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: ForthPageAddProperty(),
+              ),
         );
     }
     return null;

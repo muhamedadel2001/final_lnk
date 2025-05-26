@@ -16,3 +16,7 @@ const String subAccDetailsScreenScreen = 'sub_acc_details_screen_screen';
 const String singlePropertyScreen = 'single_property_screen';
 const String singleRequestScreen = 'single_request_screen';
 const String photoListScreen = 'photoList_screen';
+const String firstAddPropertyScreen = 'first_add_property_screen';
+const String secondAddPropertyScreen = 'second_add_property_screen';
+const String thirdAddPropertyScreen = 'third_add_property_screen';
+const String fourthAddPropertyScreen = 'fourth_add_property_screen';

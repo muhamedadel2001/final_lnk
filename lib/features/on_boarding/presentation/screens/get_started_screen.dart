@@ -4,6 +4,7 @@ import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/fonts.dart';
@@ -56,22 +57,16 @@ class GetStartedScreen extends StatelessWidget {
             child: Image(
               image: const AssetImage('assets/imgs/on_boarding/map.png'),
               fit: BoxFit.cover,
-              height: RespCalc().heightRatio(413),
+              height: 414.h,
               width: double.infinity,
             ),
           ),
           Positioned(
-            bottom: RespCalc().heightRatio(275),
+            bottom: 275.h,
             child: Padding(
               padding: EdgeInsets.only(
-                left:
-                    context.locale.languageCode == 'en'
-                        ? RespCalc().widthRatio(20)
-                        : 0,
-                right:
-                    context.locale.languageCode == 'en'
-                        ? 0
-                        : RespCalc().widthRatio(20),
+                left: context.locale.languageCode == 'en' ? 20.w : 0,
+                right: context.locale.languageCode == 'en' ? 0 : 20.w,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

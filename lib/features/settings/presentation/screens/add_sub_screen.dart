@@ -62,13 +62,13 @@ class _AddSubScreenState extends State<AddSubScreen> {
                 title: LangKeys.fullName,
                 controller: name,
               ),
-              SizedBox(height: RespCalc().heightRatio(18)),
+              SizedBox(height: 18.h),
               TitledCustomTextField(
                 validator: Validations.emailValidation,
                 title: LangKeys.email,
                 controller: emailController,
               ),
-              SizedBox(height: RespCalc().heightRatio(18)),
+              SizedBox(height: 18.h),
               TitledCustomTextField(
                 validator: Validations.egyptianPhoneValidation,
                 title: LangKeys.phoneNumber,

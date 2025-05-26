@@ -5,10 +5,14 @@ import 'package:final_lnk/features/home_landing/presentation/screens/requests_sc
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/util/const.dart';
+import '../../../../core/util/property_model.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
 import '../screens/menu_screen.dart';
+import '../screens/widgets/first_page_add_property.dart';
 
 part 'home_landing_state.dart';
 
@@ -43,6 +47,78 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
         create: (context) => SettingsCubit(),
         child: SettingsScreen(),
       );
+    }
+  }
+
+  List<PropertyTypeModel> selectedPropertyTypesList = propertyTypesSubList;
+  final ImagePicker _picker = ImagePicker();
+  List<GlobalKey<FormState>> keys = [
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+    GlobalKey<FormState>(),
+  ];
+  String titleButton = '';
+  String postType = 'normal';
+  String propertyStatus = 'Sell';
+  String propertyCategory = 'residential';
+  String propertyType = 'Apartment';
+  String payment = 'Cash';
+  String city = ourCities[0];
+  String? finishing;
+  String? furnishing;
+  int floorNom = 1;
+  int installmentYears = 1;
+  int roomsNom = 1;
+  int bathroomsNom = 1;
+  int balaconsNom = 1;
+  int receptionPieces = 1;
+  String typeOfRent = 'Daily';
+  TextEditingController insurance = TextEditingController();
+  TextEditingController propertyLocation = TextEditingController();
+  TextEditingController areaByMeter = TextEditingController();
+  TextEditingController price = TextEditingController();
+  TextEditingController downPayment = TextEditingController();
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
+  TextEditingController mobileNumber = TextEditingController();
+  TextEditingController whatsAppNumber = TextEditingController();
+  PageController pageController = PageController(
+    initialPage: 0,
+    keepPage: false,
+  );
+  List<XFile> imageFiles = [];
+  List<String> additionalFeatures = [];
+
+  viewMoreOrLess() {
+    if (selectedPropertyTypesList.length <= 6) {
+      selectedPropertyTypesList = completedPropertyTypesList;
+    } else {
+      selectedPropertyTypesList = propertyTypesSubList;
+    }
+  }
+
+  Future<void> pickImages() async {
+    try {
+      final List<XFile> pickedFiles = await _picker.pickMultiImage();
+      if (pickedFiles.isNotEmpty) {
+        imageFiles.addAll(pickedFiles);
+      }
+    } catch (e) {
+      print('error image');
+    }
+  }
+
+  bool isDialOpen = false;
+
+  void toggleDial() {
+    isDialOpen = !isDialOpen;
+    emit(ScreenChanged());
+  }
+
+  void closeDial() {
+    if (isDialOpen) {
+      isDialOpen = false;
+      emit(ScreenChanged());
     }
   }
 }

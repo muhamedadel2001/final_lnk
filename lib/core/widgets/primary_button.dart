@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../logic/resp_calc.dart';
 import '../util/colors.dart';
@@ -38,14 +39,11 @@ class PrimaryButton extends StatelessWidget {
         backgroundColor: backgroundClr ?? primaryClr,
         foregroundColor: foregroundClr ?? Colors.white,
         padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding ?? 40,
-          vertical: verticalPadding ?? 16,
+          horizontal: horizontalPadding ?? 40.w,
+          vertical: verticalPadding ?? 16.h,
         ),
         textStyle: getStyle20(context),
-        minimumSize: Size(
-          RespCalc().widthRatio(width ?? 260),
-          RespCalc().heightRatio(height ?? 62),
-        ),
+        minimumSize: Size(235.w, 70.h),
         shape: RoundedRectangleBorder(
           side: BorderSide(color: primaryClr),
           borderRadius: BorderRadius.circular(circularRadius ?? 15),
