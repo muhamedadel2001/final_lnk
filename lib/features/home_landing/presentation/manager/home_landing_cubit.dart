@@ -1,7 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/home_screen.dart';
-import 'package:final_lnk/features/home_landing/presentation/screens/properties_screen.dart';
-import 'package:final_lnk/features/home_landing/presentation/screens/requests_screen.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,10 +8,9 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/util/const.dart';
 import '../../../../core/util/property_model.dart';
+import '../../../properties/presentation/screens/properties_screen.dart';
+import '../../../requests/presentaion/screens/requests_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
-import '../screens/menu_screen.dart';
-import '../screens/widgets/first_page_add_property.dart';
-
 part 'home_landing_state.dart';
 
 class HomeLandingCubit extends Cubit<HomeLandingState> {
@@ -41,7 +38,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     } else if (idx == 1) {
       return PropertiesScreen();
     } else if (idx == 2) {
-      return const RequestScreen();
+      return const RequestsScreen();
     } else {
       return BlocProvider(
         create: (context) => SettingsCubit(),
@@ -73,6 +70,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   int balaconsNom = 1;
   int receptionPieces = 1;
   String typeOfRent = 'Daily';
+  bool isRequest = false;
   TextEditingController insurance = TextEditingController();
   TextEditingController propertyLocation = TextEditingController();
   TextEditingController areaByMeter = TextEditingController();
@@ -82,10 +80,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   TextEditingController description = TextEditingController();
   TextEditingController mobileNumber = TextEditingController();
   TextEditingController whatsAppNumber = TextEditingController();
-  PageController pageController = PageController(
-    initialPage: 0,
-    keepPage: false,
-  );
   List<XFile> imageFiles = [];
   List<String> additionalFeatures = [];
 

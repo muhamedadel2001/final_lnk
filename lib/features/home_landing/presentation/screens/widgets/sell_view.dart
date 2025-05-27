@@ -24,11 +24,31 @@ class SellView extends StatelessWidget {
           ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 8),
-        CustomTextField(
-          controller: addPropertyCubit.price,
-          hintText: 'enter price',
-          keyboardType: TextInputType.number,
-        ),
+        addPropertyCubit.isRequest
+            ? Row(
+              children: [
+                Expanded(
+                  child: CustomTextField(
+                    controller: addPropertyCubit.price,
+                    hintText: 'from',
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+                SizedBox(width: 25.w),
+                Expanded(
+                  child: CustomTextField(
+                    controller: addPropertyCubit.price,
+                    hintText: 'to',
+                    keyboardType: TextInputType.number,
+                  ),
+                ),
+              ],
+            )
+            : CustomTextField(
+              controller: addPropertyCubit.price,
+              hintText: 'enter price',
+              keyboardType: TextInputType.number,
+            ),
         const SizedBox(height: 14),
         Text(
           'payment',

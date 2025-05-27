@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_bottom_sliver_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +16,14 @@ class RequestSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       clipBehavior: Clip.none,
-      title: Text(title, style: getStyle20(context)),
-      expandedHeight: max(150.h, 170.h),
+      title: Align(
+        alignment:
+            context.locale.languageCode == 'en'
+                ? Alignment.topLeft
+                : Alignment.topRight,
+        child: Text(title, style: getStyle20(context)),
+      ),
+      expandedHeight: max(90.h, 110.h),
       floating: true,
       pinned: true,
       shape: const RoundedRectangleBorder(

@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
         controller: controller,
         style: getStyle16(
           context,
-        ).copyWith(color: textSecondaryClr, height: textHeight ?? 1.8.h),
+        ).copyWith(color: textSecondaryClr, height: textHeight ?? 1.25.h),
         //text height -> 2.5,
         cursorHeight: cursourHeight ?? 30.h,
         obscureText: obsecureText ?? false,

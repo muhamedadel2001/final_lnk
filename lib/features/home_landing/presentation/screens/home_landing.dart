@@ -40,6 +40,12 @@ class HomeLanding extends StatelessWidget {
                         iconPath: 'assets/imgs/nav_bar_assets/add-request.png',
                         label: LangKeys.request,
                         onTap: () {
+                          landingCubit.isRequest = true;
+                          Navigator.pushNamed(
+                            context,
+                            screens.firstAddPropertyScreen,
+                            arguments: landingCubit,
+                          );
                           landingCubit.closeDial();
                         },
                       ),
@@ -48,6 +54,7 @@ class HomeLanding extends StatelessWidget {
                         iconPath: 'assets/imgs/nav_bar_assets/add-post.png',
                         label: LangKeys.post,
                         onTap: () {
+                          landingCubit.isRequest = false;
                           Navigator.pushNamed(
                             context,
                             screens.firstAddPropertyScreen,

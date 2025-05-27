@@ -43,8 +43,10 @@ class _PaymentOptionsState extends State<PaymentOptions> {
           ],
         ),
         addPropertyCubit.payment == 'installment'
-            ? const InstallmentOptions()
-            : const SizedBox(width: 0, height: 0),
+            ? addPropertyCubit.isRequest
+                ? const SizedBox.shrink()
+                : const InstallmentOptions()
+            : const SizedBox.shrink(),
       ],
     );
   }

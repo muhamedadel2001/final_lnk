@@ -1,6 +1,7 @@
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 
 import '../../../../../core/util/colors.dart';
 
@@ -22,7 +23,13 @@ class CustomAppbarHome extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  screens.profileScreen,
+                  arguments: true,
+                );
+              },
               icon: Image.asset(
                 'assets/imgs/user_circle.png',
                 width: 35.w,

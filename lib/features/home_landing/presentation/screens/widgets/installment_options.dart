@@ -34,14 +34,14 @@ class _InstallmentOptionsState extends State<InstallmentOptions> {
           hintText: 'enter price',
           keyboardType: TextInputType.number,
         ),
-        const SizedBox(height: 34),
+        const SizedBox(height: 20),
         Text(
           'installments years',
           style: getStyle20(
             context,
           ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
         ),
-        const SizedBox(height: 34),
+        const SizedBox(height: 20),
         FittedBox(
           child: Row(
             children: [

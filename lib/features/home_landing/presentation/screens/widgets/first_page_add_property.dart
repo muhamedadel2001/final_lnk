@@ -17,6 +17,7 @@ class FirstPageAddProperty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final addPropertyCubit = BlocProvider.of<HomeLandingCubit>(context);
+    print(addPropertyCubit.isRequest);
     return Scaffold(
       appBar: AppBar(scrolledUnderElevation: 0),
       body: Padding(

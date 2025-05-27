@@ -57,6 +57,7 @@ class SecondPageAddProperty extends StatelessWidget {
                     context,
                   ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
+                const SizedBox(height: 8),
                 CustomTextField(
                   controller: addPropertyCubit.areaByMeter,
                   suffixText: 'meter',
@@ -139,8 +140,9 @@ class SecondPageAddProperty extends StatelessWidget {
                   hintText: 'select',
                 ),
                 const SizedBox(height: 14),
-                // SellView(),
-                PropertyRentStatus(),
+                addPropertyCubit.propertyStatus == 'Sell'
+                    ? SellView()
+                    : PropertyRentStatus(),
                 SizedBox(height: 20.h),
                 const Footer(pageNom: 2),
                 const SizedBox(height: 19),
