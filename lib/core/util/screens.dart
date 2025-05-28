@@ -20,3 +20,7 @@ const String firstAddPropertyScreen = 'first_add_property_screen';
 const String secondAddPropertyScreen = 'second_add_property_screen';
 const String thirdAddPropertyScreen = 'third_add_property_screen';
 const String fourthAddPropertyScreen = 'fourth_add_property_screen';
+const String filterProprtiesScreen = 'filter_properties_screen';
+const String filterRequestsScreen = 'filter_requests_screen';
+const String resultFilterPropertiesScreen = 'result_filter_properties_screen';
+const String resultFilterRequestsScreen = 'result_filter_requests_screen';

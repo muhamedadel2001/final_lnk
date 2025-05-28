@@ -5,14 +5,18 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/util/colors.dart';
+import '../util/colors.dart';
+import '../util/screens.dart';
+import '../../features/properties/presentation/manager/properties_cubit.dart';
 import 'bottom_sliver_app_bar.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
+  final void Function() onPressed;
   const CustomSliverAppBar({
     super.key,
     required this.title,
     required this.subTitle,
+    required this.onPressed,
   });
   final String title;
   final String subTitle;
@@ -52,7 +56,7 @@ class CustomSliverAppBar extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      bottom: const BottomSliverBar(),
+      bottom: BottomSliverBar(onPressed: onPressed),
       backgroundColor: const Color(0xffd9e4db),
     );
   }

@@ -1,10 +1,13 @@
+import 'package:final_lnk/core/util/screens.dart';
+import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/widgets/search_bar.dart';
+import 'search_bar.dart';
 
 class BottomSliverBar extends StatelessWidget implements PreferredSizeWidget {
-  const BottomSliverBar({super.key});
+  final void Function() onPressed;
+  const BottomSliverBar({super.key, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -19,7 +22,7 @@ class BottomSliverBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           const SizedBox(width: 8),
           IconButton(
-            onPressed: () {},
+            onPressed: onPressed,
             icon: Image.asset(
               'assets/imgs/filter.png',
               width: 31.w,

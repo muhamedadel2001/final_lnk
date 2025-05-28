@@ -34,8 +34,8 @@ TextStyle getStyleBold16(BuildContext context) =>
 
 TextStyle getStyle20(BuildContext context) =>
     isEnglish(context)
-        ? GoogleFonts.quicksand(fontSize: 20.sp, fontWeight: FontWeight.w700)
-        : GoogleFonts.cairo(fontSize: 20.sp, fontWeight: FontWeight.w700);
+        ? GoogleFonts.quicksand(fontSize: 18.sp, fontWeight: FontWeight.w700)
+        : GoogleFonts.cairo(fontSize: 18.sp, fontWeight: FontWeight.w700);
 
 TextStyle getStyle25(BuildContext context) =>
     isEnglish(context)

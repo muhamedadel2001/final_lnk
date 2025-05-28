@@ -13,3 +13,5 @@ Color successClr = const Color(0xff52796F);
 Color dangerClr = const Color(0xffBC4749);
 Color geryBorderImageClr = const Color(0xffF5F4F8);
 Color geryBorderActivityClr = const Color(0xffCCCCCC);
+Color filterResultBorderClr = const Color(0xffF2E8D9);
+Color filterResultIconClr = const Color(0xff565656);

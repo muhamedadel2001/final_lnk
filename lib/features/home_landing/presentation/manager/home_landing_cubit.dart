@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/home_screen.dart';
+import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
+import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,10 +13,12 @@ import '../../../../core/util/property_model.dart';
 import '../../../properties/presentation/screens/properties_screen.dart';
 import '../../../requests/presentaion/screens/requests_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
+
 part 'home_landing_state.dart';
 
 class HomeLandingCubit extends Cubit<HomeLandingState> {
   HomeLandingCubit() : super(HomeLandingInitial());
+
   static HomeLandingCubit get(context) =>
       BlocProvider.of<HomeLandingCubit>(context);
 
@@ -36,9 +40,15 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     if (idx == 0) {
       return HomeScreen();
     } else if (idx == 1) {
-      return PropertiesScreen();
+      return BlocProvider(
+        create: (context) => PropertiesCubit(),
+        child: PropertiesScreen(),
+      );
     } else if (idx == 2) {
-      return const RequestsScreen();
+      return BlocProvider(
+        create: (context) => RequestsCubit(),
+        child: RequestsScreen(),
+      );
     } else {
       return BlocProvider(
         create: (context) => SettingsCubit(),
@@ -55,7 +65,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     GlobalKey<FormState>(),
   ];
   String titleButton = '';
-  String postType = 'normal';
   String propertyStatus = 'Sell';
   String propertyCategory = 'residential';
   String propertyType = 'Apartment';

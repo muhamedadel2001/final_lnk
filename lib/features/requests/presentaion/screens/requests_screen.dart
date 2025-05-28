@@ -1,12 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/screens.dart';
+import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/request_feed_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/util/colors.dart';
 import '../../../../core/widgets/custom_tab_bar.dart';
-import '../../../properties/presentation/screens/widgets/custom_sliver_app_bar.dart';
+import '../../../../core/widgets/custom_sliver_app_bar.dart';
 
 class RequestsScreen extends StatefulWidget {
   const RequestsScreen({super.key});
@@ -24,8 +25,6 @@ class _RequestsScreenState extends State<RequestsScreen>
     tabController = TabController(length: 4, vsync: this);
     tabController.addListener(() {
       if (!tabController.indexIsChanging) {
-        // التاب فعلاً اتغير وخلص الحركة
-
         print('Tab index changed to ${tabController.index}');
       }
     });
@@ -37,6 +36,13 @@ class _RequestsScreenState extends State<RequestsScreen>
       body: CustomScrollView(
         slivers: <Widget>[
           CustomSliverAppBar(
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                filterRequestsScreen,
+                arguments: RequestsCubit.get(context),
+              );
+            },
             title: 'Available Requests',
             subTitle: 'Browse the Best Deals in the Market',
           ),

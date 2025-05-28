@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/features/properties/presentation/screens/widgets/custom_sliver_app_bar.dart';
+import 'package:final_lnk/core/widgets/custom_sliver_app_bar.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/property_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/logic/intl_logic.dart';
 import '../../../../core/util/colors.dart';
+import '../../../../core/util/screens.dart';
 import '../../../../core/widgets/custom_tab_bar.dart';
+import '../manager/properties_cubit.dart';
 
 class PropertiesScreen extends StatefulWidget {
   const PropertiesScreen({super.key});
@@ -37,6 +39,13 @@ class _PropertiesScreenState extends State<PropertiesScreen>
       body: CustomScrollView(
         slivers: <Widget>[
           CustomSliverAppBar(
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                filterProprtiesScreen,
+                arguments: PropertiesCubit.get(context),
+              );
+            },
             title: 'Available Lists',
             subTitle: 'Browse the Best Deals in the Market',
           ),

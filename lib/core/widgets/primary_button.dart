@@ -39,11 +39,11 @@ class PrimaryButton extends StatelessWidget {
         backgroundColor: backgroundClr ?? primaryClr,
         foregroundColor: foregroundClr ?? Colors.white,
         padding: EdgeInsets.symmetric(
-          horizontal: horizontalPadding ?? 40.w,
-          vertical: verticalPadding ?? 16.h,
+          horizontal: horizontalPadding ?? 20.w,
+          vertical: verticalPadding ?? 10.h,
         ),
         textStyle: getStyle20(context),
-        minimumSize: Size(235.w, 70.h),
+        minimumSize: Size(235.w, 60.h),
         shape: RoundedRectangleBorder(
           side: BorderSide(color: primaryClr),
           borderRadius: BorderRadius.circular(circularRadius ?? 15),
