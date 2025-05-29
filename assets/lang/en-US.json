@@ -103,6 +103,7 @@
   "installments": "Installments",
   "price": "price",
   "type": "Type",
-  "category": "Category"
+  "category": "Category",
+  "favourite": "Favourite"
 
 }

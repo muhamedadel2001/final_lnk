@@ -32,6 +32,7 @@ import 'package:final_lnk/features/requests/presentaion/screens/filter_requests_
 import 'package:final_lnk/features/requests/presentaion/screens/result_filter_requests_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/add_sub_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/contact_us_screen.dart';
+import 'package:final_lnk/features/settings/presentation/screens/favourites_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/profile_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/sub_acc_setails_screen.dart';
 import 'package:final_lnk/features/settings/presentation/screens/terms_screen.dart';
@@ -148,6 +149,10 @@ class AppRouter {
         );
       case screens.termsScreen:
         return MaterialPageRoute<String>(builder: (_) => const TermsScreen());
+      case screens.favouriteScreen:
+        return MaterialPageRoute<String>(
+          builder: (_) => const FavouritesScreen(),
+        );
       case screens.contactScreen:
         return MaterialPageRoute<String>(
           builder: (_) => const ContactUsScreen(),
@@ -172,8 +177,13 @@ class AppRouter {
           builder: (_) => const PhotoGalleryScreen(),
         );
       case screens.singleRequestScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
         return MaterialPageRoute<String>(
-          builder: (_) => const SingleRequsetViewScreen(),
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: SingleRequsetViewScreen(),
+              ),
         );
       case screens.firstAddPropertyScreen:
         final cubit = routeSettings.arguments as HomeLandingCubit;
@@ -230,20 +240,32 @@ class AppRouter {
               ),
         );
       case screens.resultFilterRequestsScreen:
-        final cubit = routeSettings.arguments as RequestsCubit;
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final requestsCubit = args['requestsCubit'] as RequestsCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
+
         return MaterialPageRoute<String>(
           builder:
-              (_) => BlocProvider.value(
-                value: cubit,
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: requestsCubit),
+                ],
                 child: ResultFilterRequestsScreen(),
               ),
         );
       case screens.filterRequestsScreen:
-        final cubit = routeSettings.arguments as RequestsCubit;
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final requestsCubit = args['requestsCubit'] as RequestsCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
+
         return MaterialPageRoute<String>(
           builder:
-              (_) => BlocProvider.value(
-                value: cubit,
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: requestsCubit),
+                ],
                 child: FilterRequestScreen(),
               ),
         );

@@ -27,7 +27,7 @@ class _FilterPropertiesStatusWidgetState
             //    rentChangesCubit.generateCashChanges();
             setState(() {});
           },
-          child: FilterRequestsOptionBoxWidget(title: 'Sell'),
+          child: FilterPropertiesOptionBoxWidget(title: 'Sell'),
         ),
         const SizedBox(width: 11),
         GestureDetector(
@@ -36,7 +36,7 @@ class _FilterPropertiesStatusWidgetState
             //   rentChangesCubit.generateRentChanges();
             setState(() {});
           },
-          child: FilterRequestsOptionBoxWidget(title: 'Rent'),
+          child: FilterPropertiesOptionBoxWidget(title: 'Rent'),
         ),
       ],
     );

@@ -8,13 +8,13 @@ import '../../../../../core/util/colors.dart';
 import '../../../../../core/util/fonts.dart';
 import '../../../../home_landing/presentation/screens/widgets/custom_radio_button.dart';
 
-class FilterRequestsOptionBoxWidget extends StatelessWidget {
+class FilterPropertiesOptionBoxWidget extends StatelessWidget {
   final String title;
-  const FilterRequestsOptionBoxWidget({super.key, required this.title});
+  const FilterPropertiesOptionBoxWidget({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    final reqCubit = BlocProvider.of<RequestsCubit>(context);
+    final propCubit = BlocProvider.of<PropertiesCubit>(context);
     return Container(
       margin: const EdgeInsets.all(3),
       height: 50,
@@ -28,9 +28,9 @@ class FilterRequestsOptionBoxWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          (title == reqCubit.propertyStatus ||
+          (title == propCubit.propertyStatus ||
                   ManualLocalization.getPropertyCategoryEnglishWord(title) ==
-                      reqCubit.propertyCategory)
+                      propCubit.propertyCategory)
               ? const CustomRadioButton()
               : const SizedBox(width: 17, height: 17),
           const SizedBox(width: 14),

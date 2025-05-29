@@ -24,3 +24,4 @@ const String filterProprtiesScreen = 'filter_properties_screen';
 const String filterRequestsScreen = 'filter_requests_screen';
 const String resultFilterPropertiesScreen = 'result_filter_properties_screen';
 const String resultFilterRequestsScreen = 'result_filter_requests_screen';
+const String favouriteScreen = 'favourite_screen';

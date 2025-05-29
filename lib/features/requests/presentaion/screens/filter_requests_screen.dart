@@ -1,6 +1,7 @@
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/screens.dart';
 import 'package:final_lnk/core/widgets/primary_button.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_properties_area_widget.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_properties_category_widget.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_properties_price_widget.dart';
@@ -127,7 +128,10 @@ class FilterRequestScreen extends StatelessWidget {
                         Navigator.pushNamed(
                           context,
                           resultFilterRequestsScreen,
-                          arguments: reqCubit,
+                          arguments: {
+                            'requestsCubit': reqCubit,
+                            'homeLandingCubit': HomeLandingCubit.get(context),
+                          },
                         );
                       },
                       text: 'Apply filter',

@@ -103,5 +103,6 @@
  "price": "السعر",
  "aboutProperty": "عن العقار",
  "type": "النوع",
- "category": "التصنيف"
+ "category": "التصنيف",
+ "favourite": "المفضلة"
 }

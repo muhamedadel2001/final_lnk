@@ -64,9 +64,11 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 MenuItem(
-                  iconData: Icons.notifications_outlined,
-                  title: LangKeys.notifications,
-                  callBack: () {},
+                  iconData: Icons.favorite,
+                  title: LangKeys.favourite,
+                  callBack: () {
+                    Navigator.pushNamed(context, screens.favouriteScreen);
+                  },
                   hasIcon: true,
                   isDanger: false,
                 ),

@@ -1,5 +1,6 @@
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/screens.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -117,7 +118,12 @@ class MyRequestItem extends StatelessWidget {
               Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, singleRequestScreen);
+                  print('hi');
+                  Navigator.pushNamed(
+                    context,
+                    singleRequestScreen,
+                    arguments: HomeLandingCubit.get(context),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryClr,

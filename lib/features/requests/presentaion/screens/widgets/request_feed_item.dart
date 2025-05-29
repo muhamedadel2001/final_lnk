@@ -2,6 +2,7 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/util/colors.dart';
+import '../../../../../core/widgets/favourite.dart';
 import 'my_request_item.dart';
 
 class RequestFeedItem extends StatelessWidget {
@@ -21,7 +22,7 @@ class RequestFeedItem extends StatelessWidget {
                 backgroundImage: AssetImage('assets/imgs/profile_image.png'),
               ),
               const SizedBox(width: 8),
-              Flexible(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -40,6 +41,7 @@ class RequestFeedItem extends StatelessWidget {
                   ],
                 ),
               ),
+              Favourite(isLiked: true),
             ],
           ),
           const MyRequestItem(),

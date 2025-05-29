@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/contact_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_location_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_price_range.dart';
@@ -14,6 +15,8 @@ class SingleRequsetViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = HomeLandingCubit.get(context);
+    print(cubit.index);
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[

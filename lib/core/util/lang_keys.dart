@@ -108,4 +108,5 @@ class LangKeys {
   static String get aboutProperty => 'aboutProperty'.tr();
   static String get type => 'type'.tr();
   static String get category => 'category'.tr();
+  static String get favourite => 'favourite'.tr();
 }

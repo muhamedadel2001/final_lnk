@@ -29,7 +29,7 @@ class _FilterPropertiesCategoryWidgetState
                 propCubit.propertyCategory = 'residential';
                 setState(() {});
               },
-              child: FilterRequestsOptionBoxWidget(title: 'Residential'),
+              child: FilterPropertiesOptionBoxWidget(title: 'Residential'),
             ),
             const SizedBox(width: 11),
             GestureDetector(
@@ -37,7 +37,7 @@ class _FilterPropertiesCategoryWidgetState
                 propCubit.propertyCategory = 'commercial';
                 setState(() {});
               },
-              child: FilterRequestsOptionBoxWidget(title: 'Commercial'),
+              child: FilterPropertiesOptionBoxWidget(title: 'Commercial'),
             ),
             const SizedBox(width: 11),
             GestureDetector(
@@ -45,7 +45,7 @@ class _FilterPropertiesCategoryWidgetState
                 propCubit.propertyCategory = 'costal';
                 setState(() {});
               },
-              child: FilterRequestsOptionBoxWidget(title: 'Coastal'),
+              child: FilterPropertiesOptionBoxWidget(title: 'Coastal'),
             ),
           ],
         ),
