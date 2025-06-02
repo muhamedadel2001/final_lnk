@@ -104,6 +104,9 @@
   "price": "price",
   "type": "Type",
   "category": "Category",
-  "favourite": "Favourite"
-
+  "favourite": "Favourite",
+  "hello": "Hello",
+  "propertiesRequested": "Properties requested"
 }
+
+

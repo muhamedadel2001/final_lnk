@@ -1,4 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:data_connection_checker_tv/data_connection_checker.dart';
+import 'package:dio/dio.dart';
+import 'package:final_lnk/core/connection/network_info.dart';
+import 'package:final_lnk/core/databases/api/dio_consumer.dart';
+import 'package:final_lnk/features/main_home/data/datasources/user_local_data.dart';
+import 'package:final_lnk/features/main_home/data/datasources/user_remote_data.dart';
+import 'package:final_lnk/features/main_home/data/repositories/home_repo_impl.dart';
+import 'package:final_lnk/features/main_home/domain/usecases/home_use_case.dart';
+import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/home_screen.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
@@ -23,7 +32,33 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       BlocProvider.of<HomeLandingCubit>(context);
 
   int index = 0;
-  List<Widget?> screens = [HomeScreen(), null, null, null];
+  List<Widget?> screens = [
+    BlocProvider(
+      create:
+          (context) => MainHomeCubit(
+            GetHomeUseCase(
+              homeRepo: HomeRepoImpl(
+                networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                userRemoteData: UserRemoteData(
+                  apiConsumer: DioConsumer(
+                    dio: Dio(
+                      BaseOptions(
+                        connectTimeout: Duration(seconds: 60),
+                        receiveTimeout: Duration(seconds: 60),
+                      ),
+                    ),
+                  ),
+                ),
+                userLocalData: UserLocalData(),
+              ),
+            ),
+          ),
+      child: HomeScreen(),
+    ),
+    null,
+    null,
+    null,
+  ];
   int cnt = 0;
 
   onTransition(int idx) {
@@ -38,7 +73,28 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
 
   Widget _getPage(int idx) {
     if (idx == 0) {
-      return HomeScreen();
+      return BlocProvider(
+        create:
+            (context) => MainHomeCubit(
+              GetHomeUseCase(
+                homeRepo: HomeRepoImpl(
+                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  userRemoteData: UserRemoteData(
+                    apiConsumer: DioConsumer(
+                      dio: Dio(
+                        BaseOptions(
+                          connectTimeout: Duration(seconds: 60),
+                          receiveTimeout: Duration(seconds: 60),
+                        ),
+                      ),
+                    ),
+                  ),
+                  userLocalData: UserLocalData(),
+                ),
+              ),
+            ),
+        child: HomeScreen(),
+      );
     } else if (idx == 1) {
       return BlocProvider(
         create: (context) => PropertiesCubit(),

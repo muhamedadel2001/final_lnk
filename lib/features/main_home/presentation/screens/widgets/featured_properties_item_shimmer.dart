@@ -1,20 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
-
-import '../../../../../core/logic/intl_logic.dart';
-import '../../../../../core/logic/resp_calc.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
-import '../../../data/models/user_model.dart';
 
-class FeaturedPropertyItem extends StatelessWidget {
-  final HomeListing homeListing;
-  const FeaturedPropertyItem({super.key, required this.homeListing});
+class FeaturedPropertyItemShimmer extends StatelessWidget {
+  const FeaturedPropertyItemShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,19 +34,12 @@ class FeaturedPropertyItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              homeListing.images == null
-                  ? Image.asset(
-                    'assets/imgs/Union.png',
-                    height: 130.h,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  )
-                  : CachedNetworkImage(
-                    imageUrl: '${ApiConstants.homeImages}${homeListing.images}',
-                    height: 130.h,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+              Image.asset(
+                'assets/imgs/Union.png',
+                height: 130.h,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
               Expanded(
                 child: Container(
                   decoration: BoxDecoration(
@@ -78,7 +64,7 @@ class FeaturedPropertyItem extends StatelessWidget {
                                 : Alignment.topRight,
                         child: Text(
                           maxLines: 2,
-                          homeListing.title,
+                          'Classic Apartment sale',
                           style: getStyleBold13(context).copyWith(fontSize: 15),
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -101,7 +87,7 @@ class FeaturedPropertyItem extends StatelessWidget {
                               Flexible(
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,
-                                  homeListing.location.name,
+                                  ' Smouha',
                                   style: getStyleBold13(
                                     context,
                                   ).copyWith(color: textSecondaryClr),
@@ -117,16 +103,9 @@ class FeaturedPropertyItem extends StatelessWidget {
                                 ? Alignment.bottomLeft
                                 : Alignment.bottomRight,
                         child: Text(
-                          homeListing.price,
+                          '85.000.000 EG',
                           style: getStyleBold13(context),
                         ),
-                      ),
-                      Align(
-                        alignment:
-                            context.locale.languageCode == 'en'
-                                ? Alignment.bottomRight
-                                : Alignment.bottomLeft,
-                        child: Favourite(isLiked: homeListing.isFavourite),
                       ),
                     ],
                   ),

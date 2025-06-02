@@ -1,0 +1,27 @@
+import 'dart:convert';
+import 'package:final_lnk/features/main_home/data/models/user_model.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../../../core/databases/cache/my_cache.dart';
+import '../../../../core/errors/exceptions.dart';
+import '../../../../core/logic/custom_alerts.dart';
+
+class UserLocalData {
+  cacheHomeData(UserData? userData) {
+    if (userData != null) {
+      MyCache.saveData(key: 'homeData', value: jsonEncode(userData.toJson()));
+    } else {
+      throw CacheException(errorMessage: 'No Internet Connection !');
+    }
+  }
+
+  Future<UserData> getLastHomeData(BuildContext context) {
+    final jsonString = MyCache.getDataString(key: 'homeData');
+    if (jsonString != null) {
+      CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+      return Future.value(UserData.fromJson(jsonDecode(jsonString)));
+    } else {
+      throw CacheException(errorMessage: 'No Internet Connection !');
+    }
+  }
+}

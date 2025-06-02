@@ -35,6 +35,9 @@ dependencies:
   data_connection_checker_tv:
   flutter_native_splash:
   easy_localization:
+  skeletonizer:
+  cached_network_image:
+
   dio:
   flutter:
     sdk: flutter

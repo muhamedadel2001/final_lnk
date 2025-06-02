@@ -1,23 +1,34 @@
+import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_properties_item_shimmer.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_property_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/logic/resp_calc.dart';
-import 'featured_property_item.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 class FeaturedPropeties extends StatelessWidget {
   const FeaturedPropeties({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = MainHomeCubit.get(context);
     return ConstrainedBox(
       constraints: BoxConstraints(minHeight: 225.h, maxHeight: 250.h),
       child: SizedBox(
         height: 250.h,
-        child: ListView.builder(
-          // clipBehavior: Clip.none,
-          itemBuilder: (context, index) => const FeaturedPropertyItem(),
-          itemCount: 5,
-          scrollDirection: Axis.horizontal,
+        child: Skeletonizer(
+          enabled: cubit.isLoadingHomeData || cubit.userData == null,
+          child: ListView.builder(
+            itemBuilder:
+                (context, index) =>
+                    cubit.isLoadingHomeData
+                        ? const FeaturedPropertyItemShimmer()
+                        : FeaturedPropertyItem(
+                          homeListing: cubit.userData!.homeListing[index],
+                        ),
+            itemCount:
+                cubit.userData == null ? 5 : cubit.userData!.homeListing.length,
+            scrollDirection: Axis.horizontal,
+          ),
         ),
       ),
     );

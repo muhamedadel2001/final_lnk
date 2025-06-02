@@ -1,19 +1,13 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/features/main_home/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/logic/resp_calc.dart';
-import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
 
-class FeaturedRequestItem extends StatelessWidget {
-  final HomeRequest homeRequest;
-  const FeaturedRequestItem({super.key, required this.homeRequest});
+class FeaturedRequestItemShimmer extends StatelessWidget {
+  const FeaturedRequestItemShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,41 +39,7 @@ class FeaturedRequestItem extends StatelessWidget {
             ],
           ),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              homeRequest.userId.image == null &&
-                      homeRequest.agencyId.image == null
-                  ? Row(
-                    children: [
-                      Image.asset(
-                        'assets/imgs/user_circle.png',
-                        width: 45.w,
-                        height: 45.h,
-                      ),
-                    ],
-                  )
-                  : homeRequest.userId.image == null
-                  ? ClipRRect(
-                    borderRadius: BorderRadius.circular(50.r),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      width: 50.w,
-                      height: 50.h,
-                      imageUrl:
-                          "${ApiConstants.userUrlImages}${homeRequest.agencyId.image}",
-                    ),
-                  )
-                  : ClipRRect(
-                    borderRadius: BorderRadius.circular(50.r),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.cover,
-                      width: 50.w,
-                      height: 50.h,
-                      imageUrl:
-                          "${ApiConstants.userUrlImages}${homeRequest.userId.image}",
-                    ),
-                  ),
-              SizedBox(height: 5.h),
               Expanded(
                 child: Container(
                   clipBehavior: Clip.hardEdge,
@@ -95,7 +55,7 @@ class FeaturedRequestItem extends StatelessWidget {
                         child: SizedBox(
                           width: double.infinity,
                           child: Text(
-                            homeRequest.title,
+                            'Request for Residential Apartment in New Cairo',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                             style: getStyleBold13(
@@ -121,7 +81,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               child: SizedBox(
                                 width: 100.w,
                                 child: Text(
-                                  homeRequest.location.name,
+                                  ' New Cairo',
                                   style: getStyleBold13(
                                     context,
                                   ).copyWith(color: textSecondaryClr),
@@ -137,7 +97,7 @@ class FeaturedRequestItem extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                "${homeRequest.minPrice}-${homeRequest.maxPrice}",
+                                ' 1.500.000 : 2.000.000',
                                 style: getStyleBold13(
                                   context,
                                 ).copyWith(color: textSecondaryClr),
@@ -164,7 +124,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               child: SizedBox(
                                 width: 100.w,
                                 child: Text(
-                                  homeRequest.finishing.name,
+                                  ' Fully Finished',
                                   style: getStyleBold13(
                                     context,
                                   ).copyWith(color: textSecondaryClr),
@@ -180,7 +140,7 @@ class FeaturedRequestItem extends StatelessWidget {
                             ),
                             Flexible(
                               child: Text(
-                                homeRequest.area,
+                                '  180 m',
                                 style: getStyleBold13(
                                   context,
                                 ).copyWith(color: textSecondaryClr),
@@ -193,12 +153,6 @@ class FeaturedRequestItem extends StatelessWidget {
                     ],
                   ),
                 ),
-              ),
-              Row(
-                children: [
-                  Spacer(),
-                  Favourite(isLiked: homeRequest.isFavourite),
-                ],
               ),
             ],
           ),
