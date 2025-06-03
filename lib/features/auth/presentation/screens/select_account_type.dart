@@ -33,7 +33,7 @@ class SelectAccountTypeScreen extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(80.sp),
-                  child: Image.asset(kLogo, width: 80.w, height: 80.h),
+                  child: Image.asset(kLogo, width: 80.w, height: 80.w),
                 ),
                 SizedBox(height: 30.h),
                 Text(LangKeys.selectAccType, style: getStyle20(context)),
@@ -65,7 +65,7 @@ class SelectAccountTypeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height:42.h),
+                SizedBox(height: 42.h),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

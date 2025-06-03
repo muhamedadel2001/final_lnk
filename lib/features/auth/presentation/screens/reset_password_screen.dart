@@ -73,7 +73,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         SizedBox(height: 18.h),
                         ClipRRect(
                           borderRadius: BorderRadius.circular(80.sp),
-                          child: Image.asset(kLogo, width: 80.w, height: 80.h),
+                          child: Image.asset(kLogo, width: 80.w, height: 80.w),
                         ),
                         SizedBox(height: 35.h),
                         Text(

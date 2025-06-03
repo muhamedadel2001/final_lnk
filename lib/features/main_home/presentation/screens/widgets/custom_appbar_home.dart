@@ -53,7 +53,7 @@ class CustomAppbarHome extends StatelessWidget {
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
                 width: 40.w,
-                height: 40.h,
+                height: 40.w,
                 imageUrl: "${ApiConstants.userUrlImages}${userData.image}",
               ),
             ),

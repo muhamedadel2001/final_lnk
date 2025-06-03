@@ -11,7 +11,7 @@ class PropertyDetailsItem extends StatelessWidget {
     required this.title,
   });
   final String imageUrl;
-  final int nom;
+  final String nom;
   final String title;
   @override
   Widget build(BuildContext context) {

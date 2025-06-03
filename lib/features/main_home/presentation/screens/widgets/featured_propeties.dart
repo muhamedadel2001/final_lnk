@@ -12,9 +12,9 @@ class FeaturedPropeties extends StatelessWidget {
   Widget build(BuildContext context) {
     final cubit = MainHomeCubit.get(context);
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 225.h, maxHeight: 250.h),
+      constraints: BoxConstraints(minHeight: 225.h, maxHeight: 290.h),
       child: SizedBox(
-        height: 250.h,
+        height: 290.h,
         child: Skeletonizer(
           enabled: cubit.isLoadingHomeData || cubit.userData == null,
           child: ListView.builder(
@@ -23,6 +23,7 @@ class FeaturedPropeties extends StatelessWidget {
                     cubit.isLoadingHomeData
                         ? const FeaturedPropertyItemShimmer()
                         : FeaturedPropertyItem(
+                          id: cubit.userData!.homeListing[index].id,
                           homeListing: cubit.userData!.homeListing[index],
                         ),
             itemCount:

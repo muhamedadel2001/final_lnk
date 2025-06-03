@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:flutter/material.dart';
 
 class PhotoListItem extends StatelessWidget {
@@ -12,7 +14,11 @@ class PhotoListItem extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       clipBehavior: Clip.hardEdge,
-      child: Image.asset(imageUrl, width: width, fit: BoxFit.cover),
+      child: CachedNetworkImage(
+        imageUrl: "${ApiConstants.homeImages}$imageUrl",
+        width: width,
+        fit: BoxFit.cover,
+      ),
     );
   }
 }

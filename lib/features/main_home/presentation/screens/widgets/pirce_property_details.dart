@@ -1,5 +1,6 @@
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/util/colors.dart';
@@ -9,6 +10,7 @@ class PircePropertyDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = HomeLandingCubit.get(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
       color: const Color(0xffF5F5F5),
@@ -19,7 +21,7 @@ class PircePropertyDetails extends StatelessWidget {
               Text(LangKeys.price, style: getStyleBold16(context)),
               const Spacer(),
               Text(
-                '5.000.000 EG',
+                cubit.listsModel!.list.price,
                 style: getStyleBold16(context).copyWith(color: primaryClr),
               ),
             ],
@@ -27,12 +29,21 @@ class PircePropertyDetails extends StatelessWidget {
           const SizedBox(height: 10),
           Row(
             children: [
-              Text(LangKeys.paymentMethod, style: getStyleBold16(context)),
+              cubit.listsModel!.list.type == 'sale' ||
+                      cubit.listsModel!.list.type == "بيع"
+                  ? Text(LangKeys.paymentMethod, style: getStyleBold16(context))
+                  : Text(LangKeys.type, style: getStyleBold16(context)),
               const Spacer(),
-              Text(
-                LangKeys.installments,
-                style: getStyleBold16(context).copyWith(color: primaryClr),
-              ),
+              cubit.listsModel!.list.type == 'sale' ||
+                      cubit.listsModel!.list.type == "بيع"
+                  ? Text(
+                    cubit.listsModel!.list.typeOfPay!,
+                    style: getStyleBold16(context).copyWith(color: primaryClr),
+                  )
+                  : Text(
+                    cubit.listsModel!.list.typeOfRent!.name!,
+                    style: getStyleBold16(context).copyWith(color: primaryClr),
+                  ),
             ],
           ),
         ],

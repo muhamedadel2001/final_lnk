@@ -67,7 +67,7 @@ class _SettingSelectLanguageScreenState extends State<LanguageScreen> {
                         onTap: () {
                           MyCache.setString(
                             key: MyCacheKeys.language,
-                            value: 'en',
+                            value: 'ar',
                           );
                           context.setLocale(const Locale('ar', 'EG'));
                           SettingsCubit.get(context).update();

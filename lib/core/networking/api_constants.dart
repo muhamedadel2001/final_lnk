@@ -12,4 +12,6 @@ class ApiConstants {
   static const String forgetEndpoint = 'auth/forgetPass';
   static const String changePassEndpoint = 'auth/changePassword';
   static const String homeEndpoint = 'home';
+  static const String oneRequestEndpoint = 'one/request/';
+  static const String oneListEndpoint = 'one/list/';
 }

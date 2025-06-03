@@ -2,7 +2,6 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/badge_on_image.dart';
@@ -16,10 +15,10 @@ class PropertyItem extends StatelessWidget {
     return Hero(
       tag: tagged,
       child: Container(
-        constraints: BoxConstraints(minHeight: 135.h, maxHeight: 180.h),
+        constraints: BoxConstraints(minHeight: 135.h, maxHeight: 230.h),
         margin: const EdgeInsets.only(left: 16, top: 7, bottom: 7, right: 16),
         padding: const EdgeInsets.only(left: 2, top: 3, bottom: 2),
-        height: 135.h,
+        height: 220.h,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: backgroundClr,

@@ -1,3 +1,4 @@
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/photo_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,17 +10,18 @@ class PhotosListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = HomeLandingCubit.get(context);
     return SizedBox(
       height: 70.h,
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return const PhotoListItem(
-            width: 75,
-            imageUrl: 'assets/imgs/Union (2).png',
+          return PhotoListItem(
+            width: 70.w,
+            imageUrl: cubit.listsModel!.list.images[index],
           );
         },
         scrollDirection: Axis.horizontal,
-        itemCount: 4,
+        itemCount: cubit.listsModel!.list.images.length,
       ),
     );
   }

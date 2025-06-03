@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
 import 'package:final_lnk/features/main_home/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
@@ -12,14 +14,23 @@ import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
 
 class FeaturedRequestItem extends StatelessWidget {
+  final String id;
   final HomeRequest homeRequest;
-  const FeaturedRequestItem({super.key, required this.homeRequest});
+  const FeaturedRequestItem({
+    super.key,
+    required this.homeRequest,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, screens.singleRequestScreen);
+        Navigator.pushNamed(
+          context,
+          screens.singleRequestScreen,
+          arguments: {"cubit": HomeLandingCubit.get(context), "id": id},
+        );
       },
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 350.w, minWidth: 220.w),
@@ -53,8 +64,8 @@ class FeaturedRequestItem extends StatelessWidget {
                     children: [
                       Image.asset(
                         'assets/imgs/user_circle.png',
-                        width: 45.w,
-                        height: 45.h,
+                        width: 40.w,
+                        height: 40.w,
                       ),
                     ],
                   )
@@ -63,8 +74,8 @@ class FeaturedRequestItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50.r),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      width: 50.w,
-                      height: 50.h,
+                      width: 40.w,
+                      height: 40.w,
                       imageUrl:
                           "${ApiConstants.userUrlImages}${homeRequest.agencyId.image}",
                     ),
@@ -73,8 +84,8 @@ class FeaturedRequestItem extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50.r),
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      width: 50.w,
-                      height: 50.h,
+                      width: 40.w,
+                      height: 40.w,
                       imageUrl:
                           "${ApiConstants.userUrlImages}${homeRequest.userId.image}",
                     ),
@@ -100,7 +111,7 @@ class FeaturedRequestItem extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: getStyleBold13(
                               context,
-                            ).copyWith(fontSize: 15),
+                            ).copyWith(fontSize: 14.sp),
                           ),
                         ),
                       ),
@@ -113,8 +124,8 @@ class FeaturedRequestItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/imgs/properties_icons/location.png',
-                              height: 14.h,
-                              width: 10.w,
+                              height: 20.h,
+                              width: 12.w,
                             ),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxWidth: 120.w),
@@ -132,8 +143,8 @@ class FeaturedRequestItem extends StatelessWidget {
                             SizedBox(width: 5.w),
                             Image.asset(
                               'assets/imgs/properties_icons/range.png',
-                              height: 14.h,
-                              width: 10.w,
+                              height: 20.h,
+                              width: 12.w,
                             ),
                             Flexible(
                               child: Text(
@@ -156,8 +167,8 @@ class FeaturedRequestItem extends StatelessWidget {
                           children: [
                             Image.asset(
                               'assets/imgs/properties_icons/finishing.png',
-                              height: 14.h,
-                              width: 10.w,
+                              height: 20.h,
+                              width: 12.w,
                             ),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxWidth: 120.w),
@@ -175,8 +186,8 @@ class FeaturedRequestItem extends StatelessWidget {
                             SizedBox(width: 5.w),
                             Image.asset(
                               'assets/imgs/properties_icons/area.png',
-                              height: 14.h,
-                              width: 10.w,
+                              height: 20.h,
+                              width: 12.w,
                             ),
                             Flexible(
                               child: Text(

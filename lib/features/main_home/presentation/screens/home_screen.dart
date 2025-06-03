@@ -40,6 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print(MyCache.getString(key: MyCacheKeys.language));
     final cubit = MainHomeCubit.get(context);
     print('home ');
     return Scaffold(

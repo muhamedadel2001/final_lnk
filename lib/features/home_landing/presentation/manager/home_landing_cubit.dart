@@ -3,6 +3,9 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
+import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
+import 'package:final_lnk/features/home_landing/domain/usecases/responses_usecases.dart';
 import 'package:final_lnk/features/main_home/data/datasources/user_local_data.dart';
 import 'package:final_lnk/features/main_home/data/datasources/user_remote_data.dart';
 import 'package:final_lnk/features/main_home/data/repositories/home_repo_impl.dart';
@@ -26,7 +29,7 @@ import '../../../settings/presentation/screens/settings_screen.dart';
 part 'home_landing_state.dart';
 
 class HomeLandingCubit extends Cubit<HomeLandingState> {
-  HomeLandingCubit() : super(HomeLandingInitial());
+  HomeLandingCubit(this.responsesUseCase) : super(HomeLandingInitial());
 
   static HomeLandingCubit get(context) =>
       BlocProvider.of<HomeLandingCubit>(context);
@@ -179,5 +182,52 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       isDialOpen = false;
       emit(ScreenChanged());
     }
+  }
+
+  final ResponsesUseCase responsesUseCase;
+  ListsModel? listsModel;
+  RequestModel? requestModel;
+  getOneList({
+    required String lang,
+    required BuildContext context,
+    required String id,
+  }) async {
+    emit(GetOneLoading());
+    final result = await responsesUseCase.getOneListCall(
+      lang: lang,
+      context: context,
+      id: id,
+    );
+    result.fold(
+      (failure) {
+        emit(GetOneFailure());
+      },
+      (success) {
+        listsModel = success;
+        emit(GetOneSuccess());
+      },
+    );
+  }
+
+  getOneRequest({
+    required String lang,
+    required BuildContext context,
+    required String id,
+  }) async {
+    emit(GetOneLoading());
+    final result = await responsesUseCase.getOneRequestCall(
+      lang: lang,
+      context: context,
+      id: id,
+    );
+    result.fold(
+      (failure) {
+        emit(GetOneFailure());
+      },
+      (success) {
+        requestModel = success;
+        emit(GetOneSuccess());
+      },
+    );
   }
 }

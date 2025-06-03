@@ -15,9 +15,9 @@ class FeaturedRequests extends StatelessWidget {
     final cubit = MainHomeCubit.get(context);
 
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 150.h, maxHeight: 220.h),
+      constraints: BoxConstraints(minHeight: 150.h, maxHeight: 265.h),
       child: SizedBox(
-        height: 220.h,
+        height: 265.h,
         child: Skeletonizer(
           enabled: cubit.isLoadingHomeData || cubit.userData == null,
           child: ListView.builder(
@@ -26,6 +26,7 @@ class FeaturedRequests extends StatelessWidget {
                     cubit.userData == null
                         ? const FeaturedRequestItemShimmer()
                         : FeaturedRequestItem(
+                          id: cubit.userData!.homeRequests[index].id,
                           homeRequest: cubit.userData!.homeRequests[index],
                         ),
             itemCount:

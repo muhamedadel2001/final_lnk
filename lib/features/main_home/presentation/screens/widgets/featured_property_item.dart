@@ -10,17 +10,27 @@ import '../../../../../core/logic/intl_logic.dart';
 import '../../../../../core/logic/resp_calc.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
+import '../../../../home_landing/presentation/manager/home_landing_cubit.dart';
 import '../../../data/models/user_model.dart';
 
 class FeaturedPropertyItem extends StatelessWidget {
+  final String id;
   final HomeListing homeListing;
-  const FeaturedPropertyItem({super.key, required this.homeListing});
+  const FeaturedPropertyItem({
+    super.key,
+    required this.homeListing,
+    required this.id,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, screens.singlePropertyScreen);
+        Navigator.pushNamed(
+          context,
+          screens.singlePropertyScreen,
+          arguments: {"cubit": HomeLandingCubit.get(context), "id": id},
+        );
       },
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: 350.w, minWidth: 220.w),
@@ -79,7 +89,9 @@ class FeaturedPropertyItem extends StatelessWidget {
                         child: Text(
                           maxLines: 2,
                           homeListing.title,
-                          style: getStyleBold13(context).copyWith(fontSize: 15),
+                          style: getStyleBold13(
+                            context,
+                          ).copyWith(fontSize: 14.sp),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -95,8 +107,8 @@ class FeaturedPropertyItem extends StatelessWidget {
                             children: [
                               Image.asset(
                                 'assets/imgs/properties_icons/location.png',
-                                height: 10.h,
-                                width: 9.h,
+                                height: 20.h,
+                                width: 12.w,
                               ),
                               Flexible(
                                 child: Text(

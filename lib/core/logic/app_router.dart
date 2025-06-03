@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
-import 'package:final_lnk/core/databases/cache/my_cache.dart';
-import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/features/auth/data/repositories/auth_repositories_impl.dart';
 import 'package:final_lnk/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
@@ -12,6 +10,9 @@ import 'package:final_lnk/features/auth/presentation/screens/register_agency_scr
 import 'package:final_lnk/features/auth/presentation/screens/register_freelancer_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/reset_password_screen.dart';
 import 'package:final_lnk/features/auth/presentation/screens/select_account_type.dart';
+import 'package:final_lnk/features/home_landing/data/datasources/responses_remote_data.dart';
+import 'package:final_lnk/features/home_landing/data/repositories/responses_repo_impl.dart';
+import 'package:final_lnk/features/home_landing/domain/usecases/responses_usecases.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/first_page_add_property.dart';
@@ -134,7 +135,23 @@ class AppRouter {
         return MaterialPageRoute(
           builder:
               (_) => BlocProvider(
-                create: (context) => HomeLandingCubit(),
+                create:
+                    (context) => HomeLandingCubit(
+                      ResponsesUseCase(
+                        responsesRepo: ResponsesRepoImpl(
+                          responsesRemoteData: ResponsesRemoteData(
+                            apiConsumer: DioConsumer(
+                              dio: Dio(
+                                BaseOptions(
+                                  connectTimeout: Duration(seconds: 60),
+                                  receiveTimeout: Duration(seconds: 60),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                 child: HomeLanding(),
               ),
         );
@@ -169,20 +186,32 @@ class AppRouter {
       case screens.addSubScreen:
         return MaterialPageRoute<String>(builder: (_) => const AddSubScreen());
       case screens.singlePropertyScreen:
-        return MaterialPageRoute<String>(
-          builder: (_) => const SingleResidentialPropertyView(),
-        );
-      case screens.photoListScreen:
-        return MaterialPageRoute<String>(
-          builder: (_) => const PhotoGalleryScreen(),
-        );
-      case screens.singleRequestScreen:
-        final cubit = routeSettings.arguments as HomeLandingCubit;
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final id = args['id'] as String;
+        final cubit = args['cubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
           builder:
               (_) => BlocProvider.value(
                 value: cubit,
-                child: SingleRequsetViewScreen(),
+                child: SingleResidentialPropertyView(id: id),
+              ),
+        );
+      case screens.photoListScreen:
+        final cubit = routeSettings.arguments as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) =>
+                  BlocProvider.value(value: cubit, child: PhotoGalleryScreen()),
+        );
+      case screens.singleRequestScreen:
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final id = args['id'] as String;
+        final cubit = args['cubit'] as HomeLandingCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: SingleRequsetViewScreen(id: id),
               ),
         );
       case screens.firstAddPropertyScreen:
