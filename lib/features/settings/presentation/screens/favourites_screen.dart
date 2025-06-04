@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/util/lang_keys.dart';
+import '../../../properties/presentation/manager/properties_cubit.dart';
 import '../../../properties/presentation/screens/widgets/property_item.dart';
 import '../../../requests/presentaion/screens/widgets/request_feed_item.dart';
 
@@ -71,7 +72,10 @@ class _FavouritesScreenState extends State<FavouritesScreen>
                 padding: EdgeInsets.zero,
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  return PropertyItem(tagged: 'fg');
+                  return PropertyItem(
+                    properties:
+                        PropertiesCubit.get(context).myPropertiesList[index],
+                  );
                 },
               ),
             ),

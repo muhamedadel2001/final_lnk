@@ -12,6 +12,10 @@ import 'package:final_lnk/features/main_home/data/repositories/home_repo_impl.da
 import 'package:final_lnk/features/main_home/domain/usecases/home_use_case.dart';
 import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/home_screen.dart';
+import 'package:final_lnk/features/properties/data/datasources/properties_local_data.dart';
+import 'package:final_lnk/features/properties/data/datasources/properties_remote_data.dart';
+import 'package:final_lnk/features/properties/data/repositories/properties_repo_impl.dart';
+import 'package:final_lnk/features/properties/domain/usecases/properties_usecases.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
@@ -100,7 +104,18 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       );
     } else if (idx == 1) {
       return BlocProvider(
-        create: (context) => PropertiesCubit(),
+        create:
+            (context) => PropertiesCubit(
+              PropertiesUseCases(
+                propertiesRepo: PropertiesRepoImpl(
+                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  propertiesRemoteData: PropertiesRemoteData(
+                    apiConsumer: DioConsumer(dio: Dio()),
+                  ),
+                  propertiesLocalData: PropertiesLocalData(),
+                ),
+              ),
+            ),
         child: PropertiesScreen(),
       );
     } else if (idx == 2) {

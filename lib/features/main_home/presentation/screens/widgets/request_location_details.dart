@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/util/colors.dart';
@@ -9,6 +10,7 @@ class RequestLocationDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = HomeLandingCubit.get(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
@@ -24,7 +26,7 @@ class RequestLocationDetails extends StatelessWidget {
               const Spacer(),
               Flexible(
                 child: Text(
-                  'Alexandria',
+                  cubit.requestModel!.request.city.name!,
                   style: getStyleBold16(context).copyWith(color: primaryClr),
                 ),
               ),
@@ -37,7 +39,7 @@ class RequestLocationDetails extends StatelessWidget {
               const Spacer(),
               Flexible(
                 child: Text(
-                  'Gleem - Losran',
+                  cubit.requestModel!.request.location.name!,
                   style: getStyleBold16(context).copyWith(color: primaryClr),
                 ),
               ),

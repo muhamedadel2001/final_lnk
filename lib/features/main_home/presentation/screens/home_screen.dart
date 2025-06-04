@@ -40,95 +40,96 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(MyCache.getString(key: MyCacheKeys.language));
     final cubit = MainHomeCubit.get(context);
-    print('home ');
-    return Scaffold(
-      body: BlocBuilder<MainHomeCubit, MainHomeState>(
-        builder: (context, state) {
-          print('home after rebuild ');
-          return state is GetHomeFailure
-              ? Center(
-                child: GlobalErrorWidget(imagePath: 'assets/imgs/user.png'),
-              )
-              : Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0.w),
-                child: SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 40.h),
-                      Skeletonizer(
-                        enabled:
-                            cubit.isLoadingHomeData || cubit.userData == null,
-                        child:
-                            cubit.isLoadingHomeData
-                                ? CustomAppbarShimmerHome(
-                                  userName: 'Mohamed adel',
-                                )
-                                : CustomAppbarHome(
-                                  userData: cubit.userData!,
-                                  userName:
-                                      cubit.userData?.name ?? 'Mohamed adel',
-                                ),
-                      ),
-                      SizedBox(height: 30.h),
-                      Row(
-                        children: [
-                          Skeletonizer(
-                            enabled: cubit.isLoadingHomeData,
-                            child: Text(
-                              LangKeys.propertiesOffered,
-                              style: getStyle20(context),
-                            ),
-                          ),
-                          const Spacer(),
-                          InkWell(
-                            onTap: () {},
-                            child: Skeletonizer(
+    print('home');
+    return SafeArea(
+      child: Scaffold(
+        body: BlocBuilder<MainHomeCubit, MainHomeState>(
+          builder: (context, state) {
+            print('home after rebuild ');
+            return state is GetHomeFailure
+                ? Center(
+                  child: GlobalErrorWidget(imagePath: 'assets/imgs/user.png'),
+                )
+                : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
+                  child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 8.h),
+                        Skeletonizer(
+                          enabled:
+                              cubit.isLoadingHomeData || cubit.userData == null,
+                          child:
+                              cubit.isLoadingHomeData
+                                  ? CustomAppbarShimmerHome(
+                                    userName: 'Mohamed adel',
+                                  )
+                                  : CustomAppbarHome(
+                                    userData: cubit.userData!,
+                                    userName:
+                                        cubit.userData?.name ?? 'Mohamed adel',
+                                  ),
+                        ),
+                        SizedBox(height: 30.h),
+                        Row(
+                          children: [
+                            Skeletonizer(
                               enabled: cubit.isLoadingHomeData,
                               child: Text(
-                                LangKeys.viewAll,
-                                style: getStyle13(
-                                  context,
-                                ).copyWith(color: textSecondaryClr),
+                                LangKeys.propertiesOffered,
+                                style: getStyle20(context),
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15.h),
-                      FeaturedPropeties(),
-                      SizedBox(height: 30.h),
-                      Skeletonizer(
-                        enabled: cubit.isLoadingHomeData,
-                        child: Row(
-                          children: [
-                            Text(
-                              LangKeys.propertiesRequested,
-                              style: getStyle20(context),
                             ),
                             const Spacer(),
                             InkWell(
                               onTap: () {},
-                              child: Text(
-                                LangKeys.viewAll,
-                                style: getStyle13(
-                                  context,
-                                ).copyWith(color: textSecondaryClr),
+                              child: Skeletonizer(
+                                enabled: cubit.isLoadingHomeData,
+                                child: Text(
+                                  LangKeys.viewAll,
+                                  style: getStyle13(
+                                    context,
+                                  ).copyWith(color: textSecondaryClr),
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(height: 12.h),
-                      FeaturedRequests(),
-                      SizedBox(height: 25.h),
-                    ],
+                        SizedBox(height: 15.h),
+                        FeaturedPropeties(),
+                        SizedBox(height: 30.h),
+                        Skeletonizer(
+                          enabled: cubit.isLoadingHomeData,
+                          child: Row(
+                            children: [
+                              Text(
+                                LangKeys.propertiesRequested,
+                                style: getStyle20(context),
+                              ),
+                              const Spacer(),
+                              InkWell(
+                                onTap: () {},
+                                child: Text(
+                                  LangKeys.viewAll,
+                                  style: getStyle13(
+                                    context,
+                                  ).copyWith(color: textSecondaryClr),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 12.h),
+                        FeaturedRequests(),
+                        SizedBox(height: 25.h),
+                      ],
+                    ),
                   ),
-                ),
-              );
-        },
+                );
+          },
+        ),
       ),
     );
   }

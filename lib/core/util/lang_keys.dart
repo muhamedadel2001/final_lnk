@@ -112,4 +112,5 @@ class LangKeys {
   static String get hello => 'hello'.tr();
   static String get propertiesRequested => 'propertiesRequested'.tr();
   static String get gallery => 'gallery'.tr();
+  static String get requestDetails => 'requestDetails'.tr();
 }

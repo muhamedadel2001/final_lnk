@@ -2,13 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
-import 'package:final_lnk/features/home_landing/presentation/screens/home_landing.dart';
 import 'package:final_lnk/features/main_home/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/logic/resp_calc.dart';
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';

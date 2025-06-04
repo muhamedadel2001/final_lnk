@@ -32,7 +32,7 @@ class RequestSliverAppBar extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      bottom: const RequestBottomSliverAppBar(),
+      bottom: RequestBottomSliverAppBar(),
       backgroundColor: const Color(0xffd9e4db),
     );
   }

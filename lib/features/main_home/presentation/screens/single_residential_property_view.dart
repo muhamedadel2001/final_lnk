@@ -220,9 +220,7 @@ class _SingleResidentialPropertyViewState
               body: Center(
                 child:
                     Platform.isIOS
-                        ? CupertinoActivityIndicator.partiallyRevealed(
-                          color: primaryClr,
-                        )
+                        ? CupertinoActivityIndicator(color: primaryClr)
                         : CircularProgressIndicator(color: primaryClr),
               ),
             )

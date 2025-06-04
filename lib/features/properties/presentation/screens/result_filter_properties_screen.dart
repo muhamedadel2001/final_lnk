@@ -1,3 +1,4 @@
+import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/custom_item_result_filter.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/custom_sliver_app_bar_result_filter.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/property_item.dart';
@@ -34,7 +35,10 @@ class ResultFilterPropertiesScreen extends StatelessWidget {
               BuildContext context,
               int index,
             ) {
-              return PropertyItem(tagged: "$index");
+              return PropertyItem(
+                properties:
+                    PropertiesCubit.get(context).myPropertiesList[index],
+              );
             }, childCount: 10),
           ),
         ],

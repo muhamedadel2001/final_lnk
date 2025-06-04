@@ -14,4 +14,5 @@ class ApiConstants {
   static const String homeEndpoint = 'home';
   static const String oneRequestEndpoint = 'one/request/';
   static const String oneListEndpoint = 'one/list/';
+  static const String getPropertiesEndpoint = 'properties/search';
 }

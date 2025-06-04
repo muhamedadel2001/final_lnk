@@ -1,5 +1,5 @@
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/util/fonts.dart';
 import '../../../../../core/util/lang_keys.dart';
@@ -9,6 +9,7 @@ class RequestPropertyDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = HomeLandingCubit.get(context);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -28,7 +29,7 @@ class RequestPropertyDetails extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  'residential',
+                  cubit.requestModel!.request.typeOfRequest,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -48,7 +49,7 @@ class RequestPropertyDetails extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  'Adminstrivaee building',
+                  cubit.requestModel!.request.type,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -68,7 +69,7 @@ class RequestPropertyDetails extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  '130',
+                  cubit.requestModel!.request.area,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -82,13 +83,13 @@ class RequestPropertyDetails extends StatelessWidget {
               SizedBox(
                 width: 120,
                 child: Text(
-                  '${LangKeys.rooms}:',
+                  '${LangKeys.floor}:',
                   style: getStyleBold16(context),
                 ),
               ),
               Flexible(
                 child: Text(
-                  '6',
+                  cubit.requestModel!.request.floor,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -97,26 +98,94 @@ class RequestPropertyDetails extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 7),
-          Row(
-            children: [
-              SizedBox(
-                width: 120,
-                child: Text(
-                  '${LangKeys.bathrooms}:',
-                  style: getStyleBold16(context),
-                ),
-              ),
-              Flexible(
-                child: Text(
-                  '4',
-                  style: getStyleBold16(
-                    context,
-                  ).copyWith(color: textSecondaryClr),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 7),
+          cubit.requestModel!.request.typeOfRequest != 'تجاري' &&
+                  cubit.requestModel!.request.typeOfRequest != 'commercial'
+              ? Column(
+                children: [
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          '${LangKeys.rooms}:',
+                          style: getStyleBold16(context),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          cubit.requestModel!.request.rooms!,
+                          style: getStyleBold16(
+                            context,
+                          ).copyWith(color: textSecondaryClr),
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          '${LangKeys.bathrooms}:',
+                          style: getStyleBold16(context),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          cubit.requestModel!.request.bathRooms!,
+                          style: getStyleBold16(
+                            context,
+                          ).copyWith(color: textSecondaryClr),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 7),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          '${LangKeys.reception}:',
+                          style: getStyleBold16(context),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          cubit.requestModel!.request.reseptionPieces!,
+                          style: getStyleBold16(
+                            context,
+                          ).copyWith(color: textSecondaryClr),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 7),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 120,
+                        child: Text(
+                          '${LangKeys.balcony}:',
+                          style: getStyleBold16(context),
+                        ),
+                      ),
+                      Flexible(
+                        child: Text(
+                          cubit.requestModel!.request.balcona!,
+                          style: getStyleBold16(
+                            context,
+                          ).copyWith(color: textSecondaryClr),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 7),
+                ],
+              )
+              : const SizedBox.shrink(),
+
           Row(
             children: [
               SizedBox(
@@ -128,7 +197,7 @@ class RequestPropertyDetails extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  'Fully Finished',
+                  cubit.requestModel!.request.finishing.name!,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -148,7 +217,7 @@ class RequestPropertyDetails extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  'unfurnishing',
+                  cubit.requestModel!.request.furnising.name!,
                   style: getStyleBold16(
                     context,
                   ).copyWith(color: textSecondaryClr),
