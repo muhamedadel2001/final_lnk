@@ -108,7 +108,8 @@
   "hello": "Hello",
   "propertiesRequested": "Properties requested",
   "gallery": "Gallery",
-  "requestDetails": "Request details"
+  "requestDetails": "Request details",
+  "noResult": "No result found"
 }
 
 

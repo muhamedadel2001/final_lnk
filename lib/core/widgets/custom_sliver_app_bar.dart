@@ -12,11 +12,15 @@ import 'bottom_sliver_app_bar.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
   final void Function() onPressed;
+  final TextEditingController controller;
+  final Function(String) onChange;
   const CustomSliverAppBar({
     super.key,
     required this.title,
     required this.subTitle,
     required this.onPressed,
+    required this.controller,
+    required this.onChange,
   });
   final String title;
   final String subTitle;
@@ -56,7 +60,11 @@ class CustomSliverAppBar extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      bottom: BottomSliverBar(onPressed: onPressed),
+      bottom: BottomSliverBar(
+        onPressed: onPressed,
+        controller: controller,
+        onChange: onChange,
+      ),
       backgroundColor: const Color(0xffd9e4db),
     );
   }

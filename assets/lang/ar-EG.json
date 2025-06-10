@@ -108,5 +108,6 @@
  "favourite": "المفضلة",
  "hello": "مرحبا",
  "gallery": "المعرض",
- "requestDetails": "بيانات الطلب"
+ "requestDetails": "بيانات الطلب",
+ "noResult": "لا يوجد نتائج"
 }

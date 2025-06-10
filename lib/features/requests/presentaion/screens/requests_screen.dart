@@ -19,6 +19,7 @@ class RequestsScreen extends StatefulWidget {
 class _RequestsScreenState extends State<RequestsScreen>
     with TickerProviderStateMixin {
   late TabController tabController;
+  final TextEditingController _searchController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -36,6 +37,8 @@ class _RequestsScreenState extends State<RequestsScreen>
       body: CustomScrollView(
         slivers: <Widget>[
           CustomSliverAppBar(
+            controller: _searchController,
+            onChange: (val) {},
             onPressed: () {
               Navigator.pushNamed(
                 context,

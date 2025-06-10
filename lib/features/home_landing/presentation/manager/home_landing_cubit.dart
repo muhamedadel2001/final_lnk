@@ -110,7 +110,14 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
                 propertiesRepo: PropertiesRepoImpl(
                   networkInfo: NetworkInfoImpl(DataConnectionChecker()),
                   propertiesRemoteData: PropertiesRemoteData(
-                    apiConsumer: DioConsumer(dio: Dio()),
+                    apiConsumer: DioConsumer(
+                      dio: Dio(
+                        BaseOptions(
+                          connectTimeout: Duration(seconds: 10),
+                          receiveTimeout: Duration(seconds: 10),
+                        ),
+                      ),
+                    ),
                   ),
                   propertiesLocalData: PropertiesLocalData(),
                 ),

@@ -1,13 +1,19 @@
-import 'package:final_lnk/core/util/screens.dart';
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
+import 'package:final_lnk/core/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'search_bar.dart';
-
 class BottomSliverBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function() onPressed;
-  const BottomSliverBar({super.key, required this.onPressed});
+  final TextEditingController controller;
+  final Function(String) onChange;
+
+  const BottomSliverBar({
+    super.key,
+    required this.onPressed,
+    required this.controller,
+    required this.onChange,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,10 +21,7 @@ class BottomSliverBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         children: [
           Expanded(
-            child: CustomSearchbar(
-              controller: TextEditingController(),
-              onChange: (val) {},
-            ),
+            child: CustomSearchbar(controller: controller, onChange: onChange),
           ),
           const SizedBox(width: 8),
           IconButton(
@@ -35,5 +38,5 @@ class BottomSliverBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 40); // AppBar height
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight + 40);
 }
