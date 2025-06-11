@@ -3,6 +3,7 @@ import 'package:final_lnk/features/properties/presentation/screens/widgets/filte
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/util/lang_keys.dart';
 import '../../../../home_landing/presentation/screens/widgets/option_box.dart';
 
 class FilterPropertiesStatusWidget extends StatefulWidget {
@@ -22,21 +23,13 @@ class _FilterPropertiesStatusWidgetState
     return Row(
       children: [
         GestureDetector(
-          onTap: () {
-            propCubit.propertyStatus = 'Sell';
-            //    rentChangesCubit.generateCashChanges();
-            setState(() {});
-          },
-          child: FilterPropertiesOptionBoxWidget(title: 'Sell'),
+          onTap: () => propCubit.changePropertyStatus(LangKeys.sale),
+          child: FilterPropertiesOptionBoxWidget(title: LangKeys.sale),
         ),
         const SizedBox(width: 11),
         GestureDetector(
-          onTap: () {
-            propCubit.propertyStatus = 'Rent';
-            //   rentChangesCubit.generateRentChanges();
-            setState(() {});
-          },
-          child: FilterPropertiesOptionBoxWidget(title: 'Rent'),
+          onTap: () => propCubit.changePropertyStatus(LangKeys.rent),
+          child: FilterPropertiesOptionBoxWidget(title: LangKeys.rent),
         ),
       ],
     );

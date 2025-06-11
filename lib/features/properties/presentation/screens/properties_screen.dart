@@ -23,7 +23,6 @@ import '../manager/properties_cubit.dart';
 
 class PropertiesScreen extends StatefulWidget {
   const PropertiesScreen({super.key});
-
   @override
   State<PropertiesScreen> createState() => _PropertiesScreenState();
 }
@@ -34,7 +33,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
   final TextEditingController _searchController = TextEditingController();
   late TabController tabController;
   Timer? _debounce;
-
   @override
   void initState() {
     super.initState();
@@ -65,8 +63,8 @@ class _PropertiesScreenState extends State<PropertiesScreen>
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
               _scrollController.position.maxScrollExtent - 100 &&
-          !cubit.isLoadingMore &&
-          cubit.hasMoreData) {
+          !cubit.isLoadingMoreProperties &&
+          cubit.hasMoreDataProperties) {
         final type = getTypeByIndex(tabController.index);
         if (_searchController.text.isNotEmpty) {
           cubit.getPropertiesData(
@@ -141,9 +139,18 @@ class _PropertiesScreenState extends State<PropertiesScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('properties widget');
     final cubit = PropertiesCubit.get(context);
     return BlocBuilder<PropertiesCubit, PropertiesState>(
+      buildWhen: (prev, curr) {
+        return curr is GetPropertiesSuccess ||
+            curr is GetPropertiesLoading ||
+            curr is GetInputsFailure ||
+            curr is LoadingMoreState ||
+            curr is LoadedMoreState;
+      },
       builder: (context, state) {
+        print('properties widget builder');
         return GestureDetector(
           onTap: () {
             FocusScope.of(context).unfocus();
@@ -202,7 +209,7 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                               state is LoadingMoreState) {
                             // عدد العناصر الحقيقية أو زائد واحد لو بيحمل المزيد
                             final isLoadingMoreItem =
-                                cubit.isLoadingMore &&
+                                cubit.isLoadingMoreProperties &&
                                 index == cubit.myPropertiesList.length;
 
                             if (!isLoadingMoreItem &&
@@ -237,7 +244,7 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                             state is GetPropertiesSuccess ||
                                     state is LoadedMoreState ||
                                     state is LoadingMoreState
-                                ? cubit.isLoadingMore
+                                ? cubit.isLoadingMoreProperties
                                     ? cubit.myPropertiesList.length + 1
                                     : cubit.myPropertiesList.length
                                 : 3, // عدد العناصر الوهمية أثناء التحميل الأولي

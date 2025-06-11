@@ -93,9 +93,21 @@ class FilterRequestScreen extends StatelessWidget {
                       const SizedBox(height: 10),
                       Row(
                         children: [
-                          Expanded(child: ColoredOptionBox(title: ' Daily')),
+                          Expanded(
+                            child: ColoredOptionBox(
+                              title: ' Daily',
+                              isSelected: true,
+                              onTap: () {},
+                            ),
+                          ),
                           SizedBox(width: 35.w),
-                          Expanded(child: ColoredOptionBox(title: 'Monthly')),
+                          Expanded(
+                            child: ColoredOptionBox(
+                              title: 'Monthly',
+                              isSelected: true,
+                              onTap: () {},
+                            ),
+                          ),
                         ],
                       ),
                     ],

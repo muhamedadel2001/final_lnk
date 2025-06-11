@@ -2,6 +2,7 @@ import 'package:final_lnk/features/properties/presentation/manager/properties_cu
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/manual_localization.dart';
 import '../../../../../core/util/colors.dart';
@@ -17,7 +18,7 @@ class FilterPropertiesOptionBoxWidget extends StatelessWidget {
     final propCubit = BlocProvider.of<PropertiesCubit>(context);
     return Container(
       margin: const EdgeInsets.all(3),
-      height: 50,
+      height: 55.h,
       padding: const EdgeInsets.only(left: 14, right: 14, top: 12, bottom: 12),
       decoration: BoxDecoration(
         border: Border.all(color: primaryClr, width: 1.87),
@@ -29,8 +30,7 @@ class FilterPropertiesOptionBoxWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           (title == propCubit.propertyStatus ||
-                  ManualLocalization.getPropertyCategoryEnglishWord(title) ==
-                      propCubit.propertyCategory)
+                  title == propCubit.propertyCategory)
               ? const CustomRadioButton()
               : const SizedBox(width: 17, height: 17),
           const SizedBox(width: 14),

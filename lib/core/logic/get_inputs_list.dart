@@ -18,4 +18,18 @@ class GetLists {
   static List getAreasId(AllStartModel appModel) {
     return appModel.areasModel?.locations?.map((id) => id.sId).toList() ?? [];
   }
+
+  static List getFinishingNames(AllStartModel appModel) {
+    return appModel.finishingModel?.finishings
+            ?.map((finshing) => finshing.name)
+            .toList() ??
+        [];
+  }
+
+  static List getFinishingIds(AllStartModel appModel) {
+    return appModel.finishingModel?.finishings
+            ?.map((finshing) => finshing.id)
+            .toList() ??
+        [];
+  }
 }

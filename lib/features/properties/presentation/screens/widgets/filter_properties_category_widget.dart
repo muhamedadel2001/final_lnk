@@ -1,3 +1,4 @@
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,27 +26,24 @@ class _FilterPropertiesCategoryWidgetState
         Wrap(
           children: [
             GestureDetector(
-              onTap: () {
-                propCubit.propertyCategory = 'residential';
-                setState(() {});
-              },
-              child: FilterPropertiesOptionBoxWidget(title: 'Residential'),
+              onTap:
+                  () => propCubit.changePropertyCategory(LangKeys.residential),
+              child: FilterPropertiesOptionBoxWidget(
+                title: LangKeys.residential,
+              ),
             ),
             const SizedBox(width: 11),
             GestureDetector(
-              onTap: () {
-                propCubit.propertyCategory = 'commercial';
-                setState(() {});
-              },
-              child: FilterPropertiesOptionBoxWidget(title: 'Commercial'),
+              onTap:
+                  () => propCubit.changePropertyCategory(LangKeys.commercial),
+              child: FilterPropertiesOptionBoxWidget(
+                title: LangKeys.commercial,
+              ),
             ),
             const SizedBox(width: 11),
             GestureDetector(
-              onTap: () {
-                propCubit.propertyCategory = 'costal';
-                setState(() {});
-              },
-              child: FilterPropertiesOptionBoxWidget(title: 'Coastal'),
+              onTap: () => propCubit.changePropertyCategory(LangKeys.coastal),
+              child: FilterPropertiesOptionBoxWidget(title: LangKeys.coastal),
             ),
           ],
         ),

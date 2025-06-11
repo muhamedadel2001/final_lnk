@@ -20,9 +20,21 @@ class PropertyRentStatus extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            Expanded(child: ColoredOptionBox(title: ' Daily')),
+            Expanded(
+              child: ColoredOptionBox(
+                title: ' Daily',
+                isSelected: true,
+                onTap: () {},
+              ),
+            ),
             const SizedBox(width: 26),
-            Expanded(child: ColoredOptionBox(title: 'Monthly')),
+            Expanded(
+              child: ColoredOptionBox(
+                title: 'Monthly',
+                isSelected: true,
+                onTap: () {},
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 22),

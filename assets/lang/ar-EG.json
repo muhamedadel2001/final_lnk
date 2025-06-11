@@ -109,5 +109,12 @@
  "hello": "مرحبا",
  "gallery": "المعرض",
  "requestDetails": "بيانات الطلب",
- "noResult": "لا يوجد نتائج"
+ "noResult": "لا يوجد نتائج",
+ "sale": "بيع",
+ "rent": "إيجار",
+ "residential": "سكني",
+ "commercial": "تجاري",
+ "coastal": "مصيفي",
+ "to": "الي",
+ "from": "من"
 }

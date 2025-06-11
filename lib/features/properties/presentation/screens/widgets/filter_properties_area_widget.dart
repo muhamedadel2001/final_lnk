@@ -1,3 +1,4 @@
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -7,17 +8,21 @@ import '../../../../../core/widgets/custom_text_field.dart';
 import '../../manager/properties_cubit.dart';
 
 class FilterPropertiesAreaWidget extends StatelessWidget {
-  const FilterPropertiesAreaWidget({super.key});
+  final TextEditingController fromAreaController;
+  final TextEditingController toAreaController;
+  const FilterPropertiesAreaWidget({
+    super.key,
+    required this.fromAreaController,
+    required this.toAreaController,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final propCubit = BlocProvider.of<PropertiesCubit>(context);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'area',
+          LangKeys.area,
           style: getStyle20(
             context,
           ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
@@ -28,16 +33,16 @@ class FilterPropertiesAreaWidget extends StatelessWidget {
           children: [
             Expanded(
               child: CustomTextField(
-                controller: propCubit.area,
-                hintText: 'from',
+                controller: fromAreaController,
+                hintText: LangKeys.from,
                 keyboardType: TextInputType.number,
               ),
             ),
             SizedBox(width: 35.w),
             Expanded(
               child: CustomTextField(
-                controller: propCubit.area,
-                hintText: 'to',
+                controller: toAreaController,
+                hintText: LangKeys.to,
                 keyboardType: TextInputType.number,
               ),
             ),

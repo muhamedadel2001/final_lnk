@@ -109,7 +109,14 @@
   "propertiesRequested": "Properties requested",
   "gallery": "Gallery",
   "requestDetails": "Request details",
-  "noResult": "No result found"
+  "noResult": "No result found",
+  "sale": "sale",
+  "rent": "rent",
+  "residential": "residential",
+  "commercial": "commercial",
+  "coastal": "coastal",
+  "to": "to",
+  "from": "from"
 }
 
 

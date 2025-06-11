@@ -1,3 +1,4 @@
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,17 +8,21 @@ import '../../../../../core/util/fonts.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 
 class FilterPropertiesPriceWidget extends StatelessWidget {
-  const FilterPropertiesPriceWidget({super.key});
+  final TextEditingController fromPriceController;
+  final TextEditingController toPriceController;
+  const FilterPropertiesPriceWidget({
+    super.key,
+    required this.fromPriceController,
+    required this.toPriceController,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final propCubit = BlocProvider.of<PropertiesCubit>(context);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'price',
+          LangKeys.price,
           style: getStyle20(
             context,
           ).copyWith(fontSize: 14, fontWeight: FontWeight.w600),
@@ -28,16 +33,16 @@ class FilterPropertiesPriceWidget extends StatelessWidget {
           children: [
             Expanded(
               child: CustomTextField(
-                controller: propCubit.price,
-                hintText: 'from',
+                hintText: LangKeys.from,
+                controller: fromPriceController,
                 keyboardType: TextInputType.number,
               ),
             ),
             SizedBox(width: 35.w),
             Expanded(
               child: CustomTextField(
-                controller: propCubit.price,
-                hintText: 'to',
+                controller: toPriceController,
+                hintText: LangKeys.to,
                 keyboardType: TextInputType.number,
               ),
             ),

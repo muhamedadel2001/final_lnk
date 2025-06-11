@@ -7,6 +7,8 @@ class ApiConstants {
   static const String signupEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
   static const String cityEndpoint = 'city';
+  static const String typeOfRentEndpoint = 'typeOfRent';
+  static const String finishingEndpoint = 'finishing';
   static const String areaEndpoint = 'location/';
   static const String verifyEndpoint = 'auth/verifyOTP';
   static const String forgetEndpoint = 'auth/forgetPass';
@@ -15,4 +17,5 @@ class ApiConstants {
   static const String oneRequestEndpoint = 'one/request/';
   static const String oneListEndpoint = 'one/list/';
   static const String getPropertiesEndpoint = 'properties/search';
+  static const String getPropertiesFilterEndpoint = 'filter/list';
 }

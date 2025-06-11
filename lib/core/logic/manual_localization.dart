@@ -1,13 +1,13 @@
 class ManualLocalization {
   static String getPropertyCategoryEnglishWord(String word) {
-    if (word == 'سكني' || word == 'Residential') {
+    if (word == 'سكني' || word == 'residential') {
       return 'residential';
     }
-    if (word == 'تجاري' || word == 'Commercial') {
+    if (word == 'تجاري' || word == 'commercial') {
       return 'commercial';
     }
-    if (word == 'Coastal' || word == 'مصيفي') {
-      return 'costal';
+    if (word == 'coastal' || word == 'مصيفي') {
+      return 'coastal';
     }
     return 'none';
   }

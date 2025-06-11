@@ -114,4 +114,11 @@ class LangKeys {
   static String get gallery => 'gallery'.tr();
   static String get requestDetails => 'requestDetails'.tr();
   static String get noResult => 'noResult'.tr();
+  static String get sale => 'sale'.tr();
+  static String get rent => 'rent'.tr();
+  static String get residential => 'residential'.tr();
+  static String get commercial => 'commercial'.tr();
+  static String get coastal => 'coastal'.tr();
+  static String get from => 'from'.tr();
+  static String get to => 'to'.tr();
 }
