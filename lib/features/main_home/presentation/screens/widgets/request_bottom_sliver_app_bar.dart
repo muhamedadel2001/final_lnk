@@ -43,9 +43,12 @@ class RequestBottomSliverAppBar extends StatelessWidget
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Adam ', style: getStyleBold16(context)),
                 Text(
-                  'Agent at raya aganecy',
+                  cubit.requestModel!.request.userId.name!,
+                  style: getStyleBold16(context),
+                ),
+                Text(
+                  cubit.requestModel!.title,
                   style: getStyleBold13(
                     context,
                   ).copyWith(color: textSecondaryClr, fontSize: 11.5),

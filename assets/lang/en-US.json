@@ -116,7 +116,9 @@
   "commercial": "commercial",
   "coastal": "coastal",
   "to": "to",
-  "from": "from"
+  "from": "from",
+  "search": "search",
+  "reset": "reset"
 }
 
 

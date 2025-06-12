@@ -31,6 +31,7 @@ class SingleRequsetViewScreen extends StatefulWidget {
 class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
   @override
   void initState() {
+    print(widget.id);
     HomeLandingCubit.get(context).getOneRequest(
       lang: MyCache.getString(key: MyCacheKeys.language),
       context: context,

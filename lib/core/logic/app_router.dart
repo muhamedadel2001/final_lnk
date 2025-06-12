@@ -251,25 +251,34 @@ class AppRouter {
               ),
         );
       case screens.filterProprtiesScreen:
-        final cubit = routeSettings.arguments as PropertiesCubit;
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final propertiesCubit = args['propertiesCubit'] as PropertiesCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
           builder:
-              (_) => BlocProvider.value(
-                value: cubit,
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: propertiesCubit),
+                ],
                 child: FilterPropertiesScreen(),
               ),
         );
       case screens.resultFilterPropertiesScreen:
         final args = routeSettings.arguments as Map<String, dynamic>;
         final propertiesCubit = args['propertiesCubit'] as PropertiesCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
         final minArea = args['minArea'] as String;
         final maxArea = args['maxArea'] as String;
         final minPrice = args['minPrice'] as String;
         final maxPrice = args['maxPrice'] as String;
         return MaterialPageRoute<String>(
           builder:
-              (_) => BlocProvider.value(
-                value: propertiesCubit,
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: propertiesCubit),
+                ],
                 child: ResultFilterPropertiesScreen(
                   minArea: minArea,
                   maxArea: maxArea,

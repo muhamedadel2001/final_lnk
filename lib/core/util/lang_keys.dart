@@ -121,4 +121,6 @@ class LangKeys {
   static String get coastal => 'coastal'.tr();
   static String get from => 'from'.tr();
   static String get to => 'to'.tr();
+  static String get search => 'search'.tr();
+  static String get reset => 'reset'.tr();
 }

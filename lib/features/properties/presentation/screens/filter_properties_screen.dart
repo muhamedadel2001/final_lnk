@@ -5,6 +5,7 @@ import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/screens.dart';
 import 'package:final_lnk/core/widgets/primary_button.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_properties_area_widget.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_properties_category_widget.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/get_inputs_list.dart';
 import '../../../../core/util/fonts.dart';
 import '../../../../core/util/lang_keys.dart';
@@ -64,7 +66,25 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
       },
       child: Scaffold(
         appBar: AppBar(scrolledUnderElevation: 0),
-        body: BlocBuilder<PropertiesCubit, PropertiesState>(
+        body: BlocConsumer<PropertiesCubit, PropertiesState>(
+          listener: (context, state) {
+            if (state is GetPropertiesFilterDataSuccess) {
+              Navigator.pushNamed(
+                context,
+                resultFilterPropertiesScreen,
+                arguments: {
+                  "homeLandingCubit": HomeLandingCubit.get(context),
+                  'propertiesCubit': propCubit,
+                  'minArea': fromAreaController.text,
+                  'maxArea': toAreaController.text,
+                  'minPrice': fromPriceController.text,
+                  'maxPrice': toPriceController.text,
+                },
+              );
+            } else if (state is GetPropertiesFilterDataFailure) {
+              CustomAlerts.showMySnackBar(context, state.message);
+            }
+          },
           builder: (context, state) {
             return state is GetInputsLoading
                 ? Center(
@@ -246,7 +266,7 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
                                 callBack: () {
                                   Navigator.pop(context);
                                 },
-                                text: 'Reset',
+                                text: LangKeys.reset,
                                 style: getStyle20(
                                   context,
                                 ).copyWith(fontSize: 16.sp, color: primaryClr),
@@ -257,19 +277,46 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
                             Expanded(
                               child: PrimaryButton(
                                 callBack: () {
-                                  Navigator.pushNamed(
+                                  PropertiesCubit.get(
                                     context,
-                                    resultFilterPropertiesScreen,
-                                    arguments: {
-                                      'propertiesCubit': propCubit,
-                                      'minArea': fromAreaController.text,
-                                      'maxArea': toAreaController.text,
-                                      'minPrice': fromPriceController.text,
-                                      'maxPrice': toPriceController.text,
-                                    },
+                                  ).getPropertiesFilterData(
+                                    type:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).propertyStatus,
+                                    typeOfList:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).propertyCategory,
+                                    lang: MyCache.getString(
+                                      key: MyCacheKeys.language,
+                                    ),
+                                    typeOfRent:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).userSelection.typeOfRentId,
+                                    minArea: fromAreaController.text,
+                                    maxArea: toAreaController.text,
+                                    minPrice: fromPriceController.text,
+                                    maxPrice: toPriceController.text,
+                                    city:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).userSelection.cityId,
+                                    location:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).userSelection.areaId,
+                                    finishing:
+                                        PropertiesCubit.get(
+                                          context,
+                                        ).userSelection.finishingId,
                                   );
                                 },
-                                text: 'Apply filter',
+                                text:
+                                    state is GetPropertiesFilterDataLoading
+                                        ? ".."
+                                        : LangKeys.search,
                                 style: getStyle20(
                                   context,
                                 ).copyWith(fontSize: 16.sp),

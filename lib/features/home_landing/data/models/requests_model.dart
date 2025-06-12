@@ -1,16 +1,20 @@
 class RequestModel {
   final String loginUser;
   final Request request;
+  final String title;
+
   final List<SimilarList> similarLists;
 
   RequestModel({
     required this.loginUser,
+    required this.title,
     required this.request,
     required this.similarLists,
   });
 
   factory RequestModel.fromJson(Map<String, dynamic> json) {
     return RequestModel(
+      title: json['title'],
       loginUser: json['loginUser'],
       request: Request.fromJson(json['Request']),
       similarLists:

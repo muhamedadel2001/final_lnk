@@ -34,6 +34,7 @@ class ResponsesRemoteData {
       "${ApiConstants.oneRequestEndpoint}$id",
       queryParameters: {"lang": lang},
     );
+    print(response);
     return RequestModel.fromJson(response);
   }
 }

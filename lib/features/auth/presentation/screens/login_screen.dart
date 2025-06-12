@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final authCubit = BlocProvider.of<AuthCubit>(context);
     return GestureDetector(
       onTap: () {
-        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
         body: SafeArea(

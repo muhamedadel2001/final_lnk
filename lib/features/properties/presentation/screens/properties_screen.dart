@@ -88,10 +88,17 @@ class _PropertiesScreenState extends State<PropertiesScreen>
   }
 
   void onSearchChanged(String val) {
+    print('ss');
     final cubit = PropertiesCubit.get(context);
 
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 1500), () {
+      _scrollController.animateTo(
+        0,
+        duration: Duration(milliseconds: 10),
+        curve: Curves.easeIn,
+      );
+
       cubit.getPropertiesData(
         lang: MyCache.getString(key: MyCacheKeys.language),
         context: context,
@@ -104,7 +111,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     final landingCubit = BlocProvider.of<HomeLandingCubit>(context);
     landingCubit.stream.listen((state) {
       if (state is ScreenChanged && landingCubit.index != 1) {
@@ -153,7 +159,7 @@ class _PropertiesScreenState extends State<PropertiesScreen>
         print('properties widget builder');
         return GestureDetector(
           onTap: () {
-            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
           },
           child: Scaffold(
             body: CustomScrollView(
@@ -165,7 +171,10 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                     Navigator.pushNamed(
                       context,
                       filterProprtiesScreen,
-                      arguments: cubit,
+                      arguments: {
+                        'propertiesCubit': cubit,
+                        'homeLandingCubit': HomeLandingCubit.get(context),
+                      },
                     );
                   },
                   title: 'Available Lists',
@@ -215,6 +224,16 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                             if (!isLoadingMoreItem &&
                                 index < cubit.myPropertiesList.length) {
                               return PropertyItem(
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    singlePropertyScreen,
+                                    arguments: {
+                                      'id': cubit.myPropertiesList[index].sId,
+                                      'cubit': HomeLandingCubit.get(context),
+                                    },
+                                  );
+                                },
                                 properties: cubit.myPropertiesList[index],
                               );
                             } else {
@@ -251,7 +270,11 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                       ),
                     )
                     : state is GetPropertiesSuccess &&
-                        cubit.myPropertiesList.isEmpty
+                            cubit.myPropertiesList.isEmpty ||
+                        state is LoadedMoreState &&
+                            cubit.myPropertiesList.isEmpty ||
+                        state is LoadingMoreState &&
+                            cubit.myPropertiesList.isEmpty
                     ? SliverToBoxAdapter(
                       child: GlobalEmptyWidget(
                         imagePath: 'assets/imgs/empty.png',

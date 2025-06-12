@@ -3,6 +3,8 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
+import 'package:final_lnk/core/databases/cache/my_cache.dart';
+import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
 import 'package:final_lnk/features/home_landing/domain/usecases/responses_usecases.dart';
@@ -244,6 +246,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     );
     result.fold(
       (failure) {
+        print(failure.errMessage);
         emit(GetOneFailure());
       },
       (success) {
