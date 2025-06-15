@@ -264,7 +264,8 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
                             Expanded(
                               child: PrimaryButton(
                                 callBack: () {
-                                  Navigator.pop(context);
+                                  propCubit.userSelection.resetData();
+                                  propCubit.changeValue();
                                 },
                                 text: LangKeys.reset,
                                 style: getStyle20(

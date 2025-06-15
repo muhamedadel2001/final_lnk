@@ -9,10 +9,7 @@ import 'package:final_lnk/features/properties/data/models/properties_model.dart'
 import 'package:final_lnk/features/properties/domain/usecases/properties_usecases.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-
 import '../../../../core/logic/start_model.dart';
-import '../../../../core/util/const.dart';
 import '../../../auth/data/models/user_selection.dart';
 part 'properties_state.dart';
 
@@ -51,8 +48,9 @@ class PropertiesCubit extends Cubit<PropertiesState> {
     required String type,
     bool isPagination = false,
   }) async {
-    if (isPagination && (isLoadingMoreProperties || !hasMoreDataProperties))
+    if (isPagination && (isLoadingMoreProperties || !hasMoreDataProperties)) {
       return;
+    }
     if (!isPagination) {
       emit(GetPropertiesLoading());
       myPropertiesList.clear();
@@ -152,8 +150,9 @@ class PropertiesCubit extends Cubit<PropertiesState> {
     bool isPagination = false,
   }) async {
     if (isPagination &&
-        (isLoadingMorePropertiesFilter || !hasMoreDataPropertiesFilter))
+        (isLoadingMorePropertiesFilter || !hasMoreDataPropertiesFilter)) {
       return;
+    }
     if (!isPagination) {
       emit(GetPropertiesFilterDataLoading());
       myPropertiesListFilter.clear();

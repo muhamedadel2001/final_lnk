@@ -79,8 +79,8 @@ class _FavouritesScreenState extends State<FavouritesScreen>
                 },
               ),
             ),
-          if (tabController.index == 1)
-            Expanded(
+          //      if (tabController.index == 1)
+          /*    Expanded(
               child: ListView.builder(
                 padding: EdgeInsets.zero,
                 itemCount: 5,
@@ -88,7 +88,7 @@ class _FavouritesScreenState extends State<FavouritesScreen>
                   return RequestFeedItem();
                 },
               ),
-            ),
+            ),*/
         ],
       ),
     );

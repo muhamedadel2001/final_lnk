@@ -123,4 +123,6 @@ class LangKeys {
   static String get to => 'to'.tr();
   static String get search => 'search'.tr();
   static String get reset => 'reset'.tr();
+  static String get all => 'all'.tr();
+  static String get browseDeals => 'browseDeals'.tr();
 }

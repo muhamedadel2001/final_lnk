@@ -17,5 +17,7 @@ class ApiConstants {
   static const String oneRequestEndpoint = 'one/request/';
   static const String oneListEndpoint = 'one/list/';
   static const String getPropertiesEndpoint = 'properties/search';
+  static const String getRequestsEndpoint = 'requests/search';
   static const String getPropertiesFilterEndpoint = 'filter/list';
+  static const String getRequestsFilterEndpoint = 'filter/request';
 }

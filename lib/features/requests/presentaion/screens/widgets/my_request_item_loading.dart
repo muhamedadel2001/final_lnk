@@ -1,14 +1,16 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/screens.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../data/models/requests_model.dart';
 
-class MyRequestItem extends StatelessWidget {
-  final void Function()? onTap;
-  final Requests requests;
-  const MyRequestItem({super.key, required this.requests, this.onTap});
+class MyRequestItemLoading extends StatelessWidget {
+  const MyRequestItemLoading({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -31,7 +33,7 @@ class MyRequestItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            requests.title!,
+            ' requests.title!',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: getStyleBold16(context),
@@ -49,7 +51,7 @@ class MyRequestItem extends StatelessWidget {
                 child: SizedBox(
                   width: 100.w,
                   child: Text(
-                    requests.location!.name!,
+                    ' requests.location!.name!',
                     style: getStyleBold13(
                       context,
                     ).copyWith(color: textSecondaryClr),
@@ -65,7 +67,7 @@ class MyRequestItem extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  "${requests.minPrice} : ${requests.maxPrice}",
+                  "100",
                   style: getStyleBold13(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -87,7 +89,7 @@ class MyRequestItem extends StatelessWidget {
                 child: SizedBox(
                   width: 100.w,
                   child: Text(
-                    requests.finishing!.name!,
+                    'requests.finishing!.name!',
                     style: getStyleBold13(
                       context,
                     ).copyWith(color: textSecondaryClr),
@@ -103,7 +105,7 @@ class MyRequestItem extends StatelessWidget {
               ),
               Flexible(
                 child: Text(
-                  requests.area!,
+                  ' requests.area!',
                   style: getStyleBold13(
                     context,
                   ).copyWith(color: textSecondaryClr),
@@ -116,7 +118,13 @@ class MyRequestItem extends StatelessWidget {
             children: [
               Spacer(),
               ElevatedButton(
-                onPressed: onTap,
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    singleRequestScreen,
+                    arguments: HomeLandingCubit.get(context),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryClr,
                   foregroundColor: Colors.white,

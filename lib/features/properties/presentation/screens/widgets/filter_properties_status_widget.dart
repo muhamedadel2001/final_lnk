@@ -23,7 +23,10 @@ class _FilterPropertiesStatusWidgetState
     return Row(
       children: [
         GestureDetector(
-          onTap: () => propCubit.changePropertyStatus(LangKeys.sale),
+          onTap: () {
+            propCubit.userSelection.typeOfRentId = null;
+            propCubit.changePropertyStatus(LangKeys.sale);
+          },
           child: FilterPropertiesOptionBoxWidget(title: LangKeys.sale),
         ),
         const SizedBox(width: 11),

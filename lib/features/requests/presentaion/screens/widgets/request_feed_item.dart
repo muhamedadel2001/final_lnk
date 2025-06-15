@@ -1,12 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/requests/data/models/requests_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
 import 'my_request_item.dart';
 
 class RequestFeedItem extends StatelessWidget {
-  const RequestFeedItem({super.key});
+  final Requests requests;
+  final void Function()? onTap;
+  const RequestFeedItem({super.key, required this.requests, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +23,37 @@ class RequestFeedItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              const CircleAvatar(
-                minRadius: 30,
-                backgroundImage: AssetImage('assets/imgs/profile_image.png'),
-              ),
+              requests.userId!.image == null && requests.agencyId!.image == null
+                  ? Row(
+                    children: [
+                      Image.asset(
+                        'assets/imgs/user_circle.png',
+                        width: 40.w,
+                        height: 40.w,
+                      ),
+                    ],
+                  )
+                  : requests.userId!.image == null
+                  ? ClipRRect(
+                    borderRadius: BorderRadius.circular(50.r),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      width: 40.w,
+                      height: 40.w,
+                      imageUrl:
+                          "${ApiConstants.userUrlImages}${requests.agencyId!.image}",
+                    ),
+                  )
+                  : ClipRRect(
+                    borderRadius: BorderRadius.circular(50.r),
+                    child: CachedNetworkImage(
+                      fit: BoxFit.cover,
+                      width: 40.w,
+                      height: 40.w,
+                      imageUrl:
+                          "${ApiConstants.userUrlImages}${requests.userId!.image}",
+                    ),
+                  ),
               const SizedBox(width: 8),
               Expanded(
                 child: Column(
@@ -28,12 +61,12 @@ class RequestFeedItem extends StatelessWidget {
                   children: [
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      'Adam mohamed',
+                      requests.userId!.name!,
                       style: getStyleBold13(context),
                     ),
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      'Agent at raya aganecy',
+                      requests.titleOfUser!,
                       style: getStyleBold13(
                         context,
                       ).copyWith(color: textSecondaryClr, fontSize: 11.5),
@@ -41,10 +74,10 @@ class RequestFeedItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Favourite(isLiked: true),
+              Favourite(isLiked: requests.isFavourite!),
             ],
           ),
-          const MyRequestItem(),
+          MyRequestItem(requests: requests, onTap: onTap),
         ],
       ),
     );

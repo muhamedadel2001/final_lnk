@@ -37,7 +37,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
     final cubit = PropertiesCubit.get(context);
     cubit.getPropertiesData(
       lang: MyCache.getString(key: MyCacheKeys.language),
@@ -177,8 +176,8 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                       },
                     );
                   },
-                  title: 'Available Lists',
-                  subTitle: 'Browse the Best Deals in the Market',
+                  title: LangKeys.propertiesOffered,
+                  subTitle: LangKeys.browseDeals,
                   onChange: onSearchChanged,
                 ),
                 SliverToBoxAdapter(child: SizedBox(height: 20.h)),

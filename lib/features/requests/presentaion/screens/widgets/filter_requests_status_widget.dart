@@ -4,6 +4,7 @@ import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/util/lang_keys.dart';
 import '../../../../home_landing/presentation/screens/widgets/option_box.dart';
 import 'filter_requests_option_box_widget.dart';
 
@@ -25,20 +26,15 @@ class _FilterRequestsStatusWidgetState
       children: [
         GestureDetector(
           onTap: () {
-            reqCubit.propertyStatus = 'Sell';
-            //    rentChangesCubit.generateCashChanges();
-            setState(() {});
+            reqCubit.userSelection.typeOfRentId = null;
+            reqCubit.changePropertyStatus(LangKeys.sale);
           },
-          child: FilterRequestsOptionBoxWidget(title: 'Sell'),
+          child: FilterRequestsOptionBoxWidget(title: LangKeys.sale),
         ),
         const SizedBox(width: 11),
         GestureDetector(
-          onTap: () {
-            reqCubit.propertyStatus = 'Rent';
-            //   rentChangesCubit.generateRentChanges();
-            setState(() {});
-          },
-          child: FilterRequestsOptionBoxWidget(title: 'Rent'),
+          onTap: () => reqCubit.changePropertyStatus(LangKeys.rent),
+          child: FilterRequestsOptionBoxWidget(title: LangKeys.rent),
         ),
       ],
     );

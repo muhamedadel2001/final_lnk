@@ -19,6 +19,10 @@ import 'package:final_lnk/features/properties/data/datasources/properties_remote
 import 'package:final_lnk/features/properties/data/repositories/properties_repo_impl.dart';
 import 'package:final_lnk/features/properties/domain/usecases/properties_usecases.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
+import 'package:final_lnk/features/requests/data/datasources/requests_local_data.dart';
+import 'package:final_lnk/features/requests/data/datasources/requests_remote_data.dart';
+import 'package:final_lnk/features/requests/data/repositories/requests_repo_impl.dart';
+import 'package:final_lnk/features/requests/domain/usecases/properties_usecases.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
@@ -129,7 +133,25 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       );
     } else if (idx == 2) {
       return BlocProvider(
-        create: (context) => RequestsCubit(),
+        create:
+            (context) => RequestsCubit(
+              RequestsUseCases(
+                requestsRepo: RequestsRepoImpl(
+                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  requestsRemoteData: RequestsRemoteData(
+                    apiConsumer: DioConsumer(
+                      dio: Dio(
+                        BaseOptions(
+                          connectTimeout: Duration(seconds: 10),
+                          receiveTimeout: Duration(seconds: 10),
+                        ),
+                      ),
+                    ),
+                  ),
+                  requestsLocalData: RequestsLocalData(),
+                ),
+              ),
+            ),
         child: RequestsScreen(),
       );
     } else {

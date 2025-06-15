@@ -118,7 +118,9 @@
   "to": "to",
   "from": "from",
   "search": "search",
-  "reset": "reset"
+  "reset": "reset",
+  "all": "All",
+  "browseDeals": "Browse the Best Deals in the Market"
 }
 
 

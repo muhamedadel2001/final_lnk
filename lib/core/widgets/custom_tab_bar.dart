@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 
 import '../util/colors.dart';
@@ -49,7 +50,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     ? Colors.transparent
                     : const Color(0xffF5F5F5),
           ),
-          child: Text('All'),
+          child: Text(LangKeys.all),
         ),
         Container(
           decoration: BoxDecoration(
@@ -60,7 +61,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     : const Color(0xffF5F5F5),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 9),
-          child: Text('Residential'),
+          child: Text(LangKeys.residential),
         ),
         Container(
           decoration: BoxDecoration(
@@ -71,7 +72,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     : const Color(0xffF5F5F5),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 9),
-          child: Text('Commercial'),
+          child: Text(LangKeys.commercial),
         ),
         Container(
           decoration: BoxDecoration(
@@ -82,7 +83,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                     : const Color(0xffF5F5F5),
           ),
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 9),
-          child: Text('Coastal'),
+          child: Text(LangKeys.coastal),
         ),
       ],
     );

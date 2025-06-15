@@ -31,6 +31,7 @@ class CustomDropDownButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<dynamic>(
+      borderRadius: BorderRadius.circular(20.r),
       value: value,
       dropdownColor: backgroundClr,
       icon: Icon(

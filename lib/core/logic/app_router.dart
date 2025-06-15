@@ -291,6 +291,10 @@ class AppRouter {
         final args = routeSettings.arguments as Map<String, dynamic>;
         final requestsCubit = args['requestsCubit'] as RequestsCubit;
         final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
+        final minArea = args['minArea'] as String;
+        final maxArea = args['maxArea'] as String;
+        final minPrice = args['minPrice'] as String;
+        final maxPrice = args['maxPrice'] as String;
 
         return MaterialPageRoute<String>(
           builder:
@@ -299,7 +303,12 @@ class AppRouter {
                   BlocProvider.value(value: homeLandingCubit),
                   BlocProvider.value(value: requestsCubit),
                 ],
-                child: ResultFilterRequestsScreen(),
+                child: ResultFilterRequestsScreen(
+                  minArea: minArea,
+                  maxArea: maxArea,
+                  minPrice: minPrice,
+                  maxPrice: maxPrice,
+                ),
               ),
         );
       case screens.filterRequestsScreen:
@@ -314,7 +323,7 @@ class AppRouter {
                   BlocProvider.value(value: homeLandingCubit),
                   BlocProvider.value(value: requestsCubit),
                 ],
-                child: FilterRequestScreen(),
+                child: FilterRequestsScreen(),
               ),
         );
     }
