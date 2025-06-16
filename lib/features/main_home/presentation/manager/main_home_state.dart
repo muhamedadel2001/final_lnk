@@ -14,3 +14,5 @@ final class GetHomeFailure extends MainHomeState {
 final class GetHomeSuccess extends MainHomeState {}
 
 final class GetHomeLoading extends MainHomeState {}
+
+final class BannerChanged extends MainHomeState {}

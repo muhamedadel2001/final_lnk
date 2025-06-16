@@ -86,6 +86,8 @@ class LangKeys {
   static String get recentActivity => 'recentActivity'.tr();
   static String get add => 'add'.tr();
   static String get propertiesOffered => 'propertiesOffered'.tr();
+  static String get propertiesOfferedRecently =>
+      'propertiesOfferedRecently'.tr();
   static String get viewAll => 'viewAll'.tr();
   static String get description => 'description'.tr();
   static String get photos => 'photos'.tr();
@@ -111,6 +113,8 @@ class LangKeys {
   static String get favourite => 'favourite'.tr();
   static String get hello => 'hello'.tr();
   static String get propertiesRequested => 'propertiesRequested'.tr();
+  static String get propertiesRequestedRecently =>
+      'propertiesRequestedRecently'.tr();
   static String get gallery => 'gallery'.tr();
   static String get requestDetails => 'requestDetails'.tr();
   static String get noResult => 'noResult'.tr();

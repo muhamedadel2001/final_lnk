@@ -1,13 +1,9 @@
 import 'dart:math';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../util/colors.dart';
-import '../util/screens.dart';
-import '../../features/properties/presentation/manager/properties_cubit.dart';
 import 'bottom_sliver_app_bar.dart';
 
 class CustomSliverAppBar extends StatelessWidget {
@@ -40,7 +36,7 @@ class CustomSliverAppBar extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(title, style: getStyle20(context)),
-              const SizedBox(height: 15),
+              SizedBox(height: 10.h),
               Text(
                 subTitle,
                 style: getStyleBold13(
@@ -52,8 +48,8 @@ class CustomSliverAppBar extends StatelessWidget {
         ),
       ),
       expandedHeight: max(100.h, 135.h),
-      floating: true,
-      pinned: true,
+      //  floating: true,
+      //  pinned: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50),

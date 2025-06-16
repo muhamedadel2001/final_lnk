@@ -3,12 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'core/databases/cache/my_cache.dart';
 import 'core/databases/cache/my_cache_keys.dart';
 import 'core/logic/app_router.dart';
 import 'core/logic/bloc_observer.dart';
-import 'core/logic/resp_calc.dart';
 import 'core/util/colors.dart';
 
 Future<void> main() async {
@@ -25,7 +23,7 @@ Future<void> main() async {
   ]);
   String? savedLanguageCode = MyCache.getString(key: MyCacheKeys.language);
   Locale startLocale =
-      savedLanguageCode == 'ar'
+      savedLanguageCode == 'ar' || savedLanguageCode == ''
           ? const Locale('ar', 'EG')
           : const Locale('en', 'US');
   runApp(

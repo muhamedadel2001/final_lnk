@@ -124,6 +124,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               height: 20.h,
                               width: 12.w,
                             ),
+                            SizedBox(width: 2.w),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxWidth: 120.w),
                               child: SizedBox(
@@ -143,6 +144,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               height: 20.h,
                               width: 12.w,
                             ),
+                            SizedBox(width: 2.w),
                             Flexible(
                               child: Text(
                                 "${homeRequest.minPrice}-${homeRequest.maxPrice}",
@@ -167,6 +169,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               height: 20.h,
                               width: 12.w,
                             ),
+                            SizedBox(width: 2.w),
                             ConstrainedBox(
                               constraints: BoxConstraints(maxWidth: 120.w),
                               child: SizedBox(
@@ -186,6 +189,7 @@ class FeaturedRequestItem extends StatelessWidget {
                               height: 20.h,
                               width: 12.w,
                             ),
+                            SizedBox(width: 2.w),
                             Flexible(
                               child: Text(
                                 homeRequest.area,

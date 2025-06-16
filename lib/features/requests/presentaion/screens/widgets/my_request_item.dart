@@ -36,7 +36,7 @@ class MyRequestItem extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: getStyleBold16(context),
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 9.h),
           Row(
             children: [
               Image.asset(
@@ -44,6 +44,7 @@ class MyRequestItem extends StatelessWidget {
                 height: 14.h,
                 width: 14.w,
               ),
+              SizedBox(width: 2.w),
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 120),
                 child: SizedBox(
@@ -63,6 +64,7 @@ class MyRequestItem extends StatelessWidget {
                 height: 14.h,
                 width: 14.w,
               ),
+              SizedBox(width: 2.w),
               Flexible(
                 child: Text(
                   "${requests.minPrice} : ${requests.maxPrice}",
@@ -74,7 +76,7 @@ class MyRequestItem extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 10),
+          SizedBox(height: 9.h),
           Row(
             children: [
               Image.asset(
@@ -82,6 +84,7 @@ class MyRequestItem extends StatelessWidget {
                 height: 14.h,
                 width: 14.w,
               ),
+              SizedBox(width: 3.w),
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 120),
                 child: SizedBox(
@@ -101,6 +104,7 @@ class MyRequestItem extends StatelessWidget {
                 height: 14.h,
                 width: 14.w,
               ),
+              SizedBox(width: 2.w),
               Flexible(
                 child: Text(
                   requests.area!,

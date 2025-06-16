@@ -1,9 +1,13 @@
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
+import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/widgets/global_error_widget.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/banner_home_loading_widget.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/banner_home_widget.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/custom_app_bar_shimmer.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/custom_appbar_home.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_propeties.dart';
@@ -22,6 +26,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final bannerImages = [
+    'assets/imgs/banner1.png',
+    'assets/imgs/banner2.png',
+    'assets/imgs/banner3.png',
+  ];
+  final PageController _pageController = PageController();
   @override
   void initState() {
     MainHomeCubit.get(context).getHomeData(
@@ -72,19 +82,29 @@ class _HomeScreenState extends State<HomeScreen> {
                                         cubit.userData?.name ?? 'Mohamed adel',
                                   ),
                         ),
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 10.h),
+                        cubit.isLoadingHomeData
+                            ? BannerHomeLoadingWidget()
+                            : BannerHomeWidget(
+                              pageController: _pageController,
+                              bannerImages: bannerImages,
+                            ),
+
+                        SizedBox(height: 20.h),
                         Row(
                           children: [
                             Skeletonizer(
                               enabled: cubit.isLoadingHomeData,
                               child: Text(
-                                LangKeys.propertiesOffered,
+                                LangKeys.propertiesOfferedRecently,
                                 style: getStyle20(context),
                               ),
                             ),
                             const Spacer(),
                             InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                HomeLandingCubit.get(context).onTransition(1);
+                              },
                               child: Skeletonizer(
                                 enabled: cubit.isLoadingHomeData,
                                 child: Text(
@@ -97,20 +117,23 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
+
                         SizedBox(height: 15.h),
                         FeaturedPropeties(),
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 20.h),
                         Skeletonizer(
                           enabled: cubit.isLoadingHomeData,
                           child: Row(
                             children: [
                               Text(
-                                LangKeys.propertiesRequested,
+                                LangKeys.propertiesRequestedRecently,
                                 style: getStyle20(context),
                               ),
                               const Spacer(),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  HomeLandingCubit.get(context).onTransition(2);
+                                },
                                 child: Text(
                                   LangKeys.viewAll,
                                   style: getStyle13(

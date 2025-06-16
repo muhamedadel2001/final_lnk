@@ -105,6 +105,7 @@ class PropertyItem extends StatelessWidget {
                           height: 14.h,
                           width: 14.w,
                         ),
+                        SizedBox(width: 2.w),
                         Flexible(
                           child: Text(
                             properties.location!.name!,
@@ -120,6 +121,7 @@ class PropertyItem extends StatelessWidget {
                           height: 14.h,
                           width: 14.w,
                         ),
+                        SizedBox(width: 2.w),
                         Expanded(
                           child: Text(
                             properties.area!,
@@ -138,6 +140,7 @@ class PropertyItem extends StatelessWidget {
                           height: 14.h,
                           width: 14.w,
                         ),
+                        SizedBox(width: 3.w),
                         Flexible(
                           child: Text(
                             properties.apartment!.name!,
@@ -157,6 +160,7 @@ class PropertyItem extends StatelessWidget {
                           height: 14.h,
                           width: 14.w,
                         ),
+                        SizedBox(width: 2.w),
                         Container(
                           constraints: const BoxConstraints(maxWidth: 120),
                           width: 85.w,
@@ -180,7 +184,7 @@ class PropertyItem extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: primaryClr,
                               foregroundColor: Colors.white,
-                              minimumSize: Size(60.w, 22.h),
+                              minimumSize: Size(60.w, 28.h),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(5),
                               ),

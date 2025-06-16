@@ -110,6 +110,7 @@ class FeaturedPropertyItem extends StatelessWidget {
                                 height: 20.h,
                                 width: 12.w,
                               ),
+                              SizedBox(width: 5.w),
                               Flexible(
                                 child: Text(
                                   overflow: TextOverflow.ellipsis,

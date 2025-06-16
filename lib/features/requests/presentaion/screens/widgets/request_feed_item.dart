@@ -54,7 +54,7 @@ class RequestFeedItem extends StatelessWidget {
                           "${ApiConstants.userUrlImages}${requests.userId!.image}",
                     ),
                   ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8.w),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,7 +69,7 @@ class RequestFeedItem extends StatelessWidget {
                       requests.titleOfUser!,
                       style: getStyleBold13(
                         context,
-                      ).copyWith(color: textSecondaryClr, fontSize: 11.5),
+                      ).copyWith(color: textSecondaryClr, fontSize: 11.sp),
                     ),
                   ],
                 ),

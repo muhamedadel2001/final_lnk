@@ -30,4 +30,11 @@ class MainHomeCubit extends Cubit<MainHomeState> {
       },
     );
   }
+
+  int currentBannerIndex = 0;
+
+  void changeBannerIndex(int index) {
+    currentBannerIndex = index;
+    emit(BannerChanged()); // هنعرف BannerChanged تحت في state
+  }
 }
