@@ -129,4 +129,11 @@ class LangKeys {
   static String get reset => 'reset'.tr();
   static String get all => 'all'.tr();
   static String get browseDeals => 'browseDeals'.tr();
+  static String get showLess => 'showLess'.tr();
+  static String get showMore => 'showMore'.tr();
+  static String get propertyInfo => 'propertyInfo'.tr();
+  static String get meter => 'meter'.tr();
+  static String get more => 'more'.tr();
+  static String get installmentYears => 'installmentYears'.tr();
+  static String get downPayment => 'downPayment'.tr();
 }

@@ -122,5 +122,12 @@
  "search": "بحث",
  "all": "الكل",
  "reset": "مسح",
- "browseDeals": "تصفح أفضل العروض في السوق"
+ "browseDeals": "تصفح أفضل العروض في السوق",
+ "showMore": "عرض المزيد",
+ "showLess": "عرض اقل",
+ "propertyInfo": "تفاصيل العقار",
+ "meter": "متر",
+ "more": "المزيد",
+ "downPayment": "الدفعة المبدئية",
+ "installmentYears": "سنوات التقسيط"
 }

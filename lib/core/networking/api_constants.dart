@@ -7,8 +7,10 @@ class ApiConstants {
   static const String signupEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
   static const String cityEndpoint = 'city';
+  static const String apartmentEndpoint = 'apartment';
   static const String typeOfRentEndpoint = 'typeOfRent';
   static const String finishingEndpoint = 'finishing';
+  static const String furnisingEndpoint = 'furnising';
   static const String areaEndpoint = 'location/';
   static const String verifyEndpoint = 'auth/verifyOTP';
   static const String forgetEndpoint = 'auth/forgetPass';

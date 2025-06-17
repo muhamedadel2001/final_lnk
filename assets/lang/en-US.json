@@ -122,7 +122,14 @@
   "search": "search",
   "reset": "reset",
   "all": "All",
-  "browseDeals": "Browse the Best Deals in the Market"
+  "browseDeals": "Browse the Best Deals in the Market",
+  "showMore": "show more",
+  "showLess": "show less",
+  "propertyInfo": "Property info",
+  "meter": "meter",
+  "more": "more",
+  "downPayment": "Down payment",
+  "installmentYears": "Installment years"
 }
 
 

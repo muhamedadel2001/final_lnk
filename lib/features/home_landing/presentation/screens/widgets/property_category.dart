@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/util/lang_keys.dart';
 import 'option_box.dart';
 
 class PropertyCategory extends StatefulWidget {
@@ -24,31 +25,52 @@ class _PropertyCategoryState extends State<PropertyCategory> {
           children: [
             GestureDetector(
               onTap: () {
-                addPropertyCubit.propertyCategory = 'residential';
-                setState(() {});
+                addPropertyCubit.changePropertyCategory(LangKeys.residential);
+                addPropertyCubit.selectedPropertyTypesList = addPropertyCubit
+                    .appModel
+                    .apartmentsModel!
+                    .residentialApartments
+                    .sublist(0, 5);
+                addPropertyCubit.propertyType =
+                    addPropertyCubit.selectedPropertyTypesList[0].id;
+                addPropertyCubit.isShowingAllPropertyTypes = false;
               },
-              child: OptionBox(title: 'Residential'),
+              child: OptionBox(title: LangKeys.residential),
             ),
             const SizedBox(width: 11),
             GestureDetector(
               onTap: () {
-                addPropertyCubit.propertyCategory = 'commercial';
-                setState(() {});
+                addPropertyCubit.changePropertyCategory(LangKeys.commercial);
+                addPropertyCubit.selectedPropertyTypesList = addPropertyCubit
+                    .appModel
+                    .apartmentsModel!
+                    .commercialApartments
+                    .sublist(0, 5);
+                addPropertyCubit.propertyType =
+                    addPropertyCubit.selectedPropertyTypesList[0].id;
+                addPropertyCubit.isShowingAllPropertyTypes = false;
               },
-              child: OptionBox(title: 'Commercial'),
+              child: OptionBox(title: LangKeys.commercial),
             ),
             const SizedBox(width: 11),
             GestureDetector(
               onTap: () {
-                addPropertyCubit.propertyCategory = 'costal';
-                setState(() {});
+                addPropertyCubit.changePropertyCategory(LangKeys.coastal);
+                addPropertyCubit.selectedPropertyTypesList = addPropertyCubit
+                    .appModel
+                    .apartmentsModel!
+                    .residentialApartments
+                    .sublist(0, 5);
+                addPropertyCubit.propertyType =
+                    addPropertyCubit.selectedPropertyTypesList[0].id;
+                addPropertyCubit.isShowingAllPropertyTypes = false;
               },
-              child: OptionBox(title: 'Coastal'),
+              child: OptionBox(title: LangKeys.coastal),
             ),
           ],
         ),
         SizedBox(height: 10.h),
-        const PropertyTypesGirdView(),
+        PropertyTypesGirdView(),
         SizedBox(height: 10.h),
       ],
     );

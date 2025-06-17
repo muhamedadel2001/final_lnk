@@ -24,7 +24,7 @@ class TitledCustomDropDownButton extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: getStyle20(context)),
+        Text(title, style: getStyle20(context).copyWith(fontSize: 16.sp)),
         SizedBox(height: 12.h),
         CustomDropDownButton(
           value: value,

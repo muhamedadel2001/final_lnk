@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
+import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
 import 'package:final_lnk/features/home_landing/domain/usecases/responses_usecases.dart';
@@ -30,8 +33,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/logic/start_model.dart';
 import '../../../../core/util/const.dart';
+import '../../../../core/util/lang_keys.dart';
 import '../../../../core/util/property_model.dart';
+import '../../../auth/data/models/areas_model.dart';
+import '../../../auth/data/models/cities_model.dart';
+import '../../../auth/data/models/finishing_model.dart';
+import '../../../auth/data/models/type_of_rent_model.dart';
+import '../../../auth/data/models/user_selection.dart';
 import '../../../properties/presentation/screens/properties_screen.dart';
 import '../../../requests/presentaion/screens/requests_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
@@ -162,27 +172,22 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     }
   }
 
-  List<PropertyTypeModel> selectedPropertyTypesList = propertyTypesSubList;
+  List<ApartmentType> selectedPropertyTypesList = [];
   final ImagePicker _picker = ImagePicker();
   List<GlobalKey<FormState>> keys = [
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
     GlobalKey<FormState>(),
   ];
+  final userSelection = UserSelection();
+  final appModel = AllStartModel();
   String titleButton = '';
-  String propertyStatus = 'Sell';
-  String propertyCategory = 'residential';
-  String propertyType = 'Apartment';
-  String payment = 'Cash';
-  String city = ourCities[0];
+  String propertyCategory = LangKeys.residential;
+  String propertyStatus = LangKeys.sale;
+  String payment = LangKeys.cash;
+  String propertyType = '';
   String? finishing;
   String? furnishing;
-  int floorNom = 1;
-  int installmentYears = 1;
-  int roomsNom = 1;
-  int bathroomsNom = 1;
-  int balaconsNom = 1;
-  int receptionPieces = 1;
   String typeOfRent = 'Daily';
   bool isRequest = false;
   TextEditingController insurance = TextEditingController();
@@ -197,11 +202,34 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   List<XFile> imageFiles = [];
   List<String> additionalFeatures = [];
 
+  void changePropertyStatus(String status) {
+    propertyStatus = status;
+    emit(PropertyStatusChanged());
+  }
+
+  void changePaymentMethod(String payment) {
+    this.payment = payment;
+    emit(PropertyPriceChanged());
+  }
+
+  void changePropertyCategory(String category) {
+    propertyCategory = category;
+    emit(PropertyCategoryChanged());
+  }
+
+  bool isShowingAllPropertyTypes = false;
+
   viewMoreOrLess() {
     if (selectedPropertyTypesList.length <= 6) {
-      selectedPropertyTypesList = completedPropertyTypesList;
+      selectedPropertyTypesList =
+          propertyCategory == LangKeys.commercial
+              ? appModel.apartmentsModel!.commercialApartments
+              : appModel.apartmentsModel!.residentialApartments;
     } else {
-      selectedPropertyTypesList = propertyTypesSubList;
+      selectedPropertyTypesList =
+          propertyCategory == LangKeys.commercial
+              ? appModel.apartmentsModel!.commercialApartments.sublist(0, 5)
+              : appModel.apartmentsModel!.residentialApartments.sublist(0, 5);
     }
   }
 
@@ -276,5 +304,51 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
         emit(GetOneSuccess());
       },
     );
+  }
+
+  AreasModel? areasModel;
+  TypeOfRentModel? typeOfRentModel;
+
+  Future<void> getAllInputsPropertiesFilter({required String lang}) async {
+    emit(GetInputsLoadingCreate());
+    final results = await Future.wait([
+      responsesUseCase.getCitiesCall(lang: lang),
+      responsesUseCase.getFinishingTypeCall(lang: lang),
+      responsesUseCase.getTypeOfRentCall(lang: lang),
+      responsesUseCase.getApartmentsCall(lang: lang),
+      responsesUseCase.getFurnishingTypeCall(lang: lang),
+    ]);
+    for (var result in results) {
+      if (result is Left) {
+        emit(GetInputsFailureCreate());
+        return;
+      }
+    }
+    appModel.citiesModel = (results[0] as Right).value as CitiesModel;
+    appModel.finishingModel = (results[1] as Right).value as FinishingModel;
+    typeOfRentModel = (results[2] as Right).value as TypeOfRentModel;
+    appModel.apartmentsModel = (results[3] as Right).value as ApartmentsModel;
+    appModel.furnishingModel = (results[4] as Right).value as FurnishingModel;
+    selectedPropertyTypesList =
+        propertyCategory == LangKeys.commercial
+            ? appModel.apartmentsModel!.commercialApartments.sublist(0, 5)
+            : appModel.apartmentsModel!.residentialApartments.sublist(0, 5);
+    propertyType = selectedPropertyTypesList[0].id;
+    emit(GetInputsSuccessCreate());
+  }
+
+  getAreas({required String lang, required String id}) async {
+    final result = await responsesUseCase.getAreasCall(
+      lang: lang,
+      id: userSelection.cityId!,
+    );
+    result.fold((failure) => {emit(GetInputsFailureCreate())}, (success) {
+      appModel.areasModel = success;
+      emit(GetInputsSuccessCreate());
+    });
+  }
+
+  changeValue() {
+    emit(ChangeValue());
   }
 }

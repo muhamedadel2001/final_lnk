@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/expression_validator.dart';
 import '../../../../../core/util/colors.dart';
+import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/custom_drop_down_button.dart';
 import 'nom_box.dart';
 
@@ -24,13 +25,13 @@ class _NomBathroomsState extends State<NomBathrooms> {
       children: [
         GestureDetector(
           onTap: () {
-            addPropertyCubit.bathroomsNom = 1;
-            setState(() {});
+            addPropertyCubit.userSelection.bathroomsNom = '1';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '1',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.bathroomsNom,
+              int.parse(addPropertyCubit.userSelection.bathroomsNom),
               '1',
             ),
           ),
@@ -38,13 +39,13 @@ class _NomBathroomsState extends State<NomBathrooms> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.bathroomsNom = 2;
-            setState(() {});
+            addPropertyCubit.userSelection.bathroomsNom = '2';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '2',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.bathroomsNom,
+              int.parse(addPropertyCubit.userSelection.bathroomsNom),
               '2',
             ),
           ),
@@ -52,13 +53,13 @@ class _NomBathroomsState extends State<NomBathrooms> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.bathroomsNom = 3;
-            setState(() {});
+            addPropertyCubit.userSelection.bathroomsNom = '3';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '3',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.bathroomsNom,
+              int.parse(addPropertyCubit.userSelection.bathroomsNom),
               '3',
             ),
           ),
@@ -66,13 +67,13 @@ class _NomBathroomsState extends State<NomBathrooms> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.bathroomsNom = 4;
-            setState(() {});
+            addPropertyCubit.userSelection.bathroomsNom = '4';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '4',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.bathroomsNom,
+              int.parse(addPropertyCubit.userSelection.bathroomsNom),
               '4',
             ),
           ),
@@ -80,30 +81,28 @@ class _NomBathroomsState extends State<NomBathrooms> {
         SizedBox(width: 10.w),
         Flexible(
           child: Container(
-            constraints: const BoxConstraints(maxWidth: 150),
-            width: 100,
+            constraints: BoxConstraints(maxWidth: 150.w),
+            width: 80.w,
             child: CustomDropDownButton(
               dropDownList: List.generate(16, (nom) {
-                if (nom + 5 == 20) return '+${nom + 5}';
-
                 return (nom + 5).toString();
               }),
               callBack: (val) {
                 if (val == null) return;
-                addPropertyCubit.bathroomsNom = int.parse(val);
-                setState(() {});
+                addPropertyCubit.userSelection.bathroomsNom = val;
+                addPropertyCubit.changeValue();
               },
               fillColor:
-                  ((addPropertyCubit.bathroomsNom) > 4)
+                  ((int.parse(addPropertyCubit.userSelection.bathroomsNom)) > 4)
                       ? primaryClr
                       : backgroundClr,
-              hintText: 'More',
+              hintText: LangKeys.more,
               hintStyle: getStyleBold16(
                 context,
               ).copyWith(color: textSecondaryClr, height: 1.7),
               dropIcon: Icons.arrow_circle_down_sharp,
               iconColor:
-                  ((addPropertyCubit.bathroomsNom) > 4)
+                  ((int.parse(addPropertyCubit.userSelection.bathroomsNom)) > 4)
                       ? backgroundClr
                       : textSecondaryClr,
               title: '',

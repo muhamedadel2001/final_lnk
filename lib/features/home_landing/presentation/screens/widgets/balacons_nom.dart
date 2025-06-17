@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,13 +25,13 @@ class _NomBalaconsState extends State<NomBalacons> {
       children: [
         GestureDetector(
           onTap: () {
-            addPropertyCubit.balaconsNom = 1;
-            setState(() {});
+            addPropertyCubit.userSelection.balaconsNom = '1';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '1',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.balaconsNom,
+              int.parse(addPropertyCubit.userSelection.balaconsNom),
               '1',
             ),
           ),
@@ -38,13 +39,13 @@ class _NomBalaconsState extends State<NomBalacons> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.balaconsNom = 2;
-            setState(() {});
+            addPropertyCubit.userSelection.balaconsNom = '2';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '2',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.balaconsNom,
+              int.parse(addPropertyCubit.userSelection.balaconsNom),
               '2',
             ),
           ),
@@ -52,13 +53,13 @@ class _NomBalaconsState extends State<NomBalacons> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.balaconsNom = 3;
-            setState(() {});
+            addPropertyCubit.userSelection.balaconsNom = '3';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '3',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.balaconsNom,
+              int.parse(addPropertyCubit.userSelection.balaconsNom),
               '3',
             ),
           ),
@@ -66,13 +67,13 @@ class _NomBalaconsState extends State<NomBalacons> {
         SizedBox(width: 10.w),
         GestureDetector(
           onTap: () {
-            addPropertyCubit.balaconsNom = 4;
-            setState(() {});
+            addPropertyCubit.userSelection.balaconsNom = '4';
+            addPropertyCubit.changeValue();
           },
           child: NomBox(
             title: '4',
             isSelected: ExpressionValidator.nomEqualString(
-              addPropertyCubit.balaconsNom,
+              int.parse(addPropertyCubit.userSelection.balaconsNom),
               '4',
             ),
           ),
@@ -81,29 +82,27 @@ class _NomBalaconsState extends State<NomBalacons> {
         Flexible(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 150),
-            width: 100,
+            width: 80.w,
             child: CustomDropDownButton(
               dropDownList: List.generate(16, (nom) {
-                if (nom + 5 == 20) return '+${nom + 5}';
-
                 return (nom + 5).toString();
               }),
               callBack: (val) {
+                addPropertyCubit.changeValue();
                 if (val == null) return;
-                addPropertyCubit.balaconsNom = int.parse(val);
-                setState(() {});
+                addPropertyCubit.userSelection.balaconsNom = val;
               },
               fillColor:
-                  ((addPropertyCubit.balaconsNom) > 4)
+                  ((int.parse(addPropertyCubit.userSelection.balaconsNom)) > 4)
                       ? primaryClr
                       : backgroundClr,
-              hintText: 'More',
+              hintText: LangKeys.more,
               hintStyle: getStyleBold16(
                 context,
               ).copyWith(color: textSecondaryClr, height: 1.7),
               dropIcon: Icons.arrow_circle_down_sharp,
               iconColor:
-                  ((addPropertyCubit.balaconsNom) > 4)
+                  ((int.parse(addPropertyCubit.userSelection.balaconsNom)) > 4)
                       ? backgroundClr
                       : textSecondaryClr,
               title: '',

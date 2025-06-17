@@ -1,10 +1,16 @@
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
 import 'package:final_lnk/features/home_landing/domain/repositories/responses_repo.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/errors/failure.dart';
+import '../../../auth/data/models/areas_model.dart';
+import '../../../auth/data/models/cities_model.dart';
+import '../../../auth/data/models/finishing_model.dart';
+import '../../../auth/data/models/type_of_rent_model.dart';
 
 class ResponsesUseCase {
   final ResponsesRepo responsesRepo;
@@ -24,5 +30,40 @@ class ResponsesUseCase {
     required BuildContext context,
   }) {
     return responsesRepo.getOneRequest(lang: lang, context: context, id: id);
+  }
+
+  Future<Either<Failure, AreasModel>> getAreasCall({
+    required String lang,
+    required String id,
+  }) {
+    return responsesRepo.getAreas(lang: lang, id: id);
+  }
+
+  Future<Either<Failure, CitiesModel>> getCitiesCall({required String lang}) {
+    return responsesRepo.getCities(lang: lang);
+  }
+
+  Future<Either<Failure, FinishingModel>> getFinishingTypeCall({
+    required String lang,
+  }) {
+    return responsesRepo.getFinishingType(lang: lang);
+  }
+
+  Future<Either<Failure, FurnishingModel>> getFurnishingTypeCall({
+    required String lang,
+  }) {
+    return responsesRepo.getFurnishingType(lang: lang);
+  }
+
+  Future<Either<Failure, ApartmentsModel>> getApartmentsCall({
+    required String lang,
+  }) {
+    return responsesRepo.getApartments(lang: lang);
+  }
+
+  Future<Either<Failure, TypeOfRentModel>> getTypeOfRentCall({
+    required String lang,
+  }) {
+    return responsesRepo.getRentType(lang: lang);
   }
 }

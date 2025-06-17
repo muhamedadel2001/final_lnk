@@ -32,4 +32,18 @@ class GetLists {
             .toList() ??
         [];
   }
+
+  static List getFurnishingNames(AllStartModel appModel) {
+    return appModel.furnishingModel?.finishings
+            ?.map((finshing) => finshing.name)
+            .toList() ??
+        [];
+  }
+
+  static List getFurnishingIds(AllStartModel appModel) {
+    return appModel.furnishingModel?.finishings
+            ?.map((finshing) => finshing.id)
+            .toList() ??
+        [];
+  }
 }

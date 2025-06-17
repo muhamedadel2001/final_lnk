@@ -2,11 +2,14 @@ import 'package:final_lnk/features/home_landing/presentation/manager/home_landin
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/util/lang_keys.dart';
 import 'installment_options.dart';
 import 'option_box.dart';
 
 class PaymentOptions extends StatefulWidget {
-  const PaymentOptions({super.key});
+  final TextEditingController? insuranceOrDownController;
+
+  const PaymentOptions({super.key, this.insuranceOrDownController});
 
   @override
   State<PaymentOptions> createState() => _PaymentOptionsState();
@@ -24,28 +27,28 @@ class _PaymentOptionsState extends State<PaymentOptions> {
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  addPropertyCubit.payment = 'cash';
-                  setState(() {});
+                  addPropertyCubit.changePaymentMethod(LangKeys.cash);
                 },
-                child: OptionBox(title: 'cash'),
+                child: OptionBox(title: LangKeys.cash),
               ),
             ),
             const SizedBox(width: 26),
             Expanded(
               child: GestureDetector(
                 onTap: () {
-                  addPropertyCubit.payment = 'installment';
-                  setState(() {});
+                  addPropertyCubit.changePaymentMethod(LangKeys.installments);
                 },
-                child: OptionBox(title: 'installment'),
+                child: OptionBox(title: LangKeys.installments),
               ),
             ),
           ],
         ),
-        addPropertyCubit.payment == 'installment'
+        addPropertyCubit.payment == LangKeys.installments
             ? addPropertyCubit.isRequest
                 ? const SizedBox.shrink()
-                : const InstallmentOptions()
+                : InstallmentOptions(
+                  insuranceOrDownController: widget.insuranceOrDownController,
+                )
             : const SizedBox.shrink(),
       ],
     );

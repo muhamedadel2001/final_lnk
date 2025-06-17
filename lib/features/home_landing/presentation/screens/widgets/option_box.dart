@@ -2,6 +2,7 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/manual_localization.dart';
 import '../../../../../core/util/colors.dart';
@@ -15,7 +16,7 @@ class OptionBox extends StatelessWidget {
     final addPropertyCubit = BlocProvider.of<HomeLandingCubit>(context);
     return Container(
       margin: const EdgeInsets.all(3),
-      height: 50,
+      height: 55.h,
       padding: const EdgeInsets.only(left: 14, right: 14, top: 12, bottom: 12),
       decoration: BoxDecoration(
         border: Border.all(color: primaryClr, width: 1.87),
@@ -27,8 +28,7 @@ class OptionBox extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           (title == addPropertyCubit.propertyStatus ||
-                  ManualLocalization.getPropertyCategoryEnglishWord(title) ==
-                      addPropertyCubit.propertyCategory ||
+                  title == addPropertyCubit.propertyCategory ||
                   title == addPropertyCubit.payment)
               ? const CustomRadioButton()
               : const SizedBox(width: 17, height: 17),
