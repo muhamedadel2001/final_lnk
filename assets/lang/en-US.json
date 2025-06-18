@@ -100,7 +100,7 @@
   "location": "Location",
   "call": "Call",
   "paymentMethod": "Payment method",
-  "cash": "cash",
+  "cash": "Cash",
   "installments": "Installments",
   "price": "price",
   "type": "Type",
@@ -129,7 +129,16 @@
   "meter": "meter",
   "more": "more",
   "downPayment": "Down payment",
-  "installmentYears": "Installment years"
+  "installmentYears": "Installment years",
+  "title": "Title",
+  "contactInfo": "Contact Info",
+  "titlePlaceHolder": "property type - location - street",
+  "whatsNumber": "Whats number",
+  "insurance": "Insurance",
+  "validData": "You should enter full data",
+  "validDataAndNumber": "You should enter full data and right number in english",
+  "maximumPhoto": "Maximum is 5 Photos",
+  "addPhotos": "Add Photos (optional)"
 }
 
 

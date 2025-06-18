@@ -18,7 +18,9 @@ class UserSelection {
   String balaconsNom;
   String receptionPieces;
   String installmentYears;
+  List<String>? additionalFeatures;
   UserSelection({
+    this.additionalFeatures,
     this.installmentYears = '1',
     this.roomsNom = '1',
     this.bathroomsNom = '1',
@@ -60,5 +62,6 @@ class UserSelection {
     balaconsNom = '1';
     bathroomsNom = '1';
     roomsNom = '1';
+    additionalFeatures = null;
   }
 }

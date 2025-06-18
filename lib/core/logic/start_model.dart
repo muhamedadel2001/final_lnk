@@ -1,4 +1,5 @@
 import 'package:final_lnk/features/auth/data/models/finishing_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 
@@ -11,12 +12,14 @@ class AllStartModel {
   FinishingModel? finishingModel;
   ApartmentsModel? apartmentsModel;
   FurnishingModel? furnishingModel;
+  AdditionalModel? additionalModel;
   AllStartModel({
     this.citiesModel,
     this.areasModel,
     this.finishingModel,
     this.apartmentsModel,
     this.furnishingModel,
+    this.additionalModel,
   });
 
   AllStartModel copyWith({
@@ -25,6 +28,7 @@ class AllStartModel {
     AreasModel? areasModel,
     FinishingModel? finishingModel,
     FurnishingModel? furnishingModel,
+    AdditionalModel? additionalModel,
   }) {
     return AllStartModel(
       citiesModel: citiesModel ?? this.citiesModel,
@@ -32,6 +36,7 @@ class AllStartModel {
       areasModel: areasModel ?? this.areasModel,
       finishingModel: finishingModel ?? this.finishingModel,
       furnishingModel: furnishingModel ?? this.furnishingModel,
+      additionalModel: additionalModel ?? this.additionalModel,
     );
   }
 }

@@ -26,3 +26,9 @@ final class GetInputsFailureCreate extends HomeLandingState {}
 final class GetInputsSuccessCreate extends HomeLandingState {}
 
 final class ChangeValue extends HomeLandingState {}
+
+final class CreateLoading extends HomeLandingState {}
+
+final class CreateSuccess extends HomeLandingState {}
+
+final class CreateFailure extends HomeLandingState {}

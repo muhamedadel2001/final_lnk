@@ -1,6 +1,8 @@
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
+import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/property_category.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/property_status.dart';
@@ -22,10 +24,29 @@ class FirstPageAddProperty extends StatefulWidget {
 class _FirstPageAddPropertyState extends State<FirstPageAddProperty> {
   @override
   void initState() {
+    titleController = TextEditingController();
+    descriptionController = TextEditingController();
+    insuranceOrDownController = TextEditingController();
+    priceController = TextEditingController();
+    areaController = TextEditingController();
+    phoneController = TextEditingController();
+    whatsController = TextEditingController();
     HomeLandingCubit.get(context).getAllInputsPropertiesFilter(
       lang: MyCache.getString(key: MyCacheKeys.language),
     );
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    titleController.dispose();
+    descriptionController.dispose();
+    insuranceOrDownController.dispose();
+    priceController.dispose();
+    areaController.dispose();
+    phoneController.dispose();
+    whatsController.dispose();
+    super.dispose();
   }
 
   @override
@@ -92,7 +113,12 @@ class _FirstPageAddPropertyState extends State<FirstPageAddProperty> {
                     hintText: LangKeys.select,
                   ),
                   const SizedBox(height: 28),
-                  const Footer(pageNom: 1),
+                  Footer(
+                    pageNom: 1,
+                    callBack: () {
+                      Validations.checkFirstCreate(addPropertyCubit, context);
+                    },
+                  ),
                   const SizedBox(height: 19),
                 ],
               );

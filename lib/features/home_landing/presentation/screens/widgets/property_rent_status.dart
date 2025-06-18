@@ -1,4 +1,6 @@
+import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,29 +18,48 @@ class PropertyRentStatus extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('type of rent', style: getStyleBold13(context)),
+        Text(
+          LangKeys.rent,
+          style: getStyleBold13(context).copyWith(fontSize: 16.sp),
+        ),
         const SizedBox(height: 10),
         Row(
           children: [
             Expanded(
               child: ColoredOptionBox(
-                title: ' Daily',
-                isSelected: true,
-                onTap: () {},
+                isSelected:
+                    addPropertyCubit.userSelection.typeOfRentId ==
+                    addPropertyCubit.typeOfRentModel!.typeOfRents![0].id,
+                onTap: () {
+                  addPropertyCubit.userSelection.typeOfRentId =
+                      addPropertyCubit.typeOfRentModel!.typeOfRents![0].id;
+                  addPropertyCubit.changeValue();
+                },
+
+                title: addPropertyCubit.typeOfRentModel!.typeOfRents![0].name!,
               ),
             ),
-            const SizedBox(width: 26),
+            SizedBox(width: 35.w),
             Expanded(
               child: ColoredOptionBox(
-                title: 'Monthly',
-                isSelected: true,
-                onTap: () {},
+                isSelected:
+                    addPropertyCubit.userSelection.typeOfRentId ==
+                    addPropertyCubit.typeOfRentModel!.typeOfRents![1].id,
+                onTap: () {
+                  addPropertyCubit.userSelection.typeOfRentId =
+                      addPropertyCubit.typeOfRentModel!.typeOfRents![1].id;
+                  addPropertyCubit.changeValue();
+                },
+                title: addPropertyCubit.typeOfRentModel!.typeOfRents![1].name!,
               ),
             ),
           ],
         ),
         const SizedBox(height: 22),
-        Text('price', style: getStyleBold13(context)),
+        Text(
+          LangKeys.price,
+          style: getStyleBold13(context).copyWith(fontSize: 16.sp),
+        ),
         const SizedBox(height: 10),
         addPropertyCubit.isRequest
             ? Row(
@@ -64,9 +85,8 @@ class PropertyRentStatus extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomTextField(
-                    controller: TextEditingController(),
+                    controller: priceController,
                     keyboardType: TextInputType.number,
-                    hintText: '500.00',
                   ),
                 ),
               ],
@@ -74,7 +94,10 @@ class PropertyRentStatus extends StatelessWidget {
         const SizedBox(height: 22),
         addPropertyCubit.isRequest
             ? SizedBox.shrink()
-            : Text('insurance', style: getStyleBold13(context)),
+            : Text(
+              LangKeys.insurance,
+              style: getStyleBold13(context).copyWith(fontSize: 16.sp),
+            ),
         const SizedBox(height: 10),
         addPropertyCubit.isRequest
             ? SizedBox.shrink()
@@ -82,9 +105,8 @@ class PropertyRentStatus extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomTextField(
-                    controller: addPropertyCubit.insurance,
+                    controller: insuranceOrDownController,
                     keyboardType: TextInputType.number,
-                    hintText: '500.0',
                   ),
                 ),
               ],

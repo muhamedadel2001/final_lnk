@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/property_rent_status.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/reception_pieces.dart';
@@ -8,14 +9,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/logic/get_inputs_list.dart';
+import '../../../../../core/util/const.dart';
 import '../../../../../core/util/lang_keys.dart';
-import '../../../../../core/widgets/custom_drop_down_button.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/titled_custom_drop_down_button.dart';
 import 'balacons_nom.dart';
 import 'bathrooms_nom.dart';
 import 'footer.dart';
 import 'nom_rooms.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 
 class SecondPageAddProperty extends StatefulWidget {
   const SecondPageAddProperty({super.key});
@@ -25,26 +27,6 @@ class SecondPageAddProperty extends StatefulWidget {
 }
 
 class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
-  late TextEditingController areaController;
-  late TextEditingController priceController;
-  late TextEditingController insuranceOrDownController;
-
-  @override
-  void initState() {
-    areaController = TextEditingController();
-    priceController = TextEditingController();
-    insuranceOrDownController = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    areaController.dispose();
-    priceController.dispose();
-    insuranceOrDownController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     final addPropertyCubit = BlocProvider.of<HomeLandingCubit>(context);
@@ -180,7 +162,15 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                         )
                         : PropertyRentStatus(),
                     SizedBox(height: 20.h),
-                    const Footer(pageNom: 2),
+                    Footer(
+                      pageNom: 2,
+                      callBack: () {
+                        Validations.checkSecondCreate(
+                          addPropertyCubit,
+                          context,
+                        );
+                      },
+                    ),
                     const SizedBox(height: 19),
                   ],
                 );

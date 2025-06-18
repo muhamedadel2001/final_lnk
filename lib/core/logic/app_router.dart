@@ -1,3 +1,4 @@
+import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/features/auth/data/repositories/auth_repositories_impl.dart';
@@ -42,6 +43,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/settings/presentation/manager/settings_cubit.dart';
 import '../../features/settings/presentation/screens/widgets/language_screen.dart';
+import '../connection/network_info.dart';
 import '../util/screens.dart' as screens;
 
 class AppRouter {
@@ -139,6 +141,7 @@ class AppRouter {
                     (context) => HomeLandingCubit(
                       ResponsesUseCase(
                         responsesRepo: ResponsesRepoImpl(
+                          networkInfo: NetworkInfoImpl(DataConnectionChecker()),
                           responsesRemoteData: ResponsesRemoteData(
                             apiConsumer: DioConsumer(
                               dio: Dio(

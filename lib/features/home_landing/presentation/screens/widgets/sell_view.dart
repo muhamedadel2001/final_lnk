@@ -36,7 +36,7 @@ class SellView extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomTextField(
-                    controller: addPropertyCubit.price,
+                    controller: priceController,
                     hintText: 'from',
                     keyboardType: TextInputType.number,
                   ),
@@ -44,7 +44,7 @@ class SellView extends StatelessWidget {
                 SizedBox(width: 25.w),
                 Expanded(
                   child: CustomTextField(
-                    controller: addPropertyCubit.price,
+                    controller: priceController,
                     hintText: 'to',
                     keyboardType: TextInputType.number,
                   ),

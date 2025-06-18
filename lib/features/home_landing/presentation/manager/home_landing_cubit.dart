@@ -6,7 +6,9 @@ import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
+import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
@@ -33,6 +35,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/start_model.dart';
 import '../../../../core/util/const.dart';
 import '../../../../core/util/lang_keys.dart';
@@ -53,6 +56,23 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
 
   static HomeLandingCubit get(context) =>
       BlocProvider.of<HomeLandingCubit>(context);
+  List<ApartmentType> selectedPropertyTypesList = [];
+  final ImagePicker _picker = ImagePicker();
+  final userSelection = UserSelection();
+  final appModel = AllStartModel();
+  String propertyCategory = LangKeys.residential;
+  String propertyStatus = LangKeys.sale;
+  String payment = LangKeys.cash;
+  String propertyType = '';
+  String? finishing;
+  String? furnishing;
+  bool isRequest = false;
+  List<XFile> imageFiles = [];
+  bool isShowingAllPropertyTypes = false;
+  bool isDialOpen = false;
+  final ResponsesUseCase responsesUseCase;
+  ListsModel? listsModel;
+  RequestModel? requestModel;
 
   int index = 0;
   List<Widget?> screens = [
@@ -172,36 +192,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     }
   }
 
-  List<ApartmentType> selectedPropertyTypesList = [];
-  final ImagePicker _picker = ImagePicker();
-  List<GlobalKey<FormState>> keys = [
-    GlobalKey<FormState>(),
-    GlobalKey<FormState>(),
-    GlobalKey<FormState>(),
-  ];
-  final userSelection = UserSelection();
-  final appModel = AllStartModel();
-  String titleButton = '';
-  String propertyCategory = LangKeys.residential;
-  String propertyStatus = LangKeys.sale;
-  String payment = LangKeys.cash;
-  String propertyType = '';
-  String? finishing;
-  String? furnishing;
-  String typeOfRent = 'Daily';
-  bool isRequest = false;
-  TextEditingController insurance = TextEditingController();
-  TextEditingController propertyLocation = TextEditingController();
-  TextEditingController areaByMeter = TextEditingController();
-  TextEditingController price = TextEditingController();
-  TextEditingController downPayment = TextEditingController();
-  TextEditingController title = TextEditingController();
-  TextEditingController description = TextEditingController();
-  TextEditingController mobileNumber = TextEditingController();
-  TextEditingController whatsAppNumber = TextEditingController();
-  List<XFile> imageFiles = [];
-  List<String> additionalFeatures = [];
-
   void changePropertyStatus(String status) {
     propertyStatus = status;
     emit(PropertyStatusChanged());
@@ -217,8 +207,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     emit(PropertyCategoryChanged());
   }
 
-  bool isShowingAllPropertyTypes = false;
-
   viewMoreOrLess() {
     if (selectedPropertyTypesList.length <= 6) {
       selectedPropertyTypesList =
@@ -233,18 +221,27 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     }
   }
 
-  Future<void> pickImages() async {
+  Future<void> pickImages(BuildContext context) async {
     try {
+      if (imageFiles.length >= 5) {
+        CustomAlerts.showMySnackBar(context, LangKeys.maximumPhoto);
+        return;
+      }
+
       final List<XFile> pickedFiles = await _picker.pickMultiImage();
       if (pickedFiles.isNotEmpty) {
-        imageFiles.addAll(pickedFiles);
+        int availableSlots = 5 - imageFiles.length;
+        if (pickedFiles.length > availableSlots) {
+          imageFiles.addAll(pickedFiles.take(availableSlots));
+          CustomAlerts.showMySnackBar(context, LangKeys.maximumPhoto);
+        } else {
+          imageFiles.addAll(pickedFiles);
+        }
       }
     } catch (e) {
-      print('error image');
+      print('🚫 حدث خطأ أثناء اختيار الصور: $e');
     }
   }
-
-  bool isDialOpen = false;
 
   void toggleDial() {
     isDialOpen = !isDialOpen;
@@ -258,9 +255,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     }
   }
 
-  final ResponsesUseCase responsesUseCase;
-  ListsModel? listsModel;
-  RequestModel? requestModel;
   getOneList({
     required String lang,
     required BuildContext context,
@@ -317,6 +311,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       responsesUseCase.getTypeOfRentCall(lang: lang),
       responsesUseCase.getApartmentsCall(lang: lang),
       responsesUseCase.getFurnishingTypeCall(lang: lang),
+      responsesUseCase.getAdditionalTypeCall(lang: lang),
     ]);
     for (var result in results) {
       if (result is Left) {
@@ -329,11 +324,13 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     typeOfRentModel = (results[2] as Right).value as TypeOfRentModel;
     appModel.apartmentsModel = (results[3] as Right).value as ApartmentsModel;
     appModel.furnishingModel = (results[4] as Right).value as FurnishingModel;
+    appModel.additionalModel = (results[5] as Right).value as AdditionalModel;
     selectedPropertyTypesList =
         propertyCategory == LangKeys.commercial
             ? appModel.apartmentsModel!.commercialApartments.sublist(0, 5)
             : appModel.apartmentsModel!.residentialApartments.sublist(0, 5);
     propertyType = selectedPropertyTypesList[0].id;
+    userSelection.additionalFeatures = [];
     emit(GetInputsSuccessCreate());
   }
 
@@ -350,5 +347,29 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
 
   changeValue() {
     emit(ChangeValue());
+  }
+
+  createProperty({
+    required CreatePropertyModel model,
+    required BuildContext context,
+  }) async {
+    emit(CreateLoading());
+    try {
+      final result = await responsesUseCase.createProperty(
+        context: context,
+        model: model,
+      );
+      result.fold(
+        (failure) {
+          emit(CreateFailure());
+        },
+        (success) {
+          emit(CreateSuccess());
+        },
+      );
+    } catch (err) {
+      print(err);
+      emit(CreateFailure());
+    }
   }
 }

@@ -1,4 +1,6 @@
+import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
@@ -111,5 +113,25 @@ class ResponsesRemoteData {
       queryParameters: {"lang": lang},
     );
     return FurnishingModel.fromJson(response);
+  }
+
+  Future<AdditionalModel> getAdditionalsType({required String lang}) async {
+    final response = await apiConsumer.get(
+      headers: {
+        "Cookie": "accessToken=${MyCache.getString(key: MyCacheKeys.token)}",
+      },
+      ApiConstants.additionalEndpoint,
+      queryParameters: {"lang": lang},
+    );
+    return AdditionalModel.fromJson(response);
+  }
+
+  Future createProperty({required CreatePropertyModel model}) async {
+    final jsonData = await model.toJson();
+    await apiConsumer.post(
+      ApiConstants.addPropertyEndpoint,
+      isFormData: true,
+      data: jsonData,
+    );
   }
 }

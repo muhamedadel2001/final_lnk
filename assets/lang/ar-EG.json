@@ -9,6 +9,7 @@
  "getStarted": "ابدأ",
  "next": "التالي",
  "phoneNumber": "رقم الهاتف",
+ "whatsNumber": "رقم الواتس",
  "password": "كلمة المرور",
  "signIn": "تسجيل الدخول",
  "signUp": "انشاء حساب",
@@ -129,5 +130,13 @@
  "meter": "متر",
  "more": "المزيد",
  "downPayment": "الدفعة المبدئية",
- "installmentYears": "سنوات التقسيط"
+ "installmentYears": "سنوات التقسيط",
+ "title": "العنوان",
+ "contactInfo": "معلومات الاتصال",
+ "titlePlaceHolder": "نوع العقار - المنطقة - الشارع",
+ "insurance": "التأمين",
+ "validData": "تأكد من ادخال بياناتك كاملة",
+ "validDataAndNumber": "تأكد من ادخال بيناتك كاملة وارقام صحيحة انجليزية",
+ "maximumPhoto": "حد اقصي ٥ صور",
+ "addPhotos": "اضافة صور (اختياري)"
 }

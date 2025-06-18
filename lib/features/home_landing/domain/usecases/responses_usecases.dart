@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
@@ -55,6 +57,12 @@ class ResponsesUseCase {
     return responsesRepo.getFurnishingType(lang: lang);
   }
 
+  Future<Either<Failure, AdditionalModel>> getAdditionalTypeCall({
+    required String lang,
+  }) {
+    return responsesRepo.getAdditionalType(lang: lang);
+  }
+
   Future<Either<Failure, ApartmentsModel>> getApartmentsCall({
     required String lang,
   }) {
@@ -65,5 +73,12 @@ class ResponsesUseCase {
     required String lang,
   }) {
     return responsesRepo.getRentType(lang: lang);
+  }
+
+  Future createProperty({
+    required CreatePropertyModel model,
+    required BuildContext context,
+  }) {
+    return responsesRepo.createProperty(context: context, model: model);
   }
 }

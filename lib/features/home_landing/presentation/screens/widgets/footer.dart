@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,9 +9,15 @@ import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/primary_button.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({super.key, required this.pageNom, this.title});
+  const Footer({
+    super.key,
+    required this.pageNom,
+    this.title,
+    required this.callBack,
+  });
   final int pageNom;
   final String? title;
+  final dynamic Function() callBack;
   @override
   Widget build(BuildContext context) {
     final addPropertyCubit = BlocProvider.of<HomeLandingCubit>(context);
@@ -40,29 +47,9 @@ class Footer extends StatelessWidget {
           const SizedBox(width: 19),
           Expanded(
             child: PrimaryButton(
-              callBack: () {
-                pageNom == 1
-                    ? Navigator.pushNamed(
-                      context,
-                      screens.secondAddPropertyScreen,
-                      arguments: addPropertyCubit,
-                    )
-                    : pageNom == 2
-                    ? Navigator.pushNamed(
-                      context,
-                      screens.thirdAddPropertyScreen,
-                      arguments: addPropertyCubit,
-                    )
-                    : pageNom == 3
-                    ? Navigator.pushNamed(
-                      context,
-                      screens.fourthAddPropertyScreen,
-                      arguments: addPropertyCubit,
-                    )
-                    : print('send');
-              },
+              callBack: callBack,
               width: 50,
-              text: title ?? 'Next',
+              text: title ?? LangKeys.next,
             ),
           ),
         ],

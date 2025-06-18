@@ -136,4 +136,13 @@ class LangKeys {
   static String get more => 'more'.tr();
   static String get installmentYears => 'installmentYears'.tr();
   static String get downPayment => 'downPayment'.tr();
+  static String get title => 'title'.tr();
+  static String get contactInfo => 'contactInfo'.tr();
+  static String get titlePlaceHolder => 'titlePlaceHolder'.tr();
+  static String get whatsNumber => 'whatsNumber'.tr();
+  static String get insurance => 'insurance'.tr();
+  static String get validDataAndNumber => 'validDataAndNumber'.tr();
+  static String get validData => 'validData'.tr();
+  static String get maximumPhoto => 'maximumPhoto'.tr();
+  static String get addPhotos => 'addPhotos'.tr();
 }

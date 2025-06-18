@@ -11,6 +11,7 @@ class ApiConstants {
   static const String typeOfRentEndpoint = 'typeOfRent';
   static const String finishingEndpoint = 'finishing';
   static const String furnisingEndpoint = 'furnising';
+  static const String additionalEndpoint = 'additional';
   static const String areaEndpoint = 'location/';
   static const String verifyEndpoint = 'auth/verifyOTP';
   static const String forgetEndpoint = 'auth/forgetPass';
@@ -22,4 +23,5 @@ class ApiConstants {
   static const String getRequestsEndpoint = 'requests/search';
   static const String getPropertiesFilterEndpoint = 'filter/list';
   static const String getRequestsFilterEndpoint = 'filter/request';
+  static const String addPropertyEndpoint = 'list/create';
 }

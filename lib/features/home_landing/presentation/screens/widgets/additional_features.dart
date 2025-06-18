@@ -15,15 +15,6 @@ class _AdditionalFeaturesState extends State<AdditionalFeatures> {
   late List<String> additionalFeaturesTitles;
   @override
   void didChangeDependencies() {
-    additionalFeaturesTitles = [
-      'PrivateWaterMeter',
-      'PrivateElectricityMeter',
-      'NaturalGas',
-      'Elevator',
-      'Security',
-      'LandlineInternet',
-      'LandlineTelephone',
-    ];
     super.didChangeDependencies();
   }
 
@@ -33,19 +24,25 @@ class _AdditionalFeaturesState extends State<AdditionalFeatures> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children:
-          additionalFeaturesTitles.map((e) {
+          addPropertyCubit.appModel.additionalModel!.additionals!.map((e) {
             return Container(
               margin: const EdgeInsets.symmetric(vertical: 6),
               child: GestureDetector(
                 onTap: () {
-                  !addPropertyCubit.additionalFeatures.contains(e)
-                      ? addPropertyCubit.additionalFeatures.add(e)
-                      : addPropertyCubit.additionalFeatures.remove(e);
-                  setState(() {});
+                  !addPropertyCubit.userSelection.additionalFeatures!.contains(
+                        e.id,
+                      )
+                      ? addPropertyCubit.userSelection.additionalFeatures!.add(
+                        e.id!,
+                      )
+                      : addPropertyCubit.userSelection.additionalFeatures!
+                          .remove(e.id);
+                  addPropertyCubit.changeValue();
                 },
                 child: AdditionItem(
-                  title: e,
-                  isSelected: addPropertyCubit.additionalFeatures.contains(e),
+                  title: e.name!,
+                  isSelected: addPropertyCubit.userSelection.additionalFeatures!
+                      .contains(e.id),
                 ),
               ),
             );
