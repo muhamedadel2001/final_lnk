@@ -27,4 +27,16 @@ class CustomAlerts {
       ),
     );
   }
+
+  static showMyWaitingSnackBar(BuildContext context, String content) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          content,
+          style: getStyle16(context).copyWith(color: backgroundClr),
+        ),
+        backgroundColor: Color(0xffFFD54F),
+      ),
+    );
+  }
 }

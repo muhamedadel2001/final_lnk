@@ -66,17 +66,17 @@ class PropertyRentStatus extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomTextField(
-                    controller: TextEditingController(),
+                    controller: priceController,
                     keyboardType: TextInputType.number,
-                    hintText: 'from',
+                    hintText: LangKeys.from,
                   ),
                 ),
                 SizedBox(width: 15.w),
                 Expanded(
                   child: CustomTextField(
-                    controller: TextEditingController(),
+                    controller: insuranceOrDownController,
                     keyboardType: TextInputType.number,
-                    hintText: 'to',
+                    hintText: LangKeys.to,
                   ),
                 ),
               ],

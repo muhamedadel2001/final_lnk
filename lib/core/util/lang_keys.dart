@@ -145,4 +145,8 @@ class LangKeys {
   static String get validData => 'validData'.tr();
   static String get maximumPhoto => 'maximumPhoto'.tr();
   static String get addPhotos => 'addPhotos'.tr();
+  static String get waitingMessage => 'waitingMessage'.tr();
+  static String get createSuccess => 'createSuccess'.tr();
+  static String get errMessage => 'errMessage'.tr();
+  static String get requestSimilar => 'requestSimilar'.tr();
 }

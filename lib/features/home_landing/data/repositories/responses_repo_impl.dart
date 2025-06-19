@@ -145,12 +145,16 @@ class ResponsesRepoImpl implements ResponsesRepo {
 
   @override
   Future createProperty({
-    required CreatePropertyModel model,
+    required dynamic model,
     required BuildContext context,
+    required String endPoint,
   }) async {
     try {
       if (await networkInfo.isConnected!) {
-        final result = await responsesRemoteData.createProperty(model: model);
+        final result = await responsesRemoteData.createProperty(
+          model: model,
+          endPoint: endPoint,
+        );
         return Right(result);
       } else {
         CustomAlerts.showMySnackBar(context, ' No Internet Connection !');

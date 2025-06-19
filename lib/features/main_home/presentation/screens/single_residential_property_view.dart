@@ -8,6 +8,7 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/contac
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/photos_list_view.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/pirce_property_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/property_info.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/similarity_requests.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,8 +56,8 @@ class _SingleResidentialPropertyViewState
                 leadingWidth: 30.w,
                 title: Row(
                   children: [
-                    cubit.listsModel!.list.userId.image == null ||
-                            cubit.listsModel!.list.userId.image == ""
+                    cubit.listsModel!.list.userId.image == null &&
+                            cubit.listsModel!.list.agencyId.image == null
                         ? ClipRRect(
                           child: Image.asset(
                             'assets/imgs/user_circle.png',
@@ -65,12 +66,23 @@ class _SingleResidentialPropertyViewState
                             fit: BoxFit.cover,
                           ),
                         )
+                        : cubit.listsModel!.list.userId.image == null
+                        ? ClipRRect(
+                          borderRadius: BorderRadius.circular(50.r),
+                          child: CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            width: 45.w,
+                            height: 45.w,
+                            imageUrl:
+                                "${ApiConstants.userUrlImages}${cubit.listsModel!.list.agencyId.image}",
+                          ),
+                        )
                         : ClipRRect(
                           borderRadius: BorderRadius.circular(50.r),
                           child: CachedNetworkImage(
+                            fit: BoxFit.cover,
                             width: 45.w,
                             height: 45.w,
-                            fit: BoxFit.cover,
                             imageUrl:
                                 "${ApiConstants.userUrlImages}${cubit.listsModel!.list.userId.image}",
                           ),
@@ -210,6 +222,9 @@ class _SingleResidentialPropertyViewState
                       const SizedBox(height: 20),
                       const ContactDetails(),
                       SizedBox(height: 25.h),
+                      Text(LangKeys.requestSimilar, style: getStyle20(context)),
+                      SizedBox(height: 25.h),
+                      SimilarityRequests(),
                     ],
                   ),
                 ),

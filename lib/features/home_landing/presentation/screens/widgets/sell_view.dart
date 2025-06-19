@@ -37,15 +37,15 @@ class SellView extends StatelessWidget {
                 Expanded(
                   child: CustomTextField(
                     controller: priceController,
-                    hintText: 'from',
+                    hintText: LangKeys.from,
                     keyboardType: TextInputType.number,
                   ),
                 ),
                 SizedBox(width: 25.w),
                 Expanded(
                   child: CustomTextField(
-                    controller: priceController,
-                    hintText: 'to',
+                    controller: insuranceOrDownController!,
+                    hintText: LangKeys.to,
                     keyboardType: TextInputType.number,
                   ),
                 ),

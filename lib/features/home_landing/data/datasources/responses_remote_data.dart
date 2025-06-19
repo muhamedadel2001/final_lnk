@@ -126,12 +126,11 @@ class ResponsesRemoteData {
     return AdditionalModel.fromJson(response);
   }
 
-  Future createProperty({required CreatePropertyModel model}) async {
+  Future createProperty({
+    required dynamic model,
+    required String endPoint,
+  }) async {
     final jsonData = await model.toJson();
-    await apiConsumer.post(
-      ApiConstants.addPropertyEndpoint,
-      isFormData: true,
-      data: jsonData,
-    );
+    await apiConsumer.post(endPoint, isFormData: true, data: jsonData);
   }
 }

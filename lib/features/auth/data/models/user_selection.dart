@@ -1,3 +1,5 @@
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+
 class UserSelection {
   String? city;
   String? cityId;
@@ -62,6 +64,6 @@ class UserSelection {
     balaconsNom = '1';
     bathroomsNom = '1';
     roomsNom = '1';
-    additionalFeatures = null;
+    additionalFeatures = [];
   }
 }

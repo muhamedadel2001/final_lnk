@@ -2,15 +2,12 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../util/lang_keys.dart';
+
 class GlobalErrorWidget extends StatelessWidget {
-  final String message;
   final String? imagePath;
 
-  const GlobalErrorWidget({
-    super.key,
-    this.message = 'حدث خطأ أثناء جلب البيانات، حاول مرة أخرى لاحقًا.',
-    this.imagePath,
-  });
+  const GlobalErrorWidget({super.key, this.imagePath});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +22,7 @@ class GlobalErrorWidget extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Text(
-              message,
+              LangKeys.errMessage,
               style: getStyle20(context),
               textAlign: TextAlign.center,
             ),

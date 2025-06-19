@@ -75,10 +75,15 @@ class ResponsesUseCase {
     return responsesRepo.getRentType(lang: lang);
   }
 
-  Future createProperty({
-    required CreatePropertyModel model,
+  Future create({
+    required dynamic model,
     required BuildContext context,
+    required String endPoint,
   }) {
-    return responsesRepo.createProperty(context: context, model: model);
+    return responsesRepo.createProperty(
+      context: context,
+      model: model,
+      endPoint: endPoint,
+    );
   }
 }

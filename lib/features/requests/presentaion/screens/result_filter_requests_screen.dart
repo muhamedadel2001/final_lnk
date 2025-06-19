@@ -1,11 +1,10 @@
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/widgets/global_empty_data.dart';
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/custom_sliver_app_bar_result_filter.dart';
-import 'package:final_lnk/features/properties/presentation/screens/widgets/property_item.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/my_request_item.dart';
+import 'package:final_lnk/features/requests/presentaion/screens/widgets/request_feed_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/util/lang_keys.dart';
@@ -83,7 +82,17 @@ class _ResultFilterRequestsScreenState
                       BuildContext context,
                       int index,
                     ) {
-                      return MyRequestItem(
+                      return RequestFeedItem(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            singleRequestScreen,
+                            arguments: {
+                              'id': cubit.myRequestsListFilter[index].sId,
+                              'cubit': HomeLandingCubit.get(context),
+                            },
+                          );
+                        },
                         requests: cubit.myRequestsListFilter[index],
                       );
                     }, childCount: cubit.myRequestsListFilter.length),

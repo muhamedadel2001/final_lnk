@@ -17,7 +17,6 @@ import 'balacons_nom.dart';
 import 'bathrooms_nom.dart';
 import 'footer.dart';
 import 'nom_rooms.dart';
-import 'package:final_lnk/core/util/screens.dart' as screens;
 
 class SecondPageAddProperty extends StatefulWidget {
   const SecondPageAddProperty({super.key});

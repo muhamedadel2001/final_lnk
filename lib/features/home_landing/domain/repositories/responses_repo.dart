@@ -43,7 +43,8 @@ abstract class ResponsesRepo {
     required String lang,
   });
   Future createProperty({
-    required CreatePropertyModel model,
+    required dynamic model,
     required BuildContext context,
+    required String endPoint,
   });
 }

@@ -24,4 +24,5 @@ class ApiConstants {
   static const String getPropertiesFilterEndpoint = 'filter/list';
   static const String getRequestsFilterEndpoint = 'filter/request';
   static const String addPropertyEndpoint = 'list/create';
+  static const String addRequestEndpoint = 'request/create';
 }

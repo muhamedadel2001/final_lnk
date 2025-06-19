@@ -41,7 +41,10 @@ class Footer extends StatelessWidget {
               ],
             ),
             child: Center(
-              child: Text('$pageNom / 4', style: getStyleBold13(context)),
+              child: Text(
+                '$pageNom / ${addPropertyCubit.isRequest ? '3' : '4'} ',
+                style: getStyleBold13(context),
+              ),
             ),
           ),
           const SizedBox(width: 19),

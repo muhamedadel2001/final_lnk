@@ -18,8 +18,8 @@ class RequestBottomSliverAppBar extends StatelessWidget
       padding: const EdgeInsets.only(bottom: 23, left: 16, right: 16),
       child: Row(
         children: [
-          cubit.requestModel!.request.userId.image == null ||
-                  cubit.requestModel!.request.userId.image == ""
+          cubit.requestModel!.request.userId.image == null &&
+                  cubit.requestModel!.request.agencyId.image == null
               ? ClipRRect(
                 child: Image.asset(
                   'assets/imgs/user_circle.png',
@@ -28,12 +28,23 @@ class RequestBottomSliverAppBar extends StatelessWidget
                   fit: BoxFit.cover,
                 ),
               )
+              : cubit.requestModel!.request.userId.image == null
+              ? ClipRRect(
+                borderRadius: BorderRadius.circular(50.r),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  width: 40.w,
+                  height: 40.w,
+                  imageUrl:
+                      "${ApiConstants.userUrlImages}${cubit.requestModel!.request.agencyId.image}",
+                ),
+              )
               : ClipRRect(
                 borderRadius: BorderRadius.circular(50.r),
                 child: CachedNetworkImage(
-                  width: 45.w,
-                  height: 45.w,
                   fit: BoxFit.cover,
+                  width: 40.w,
+                  height: 40.w,
                   imageUrl:
                       "${ApiConstants.userUrlImages}${cubit.requestModel!.request.userId.image}",
                 ),

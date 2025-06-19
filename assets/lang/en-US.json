@@ -138,7 +138,11 @@
   "validData": "You should enter full data",
   "validDataAndNumber": "You should enter full data and right number in english",
   "maximumPhoto": "Maximum is 5 Photos",
-  "addPhotos": "Add Photos (optional)"
+  "addPhotos": "Add Photos (optional)",
+  "waitingMessage": "Please wait a few seconds while the images are uploading",
+  "createSuccess": "Created successfully ",
+  "errMessage": "something went wrong please try again !",
+  "requestSimilar": "Requests similar to your property"
 }
 
 

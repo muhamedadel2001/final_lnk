@@ -6,11 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../../core/logic/custom_alerts.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/titled_custom_text_field.dart';
+import '../../../data/models/create_request_model.dart';
 import 'additional_features.dart';
 import 'footer.dart';
+import 'package:final_lnk/core/util/screens.dart' as screens;
 
 class ThirdPageAddProperty extends StatelessWidget {
   const ThirdPageAddProperty({super.key});
@@ -26,7 +29,30 @@ class ThirdPageAddProperty extends StatelessWidget {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 16),
           child: SingleChildScrollView(
-            child: BlocBuilder<HomeLandingCubit, HomeLandingState>(
+            child: BlocConsumer<HomeLandingCubit, HomeLandingState>(
+              listener: (context, state) {
+                if (state is CreateSuccess) {
+                  CustomAlerts.showMySuccessSnackBar(
+                    context,
+                    LangKeys.createSuccess,
+                  );
+                  addPropertyCubit.imageFiles = [];
+                  addPropertyCubit.isShowingAllPropertyTypes = false;
+                  addPropertyCubit.propertyCategory = LangKeys.residential;
+                  addPropertyCubit.propertyStatus = LangKeys.sale;
+                  addPropertyCubit.payment = LangKeys.cash;
+                  addPropertyCubit.propertyType = '';
+                  addPropertyCubit.userSelection.resetData();
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    screens.homeLandingScreen,
+                    (route) => false,
+                  );
+                }
+                if (state is CreateFailure) {
+                  CustomAlerts.showMySnackBar(context, LangKeys.errMessage);
+                }
+              },
               builder: (context, state) {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,6 +101,7 @@ class ThirdPageAddProperty extends StatelessWidget {
                     ),
                     const SizedBox(height: 40),
                     Footer(
+                      title: state is CreateLoading ? "..." : LangKeys.next,
                       pageNom: 3,
                       callBack: () {
                         Validations.checkThirdCreate(addPropertyCubit, context);

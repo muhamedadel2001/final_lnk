@@ -1,9 +1,11 @@
 import 'package:final_lnk/core/logic/custom_alerts.dart';
+import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 
+import '../../features/home_landing/data/models/create_request_model.dart';
 import '../util/lang_keys.dart';
 
 class Validations {
@@ -80,47 +82,82 @@ class Validations {
   }
 
   static checkSecondCreate(HomeLandingCubit cubit, BuildContext context) {
-    if (cubit.propertyStatus == LangKeys.sale) {
-      if (cubit.userSelection.floorNom != null &&
-          isValidNumber(areaController.text) &&
-          cubit.userSelection.furnishingId != null &&
-          cubit.userSelection.finishingId != null &&
-          isValidNumber(priceController.text)) {
-        if (cubit.payment == LangKeys.cash) {
+    if (cubit.isRequest) {
+      if (cubit.propertyStatus == LangKeys.sale) {
+        if (cubit.userSelection.floorNom != null &&
+            isValidNumber(areaController.text) &&
+            cubit.userSelection.furnishingId != null &&
+            cubit.userSelection.finishingId != null &&
+            isValidNumber(priceController.text) &&
+            isValidNumber(insuranceOrDownController.text)) {
           Navigator.pushNamed(
             context,
             screens.thirdAddPropertyScreen,
             arguments: cubit,
           );
         } else {
-          if (insuranceOrDownController.text.trim().isNotEmpty) {
+          CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+        }
+      } else {
+        if (cubit.userSelection.floorNom != null &&
+            isValidNumber(areaController.text) &&
+            cubit.userSelection.furnishingId != null &&
+            cubit.userSelection.finishingId != null &&
+            isValidNumber(priceController.text) &&
+            cubit.userSelection.typeOfRentId != null &&
+            isValidNumber(insuranceOrDownController.text)) {
+          Navigator.pushNamed(
+            context,
+            screens.thirdAddPropertyScreen,
+            arguments: cubit,
+          );
+        } else {
+          CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+        }
+      }
+    } else {
+      if (cubit.propertyStatus == LangKeys.sale) {
+        if (cubit.userSelection.floorNom != null &&
+            isValidNumber(areaController.text) &&
+            cubit.userSelection.furnishingId != null &&
+            cubit.userSelection.finishingId != null &&
+            isValidNumber(priceController.text)) {
+          if (cubit.payment == LangKeys.cash) {
             Navigator.pushNamed(
               context,
               screens.thirdAddPropertyScreen,
               arguments: cubit,
             );
           } else {
-            CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+            if (insuranceOrDownController.text.trim().isNotEmpty) {
+              Navigator.pushNamed(
+                context,
+                screens.thirdAddPropertyScreen,
+                arguments: cubit,
+              );
+            } else {
+              CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+            }
           }
+        } else {
+          CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
         }
       } else {
-        CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
-      }
-    } else {
-      if (cubit.userSelection.floorNom != null &&
-          isValidNumber(areaController.text) &&
-          cubit.userSelection.furnishingId != null &&
-          cubit.userSelection.finishingId != null &&
-          isValidNumber(priceController.text) &&
-          cubit.userSelection.typeOfRentId != null &&
-          isValidNumber(insuranceOrDownController.text)) {
-        Navigator.pushNamed(
-          context,
-          screens.thirdAddPropertyScreen,
-          arguments: cubit,
-        );
-      } else {
-        CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+        if (cubit.userSelection.floorNom != null &&
+            isValidNumber(areaController.text) &&
+            cubit.userSelection.furnishingId != null &&
+            cubit.userSelection.finishingId != null &&
+            isValidNumber(priceController.text) &&
+            cubit.userSelection.typeOfRentId != null &&
+            isValidNumber(insuranceOrDownController.text)) {
+          Navigator.pushNamed(
+            context,
+            screens.thirdAddPropertyScreen,
+            arguments: cubit,
+          );
+        } else {
+          CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+        }
       }
     }
   }
@@ -141,20 +178,67 @@ class Validations {
     return trimmed.isNotEmpty && phoneRegExp.hasMatch(trimmed);
   }
 
-  static checkThirdCreate(HomeLandingCubit cubit, BuildContext context) {
-    if (cubit.userSelection.additionalFeatures != null &&
-        titleController.text.trim().isNotEmpty &&
+  static checkThirdCreate(
+    HomeLandingCubit addPropertyCubit,
+    BuildContext context,
+  ) {
+    if (titleController.text.trim().isNotEmpty &&
         descriptionController.text.trim().isNotEmpty &&
         isValidEgyptianPhone(phoneController.text) &&
         isValidEgyptianPhone(whatsController.text)) {
-      if (cubit.userSelection.additionalFeatures!.isNotEmpty) {
+      if (addPropertyCubit.isRequest) {
+        addPropertyCubit.createProperty(
+          model: CreateRequestModel(
+            type: addPropertyCubit.propertyStatus,
+            typeOfRequest: addPropertyCubit.propertyCategory,
+            apartment: addPropertyCubit.propertyType,
+            city: addPropertyCubit.userSelection.cityId!,
+            location: addPropertyCubit.userSelection.areaId!,
+            floor: addPropertyCubit.userSelection.floorNom!,
+            rooms:
+                addPropertyCubit.propertyCategory != LangKeys.commercial
+                    ? addPropertyCubit.userSelection.roomsNom
+                    : null,
+            bathRooms:
+                addPropertyCubit.propertyCategory != LangKeys.commercial
+                    ? addPropertyCubit.userSelection.bathroomsNom
+                    : null,
+            balcona:
+                addPropertyCubit.propertyCategory != LangKeys.commercial
+                    ? addPropertyCubit.userSelection.balaconsNom
+                    : null,
+            reseptionPieces:
+                addPropertyCubit.propertyCategory != LangKeys.commercial
+                    ? addPropertyCubit.userSelection.receptionPieces
+                    : null,
+            typeOfPay:
+                addPropertyCubit.propertyStatus == LangKeys.sale
+                    ? addPropertyCubit.payment
+                    : null,
+            typeOfRent:
+                addPropertyCubit.propertyStatus == LangKeys.rent
+                    ? addPropertyCubit.userSelection.typeOfRentId
+                    : null,
+            area: areaController.text,
+            finishing: addPropertyCubit.userSelection.finishingId!,
+            furnising: addPropertyCubit.userSelection.furnishingId!,
+            maxPrice: priceController.text,
+            minPrice: insuranceOrDownController.text,
+            additional: addPropertyCubit.userSelection.additionalFeatures!,
+            title: titleController.text,
+            description: descriptionController.text,
+            whatsApp: whatsController.text,
+            phoneNumber: phoneController.text,
+          ),
+          context: context,
+          endPoint: ApiConstants.addRequestEndpoint,
+        );
+      } else {
         Navigator.pushNamed(
           context,
           screens.fourthAddPropertyScreen,
-          arguments: cubit,
+          arguments: addPropertyCubit,
         );
-      } else {
-        CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
       }
     } else {
       CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);

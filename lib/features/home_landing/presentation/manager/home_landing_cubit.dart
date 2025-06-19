@@ -6,6 +6,7 @@ import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
+import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
@@ -350,14 +351,16 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   }
 
   createProperty({
-    required CreatePropertyModel model,
+    required dynamic model,
     required BuildContext context,
+    required String endPoint,
   }) async {
     emit(CreateLoading());
     try {
-      final result = await responsesUseCase.createProperty(
+      final result = await responsesUseCase.create(
         context: context,
         model: model,
+        endPoint: endPoint,
       );
       result.fold(
         (failure) {
