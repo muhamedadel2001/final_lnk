@@ -58,6 +58,7 @@ class _FirstPageAddPropertyState extends State<FirstPageAddProperty> {
       onPopInvokedWithResult: (bool didPop, dynamic result) async {
         if (didPop) {
           addPropertyCubit.imageFiles = [];
+          addPropertyCubit.isRequest = false;
           addPropertyCubit.isShowingAllPropertyTypes = false;
           addPropertyCubit.propertyCategory = LangKeys.residential;
           addPropertyCubit.propertyStatus = LangKeys.sale;

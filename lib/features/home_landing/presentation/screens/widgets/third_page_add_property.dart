@@ -37,6 +37,7 @@ class ThirdPageAddProperty extends StatelessWidget {
                     LangKeys.createSuccess,
                   );
                   addPropertyCubit.imageFiles = [];
+                  addPropertyCubit.isRequest = false;
                   addPropertyCubit.isShowingAllPropertyTypes = false;
                   addPropertyCubit.propertyCategory = LangKeys.residential;
                   addPropertyCubit.propertyStatus = LangKeys.sale;

@@ -1,4 +1,5 @@
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/lists_feed_item_similar.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/reques_feed_item_similar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,8 +7,8 @@ import '../../../../../core/util/fonts.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/util/screens.dart';
 
-class SimilarityRequests extends StatelessWidget {
-  const SimilarityRequests({super.key});
+class SimilarityLists extends StatelessWidget {
+  const SimilarityLists({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,22 +27,22 @@ class SimilarityRequests extends StatelessWidget {
               return SizedBox(
                 width: 310.w,
                 height: 250.h,
-                child: RequestFeedItemSimilar(
+                child: ListFeedItemSimilar(
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      singleRequestScreen,
+                      singlePropertyScreen,
                       arguments: {
-                        'id': cubit.listsModel!.similarRequests[index].id,
+                        'id': cubit.requestModel!.similarLists[index].id,
                         'cubit': HomeLandingCubit.get(context),
                       },
                     );
                   },
-                  requests: cubit.listsModel!.similarRequests[index],
+                  lists: cubit.requestModel!.similarLists[index],
                 ),
               );
             },
-            itemCount: cubit.listsModel!.similarRequests.length,
+            itemCount: cubit.requestModel!.similarLists.length,
           ),
         ),
       ],

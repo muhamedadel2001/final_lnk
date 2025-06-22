@@ -34,6 +34,7 @@ class UserData {
 
 class HomeListing {
   final String id;
+  final bool isMe;
   final String title;
   final NamedField location;
   final String area;
@@ -47,6 +48,7 @@ class HomeListing {
 
   HomeListing({
     required this.id,
+    required this.isMe,
     required this.title,
     required this.location,
     required this.area,
@@ -62,6 +64,7 @@ class HomeListing {
   factory HomeListing.fromJson(Map<String, dynamic> json) => HomeListing(
     id: json['_id'],
     title: json['title'],
+    isMe: json['isMe'],
     location: NamedField.fromJson(json['location']),
     area: json['area'],
     price: json['price'],
@@ -75,6 +78,7 @@ class HomeListing {
 
   Map<String, dynamic> toJson() => {
     '_id': id,
+    'isMe': isMe,
     'title': title,
     'location': location.toJson(),
     'area': area,
@@ -90,6 +94,7 @@ class HomeListing {
 
 class HomeRequest {
   final String id;
+  final bool isMe;
   final String type;
   final String typeOfRequest;
   final String title;
@@ -106,6 +111,7 @@ class HomeRequest {
   HomeRequest({
     required this.id,
     required this.type,
+    required this.isMe,
     required this.typeOfRequest,
     required this.title,
     required this.location,
@@ -121,6 +127,7 @@ class HomeRequest {
 
   factory HomeRequest.fromJson(Map<String, dynamic> json) => HomeRequest(
     id: json['_id'],
+    isMe: json['isMe'],
     type: json['type'],
     typeOfRequest: json['typeOfRequest'],
     title: json['title'],
@@ -137,6 +144,7 @@ class HomeRequest {
 
   Map<String, dynamic> toJson() => {
     '_id': id,
+    'isMe': isMe,
     'type': type,
     'typeOfRequest': typeOfRequest,
     'title': title,

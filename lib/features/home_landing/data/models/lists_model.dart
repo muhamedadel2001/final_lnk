@@ -26,6 +26,7 @@ class ListsModel {
 
 class Listing {
   final String id;
+  final bool isMe;
   final String type;
   final String typeOfList;
   final Apartment apartment;
@@ -59,6 +60,7 @@ class Listing {
 
   Listing({
     required this.id,
+    required this.isMe,
     required this.type,
     required this.typeOfList,
     required this.apartment,
@@ -94,6 +96,7 @@ class Listing {
   factory Listing.fromJson(Map<String, dynamic> json) {
     return Listing(
       id: json['_id'],
+      isMe: json['isMe'],
       type: json['type'],
       typeOfList: json['typeOfList'],
       apartment: Apartment.fromJson(json['apartment']),
@@ -247,6 +250,7 @@ class Agency {
 
 class SimilarRequest {
   final String id;
+  final String titleOfuser;
   final String type;
   final String typeOfRequest;
   final String title;
@@ -262,6 +266,7 @@ class SimilarRequest {
 
   SimilarRequest({
     required this.id,
+    required this.titleOfuser,
     required this.type,
     required this.typeOfRequest,
     required this.title,
@@ -279,6 +284,7 @@ class SimilarRequest {
   factory SimilarRequest.fromJson(Map<String, dynamic> json) {
     return SimilarRequest(
       id: json['_id'],
+      titleOfuser: json['titleOfuser'],
       type: json['type'],
       typeOfRequest: json['typeOfRequest'],
       title: json['title'],

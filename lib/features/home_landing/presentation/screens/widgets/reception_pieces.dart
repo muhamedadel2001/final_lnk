@@ -79,7 +79,7 @@ class _ReceptionPiecesState extends State<ReceptionPieces> {
           ),
         ),
         SizedBox(width: 10.w),
-        Flexible(
+        Expanded(
           child: Container(
             constraints: BoxConstraints(maxWidth: 120.w),
             width: 80.w,

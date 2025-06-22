@@ -209,7 +209,9 @@ class FeaturedRequestItem extends StatelessWidget {
               Row(
                 children: [
                   Spacer(),
-                  Favourite(isLiked: homeRequest.isFavourite),
+                  !homeRequest.isMe
+                      ? Favourite(isLiked: homeRequest.isFavourite)
+                      : SizedBox.shrink(),
                 ],
               ),
             ],

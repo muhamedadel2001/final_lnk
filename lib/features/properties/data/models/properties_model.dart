@@ -28,6 +28,7 @@ class Properties {
   String? sId;
   String? type;
   String? typeOfList;
+  bool? isMe;
   String? title;
   Location? location;
   String? area;
@@ -41,6 +42,7 @@ class Properties {
   bool? isFavourite;
   Properties({
     this.sId,
+    required this.isMe,
     this.type,
     this.typeOfList,
     this.title,
@@ -57,6 +59,7 @@ class Properties {
   });
   Properties.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    isMe = json['isMe'];
     type = json['type'];
     typeOfList = json['typeOfList'];
     title = json['title'];
@@ -86,6 +89,7 @@ class Properties {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['isMe'] = this.isMe;
     data['type'] = this.type;
     data['typeOfList'] = this.typeOfList;
     data['title'] = this.title;

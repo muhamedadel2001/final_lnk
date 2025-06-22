@@ -16,10 +16,15 @@ class OptionBox extends StatelessWidget {
     final addPropertyCubit = BlocProvider.of<HomeLandingCubit>(context);
     return Container(
       margin: const EdgeInsets.all(3),
-      height: 55.h,
-      padding: const EdgeInsets.only(left: 14, right: 14, top: 12, bottom: 12),
+      height: 60.h,
+      padding: EdgeInsets.only(
+        left: 14.w,
+        right: 14.w,
+        top: 12.h,
+        bottom: 12.h,
+      ),
       decoration: BoxDecoration(
-        border: Border.all(color: primaryClr, width: 1.87),
+        border: Border.all(color: primaryClr, width: 1.87.w),
         borderRadius: BorderRadius.circular(19),
       ),
       child: Row(

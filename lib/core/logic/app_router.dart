@@ -146,8 +146,8 @@ class AppRouter {
                             apiConsumer: DioConsumer(
                               dio: Dio(
                                 BaseOptions(
-                                  connectTimeout: Duration(seconds: 60),
-                                  receiveTimeout: Duration(seconds: 60),
+                                  connectTimeout: Duration(seconds: 90),
+                                  receiveTimeout: Duration(seconds: 90),
                                 ),
                               ),
                             ),
@@ -178,9 +178,15 @@ class AppRouter {
           builder: (_) => const ContactUsScreen(),
         );
       case screens.profileScreen:
-        final isAgency = routeSettings.arguments as bool;
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final isAgency = args['isAgency'] as bool;
+        final cubit = args['cubit'] as SettingsCubit;
         return MaterialPageRoute<String>(
-          builder: (_) => ProfileScreen(isAgency: isAgency),
+          builder:
+              (_) => BlocProvider.value(
+                value: cubit,
+                child: ProfileScreen(isAgency: isAgency),
+              ),
         );
       case screens.subAccDetailsScreenScreen:
         return MaterialPageRoute<String>(

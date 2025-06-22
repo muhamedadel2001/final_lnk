@@ -63,15 +63,22 @@ class PropertyItem extends StatelessWidget {
                               height: double.infinity,
                               width: 146.w,
                               fit: BoxFit.cover,
+                              errorWidget:
+                                  (context, url, error) => Icon(
+                                    Icons.error,
+                                    color: Colors.redAccent,
+                                  ),
                             ),
                   ),
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Favourite(isLiked: properties.isFavourite!),
-                    ),
-                  ),
+                  !properties.isMe!
+                      ? Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Favourite(isLiked: properties.isFavourite!),
+                        ),
+                      )
+                      : const SizedBox.shrink(),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
@@ -173,7 +180,7 @@ class PropertyItem extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: 5.w),
-                        Expanded(
+                        /*   Expanded(
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(
@@ -197,7 +204,7 @@ class PropertyItem extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   ],

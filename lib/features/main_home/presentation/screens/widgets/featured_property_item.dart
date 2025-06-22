@@ -63,6 +63,9 @@ class FeaturedPropertyItem extends StatelessWidget {
                     height: 130.h,
                     width: double.infinity,
                     fit: BoxFit.cover,
+                    errorWidget:
+                        (context, url, error) =>
+                            Icon(Icons.error, color: Colors.redAccent),
                   ),
               Expanded(
                 child: Container(
@@ -134,13 +137,15 @@ class FeaturedPropertyItem extends StatelessWidget {
                           style: getStyleBold13(context),
                         ),
                       ),
-                      Align(
-                        alignment:
-                            context.locale.languageCode == 'en'
-                                ? Alignment.bottomRight
-                                : Alignment.bottomLeft,
-                        child: Favourite(isLiked: homeListing.isFavourite),
-                      ),
+                      !homeListing.isMe
+                          ? Align(
+                            alignment:
+                                context.locale.languageCode == 'en'
+                                    ? Alignment.bottomRight
+                                    : Alignment.bottomLeft,
+                            child: Favourite(isLiked: homeListing.isFavourite),
+                          )
+                          : SizedBox.shrink(),
                     ],
                   ),
                 ),

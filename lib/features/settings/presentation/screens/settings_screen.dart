@@ -39,7 +39,10 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.pushNamed(
                       context,
                       screens.profileScreen,
-                      arguments: true,
+                      arguments: {
+                        "isAgency": true,
+                        "cubit": SettingsCubit.get(context),
+                      },
                     );
                   },
                   hasIcon: true,

@@ -77,7 +77,7 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                             Text(
                               LangKeys.rooms,
                               style: getStyle20(context).copyWith(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -87,7 +87,7 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                             Text(
                               LangKeys.bathrooms,
                               style: getStyle20(context).copyWith(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -97,7 +97,7 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                             Text(
                               LangKeys.balcony,
                               style: getStyle20(context).copyWith(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -107,7 +107,7 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                             Text(
                               LangKeys.reception,
                               style: getStyle20(context).copyWith(
-                                fontSize: 14,
+                                fontSize: 14.sp,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),

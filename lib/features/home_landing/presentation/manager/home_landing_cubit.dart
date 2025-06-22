@@ -97,6 +97,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
               ),
             ),
           ),
+
       child: HomeScreen(),
     ),
     null,
@@ -150,8 +151,8 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
                     apiConsumer: DioConsumer(
                       dio: Dio(
                         BaseOptions(
-                          connectTimeout: Duration(seconds: 10),
-                          receiveTimeout: Duration(seconds: 10),
+                          connectTimeout: Duration(seconds: 30),
+                          receiveTimeout: Duration(seconds: 30),
                         ),
                       ),
                     ),
@@ -173,8 +174,8 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
                     apiConsumer: DioConsumer(
                       dio: Dio(
                         BaseOptions(
-                          connectTimeout: Duration(seconds: 10),
-                          receiveTimeout: Duration(seconds: 10),
+                          connectTimeout: Duration(seconds: 30),
+                          receiveTimeout: Duration(seconds: 30),
                         ),
                       ),
                     ),

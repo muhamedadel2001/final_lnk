@@ -251,7 +251,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                               );
                             }
                           } else {
-                            print('kk');
                             return Skeletonizer(
                               enabled: true,
                               child: PropertyItemLoading(),

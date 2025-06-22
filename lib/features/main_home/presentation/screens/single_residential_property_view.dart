@@ -142,6 +142,11 @@ class _SingleResidentialPropertyViewState
                                   fit: BoxFit.cover,
                                   imageUrl:
                                       "${ApiConstants.homeImages}${cubit.listsModel!.list.images[0]}",
+                                  errorWidget:
+                                      (context, url, error) => Icon(
+                                        Icons.error,
+                                        color: Colors.redAccent,
+                                      ),
                                 ),
                             Align(
                               alignment: Alignment.bottomRight,
@@ -220,11 +225,13 @@ class _SingleResidentialPropertyViewState
                         style: getStyle13(context),
                       ),
                       const SizedBox(height: 20),
-                      const ContactDetails(),
+                      ContactDetails(value: cubit.listsModel!.list),
                       SizedBox(height: 25.h),
-                      Text(LangKeys.requestSimilar, style: getStyle20(context)),
-                      SizedBox(height: 25.h),
-                      SimilarityRequests(),
+                      cubit.listsModel!.list.isMe
+                          ? cubit.listsModel!.similarRequests.isNotEmpty
+                              ? SimilarityRequests()
+                              : const SizedBox.shrink()
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),

@@ -27,6 +27,7 @@ class RequestsModel {
 class Requests {
   String? sId;
   String? titleOfUser;
+  bool? isMe;
   String? type;
   String? typeOfRequest;
   String? title;
@@ -42,6 +43,7 @@ class Requests {
 
   Requests({
     this.sId,
+    required this.isMe,
     this.titleOfUser,
     this.type,
     this.typeOfRequest,
@@ -59,6 +61,7 @@ class Requests {
 
   Requests.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
+    isMe = json['isMe'];
     titleOfUser = json['titleOfUser'];
     type = json['type'];
     typeOfRequest = json['typeOfRequest'];
@@ -85,6 +88,7 @@ class Requests {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['_id'] = this.sId;
+    data['isMe'] = this.isMe;
     data['titleOfUser'] = this.titleOfUser;
     data['type'] = this.type;
     data['typeOfRequest'] = this.typeOfRequest;

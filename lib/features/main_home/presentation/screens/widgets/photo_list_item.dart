@@ -18,6 +18,8 @@ class PhotoListItem extends StatelessWidget {
         imageUrl: "${ApiConstants.homeImages}$imageUrl",
         width: width,
         fit: BoxFit.cover,
+        errorWidget:
+            (context, url, error) => Icon(Icons.error, color: Colors.redAccent),
       ),
     );
   }

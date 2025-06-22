@@ -2,7 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/data/models/user_model.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
@@ -30,31 +32,35 @@ class CustomAppbarHome extends StatelessWidget {
         ),
         const Spacer(),
         userData.image == null
-            ? Row(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      screens.profileScreen,
-                      arguments: true,
-                    );
-                  },
-                  icon: Image.asset(
+            ? GestureDetector(
+              onTap: () {
+                HomeLandingCubit.get(context).onTransition(3);
+              },
+              child: Row(
+                children: [
+                  Image.asset(
                     'assets/imgs/user_circle.png',
                     width: 35.w,
                     height: 35.h,
                   ),
-                ),
-              ],
+                ],
+              ),
             )
-            : ClipRRect(
-              borderRadius: BorderRadius.circular(50.r),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                width: 40.w,
-                height: 40.w,
-                imageUrl: "${ApiConstants.userUrlImages}${userData.image}",
+            : GestureDetector(
+              onTap: () {
+                HomeLandingCubit.get(context).onTransition(3);
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50.r),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  width: 40.w,
+                  height: 40.w,
+                  imageUrl: "${ApiConstants.userUrlImages}${userData.image}",
+                  errorWidget:
+                      (context, url, error) =>
+                          const Icon(Icons.error, color: Colors.redAccent),
+                ),
               ),
             ),
       ],

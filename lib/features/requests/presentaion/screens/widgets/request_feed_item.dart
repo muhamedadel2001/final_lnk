@@ -74,7 +74,9 @@ class RequestFeedItem extends StatelessWidget {
                   ],
                 ),
               ),
-              Favourite(isLiked: requests.isFavourite!),
+              !requests.isMe!
+                  ? Favourite(isLiked: requests.isFavourite!)
+                  : const SizedBox.shrink(),
             ],
           ),
           MyRequestItem(requests: requests, onTap: onTap),

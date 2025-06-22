@@ -47,7 +47,8 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                   (context, url) =>
                       const Center(child: CircularProgressIndicator()),
               errorWidget:
-                  (context, url, error) => const Icon(Icons.error_outline),
+                  (context, url, error) =>
+                      const Icon(Icons.error, color: Colors.redAccent),
             ),
           ),
           const Spacer(),
@@ -81,6 +82,9 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
                         width: 75.w,
                         height: 75.w,
                         fit: BoxFit.cover,
+                        errorWidget:
+                            (context, url, error) =>
+                                Icon(Icons.error, color: Colors.redAccent),
                       ),
                     ),
                   ),

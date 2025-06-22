@@ -29,6 +29,7 @@ class Request {
   final String id;
   final String type;
   final String typeOfRequest;
+  final bool isMe;
   final NamedField apartment;
   final NamedField city;
   final NamedField location;
@@ -61,6 +62,7 @@ class Request {
 
   Request({
     required this.id,
+    required this.isMe,
     required this.type,
     required this.typeOfRequest,
     required this.apartment,
@@ -97,6 +99,7 @@ class Request {
   factory Request.fromJson(Map<String, dynamic> json) {
     return Request(
       id: json['_id'],
+      isMe: json['isMe'],
       type: json['type'],
       typeOfRequest: json['typeOfRequest'],
       apartment: NamedField.fromJson(json['apartment']),
@@ -139,51 +142,42 @@ class SimilarList {
   final String id;
   final String type;
   final String typeOfList;
+  final String titleOfuser;
   final String title;
   final NamedField location;
   final String area;
   final String price;
-  final NamedField typeOfRent;
-  final NamedField apartment;
-  final String? images;
+  final NamedField finishing;
   final User userId;
   final Agency agencyId;
-  final String createdAt;
-  final int matchScore;
-
   SimilarList({
     required this.id,
+    required this.finishing,
+    required this.titleOfuser,
     required this.type,
     required this.typeOfList,
     required this.title,
     required this.location,
     required this.area,
     required this.price,
-    required this.typeOfRent,
-    required this.apartment,
-    required this.images,
+
     required this.userId,
     required this.agencyId,
-    required this.createdAt,
-    required this.matchScore,
   });
 
   factory SimilarList.fromJson(Map<String, dynamic> json) {
     return SimilarList(
       id: json['_id'],
+      titleOfuser: json['titleOfuser'],
       type: json['type'],
       typeOfList: json['typeOfList'],
       title: json['title'],
       location: NamedField.fromJson(json['location']),
+      finishing: NamedField.fromJson(json['finishing']),
       area: json['area'],
       price: json['price'],
-      typeOfRent: NamedField.fromJson(json['typeOfRent']),
-      apartment: NamedField.fromJson(json['apartment']),
-      images: json['images'],
       userId: User.fromJson(json['userId']),
       agencyId: Agency.fromJson(json['AgencyId']),
-      createdAt: json['createdAt'],
-      matchScore: json['matchScore'],
     );
   }
 }

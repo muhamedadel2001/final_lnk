@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
+import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/my_list_item_similar.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/my_request_item_similar.dart';
 import 'package:final_lnk/features/requests/data/models/requests_model.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +10,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
-import '../../../../../core/widgets/favourite.dart';
-import '../../../../requests/presentaion/screens/widgets/my_request_item.dart';
 
-class RequestFeedItemSimilar extends StatelessWidget {
-  final SimilarRequest requests;
+class ListFeedItemSimilar extends StatelessWidget {
+  final SimilarList lists;
   final void Function()? onTap;
-  const RequestFeedItemSimilar({super.key, required this.requests, this.onTap});
+  const ListFeedItemSimilar({super.key, required this.lists, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +25,7 @@ class RequestFeedItemSimilar extends StatelessWidget {
         children: [
           Row(
             children: [
-              requests.userId.image == null && requests.agencyId.image == null
+              lists.userId.image == null && lists.agencyId.image == null
                   ? Row(
                     children: [
                       Image.asset(
@@ -35,7 +35,7 @@ class RequestFeedItemSimilar extends StatelessWidget {
                       ),
                     ],
                   )
-                  : requests.userId.image == null
+                  : lists.userId.image == null
                   ? ClipRRect(
                     borderRadius: BorderRadius.circular(50.r),
                     child: CachedNetworkImage(
@@ -43,7 +43,7 @@ class RequestFeedItemSimilar extends StatelessWidget {
                       width: 40.w,
                       height: 40.w,
                       imageUrl:
-                          "${ApiConstants.userUrlImages}${requests.agencyId.image}",
+                          "${ApiConstants.userUrlImages}${lists.agencyId.image}",
                     ),
                   )
                   : ClipRRect(
@@ -53,7 +53,7 @@ class RequestFeedItemSimilar extends StatelessWidget {
                       width: 40.w,
                       height: 40.w,
                       imageUrl:
-                          "${ApiConstants.userUrlImages}${requests.userId.image}",
+                          "${ApiConstants.userUrlImages}${lists.userId.image}",
                     ),
                   ),
               SizedBox(width: 8.w),
@@ -63,12 +63,12 @@ class RequestFeedItemSimilar extends StatelessWidget {
                   children: [
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      requests.userId.name!,
+                      lists.userId.name!,
                       style: getStyleBold13(context),
                     ),
                     Text(
                       overflow: TextOverflow.ellipsis,
-                      requests.titleOfuser,
+                      lists.titleOfuser,
                       style: getStyleBold13(
                         context,
                       ).copyWith(color: textSecondaryClr, fontSize: 11.sp),
@@ -79,7 +79,7 @@ class RequestFeedItemSimilar extends StatelessWidget {
               //  Favourite(isLiked: requests.isFavourite!),
             ],
           ),
-          MyRequestItemSimilar(requests: requests, onTap: onTap),
+          MyListItemSimilar(lists: lists, onTap: onTap),
         ],
       ),
     );

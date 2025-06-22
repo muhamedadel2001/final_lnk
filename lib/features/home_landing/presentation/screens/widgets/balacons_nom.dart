@@ -79,7 +79,7 @@ class _NomBalaconsState extends State<NomBalacons> {
           ),
         ),
         SizedBox(width: 10.w),
-        Flexible(
+        Expanded(
           child: Container(
             constraints: const BoxConstraints(maxWidth: 150),
             width: 80.w,

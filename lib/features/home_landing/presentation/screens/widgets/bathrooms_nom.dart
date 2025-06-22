@@ -79,7 +79,7 @@ class _NomBathroomsState extends State<NomBathrooms> {
           ),
         ),
         SizedBox(width: 10.w),
-        Flexible(
+        Expanded(
           child: Container(
             constraints: BoxConstraints(maxWidth: 150.w),
             width: 80.w,

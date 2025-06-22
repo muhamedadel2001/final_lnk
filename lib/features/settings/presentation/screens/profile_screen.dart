@@ -1,5 +1,6 @@
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/accounts_widgets.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/personal_details_widget.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/posts_widget.dart';
@@ -20,6 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen>
   late TabController _tabController;
   @override
   void initState() {
+    print(SettingsCubit.get(context).language);
     _tabController = TabController(
       length: widget.isAgency ? 4 : 3,
       vsync: this,

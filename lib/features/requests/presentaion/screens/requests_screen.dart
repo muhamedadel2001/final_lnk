@@ -7,8 +7,6 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/widgets/custom_sliver_app_bar.dart';
 import 'package:final_lnk/core/widgets/global_empty_data.dart';
 import 'package:final_lnk/core/widgets/global_error_widget.dart';
-import 'package:final_lnk/features/properties/presentation/screens/widgets/property_item.dart';
-import 'package:final_lnk/features/properties/presentation/screens/widgets/property_item_loading.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/request_feed_item.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/request_feed_item_loading.dart';

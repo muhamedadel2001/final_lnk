@@ -9,6 +9,7 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/reques
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_price_range.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_property_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_sliver_app_bar.dart';
+import 'package:final_lnk/features/main_home/presentation/screens/widgets/similarity_lists.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,8 +85,14 @@ class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
                           const SizedBox(height: 12),
                           RequestLocationDetails(),
                           const SizedBox(height: 20),
-                          const ContactDetails(),
+                          ContactDetails(value: cubit.requestModel!.request),
                           SizedBox(height: 25.h),
+                          SizedBox(height: 25.h),
+                          cubit.requestModel!.request.isMe
+                              ? cubit.requestModel!.similarLists.isNotEmpty
+                                  ? SimilarityLists()
+                                  : const SizedBox.shrink()
+                              : const SizedBox.shrink(),
                         ],
                       ),
                     ),
