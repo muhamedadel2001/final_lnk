@@ -1,36 +1,58 @@
-import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/logic/custom_alerts.dart';
+import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/core/validations/validation_helper.dart';
+import 'package:final_lnk/core/widgets/custom_text_field.dart';
+import 'package:final_lnk/core/widgets/primary_button.dart';
+import 'package:final_lnk/features/settings/data/model/profile_model.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PersonalDetailsTab extends StatelessWidget {
-  final details = const ["Ahmed mohamed", "123345569", "ahmed@email.com"];
-
   const PersonalDetailsTab({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<SettingsCubit>(context);
     return Padding(
-      padding: EdgeInsets.all(16.w),
+      padding: EdgeInsets.all(27.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Text(LangKeys.edit, style: getStyleBold13(context)),
+          SizedBox(height: 10.h),
+          CustomTextField(controller: name, keyboardType: TextInputType.name),
+          SizedBox(height: 10.h),
+          CustomTextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
           ),
           SizedBox(height: 10.h),
-          ...details.map(
-            (text) => Container(
-              margin: EdgeInsets.only(bottom: 10.h),
-              padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 16.h),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Color(0xFFF1F2F2),
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: Text(text, style: TextStyle(fontSize: 14.sp)),
-            ),
+          CustomTextField(
+            controller: phoneController,
+            keyboardType: TextInputType.number,
+          ),
+          Spacer(),
+
+          BlocConsumer<SettingsCubit, SettingsState>(
+            listener: (context, state) {
+              if (state is UpdateLoading)
+                CustomAlerts.showMyWaitingSnackBar(
+                  context,
+                  LangKeys.waitingMessage,
+                );
+            },
+            builder: (context, state) {
+              return Center(
+                child: PrimaryButton(
+                  callBack: () {
+                    Validations.checkForUpdate(cubit, context);
+                  },
+                  text: state is UpdateLoading ? "..." : LangKeys.save,
+                ),
+              );
+            },
           ),
         ],
       ),

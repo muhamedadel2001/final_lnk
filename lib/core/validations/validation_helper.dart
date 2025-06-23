@@ -2,10 +2,12 @@ import 'package:final_lnk/core/logic/custom_alerts.dart';
 import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 
 import '../../features/home_landing/data/models/create_request_model.dart';
+import '../../features/settings/data/model/profile_model.dart';
 import '../util/lang_keys.dart';
 
 class Validations {
@@ -240,6 +242,36 @@ class Validations {
           arguments: addPropertyCubit,
         );
       }
+    } else {
+      CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+    }
+  }
+
+  static checkForUpdate(
+    SettingsCubit settingsCubit,
+    BuildContext context,
+  ) async {
+    if (isValidEgyptianPhone(phoneController.text) &&
+        name.text.trim().isNotEmpty &&
+        emailController.text.trim().isNotEmpty) {
+      print('enter');
+      await settingsCubit.updateProfile(
+        context: context,
+        profileData:
+            settingsCubit.profileImage != null &&
+                    settingsCubit.profileImage != ''
+                ? ProfileData(
+                  image: settingsCubit.profileImage!.path,
+                  userName: name.text,
+                  phone: phoneController.text,
+                  email: emailController.text,
+                )
+                : ProfileData(
+                  userName: name.text,
+                  phone: phoneController.text,
+                  email: emailController.text,
+                ),
+      );
     } else {
       CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
     }

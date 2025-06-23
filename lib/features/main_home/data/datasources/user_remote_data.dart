@@ -17,6 +17,7 @@ class UserRemoteData {
       ApiConstants.homeEndpoint,
       queryParameters: {"lang": lang},
     );
+    MyCache.setString(key: MyCacheKeys.type, value: response['typeOfUser']);
     return UserData.fromJson(response);
   }
 }

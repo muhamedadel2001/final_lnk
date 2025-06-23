@@ -149,4 +149,5 @@ class LangKeys {
   static String get createSuccess => 'createSuccess'.tr();
   static String get errMessage => 'errMessage'.tr();
   static String get requestSimilar => 'requestSimilar'.tr();
+  static String get save => 'save'.tr();
 }

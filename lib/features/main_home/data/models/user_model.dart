@@ -1,11 +1,13 @@
 class UserData {
   final String name;
   final String? image;
+  final String typeOfUser;
   final List<HomeListing> homeListing;
   final List<HomeRequest> homeRequests;
 
   UserData({
     required this.name,
+    required this.typeOfUser,
     this.image,
     required this.homeListing,
     required this.homeRequests,
@@ -13,6 +15,7 @@ class UserData {
 
   factory UserData.fromJson(Map<String, dynamic> json) => UserData(
     name: json['name'],
+    typeOfUser: json['typeOfUser'],
     image: json['image'],
     homeListing:
         (json['HomeListing'] as List)
@@ -26,6 +29,7 @@ class UserData {
 
   Map<String, dynamic> toJson() => {
     'name': name,
+    'typeOfUser': typeOfUser,
     'image': image,
     'HomeListing': homeListing.map((e) => e.toJson()).toList(),
     'HomeRequests': homeRequests.map((e) => e.toJson()).toList(),

@@ -142,7 +142,8 @@
   "waitingMessage": "Please wait a few seconds while the images are uploading",
   "createSuccess": "Created successfully ",
   "errMessage": "something went wrong please try again !",
-  "requestSimilar": "Requests similar to your property"
+  "requestSimilar": "Requests similar to your property",
+  "save": "Save"
 }
 
 

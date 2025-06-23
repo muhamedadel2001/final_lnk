@@ -30,6 +30,10 @@ import 'package:final_lnk/features/requests/data/datasources/requests_remote_dat
 import 'package:final_lnk/features/requests/data/repositories/requests_repo_impl.dart';
 import 'package:final_lnk/features/requests/domain/usecases/properties_usecases.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
+import 'package:final_lnk/features/settings/data/datasources/settings_local_data.dart';
+import 'package:final_lnk/features/settings/data/datasources/settings_remote_data.dart';
+import 'package:final_lnk/features/settings/data/repositories/settings/control_settings_repo_impl.dart';
+import 'package:final_lnk/features/settings/domain/usecases/settings/settings_case.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -188,7 +192,25 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       );
     } else {
       return BlocProvider(
-        create: (context) => SettingsCubit(),
+        create:
+            (context) => SettingsCubit(
+              SettingsUseCase(
+                settingsRepo: SettingsRepoImpl(
+                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  settingsRemoteData: SettingsRemoteData(
+                    apiConsumer: DioConsumer(
+                      dio: Dio(
+                        BaseOptions(
+                          connectTimeout: Duration(seconds: 60),
+                          receiveTimeout: Duration(seconds: 60),
+                        ),
+                      ),
+                    ),
+                  ),
+                  settingsLocalData: SettingsLocalData(),
+                ),
+              ),
+            ),
         child: SettingsScreen(),
       );
     }

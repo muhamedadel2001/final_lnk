@@ -1,1 +1,1 @@
-enum MyCacheKeys { language, theme, token, onBoardingViewed }
+enum MyCacheKeys { language, theme, token, onBoardingViewed, type }
