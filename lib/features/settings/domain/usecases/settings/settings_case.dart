@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../data/model/profile_model.dart';
@@ -19,11 +21,17 @@ class SettingsUseCase {
     return settingsRepo.updateProfile(profileData: profileData);
   }
 
-  /* Future logout(BuildContext context) {
-    return controlSettingsRepo.logout(context);
+  Future<Either<Failure, MyListModel>> getMyListCall({required String lang}) {
+    return settingsRepo.getMyList(lang: lang);
   }
 
-  Future delete(BuildContext context) {
-    return controlSettingsRepo.delete(context);
+  Future<Either<Failure, MyRequestModel>> getMyRequestCall({
+    required String lang,
+  }) {
+    return settingsRepo.getMyRequest(lang: lang);
+  }
+
+  /* Future logout(BuildContext context) {
+    return controlSettingsRepo.logout(context);
   }*/
 }

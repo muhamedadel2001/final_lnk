@@ -398,4 +398,29 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
       emit(CreateFailure());
     }
   }
+
+  deleteProperty({
+    required String endPoint,
+    required String id,
+    required BuildContext context,
+  }) async {
+    emit(DeletePropertyLoading());
+    try {
+      final result = await responsesUseCase.deleteProperty(
+        endPoint: endPoint,
+        id: id,
+        context: context,
+      );
+      result.fold(
+        (failure) {
+          emit(DeletePropertyFailure());
+        },
+        (success) {
+          emit(DeletePropertySuccess());
+        },
+      );
+    } catch (err) {
+      emit(DeletePropertyFailure());
+    }
+  }
 }

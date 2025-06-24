@@ -86,4 +86,16 @@ class ResponsesUseCase {
       endPoint: endPoint,
     );
   }
+
+  Future deleteProperty({
+    required String endPoint,
+    required String id,
+    required BuildContext context,
+  }) {
+    return responsesRepo.deleteProperty(
+      endPoint: endPoint,
+      id: id,
+      context: context,
+    );
+  }
 }

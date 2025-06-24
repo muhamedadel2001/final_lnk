@@ -16,3 +16,15 @@ final class ProfileSuccess extends SettingsState {}
 final class UpdateLoading extends SettingsState {}
 
 final class UpdateFailure extends SettingsState {}
+
+final class GetMyListLoading extends SettingsState {}
+
+final class GetMyListSuccess extends SettingsState {}
+
+final class GetMyListFailure extends SettingsState {}
+
+final class GetMyRequestLoading extends SettingsState {}
+
+final class GetMyRequestSuccess extends SettingsState {}
+
+final class GetMyRequestFailure extends SettingsState {}

@@ -34,6 +34,7 @@ class SimilarityRequests extends StatelessWidget {
                       arguments: {
                         'id': cubit.listsModel!.similarRequests[index].id,
                         'cubit': HomeLandingCubit.get(context),
+                        "fromProfile": false,
                       },
                     );
                   },

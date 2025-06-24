@@ -1,4 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:final_lnk/core/logic/custom_alerts.dart';
+import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/data/model/profile_model.dart';
 import 'package:flutter/material.dart';
 
@@ -40,6 +43,28 @@ class SettingsRepoImpl implements SettingsRepo {
     try {
       final result = await settingsRemoteData.updateProfile(model: profileData);
       return result;
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MyListModel>> getMyList({required String lang}) async {
+    try {
+      final remoteServices = await settingsRemoteData.getMyList(lang: lang);
+      return Right(remoteServices);
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MyRequestModel>> getMyRequest({
+    required String lang,
+  }) async {
+    try {
+      final remoteServices = await settingsRemoteData.getMyRequest(lang: lang);
+      return Right(remoteServices);
     } catch (e) {
       return Left(Failure.handleError(e));
     }

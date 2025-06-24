@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/domain/usecases/settings/settings_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +22,9 @@ class SettingsCubit extends Cubit<SettingsState> {
   String? language;
   String? myImage;
   String? myTitle;
+  MyListModel? myListModel;
+  MyRequestModel? myRequestModel;
+  File? profileImage;
   void update() {
     emit(Updated());
   }
@@ -43,6 +48,34 @@ class SettingsCubit extends Cubit<SettingsState> {
     );
   }
 
+  getMyList({required String lang}) async {
+    emit(GetMyListLoading());
+    final result = await settingsUseCase.getMyListCall(lang: lang);
+    result.fold(
+      (failure) {
+        emit(GetMyListFailure());
+      },
+      (success) {
+        myListModel = success;
+        emit(GetMyListSuccess());
+      },
+    );
+  }
+
+  getMyRequest({required String lang}) async {
+    emit(GetMyRequestLoading());
+    final result = await settingsUseCase.getMyRequestCall(lang: lang);
+    result.fold(
+      (failure) {
+        emit(GetMyRequestFailure());
+      },
+      (success) {
+        myRequestModel = success;
+        emit(GetMyRequestSuccess());
+      },
+    );
+  }
+
   updateProfile({
     required BuildContext context,
     required ProfileData profileData,
@@ -56,7 +89,6 @@ class SettingsCubit extends Cubit<SettingsState> {
     }
   }
 
-  File? profileImage;
   Future<void> updateImageMethod() async {
     profileImage = await FileUtils.pickImage(ImageSource.gallery);
     emit(ProfileSuccess());

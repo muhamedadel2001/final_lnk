@@ -1,48 +1,111 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_lnk/core/databases/cache/my_cache.dart';
+import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/core/util/screens.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../../../core/networking/api_constants.dart';
+import '../../../../../core/widgets/global_error_widget.dart';
+import '../../../../home_landing/presentation/manager/home_landing_cubit.dart';
+import '../../../data/model/my_list_model.dart';
 
-class PostsTab extends StatelessWidget {
+class PostsTab extends StatefulWidget {
   const PostsTab({super.key});
 
   @override
+  State<PostsTab> createState() => _PostsTabState();
+}
+
+class _PostsTabState extends State<PostsTab> {
+  @override
+  void initState() {
+    SettingsCubit.get(
+      context,
+    ).getMyList(lang: MyCache.getString(key: MyCacheKeys.language));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 8.h),
-          Text(
-            "${context.locale.languageCode == 'ar' ? '٤' : '4'} ${LangKeys.items}",
-            style: getStyle13(context),
-          ),
-          Expanded(
-            child: GridView.builder(
-              padding: EdgeInsets.only(top: 20.h),
-              itemCount: 4,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 12.h,
-                crossAxisSpacing: 12.w,
-                childAspectRatio: 0.7,
+    final cubit = BlocProvider.of<SettingsCubit>(context);
+    return BlocBuilder<SettingsCubit, SettingsState>(
+      builder: (context, state) {
+        return state is GetMyRequestLoading || state is GetMyListLoading?
+            ? Center(
+              child:
+                  Platform.isIOS
+                      ? CupertinoActivityIndicator(color: primaryClr)
+                      : CircularProgressIndicator(color: primaryClr),
+            )
+            : state is GetMyRequestSuccess || state is GetMyListSuccess
+            ? Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8.h),
+                  Text(
+                    "${cubit.myListModel!.count} ${LangKeys.items}",
+                    style: getStyle13(context),
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                      padding: EdgeInsets.only(top: 20.h, bottom: 10.h),
+                      itemCount: cubit.myListModel!.listings!.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12.h,
+                        crossAxisSpacing: 12.w,
+                        childAspectRatio: 0.7,
+                      ),
+                      itemBuilder:
+                          (context, index) => PropertyCard(
+                            listings: cubit.myListModel!.listings![index],
+                            onTap: () async {
+                              String? isRefresh = await Navigator.pushNamed(
+                                context,
+                                singlePropertyScreen,
+                                arguments: {
+                                  'id': cubit.myListModel!.listings![index].sId,
+                                  'cubit': HomeLandingCubit.get(context),
+                                  "fromProfile": true,
+                                },
+                              );
+                              if (isRefresh == 'refresh') {
+                                cubit.getMyList(
+                                  lang: MyCache.getString(
+                                    key: MyCacheKeys.language,
+                                  ),
+                                );
+                              }
+                            },
+                          ),
+                    ),
+                  ),
+                ],
               ),
-              itemBuilder: (context, index) => PropertyCard(),
-            ),
-          ),
-        ],
-      ),
+            )
+            : Center(
+              child: GlobalErrorWidget(imagePath: 'assets/imgs/user.png'),
+            );
+      },
     );
   }
 }
 
 class PropertyCard extends StatelessWidget {
-  const PropertyCard({super.key});
+  final void Function()? onTap;
+  final Listings listings;
+  const PropertyCard({super.key, required this.listings, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +122,23 @@ class PropertyCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16.r)),
-            child: Image.asset(
-              'assets/my_logo.png',
-              height: 120.h,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
+            child:
+                listings.images == null
+                    ? Image.asset(
+                      'assets/imgs/free.jpg',
+                      height: 120.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )
+                    : CachedNetworkImage(
+                      imageUrl: '${ApiConstants.homeImages}${listings.images}',
+                      height: 120.h,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                      errorWidget:
+                          (context, url, error) =>
+                              Icon(Icons.error, color: Colors.redAccent),
+                    ),
           ),
           Expanded(
             child: Padding(
@@ -75,7 +149,7 @@ class PropertyCard extends StatelessWidget {
                   Text(
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    "Classic Apartment For sale",
+                    listings.title!,
                     style: getStyleBold13(context),
                   ),
                   Row(
@@ -90,7 +164,7 @@ class PropertyCard extends StatelessWidget {
                         flex: 2,
                         child: Text(
                           overflow: TextOverflow.ellipsis,
-                          "sidi bishr",
+                          listings.location!.name!,
                           style: getStyle10(context),
                         ),
                       ),
@@ -100,7 +174,7 @@ class PropertyCard extends StatelessWidget {
                         flex: 1,
                         child: Text(
                           overflow: TextOverflow.ellipsis,
-                          "400m",
+                          listings.area!,
                           style: getStyle10(context),
                         ),
                       ),
@@ -113,7 +187,7 @@ class PropertyCard extends StatelessWidget {
                       Flexible(
                         child: Text(
                           overflow: TextOverflow.ellipsis,
-                          "2.000.000 EG",
+                          listings.price!,
                           style: getStyle10(context),
                         ),
                       ),
@@ -128,24 +202,27 @@ class PropertyCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             overflow: TextOverflow.ellipsis,
-                            "Apartment",
+                            listings.apartment!.name!,
                             style: getStyle10(context),
                           ),
                         ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 8.w,
-                            vertical: 4.h,
-                          ),
-                          decoration: BoxDecoration(
-                            color: primaryClr,
-                            borderRadius: BorderRadius.circular(5.r),
-                          ),
-                          child: Text(
-                            "View details",
-                            style: getStyle10(
-                              context,
-                            ).copyWith(color: Colors.white),
+                        GestureDetector(
+                          onTap: onTap,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 8.w,
+                              vertical: 4.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: primaryClr,
+                              borderRadius: BorderRadius.circular(5.r),
+                            ),
+                            child: Text(
+                              LangKeys.view,
+                              style: getStyle10(
+                                context,
+                              ).copyWith(color: Colors.white),
+                            ),
                           ),
                         ),
                       ],

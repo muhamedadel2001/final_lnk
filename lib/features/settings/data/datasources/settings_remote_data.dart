@@ -1,12 +1,7 @@
 import 'package:final_lnk/core/networking/api_constants.dart';
-import 'package:final_lnk/features/auth/data/models/areas_model.dart';
-import 'package:final_lnk/features/auth/data/models/cities_model.dart';
-import 'package:final_lnk/features/auth/data/models/finishing_model.dart';
-import 'package:final_lnk/features/auth/data/models/type_of_rent_model.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
-import 'package:final_lnk/features/requests/data/models/requests_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/data/model/profile_model.dart';
-
 import '../../../../core/databases/api/api_consumer.dart';
 import '../../../../core/databases/cache/my_cache.dart';
 import '../../../../core/databases/cache/my_cache_keys.dart';
@@ -33,5 +28,27 @@ class SettingsRemoteData {
       isFormData: true,
       data: jsonData,
     );
+  }
+
+  Future<MyListModel> getMyList({required String lang}) async {
+    final response = await apiConsumer.get(
+      queryParameters: {"lang": lang},
+      headers: {
+        "Cookie": "accessToken=${MyCache.getString(key: MyCacheKeys.token)}",
+      },
+      ApiConstants.myListEndpoint,
+    );
+    return MyListModel.fromJson(response);
+  }
+
+  Future<MyRequestModel> getMyRequest({required String lang}) async {
+    final response = await apiConsumer.get(
+      queryParameters: {"lang": lang},
+      headers: {
+        "Cookie": "accessToken=${MyCache.getString(key: MyCacheKeys.token)}",
+      },
+      ApiConstants.myRequestEndpoint,
+    );
+    return MyRequestModel.fromJson(response);
   }
 }

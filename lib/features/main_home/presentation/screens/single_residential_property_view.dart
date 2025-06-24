@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/screens.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/about_property.dart';
@@ -19,12 +20,18 @@ import '../../../../core/networking/api_constants.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/widgets/badge_on_image.dart';
+import '../../../../core/widgets/custom_dialog.dart';
 import '../../../../core/widgets/global_error_widget.dart';
 import '../../../home_landing/presentation/manager/home_landing_cubit.dart';
 
 class SingleResidentialPropertyView extends StatefulWidget {
+  final bool fromProfile;
   final String id;
-  const SingleResidentialPropertyView({super.key, required this.id});
+  const SingleResidentialPropertyView({
+    super.key,
+    required this.id,
+    this.fromProfile = false,
+  });
 
   @override
   State<SingleResidentialPropertyView> createState() =>
@@ -47,10 +54,18 @@ class _SingleResidentialPropertyViewState
   Widget build(BuildContext context) {
     print('one list');
     final cubit = HomeLandingCubit.get(context);
-    return BlocBuilder<HomeLandingCubit, HomeLandingState>(
+    return BlocConsumer<HomeLandingCubit, HomeLandingState>(
+      listener: (context, state) {
+        if (state is DeletePropertySuccess) {
+          Navigator.pop(context, "refresh");
+        }
+      },
       builder: (context, state) {
         print('one list rebuild');
-        return state is GetOneSuccess
+        return state is GetOneSuccess ||
+                state is DeletePropertyFailure ||
+                state is DeletePropertySuccess ||
+                state is DeletePropertyLoading
             ? Scaffold(
               appBar: AppBar(
                 leadingWidth: 30.w,
@@ -114,7 +129,46 @@ class _SingleResidentialPropertyViewState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 35),
+                      widget.fromProfile
+                          ? cubit.listsModel!.list.isMe
+                              ? Align(
+                                alignment:
+                                    context.locale.languageCode == 'ar'
+                                        ? Alignment.centerLeft
+                                        : Alignment.centerRight,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    showCustomDialog(
+                                      context,
+                                      LangKeys.deleteSureProperty,
+                                      () {
+                                        cubit.deleteProperty(
+                                          endPoint:
+                                              ApiConstants.deleteListEndpoint,
+                                          id: cubit.listsModel!.list.id,
+                                          context: context,
+                                        );
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: dangerClr,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    LangKeys.delete,
+                                    style: getStyleBold13(
+                                      context,
+                                    ).copyWith(color: Colors.white),
+                                  ),
+                                ),
+                              )
+                              : const SizedBox.shrink()
+                          : const SizedBox.shrink(),
+                      SizedBox(height: 15.h),
                       Text(
                         cubit.listsModel!.list.title,
                         style: getStyle20(context),

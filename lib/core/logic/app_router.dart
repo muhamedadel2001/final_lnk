@@ -179,13 +179,16 @@ class AppRouter {
         );
       case screens.profileScreen:
         final args = routeSettings.arguments as Map<String, dynamic>;
-        final isAgency = args['isAgency'] as bool;
-        final cubit = args['cubit'] as SettingsCubit;
+        final settingsCubit = args['settingsCubit'] as SettingsCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
           builder:
-              (_) => BlocProvider.value(
-                value: cubit,
-                child: ProfileScreen(isAgency: isAgency),
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: settingsCubit),
+                ],
+                child: ProfileScreen(),
               ),
         );
       case screens.subAccDetailsScreenScreen:
@@ -197,12 +200,16 @@ class AppRouter {
       case screens.singlePropertyScreen:
         final args = routeSettings.arguments as Map<String, dynamic>;
         final id = args['id'] as String;
+        final fromProfile = args['fromProfile'] as bool;
         final cubit = args['cubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
           builder:
               (_) => BlocProvider.value(
                 value: cubit,
-                child: SingleResidentialPropertyView(id: id),
+                child: SingleResidentialPropertyView(
+                  id: id,
+                  fromProfile: fromProfile,
+                ),
               ),
         );
       case screens.photoListScreen:
@@ -215,12 +222,16 @@ class AppRouter {
       case screens.singleRequestScreen:
         final args = routeSettings.arguments as Map<String, dynamic>;
         final id = args['id'] as String;
+        final fromProfile = args['fromProfile'] as bool;
         final cubit = args['cubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
           builder:
               (_) => BlocProvider.value(
                 value: cubit,
-                child: SingleRequsetViewScreen(id: id),
+                child: SingleRequsetViewScreen(
+                  id: id,
+                  fromProfile: fromProfile,
+                ),
               ),
         );
       case screens.firstAddPropertyScreen:

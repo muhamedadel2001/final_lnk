@@ -143,7 +143,11 @@
   "createSuccess": "Created successfully ",
   "errMessage": "something went wrong please try again !",
   "requestSimilar": "Requests similar to your property",
-  "save": "Save"
+  "save": "Save",
+  "delete": "Delete",
+  "yes": "Yes",
+  "cancel": "Cancel",
+  "deleteSureProperty":"Are you sure you want to delete this property ?"
 }
 
 

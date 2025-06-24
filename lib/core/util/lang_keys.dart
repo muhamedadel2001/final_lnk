@@ -150,4 +150,8 @@ class LangKeys {
   static String get errMessage => 'errMessage'.tr();
   static String get requestSimilar => 'requestSimilar'.tr();
   static String get save => 'save'.tr();
+  static String get delete => 'delete'.tr();
+  static String get yes => 'yes'.tr();
+  static String get cancel => 'cancel'.tr();
+  static String get deleteSureProperty => 'deleteSureProperty'.tr();
 }

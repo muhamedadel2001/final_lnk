@@ -26,7 +26,11 @@ class FeaturedRequestItem extends StatelessWidget {
         Navigator.pushNamed(
           context,
           screens.singleRequestScreen,
-          arguments: {"cubit": HomeLandingCubit.get(context), "id": id},
+          arguments: {
+            "cubit": HomeLandingCubit.get(context),
+            "id": id,
+            "fromProfile": false,
+          },
         );
       },
       child: ConstrainedBox(

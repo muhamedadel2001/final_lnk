@@ -230,6 +230,7 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                                     arguments: {
                                       'id': cubit.myPropertiesList[index].sId,
                                       'cubit': HomeLandingCubit.get(context),
+                                      "fromProfile": false,
                                     },
                                   );
                                 },

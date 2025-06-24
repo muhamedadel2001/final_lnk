@@ -47,4 +47,10 @@ abstract class ResponsesRepo {
     required BuildContext context,
     required String endPoint,
   });
+
+  Future deleteProperty({
+    required String endPoint,
+    required String id,
+    required BuildContext context,
+  });
 }

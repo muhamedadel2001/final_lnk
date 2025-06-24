@@ -133,4 +133,8 @@ class ResponsesRemoteData {
     final jsonData = await model.toJson();
     await apiConsumer.post(endPoint, isFormData: true, data: jsonData);
   }
+
+  Future deleteProperty({required String endPoint, required String id}) async {
+    await apiConsumer.delete("$endPoint/${id}");
+  }
 }

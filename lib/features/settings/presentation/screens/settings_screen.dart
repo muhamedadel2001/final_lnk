@@ -42,8 +42,8 @@ class SettingsScreen extends StatelessWidget {
                       context,
                       screens.profileScreen,
                       arguments: {
-                        "isAgency": true,
-                        "cubit": SettingsCubit.get(context),
+                        "homeLandingCubit": HomeLandingCubit.get(context),
+                        "settingsCubit": SettingsCubit.get(context),
                       },
                     );
                   },

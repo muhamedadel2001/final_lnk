@@ -91,6 +91,7 @@ class _ResultFilterPropertiesScreenState
                             arguments: {
                               'id': cubit.myPropertiesListFilter[index].sId,
                               'cubit': HomeLandingCubit.get(context),
+                              "fromProfile": false,
                             },
                           );
                         },

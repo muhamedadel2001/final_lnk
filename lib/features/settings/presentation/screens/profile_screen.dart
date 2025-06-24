@@ -21,8 +21,7 @@ import '../../../../core/util/lang_keys.dart';
 import '../../../../core/widgets/global_error_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
-  final bool isAgency;
-  const ProfileScreen({super.key, required this.isAgency});
+  const ProfileScreen({super.key});
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
@@ -65,7 +64,13 @@ class _ProfileScreenState extends State<ProfileScreen>
           builder: (context, state) {
             return state is ProfileSuccess ||
                     state is UpdateLoading ||
-                    state is UpdateFailure
+                    state is UpdateFailure ||
+                    state is GetMyListLoading ||
+                    state is GetMyListSuccess ||
+                    state is GetMyListFailure ||
+                    state is GetMyRequestLoading ||
+                    state is GetMyRequestSuccess ||
+                    state is GetMyRequestFailure
                 ? Column(
                   children: [
                     Container(

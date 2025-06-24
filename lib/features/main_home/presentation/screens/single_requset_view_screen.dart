@@ -1,8 +1,11 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/widgets/custom_alert_dialog.dart';
+import 'package:final_lnk/core/widgets/custom_dialog.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/contact_details.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/request_location_details.dart';
@@ -15,14 +18,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/networking/api_constants.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/widgets/global_error_widget.dart';
 
 class SingleRequsetViewScreen extends StatefulWidget {
+  final bool fromProfile;
   final String id;
 
-  const SingleRequsetViewScreen({super.key, required this.id});
+  const SingleRequsetViewScreen({
+    super.key,
+    required this.id,
+    this.fromProfile = false,
+  });
 
   @override
   State<SingleRequsetViewScreen> createState() =>
@@ -32,7 +41,6 @@ class SingleRequsetViewScreen extends StatefulWidget {
 class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
   @override
   void initState() {
-    print(widget.id);
     HomeLandingCubit.get(context).getOneRequest(
       lang: MyCache.getString(key: MyCacheKeys.language),
       context: context,
@@ -45,21 +53,76 @@ class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
   Widget build(BuildContext context) {
     print('one request');
     final cubit = HomeLandingCubit.get(context);
-    return BlocBuilder<HomeLandingCubit, HomeLandingState>(
+    return BlocConsumer<HomeLandingCubit, HomeLandingState>(
+      listener: (context, state) {
+        if (state is DeletePropertySuccess) {
+          Navigator.pop(context, "refresh");
+        }
+      },
       builder: (context, state) {
         print('one request build');
-        return state is GetOneSuccess
+        return state is GetOneSuccess ||
+                state is DeletePropertyFailure ||
+                state is DeletePropertySuccess ||
+                state is DeletePropertyLoading
             ? Scaffold(
               body: CustomScrollView(
                 slivers: <Widget>[
                   RequestSliverAppBar(title: LangKeys.requestDetails),
-                  const SliverToBoxAdapter(child: SizedBox(height: 16)),
+                  SliverToBoxAdapter(child: SizedBox(height: 10.h)),
                   SliverToBoxAdapter(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          widget.fromProfile
+                              ? cubit.requestModel!.request.isMe
+                                  ? Align(
+                                    alignment:
+                                        context.locale.languageCode == 'ar'
+                                            ? Alignment.centerLeft
+                                            : Alignment.centerRight,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        showCustomDialog(
+                                          context,
+                                          LangKeys.deleteSureProperty,
+                                          () {
+                                            cubit.deleteProperty(
+                                              endPoint:
+                                                  ApiConstants
+                                                      .deleteRequestEndpoint,
+                                              id:
+                                                  cubit
+                                                      .requestModel!
+                                                      .request
+                                                      .id,
+                                              context: context,
+                                            );
+                                            Navigator.pop(context);
+                                          },
+                                        );
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: dangerClr,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            10.r,
+                                          ),
+                                        ),
+                                      ),
+                                      child: Text(
+                                        LangKeys.delete,
+                                        style: getStyleBold13(
+                                          context,
+                                        ).copyWith(color: Colors.white),
+                                      ),
+                                    ),
+                                  )
+                                  : const SizedBox.shrink()
+                              : const SizedBox.shrink(),
+                          SizedBox(height: 15.h),
                           Text(
                             LangKeys.description,
                             style: getStyle25(context),

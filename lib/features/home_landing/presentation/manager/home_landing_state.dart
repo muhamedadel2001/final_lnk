@@ -32,3 +32,9 @@ final class CreateLoading extends HomeLandingState {}
 final class CreateSuccess extends HomeLandingState {}
 
 final class CreateFailure extends HomeLandingState {}
+
+final class DeletePropertyLoading extends HomeLandingState {}
+
+final class DeletePropertySuccess extends HomeLandingState {}
+
+final class DeletePropertyFailure extends HomeLandingState {}
