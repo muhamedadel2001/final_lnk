@@ -28,3 +28,21 @@ final class GetMyRequestLoading extends SettingsState {}
 final class GetMyRequestSuccess extends SettingsState {}
 
 final class GetMyRequestFailure extends SettingsState {}
+
+final class GetMySubAccountLoading extends SettingsState {}
+
+final class GetMySubAccountSuccess extends SettingsState {}
+
+final class GetMySubAccountFailure extends SettingsState {}
+
+final class GetOneSubAccountLoading extends SettingsState {}
+
+final class GetOneSubAccountSuccess extends SettingsState {}
+
+final class GetOneSubAccountFailure extends SettingsState {}
+
+final class DeleteSubAccountFailure extends SettingsState {}
+
+final class DeleteSubAccountLoading extends SettingsState {}
+
+final class DeleteSubAccountSuccess extends SettingsState {}

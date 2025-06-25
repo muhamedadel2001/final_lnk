@@ -38,14 +38,21 @@ class _PostsTabState extends State<PostsTab> {
     final cubit = BlocProvider.of<SettingsCubit>(context);
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-        return state is GetMyRequestLoading || state is GetMyListLoading?
+        return state is GetMyRequestLoading ||
+                state is GetMyListLoading ||
+                state is GetMySubAccountLoading?
             ? Center(
               child:
                   Platform.isIOS
                       ? CupertinoActivityIndicator(color: primaryClr)
                       : CircularProgressIndicator(color: primaryClr),
             )
-            : state is GetMyRequestSuccess || state is GetMyListSuccess
+            : state is GetMyRequestSuccess ||
+                state is GetMyListSuccess ||
+                state is GetMySubAccountSuccess ||
+                state is ProfileSuccess ||
+                state is GetOneSuccess ||
+                state is GetOneSubAccountSuccess
             ? Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(

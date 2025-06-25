@@ -7,6 +7,7 @@ import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/accounts_widgets.dart';
@@ -70,7 +71,19 @@ class _ProfileScreenState extends State<ProfileScreen>
                     state is GetMyListFailure ||
                     state is GetMyRequestLoading ||
                     state is GetMyRequestSuccess ||
-                    state is GetMyRequestFailure
+                    state is GetMySubAccountSuccess ||
+                    state is GetMySubAccountLoading ||
+                    state is GetMySubAccountFailure ||
+                    state is GetMyRequestFailure ||
+                    state is GetOneSubAccountSuccess ||
+                    state is GetOneSubAccountLoading ||
+                    state is GetOneSubAccountFailure ||
+                    state is GetOneSuccess ||
+                    state is GetOneFailure ||
+                    state is GetOneLoading ||
+                    state is DeleteSubAccountSuccess ||
+                    state is DeleteSubAccountLoading ||
+                    state is DeleteSubAccountFailure
                 ? Column(
                   children: [
                     Container(

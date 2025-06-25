@@ -192,11 +192,26 @@ class AppRouter {
               ),
         );
       case screens.subAccDetailsScreenScreen:
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final settingsCubit = args['settingsCubit'] as SettingsCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
+        final id = args['id'] as String;
         return MaterialPageRoute<String>(
-          builder: (_) => const SubAccountDetailsScreen(),
+          builder:
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: homeLandingCubit),
+                  BlocProvider.value(value: settingsCubit),
+                ],
+                child: SubAccountDetailsScreen(id: id),
+              ),
         );
       case screens.addSubScreen:
-        return MaterialPageRoute<String>(builder: (_) => const AddSubScreen());
+        final cubit = routeSettings.arguments as SettingsCubit;
+        return MaterialPageRoute<String>(
+          builder:
+              (_) => BlocProvider.value(value: cubit, child: AddSubScreen()),
+        );
       case screens.singlePropertyScreen:
         final args = routeSettings.arguments as Map<String, dynamic>;
         final id = args['id'] as String;

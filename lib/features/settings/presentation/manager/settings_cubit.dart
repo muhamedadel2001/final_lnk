@@ -1,16 +1,18 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/widgets/custom_dialog.dart';
+import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
+import 'package:final_lnk/features/settings/data/model/sub_account_model.dart';
 import 'package:final_lnk/features/settings/domain/usecases/settings/settings_case.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
-
 import '../../../../core/logic/file_utils.dart';
+import '../../data/model/one_sub_account_model.dart';
 import '../../data/model/profile_model.dart';
 
 part 'settings_state.dart';
@@ -23,6 +25,8 @@ class SettingsCubit extends Cubit<SettingsState> {
   String? myImage;
   String? myTitle;
   MyListModel? myListModel;
+  SubAccountModel? subAccountModel;
+  OneSubAccountModel? oneSubAccountModel;
   MyRequestModel? myRequestModel;
   File? profileImage;
   void update() {
@@ -92,5 +96,77 @@ class SettingsCubit extends Cubit<SettingsState> {
   Future<void> updateImageMethod() async {
     profileImage = await FileUtils.pickImage(ImageSource.gallery);
     emit(ProfileSuccess());
+  }
+
+  getMySubAccount({required String lang}) async {
+    emit(GetMySubAccountLoading());
+    final result = await settingsUseCase.getMySubAccountCall(lang: lang);
+    result.fold(
+      (failure) {
+        emit(GetMySubAccountFailure());
+      },
+      (success) {
+        subAccountModel = success;
+        emit(GetMySubAccountSuccess());
+      },
+    );
+  }
+
+  getOneSubAccount({required String lang, required String id}) async {
+    emit(GetOneSubAccountLoading());
+    final result = await settingsUseCase.getOneSubAccountCall(
+      lang: lang,
+      id: id,
+    );
+    result.fold(
+      (failure) {
+        emit(GetOneSubAccountFailure());
+      },
+      (success) {
+        oneSubAccountModel = success;
+        emit(GetOneSubAccountSuccess());
+      },
+    );
+  }
+
+  deleteSubAccount({required String id, required BuildContext context}) async {
+    emit(DeleteSubAccountLoading());
+    try {
+      final result = await settingsUseCase.deleteSubAccount(
+        id: id,
+        context: context,
+      );
+      result.fold(
+        (failure) {
+          emit(DeleteSubAccountFailure());
+        },
+        (success) {
+          emit(DeleteSubAccountSuccess());
+        },
+      );
+    } catch (err) {
+      emit(DeleteSubAccountFailure());
+    }
+  }
+
+  createSubAccount({
+    required CreateSubModel model,
+    required BuildContext context,
+  }) async {
+    emit(DeleteSubAccountLoading());
+
+    final result = await settingsUseCase.createSubAccount(
+      context: context,
+      model: model,
+    );
+    result.fold(
+      (failure) {
+        print(failure.errMessage);
+        emit(DeleteSubAccountFailure());
+      },
+      (success) {
+        emit(DeleteSubAccountSuccess());
+      },
+    );
   }
 }

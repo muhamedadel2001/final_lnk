@@ -154,4 +154,5 @@ class LangKeys {
   static String get yes => 'yes'.tr();
   static String get cancel => 'cancel'.tr();
   static String get deleteSureProperty => 'deleteSureProperty'.tr();
+  static String get deleteSureSub => 'deleteSureSub'.tr();
 }

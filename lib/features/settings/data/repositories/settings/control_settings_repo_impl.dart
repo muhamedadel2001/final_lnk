@@ -1,8 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:final_lnk/core/logic/custom_alerts.dart';
+import 'package:final_lnk/core/widgets/custom_dialog.dart';
+import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
+import 'package:final_lnk/features/settings/data/model/one_sub_account_model.dart';
 import 'package:final_lnk/features/settings/data/model/profile_model.dart';
+import 'package:final_lnk/features/settings/data/model/sub_account_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/connection/network_info.dart';
@@ -65,6 +69,73 @@ class SettingsRepoImpl implements SettingsRepo {
     try {
       final remoteServices = await settingsRemoteData.getMyRequest(lang: lang);
       return Right(remoteServices);
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, SubAccountModel>> getMySubAccount({
+    required String lang,
+  }) async {
+    try {
+      final remoteServices = await settingsRemoteData.getMySubAccount(
+        lang: lang,
+      );
+      return Right(remoteServices);
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, OneSubAccountModel>> getOneSubAccount({
+    required String lang,
+    required String id,
+  }) async {
+    try {
+      final remoteServices = await settingsRemoteData.getOneSubAccount(
+        lang: lang,
+        id: id,
+      );
+      return Right(remoteServices);
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future deleteSubAccount({
+    required String id,
+    required BuildContext context,
+  }) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final result = await settingsRemoteData.deleteSubAccount(id: id);
+        return Right(result);
+      } else {
+        CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+        return Left(Failure.handleError('No Internet Connection !'));
+      }
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, dynamic>> createSubAccount({
+    required CreateSubModel model,
+    required BuildContext context,
+  }) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final result = await settingsRemoteData.createSubAccount(model: model);
+        CustomAlerts.showMySuccessSnackBar(context, result['Message']);
+        return Right(result);
+      } else {
+        CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+        return Left(Failure.handleError('No Internet Connection !'));
+      }
     } catch (e) {
       return Left(Failure.handleError(e));
     }

@@ -147,7 +147,8 @@
   "delete": "Delete",
   "yes": "Yes",
   "cancel": "Cancel",
-  "deleteSureProperty":"Are you sure you want to delete this property ?"
+  "deleteSureProperty":"Are you sure you want to delete this property ?",
+  "deleteSureSub":"Are you sure you want to delete this account ?"
 }
 
 

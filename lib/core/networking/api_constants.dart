@@ -26,8 +26,10 @@ class ApiConstants {
   static const String addPropertyEndpoint = 'list/create';
   static const String addRequestEndpoint = 'request/create';
   static const String profileEndpoint = 'user/';
+  static const String subAccountEndpoint = 'user/mysubAccount/';
   static const String myRequestEndpoint = 'user/myrequests';
   static const String myListEndpoint = 'user/mylisting';
   static const String deleteListEndpoint = 'delete/list';
   static const String deleteRequestEndpoint = 'delete/request';
+  static const String deleteSubAccountEndpoint = 'subaccount';
 }

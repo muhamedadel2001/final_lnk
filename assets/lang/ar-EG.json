@@ -147,5 +147,6 @@
  "delete": "مسح",
  "yes": "نعم",
  "cancel": "ألغاء",
- "deleteSureProperty":"هل انت متأكد من مسح هذا العقار ؟"
+ "deleteSureProperty":"هل انت متأكد من مسح هذا العقار ؟",
+ "deleteSureSub":"هل انت متأكد من مسح هذا الحساب ؟"
 }

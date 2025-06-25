@@ -219,7 +219,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                             final isLoadingMoreItem =
                                 cubit.isLoadingMoreProperties &&
                                 index == cubit.myPropertiesList.length;
-
                             if (!isLoadingMoreItem &&
                                 index < cubit.myPropertiesList.length) {
                               return PropertyItem(

@@ -1,9 +1,12 @@
+import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/widgets/custom_alert_dialog.dart';
 import 'package:final_lnk/core/widgets/primary_button.dart';
+import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
+import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/const.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/validations/validation_helper.dart';
@@ -36,50 +39,74 @@ class _AddSubScreenState extends State<AddSubScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(LangKeys.addSub, style: getStyleBold16(context)),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context, 'refresh');
-          },
-          child: const Icon(
-            Icons.arrow_back_ios_new,
-            color: Colors.black,
-            size: 22,
+    final cubit = BlocProvider.of<SettingsCubit>(context);
+    return BlocConsumer<SettingsCubit, SettingsState>(
+      listener: (context, state) {
+        if (state is DeleteSubAccountSuccess) {
+          Navigator.pop(context, 'refresh');
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Text(LangKeys.addSub, style: getStyleBold16(context)),
+            leading: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios_new,
+                color: Colors.black,
+                size: 22,
+              ),
+            ),
           ),
-        ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 15.h),
-              TitledCustomTextField(
-                validator: Validations.globalValidation,
-                title: LangKeys.fullName,
-                controller: name,
+          body: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 15.h),
+                  TitledCustomTextField(
+                    validator: Validations.globalValidation,
+                    title: LangKeys.fullName,
+                    controller: name,
+                  ),
+                  SizedBox(height: 18.h),
+                  TitledCustomTextField(
+                    validator: Validations.emailValidation,
+                    title: LangKeys.email,
+                    controller: emailController,
+                  ),
+                  SizedBox(height: 18.h),
+                  TitledCustomTextField(
+                    validator: Validations.egyptianPhoneValidation,
+                    title: LangKeys.phoneNumber,
+                    controller: phoneController,
+                  ),
+                  SizedBox(height: 100.h),
+                  Center(
+                    child: PrimaryButton(
+                      callBack: () {
+                        cubit.createSubAccount(
+                          model: CreateSubModel(
+                            name: name.text,
+                            email: emailController.text,
+                            phone: phoneController.text,
+                          ),
+                          context: context,
+                        );
+                      },
+                      text: LangKeys.add,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 18.h),
-              TitledCustomTextField(
-                validator: Validations.emailValidation,
-                title: LangKeys.email,
-                controller: emailController,
-              ),
-              SizedBox(height: 18.h),
-              TitledCustomTextField(
-                validator: Validations.egyptianPhoneValidation,
-                title: LangKeys.phoneNumber,
-                controller: phoneController,
-              ),
-              SizedBox(height: 100.h),
-              Center(child: PrimaryButton(callBack: () {}, text: LangKeys.add)),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

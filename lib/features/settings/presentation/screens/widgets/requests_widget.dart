@@ -11,13 +11,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../../core/util/fonts.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/util/screens.dart';
 import '../../../../../core/widgets/global_error_widget.dart';
 import '../../../../home_landing/presentation/manager/home_landing_cubit.dart';
-import '../../../../requests/data/models/requests_model.dart';
 
 class RequestsTab extends StatefulWidget {
   const RequestsTab({super.key});
@@ -40,14 +38,21 @@ class _RequestsTabState extends State<RequestsTab> {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsCubit, SettingsState>(
       builder: (context, state) {
-        return state is GetMyRequestLoading || state is GetMyListLoading?
+        return state is GetMyRequestLoading ||
+                state is GetMyListLoading ||
+                state is GetMySubAccountLoading?
             ? Center(
               child:
                   Platform.isIOS
                       ? CupertinoActivityIndicator(color: primaryClr)
                       : CircularProgressIndicator(color: primaryClr),
             )
-            : state is GetMyRequestSuccess || state is GetMyListSuccess
+            : state is GetMyRequestSuccess ||
+                state is GetMyListSuccess ||
+                state is GetMySubAccountSuccess ||
+                state is ProfileSuccess ||
+                state is GetOneSuccess ||
+                state is GetOneSubAccountSuccess
             ? Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Column(
