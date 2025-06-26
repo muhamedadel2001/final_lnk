@@ -214,7 +214,14 @@ class FeaturedRequestItem extends StatelessWidget {
                 children: [
                   Spacer(),
                   !homeRequest.isMe
-                      ? Favourite(isLiked: homeRequest.isFavourite)
+                      ? GestureDetector(
+                        onTap: () {
+                          HomeLandingCubit.get(
+                            context,
+                          ).addToFav(id: id, isRequest: true, context: context);
+                        },
+                        child: Favourite(isLiked: homeRequest.isFavourite),
+                      )
                       : SizedBox.shrink(),
                 ],
               ),

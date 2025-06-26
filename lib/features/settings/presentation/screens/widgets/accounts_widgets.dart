@@ -70,12 +70,19 @@ class _AccountsWidgetsState extends State<AccountsWidgets> {
                         ),
                       ),
                       OutlinedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(
+                        onPressed: () async {
+                          String? isRefresh = await Navigator.pushNamed(
                             context,
                             screens.addSubScreen,
                             arguments: cubit,
                           );
+                          if (isRefresh == 'refresh') {
+                            cubit.getMySubAccount(
+                              lang: MyCache.getString(
+                                key: MyCacheKeys.language,
+                              ),
+                            );
+                          }
                         },
                         style: OutlinedButton.styleFrom(
                           side: BorderSide(color: Color(0xFF609966)),

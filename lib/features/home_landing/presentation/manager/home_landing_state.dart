@@ -38,3 +38,11 @@ final class DeletePropertyLoading extends HomeLandingState {}
 final class DeletePropertySuccess extends HomeLandingState {}
 
 final class DeletePropertyFailure extends HomeLandingState {}
+
+final class AddedToFavLoading extends HomeLandingState {}
+
+final class AddedToFavSuccess extends HomeLandingState {}
+
+final class AddedToFavFailure extends HomeLandingState {}
+
+final class MainHomeUpdated extends HomeLandingState {}

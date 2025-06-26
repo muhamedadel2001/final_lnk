@@ -1,5 +1,6 @@
 import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/data/model/one_sub_account_model.dart';
@@ -91,5 +92,16 @@ class SettingsRemoteData {
       data: jsonData,
     );
     return result;
+  }
+
+  Future<MyFavouriteModel> getMyFavouriteData({required String lang}) async {
+    final response = await apiConsumer.get(
+      queryParameters: {"lang": lang},
+      headers: {
+        "Cookie": "accessToken=${MyCache.getString(key: MyCacheKeys.token)}",
+      },
+      ApiConstants.favouriteEndpoint,
+    );
+    return MyFavouriteModel.fromJson(response);
   }
 }

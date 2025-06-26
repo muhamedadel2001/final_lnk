@@ -151,6 +151,8 @@ class _RequestsScreenState extends State<RequestsScreen>
             curr is GetRequestsLoading ||
             curr is GetInputsRequestsFailure ||
             curr is LoadingMoreState ||
+            curr is AddedToFavSuccess ||
+            curr is Updated ||
             curr is LoadedMoreState;
       },
       builder: (context, state) {
@@ -207,13 +209,17 @@ class _RequestsScreenState extends State<RequestsScreen>
                             cubit.myRequestsList.isNotEmpty ||
                         state is LoadingMoreState &&
                             cubit.myRequestsList.isNotEmpty ||
-                        state is GetRequestsLoading
+                        state is GetRequestsLoading ||
+                        state is AddedToFavSuccess ||
+                        state is Updated
                     ? SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           if (state is GetRequestsSuccess ||
                               state is LoadedMoreState ||
-                              state is LoadingMoreState) {
+                              state is LoadingMoreState ||
+                              state is Updated ||
+                              state is AddedToFavSuccess) {
                             // عدد العناصر الحقيقية أو زائد واحد لو بيحمل المزيد
                             final isLoadingMoreItem =
                                 cubit.isLoadingMoreRequests &&
@@ -261,7 +267,9 @@ class _RequestsScreenState extends State<RequestsScreen>
                         childCount:
                             state is GetRequestsSuccess ||
                                     state is LoadedMoreState ||
-                                    state is LoadingMoreState
+                                    state is LoadingMoreState ||
+                                    state is Updated ||
+                                    state is AddedToFavSuccess
                                 ? cubit.isLoadingMoreRequests
                                     ? cubit.myRequestsList.length + 1
                                     : cubit.myRequestsList.length

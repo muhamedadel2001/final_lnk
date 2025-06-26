@@ -150,9 +150,11 @@ class _PropertiesScreenState extends State<PropertiesScreen>
       buildWhen: (prev, curr) {
         return curr is GetPropertiesSuccess ||
             curr is GetPropertiesLoading ||
+            curr is Updated ||
             curr is GetInputsFailure ||
             curr is LoadingMoreState ||
-            curr is LoadedMoreState;
+            curr is LoadedMoreState ||
+            curr is AddedToFavSuccess;
       },
       builder: (context, state) {
         print('properties widget builder');
@@ -208,13 +210,17 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                             cubit.myPropertiesList.isNotEmpty ||
                         state is LoadingMoreState &&
                             cubit.myPropertiesList.isNotEmpty ||
-                        state is GetPropertiesLoading
+                        state is GetPropertiesLoading ||
+                        state is Updated ||
+                        state is AddedToFavSuccess
                     ? SliverList(
                       delegate: SliverChildBuilderDelegate(
                         (BuildContext context, int index) {
                           if (state is GetPropertiesSuccess ||
                               state is LoadedMoreState ||
-                              state is LoadingMoreState) {
+                              state is LoadingMoreState ||
+                              state is Updated ||
+                              state is AddedToFavSuccess) {
                             // عدد العناصر الحقيقية أو زائد واحد لو بيحمل المزيد
                             final isLoadingMoreItem =
                                 cubit.isLoadingMoreProperties &&
@@ -260,7 +266,9 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                         childCount:
                             state is GetPropertiesSuccess ||
                                     state is LoadedMoreState ||
-                                    state is LoadingMoreState
+                                    state is LoadingMoreState ||
+                                    state is AddedToFavSuccess ||
+                                    state is Updated
                                 ? cubit.isLoadingMoreProperties
                                     ? cubit.myPropertiesList.length + 1
                                     : cubit.myPropertiesList.length
@@ -284,7 +292,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
                         imagePath: 'assets/imgs/user.png',
                       ),
                     ),
-
                 SliverToBoxAdapter(child: SizedBox(height: 25.h)),
               ],
             ),

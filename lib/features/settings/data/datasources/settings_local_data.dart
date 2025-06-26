@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:final_lnk/core/logic/custom_alerts.dart';
+import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:final_lnk/features/settings/data/model/profile_model.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -24,6 +25,27 @@ class SettingsLocalData {
     if (jsonString != null) {
       CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
       return Future.value(ProfileData.fromJson(jsonDecode(jsonString)));
+    } else {
+      throw CacheException(errorMessage: 'No Internet Connection !');
+    }
+  }
+
+  cacheFavourite(MyFavouriteModel? favouriteModel) {
+    if (favouriteModel != null) {
+      MyCache.saveData(
+        key: 'favourite',
+        value: jsonEncode(favouriteModel.toJson()),
+      );
+    } else {
+      throw CacheException(errorMessage: 'No Internet Connection !');
+    }
+  }
+
+  Future<MyFavouriteModel> getLastMyFavourite(BuildContext context) {
+    final jsonString = MyCache.getDataString(key: 'favourite');
+    if (jsonString != null) {
+      CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+      return Future.value(MyFavouriteModel.fromJson(jsonDecode(jsonString)));
     } else {
       throw CacheException(errorMessage: 'No Internet Connection !');
     }

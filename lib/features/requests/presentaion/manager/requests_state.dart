@@ -35,6 +35,8 @@ final class GetRequestsFilterDataLoading extends RequestsState {}
 
 final class GetRequestsFilterDataSuccess extends RequestsState {}
 
+final class Updated extends RequestsState {}
+
 class GetRequestsFilterDataFailure extends RequestsState {
   final String message;
 

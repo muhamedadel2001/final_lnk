@@ -137,4 +137,8 @@ class ResponsesRemoteData {
   Future deleteProperty({required String endPoint, required String id}) async {
     await apiConsumer.delete("$endPoint/${id}");
   }
+
+  Future addToFav({required String id}) async {
+    await apiConsumer.post("${ApiConstants.favouriteEndpoint}${id}");
+  }
 }

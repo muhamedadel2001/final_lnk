@@ -1,21 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/core/util/screens.dart';
-import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
+import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
-import '../../../../../core/util/lang_keys.dart';
+import '../../../../../core/util/fonts.dart';
 import '../../../../../core/widgets/badge_on_image.dart';
 import '../../../../../core/widgets/favourite.dart';
 
-class PropertyItem extends StatelessWidget {
-  final Properties properties;
+class PropertyFavItem extends StatelessWidget {
+  final FavouritsLists favouritsLists;
   final void Function()? onTap;
-  const PropertyItem({super.key, required this.properties, this.onTap});
+  final void Function()? onTapLike;
+
+  const PropertyFavItem({
+    super.key,
+    required this.favouritsLists,
+    this.onTap,
+    this.onTapLike,
+  });
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -51,7 +56,7 @@ class PropertyItem extends StatelessWidget {
                     ),
                     clipBehavior: Clip.hardEdge,
                     child:
-                        properties.images == null
+                        favouritsLists.images == null
                             ? Image.asset(
                               'assets/imgs/free.jpg',
                               height: double.infinity,
@@ -60,7 +65,7 @@ class PropertyItem extends StatelessWidget {
                             )
                             : CachedNetworkImage(
                               imageUrl:
-                                  '${ApiConstants.homeImages}${properties.images}',
+                                  '${ApiConstants.homeImages}${favouritsLists.images}',
                               height: double.infinity,
                               width: 146.w,
                               fit: BoxFit.cover,
@@ -71,31 +76,22 @@ class PropertyItem extends StatelessWidget {
                                   ),
                             ),
                   ),
-                  !properties.isMe!
-                      ? GestureDetector(
-                        onTap: () {
-                          HomeLandingCubit.get(context).addToFav(
-                            id: properties.sId!,
-                            isRequest: false,
-                            context: context,
-                            isFromProperties: true,
-                            isFromRequests: false, // 🔥 مهم!
-                          );
-                        },
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Favourite(isLiked: properties.isFavourite!),
-                          ),
-                        ),
-                      )
-                      : const SizedBox.shrink(),
+
+                  GestureDetector(
+                    onTap: onTapLike,
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Favourite(isLiked: true),
+                      ),
+                    ),
+                  ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: BadgeOnImage(price: properties.type!),
+                      child: BadgeOnImage(price: favouritsLists.type!),
                     ),
                   ),
                 ],
@@ -111,7 +107,7 @@ class PropertyItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 12.0),
                       child: Text(
-                        properties.title!,
+                        favouritsLists.title!,
                         style: getStyleBold13(context).copyWith(fontSize: 15),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
@@ -127,7 +123,7 @@ class PropertyItem extends StatelessWidget {
                         SizedBox(width: 2.w),
                         Flexible(
                           child: Text(
-                            properties.location!.name!,
+                            favouritsLists.location!.name!,
                             style: getStyleBold13(
                               context,
                             ).copyWith(color: textSecondaryClr),
@@ -143,7 +139,7 @@ class PropertyItem extends StatelessWidget {
                         SizedBox(width: 2.w),
                         Expanded(
                           child: Text(
-                            properties.area!,
+                            favouritsLists.area!,
                             style: getStyleBold13(
                               context,
                             ).copyWith(color: textSecondaryClr),
@@ -162,7 +158,7 @@ class PropertyItem extends StatelessWidget {
                         SizedBox(width: 3.w),
                         Flexible(
                           child: Text(
-                            properties.apartment!.name!,
+                            favouritsLists.apartment!.name!,
                             style: getStyleBold13(
                               context,
                             ).copyWith(color: textSecondaryClr),
@@ -184,7 +180,7 @@ class PropertyItem extends StatelessWidget {
                           constraints: const BoxConstraints(maxWidth: 120),
                           width: 85.w,
                           child: Text(
-                            properties.price!,
+                            favouritsLists.price!,
                             style: getStyleBold13(
                               context,
                             ).copyWith(color: textSecondaryClr),

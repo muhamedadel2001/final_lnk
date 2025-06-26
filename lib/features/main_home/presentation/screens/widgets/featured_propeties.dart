@@ -1,3 +1,4 @@
+import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_properties_item_shimmer.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/featured_property_item.dart';

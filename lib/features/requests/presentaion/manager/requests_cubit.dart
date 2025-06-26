@@ -211,4 +211,26 @@ class RequestsCubit extends Cubit<RequestsState> {
   changeValue() {
     emit(GetInputsRequestsSuccess());
   }
+
+  void toggleFavoriteLocally(String id) {
+    final index = myRequestsList.indexWhere((item) => item.sId == id);
+    if (index != -1) {
+      final updatedItem = myRequestsList[index].copyWith(
+        isFavourite: !(myRequestsList[index].isFavourite ?? false),
+      );
+      myRequestsList[index] = updatedItem;
+    }
+
+    // ✅ كمان لازم تحدث الـ list بتاعت الفلتر لو هي اللي ظاهرة
+    final filterIndex = myRequestsListFilter.indexWhere(
+      (item) => item.sId == id,
+    );
+    if (filterIndex != -1) {
+      final updatedFilterItem = myRequestsListFilter[filterIndex].copyWith(
+        isFavourite: !(myRequestsListFilter[filterIndex].isFavourite ?? false),
+      );
+      myRequestsListFilter[filterIndex] = updatedFilterItem;
+    }
+    emit(Updated());
+  }
 }

@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
+import '../../../../home_landing/presentation/manager/home_landing_cubit.dart';
 import 'my_request_item.dart';
 
 class RequestFeedItem extends StatelessWidget {
@@ -75,7 +76,18 @@ class RequestFeedItem extends StatelessWidget {
                 ),
               ),
               !requests.isMe!
-                  ? Favourite(isLiked: requests.isFavourite!)
+                  ? GestureDetector(
+                    onTap: () {
+                      HomeLandingCubit.get(context).addToFav(
+                        id: requests.sId!,
+                        isRequest: false,
+                        context: context,
+                        isFromProperties: false,
+                        isFromRequests: true, // 🔥 مهم!
+                      );
+                    },
+                    child: Favourite(isLiked: requests.isFavourite!),
+                  )
                   : const SizedBox.shrink(),
             ],
           ),

@@ -37,4 +37,29 @@ class MainHomeCubit extends Cubit<MainHomeState> {
     currentBannerIndex = index;
     emit(BannerChanged()); // هنعرف BannerChanged تحت في state
   }
+
+  void toggleFavoriteLocal({required String id, required bool isRequest}) {
+    if (userData == null) return;
+    if (isRequest) {
+      final updatedRequests =
+          userData!.homeRequests.map((item) {
+            if (item.id == id) {
+              return item.copyWith(isFavourite: !item.isFavourite);
+            }
+            return item;
+          }).toList();
+      userData = userData!.copyWith(homeRequests: updatedRequests);
+    } else {
+      final updatedListings =
+          userData!.homeListing.map((item) {
+            if (item.id == id) {
+              return item.copyWith(isFavourite: !item.isFavourite);
+            }
+            return item;
+          }).toList();
+      userData = userData!.copyWith(homeListing: updatedListings);
+    }
+
+    emit(MainHomeUpdated()); // state جديدة تخلّي الـ UI يتحدّث
+  }
 }

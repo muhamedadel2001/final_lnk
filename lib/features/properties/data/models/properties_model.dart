@@ -115,6 +115,42 @@ class Properties {
     data['isFavourite'] = this.isFavourite;
     return data;
   }
+
+  Properties copyWith({
+    String? sId,
+    String? type,
+    String? typeOfList,
+    bool? isMe,
+    String? title,
+    Location? location,
+    String? area,
+    String? price,
+    TypeOfRent? typeOfRent,
+    Location? apartment,
+    String? images,
+    UserId? userId,
+    UserId? agencyId,
+    String? createdAt,
+    bool? isFavourite,
+  }) {
+    return Properties(
+      sId: sId ?? this.sId,
+      type: type ?? this.type,
+      typeOfList: typeOfList ?? this.typeOfList,
+      isMe: isMe ?? this.isMe,
+      title: title ?? this.title,
+      location: location ?? this.location,
+      area: area ?? this.area,
+      price: price ?? this.price,
+      typeOfRent: typeOfRent ?? this.typeOfRent,
+      apartment: apartment ?? this.apartment,
+      images: images ?? this.images,
+      userId: userId ?? this.userId,
+      agencyId: agencyId ?? this.agencyId,
+      createdAt: createdAt ?? this.createdAt,
+      isFavourite: isFavourite ?? this.isFavourite,
+    );
+  }
 }
 
 class Location {

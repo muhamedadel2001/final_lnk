@@ -1,14 +1,13 @@
 import 'package:dartz/dartz.dart';
 import 'package:final_lnk/core/logic/custom_alerts.dart';
-import 'package:final_lnk/core/widgets/custom_dialog.dart';
 import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/data/model/one_sub_account_model.dart';
 import 'package:final_lnk/features/settings/data/model/profile_model.dart';
 import 'package:final_lnk/features/settings/data/model/sub_account_model.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../core/connection/network_info.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/repositories/settings/control_settings_repo.dart';
@@ -135,6 +134,29 @@ class SettingsRepoImpl implements SettingsRepo {
       } else {
         CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
         return Left(Failure.handleError('No Internet Connection !'));
+      }
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MyFavouriteModel>> getMyFavourite({
+    required BuildContext context,
+    required String lang,
+  }) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final remoteServices = await settingsRemoteData.getMyFavouriteData(
+          lang: lang,
+        );
+        settingsLocalData.cacheFavourite(remoteServices);
+        return Right(remoteServices);
+      } else {
+        final localServices = await settingsLocalData.getLastMyFavourite(
+          context,
+        );
+        return Right(localServices);
       }
     } catch (e) {
       return Left(Failure.handleError(e));

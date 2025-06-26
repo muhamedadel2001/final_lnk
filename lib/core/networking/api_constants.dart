@@ -32,4 +32,5 @@ class ApiConstants {
   static const String deleteListEndpoint = 'delete/list';
   static const String deleteRequestEndpoint = 'delete/request';
   static const String deleteSubAccountEndpoint = 'subaccount';
+  static const String favouriteEndpoint = 'favourite/';
 }

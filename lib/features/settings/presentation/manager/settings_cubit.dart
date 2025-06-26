@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/core/widgets/custom_dialog.dart';
 import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
+import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_request_model.dart';
 import 'package:final_lnk/features/settings/data/model/sub_account_model.dart';
@@ -25,6 +26,7 @@ class SettingsCubit extends Cubit<SettingsState> {
   String? myImage;
   String? myTitle;
   MyListModel? myListModel;
+  MyFavouriteModel? myFavouriteModel;
   SubAccountModel? subAccountModel;
   OneSubAccountModel? oneSubAccountModel;
   MyRequestModel? myRequestModel;
@@ -35,7 +37,7 @@ class SettingsCubit extends Cubit<SettingsState> {
 
   getMyProfile({required BuildContext context}) async {
     emit(ProfileLoading());
-    final result = await settingsUseCase.getMyProfileCallCall(context: context);
+    final result = await settingsUseCase.getMyProfileCall(context: context);
     result.fold(
       (failure) {
         print(failure.errMessage);
@@ -138,14 +140,14 @@ class SettingsCubit extends Cubit<SettingsState> {
       );
       result.fold(
         (failure) {
-          emit(DeleteSubAccountFailure());
+          emit(DeleteSubAccountFailure(null));
         },
         (success) {
           emit(DeleteSubAccountSuccess());
         },
       );
     } catch (err) {
-      emit(DeleteSubAccountFailure());
+      emit(DeleteSubAccountFailure(null));
     }
   }
 
@@ -162,11 +164,37 @@ class SettingsCubit extends Cubit<SettingsState> {
     result.fold(
       (failure) {
         print(failure.errMessage);
-        emit(DeleteSubAccountFailure());
+        emit(DeleteSubAccountFailure(failure.errMessage));
       },
       (success) {
         emit(DeleteSubAccountSuccess());
       },
     );
+  }
+
+  List<FavouritsLists> myFavouriteList = [];
+  List<FavouritsRequests> myFavouriteRequest = [];
+
+  getMyFavourite({required BuildContext context, required String lang}) async {
+    emit(GetFavouriteLoading());
+    final result = await settingsUseCase.getMyFavouriteCall(
+      context: context,
+      lang: lang,
+    );
+    result.fold(
+      (failure) {
+        emit(GetFavouriteFailure());
+      },
+      (success) {
+        myFavouriteModel = success;
+        myFavouriteList = success.favouritsLists!;
+        myFavouriteRequest = success.favouritsRequests!;
+        emit(GetFavouriteSuccess());
+      },
+    );
+  }
+
+  void toggleFavoriteLocally(String id) {
+    emit(GetFavouriteSuccess());
   }
 }

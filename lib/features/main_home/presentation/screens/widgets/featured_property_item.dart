@@ -142,12 +142,23 @@ class FeaturedPropertyItem extends StatelessWidget {
                         ),
                       ),
                       !homeListing.isMe
-                          ? Align(
-                            alignment:
-                                context.locale.languageCode == 'en'
-                                    ? Alignment.bottomRight
-                                    : Alignment.bottomLeft,
-                            child: Favourite(isLiked: homeListing.isFavourite),
+                          ? GestureDetector(
+                            onTap: () {
+                              HomeLandingCubit.get(context).addToFav(
+                                id: id,
+                                isRequest: false,
+                                context: context,
+                              );
+                            },
+                            child: Align(
+                              alignment:
+                                  context.locale.languageCode == 'en'
+                                      ? Alignment.bottomRight
+                                      : Alignment.bottomLeft,
+                              child: Favourite(
+                                isLiked: homeListing.isFavourite,
+                              ),
+                            ),
                           )
                           : SizedBox.shrink(),
                     ],

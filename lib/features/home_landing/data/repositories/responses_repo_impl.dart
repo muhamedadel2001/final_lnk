@@ -187,4 +187,19 @@ class ResponsesRepoImpl implements ResponsesRepo {
       return Left(Failure.handleError(e));
     }
   }
+
+  @override
+  Future addToFav({required String id, required BuildContext context}) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final result = await responsesRemoteData.addToFav(id: id);
+        return Right(result);
+      } else {
+        CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+        return Left(Failure.handleError('No Internet Connection !'));
+      }
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
 }

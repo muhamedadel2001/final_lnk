@@ -29,6 +29,8 @@ class GetInputsFailure extends PropertiesState {}
 
 class PropertyStatusChanged extends PropertiesState {}
 
+class Updated extends PropertiesState {}
+
 class PropertyCategoryChanged extends PropertiesState {}
 
 class GetPropertiesFilterDataLoading extends PropertiesState {}

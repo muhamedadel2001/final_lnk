@@ -50,6 +50,7 @@ import '../../../auth/data/models/cities_model.dart';
 import '../../../auth/data/models/finishing_model.dart';
 import '../../../auth/data/models/type_of_rent_model.dart';
 import '../../../auth/data/models/user_selection.dart';
+import '../../../main_home/data/models/user_model.dart';
 import '../../../properties/presentation/screens/properties_screen.dart';
 import '../../../requests/presentaion/screens/requests_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
@@ -422,5 +423,52 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     } catch (err) {
       emit(DeletePropertyFailure());
     }
+  }
+
+  Future<void> addToFav({
+    required String id,
+    required bool isRequest,
+    required BuildContext context,
+    bool isFromProperties = false, // 🔄 فلاغ جديد نحدده من UI
+    bool isFromRequests = false, // 🔄 فلاغ جديد نحدده من UI
+    bool isSetting = false, // 🔄 فلاغ جديد نحدده من UI
+  }) async {
+    // ✨ 1. تعديل محلي فوري (optimistic update)
+    if (isFromProperties) {
+      PropertiesCubit.get(context).toggleFavoriteLocally(id); // خصائص
+    } else if (isFromRequests) {
+      RequestsCubit.get(context).toggleFavoriteLocally(id);
+    } else if (isSetting) {
+      print(id);
+      SettingsCubit.get(context).toggleFavoriteLocally(id);
+    } else {
+      MainHomeCubit.get(
+        context,
+      ).toggleFavoriteLocal(id: id, isRequest: isRequest); // الرئيسية
+    }
+
+    // ✨ 2. الريكوست الحقيقي للسيرفر
+    final result = await responsesUseCase.addToFav(id: id, context: context);
+
+    result.fold(
+      (failure) {
+        // ✨ 3. رجّع التغيير لو فشل
+        if (isFromProperties) {
+          PropertiesCubit.get(context).toggleFavoriteLocally(id); // rollback
+        } else if (isFromRequests) {
+          RequestsCubit.get(context).toggleFavoriteLocally(id);
+        } else if (isSetting) {
+          SettingsCubit.get(context).toggleFavoriteLocally(id);
+        } else {
+          MainHomeCubit.get(
+            context,
+          ).toggleFavoriteLocal(id: id, isRequest: isRequest); // rollback
+        }
+        emit(AddedToFavFailure());
+      },
+      (success) {
+        emit(AddedToFavSuccess());
+      },
+    );
   }
 }

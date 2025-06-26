@@ -58,6 +58,41 @@ class Requests {
     this.createdAt,
     this.isFavourite,
   });
+  Requests copyWith({
+    String? sId,
+    String? titleOfUser,
+    bool? isMe,
+    String? type,
+    String? typeOfRequest,
+    String? title,
+    Location? location,
+    String? area,
+    String? minPrice,
+    String? maxPrice,
+    Location? finishing,
+    UserId? userId,
+    UserId? agencyId,
+    String? createdAt,
+    bool? isFavourite,
+  }) {
+    return Requests(
+      titleOfUser: titleOfUser ?? this.titleOfUser,
+      sId: sId ?? this.sId,
+      type: type ?? this.type,
+      typeOfRequest: typeOfRequest ?? this.typeOfRequest,
+      isMe: isMe ?? this.isMe,
+      title: title ?? this.title,
+      location: location ?? this.location,
+      area: area ?? this.area,
+      minPrice: minPrice ?? this.minPrice,
+      maxPrice: maxPrice ?? this.maxPrice,
+      userId: userId ?? this.userId,
+      finishing: finishing ?? this.finishing,
+      agencyId: agencyId ?? this.agencyId,
+      createdAt: createdAt ?? this.createdAt,
+      isFavourite: isFavourite ?? this.isFavourite,
+    );
+  }
 
   Requests.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];

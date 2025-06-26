@@ -2,9 +2,11 @@ import 'package:final_lnk/core/logic/custom_alerts.dart';
 import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/const.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
+import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../features/home_landing/data/models/create_request_model.dart';
 import '../../features/settings/data/model/profile_model.dart';
@@ -271,6 +273,26 @@ class Validations {
                   phone: phoneController.text,
                   email: emailController.text,
                 ),
+      );
+    } else {
+      CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);
+    }
+  }
+
+  static checkForCreateSubAccount(
+    SettingsCubit settingsCubit,
+    BuildContext context,
+  ) {
+    if (isValidEgyptianPhone(phoneController.text) &&
+        name.text.trim().isNotEmpty &&
+        emailController.text.trim().isNotEmpty) {
+      settingsCubit.createSubAccount(
+        model: CreateSubModel(
+          name: nameSubController.text,
+          email: emailSubController.text,
+          phone: phoneSubController.text,
+        ),
+        context: context,
       );
     } else {
       CustomAlerts.showMySnackBar(context, LangKeys.validDataAndNumber);

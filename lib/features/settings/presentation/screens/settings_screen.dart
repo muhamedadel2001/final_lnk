@@ -72,7 +72,14 @@ class SettingsScreen extends StatelessWidget {
                   iconData: Icons.favorite,
                   title: LangKeys.favourite,
                   callBack: () {
-                    Navigator.pushNamed(context, screens.favouriteScreen);
+                    Navigator.pushNamed(
+                      context,
+                      screens.favouriteScreen,
+                      arguments: {
+                        'settingsCubit': SettingsCubit.get(context),
+                        'homeLandingCubit': HomeLandingCubit.get(context),
+                      },
+                    );
                   },
                   hasIcon: true,
                   isDanger: false,

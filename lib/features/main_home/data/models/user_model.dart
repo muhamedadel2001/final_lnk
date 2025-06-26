@@ -34,6 +34,21 @@ class UserData {
     'HomeListing': homeListing.map((e) => e.toJson()).toList(),
     'HomeRequests': homeRequests.map((e) => e.toJson()).toList(),
   };
+  UserData copyWith({
+    String? name,
+    String? image,
+    String? typeOfUser,
+    List<HomeListing>? homeListing,
+    List<HomeRequest>? homeRequests,
+  }) {
+    return UserData(
+      name: name ?? this.name,
+      image: image ?? this.image,
+      typeOfUser: typeOfUser ?? this.typeOfUser,
+      homeListing: homeListing ?? this.homeListing,
+      homeRequests: homeRequests ?? this.homeRequests,
+    );
+  }
 }
 
 class HomeListing {
@@ -94,6 +109,35 @@ class HomeListing {
     'createdAt': createdAt,
     'isFavourite': isFavourite,
   };
+  HomeListing copyWith({
+    String? id,
+    bool? isMe,
+    String? title,
+    NamedField? location,
+    String? area,
+    String? price,
+    NamedField? apartment,
+    String? images,
+    ImageField? userId,
+    ImageField? agencyId,
+    String? createdAt,
+    bool? isFavourite,
+  }) {
+    return HomeListing(
+      id: id ?? this.id,
+      isMe: isMe ?? this.isMe,
+      title: title ?? this.title,
+      location: location ?? this.location,
+      area: area ?? this.area,
+      price: price ?? this.price,
+      apartment: apartment ?? this.apartment,
+      images: images ?? this.images,
+      userId: userId ?? this.userId,
+      agencyId: agencyId ?? this.agencyId,
+      createdAt: createdAt ?? this.createdAt,
+      isFavourite: isFavourite ?? this.isFavourite,
+    );
+  }
 }
 
 class HomeRequest {
@@ -162,6 +206,39 @@ class HomeRequest {
     'createdAt': createdAt,
     'isFavourite': isFavourite,
   };
+  HomeRequest copyWith({
+    String? id,
+    bool? isMe,
+    String? type,
+    String? typeOfRequest,
+    String? title,
+    NamedField? location,
+    String? area,
+    String? minPrice,
+    String? maxPrice,
+    NamedField? finishing,
+    ImageField? userId,
+    ImageField? agencyId,
+    String? createdAt,
+    bool? isFavourite,
+  }) {
+    return HomeRequest(
+      id: id ?? this.id,
+      isMe: isMe ?? this.isMe,
+      type: type ?? this.type,
+      typeOfRequest: typeOfRequest ?? this.typeOfRequest,
+      title: title ?? this.title,
+      location: location ?? this.location,
+      area: area ?? this.area,
+      minPrice: minPrice ?? this.minPrice,
+      maxPrice: maxPrice ?? this.maxPrice,
+      finishing: finishing ?? this.finishing,
+      userId: userId ?? this.userId,
+      agencyId: agencyId ?? this.agencyId,
+      createdAt: createdAt ?? this.createdAt,
+      isFavourite: isFavourite ?? this.isFavourite,
+    );
+  }
 }
 
 class NamedField {

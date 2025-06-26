@@ -1,3 +1,4 @@
+import 'package:final_lnk/core/logic/custom_alerts.dart';
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/widgets/custom_alert_dialog.dart';
@@ -22,9 +23,9 @@ class AddSubScreen extends StatefulWidget {
 class _AddSubScreenState extends State<AddSubScreen> {
   @override
   void initState() {
-    name = TextEditingController();
-    phoneController = TextEditingController();
-    emailController = TextEditingController();
+    nameSubController = TextEditingController();
+    phoneSubController = TextEditingController();
+    emailSubController = TextEditingController();
 
     super.initState();
   }
@@ -32,9 +33,9 @@ class _AddSubScreenState extends State<AddSubScreen> {
   @override
   void dispose() {
     super.dispose();
-    name.dispose();
-    phoneController.dispose();
-    emailController.dispose();
+    nameSubController.dispose();
+    phoneSubController.dispose();
+    emailSubController.dispose();
   }
 
   @override
@@ -44,6 +45,9 @@ class _AddSubScreenState extends State<AddSubScreen> {
       listener: (context, state) {
         if (state is DeleteSubAccountSuccess) {
           Navigator.pop(context, 'refresh');
+        }
+        if (state is DeleteSubAccountFailure) {
+          CustomAlerts.showMySnackBar(context, state.msg!);
         }
       },
       builder: (context, state) {
@@ -71,34 +75,30 @@ class _AddSubScreenState extends State<AddSubScreen> {
                   TitledCustomTextField(
                     validator: Validations.globalValidation,
                     title: LangKeys.fullName,
-                    controller: name,
+                    controller: nameSubController,
                   ),
                   SizedBox(height: 18.h),
                   TitledCustomTextField(
                     validator: Validations.emailValidation,
                     title: LangKeys.email,
-                    controller: emailController,
+                    controller: emailSubController,
                   ),
                   SizedBox(height: 18.h),
                   TitledCustomTextField(
                     validator: Validations.egyptianPhoneValidation,
                     title: LangKeys.phoneNumber,
-                    controller: phoneController,
+                    controller: phoneSubController,
                   ),
                   SizedBox(height: 100.h),
                   Center(
                     child: PrimaryButton(
                       callBack: () {
-                        cubit.createSubAccount(
-                          model: CreateSubModel(
-                            name: name.text,
-                            email: emailController.text,
-                            phone: phoneController.text,
-                          ),
-                          context: context,
-                        );
+                        Validations.checkForCreateSubAccount(cubit, context);
                       },
-                      text: LangKeys.add,
+                      text:
+                          state is DeleteSubAccountLoading
+                              ? '...'
+                              : LangKeys.add,
                     ),
                   ),
                 ],

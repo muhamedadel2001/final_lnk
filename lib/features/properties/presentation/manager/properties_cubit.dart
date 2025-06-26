@@ -207,4 +207,27 @@ class PropertiesCubit extends Cubit<PropertiesState> {
   changeValue() {
     emit(GetInputsSuccess());
   }
+
+  void toggleFavoriteLocally(String id) {
+    final index = myPropertiesList.indexWhere((item) => item.sId == id);
+    if (index != -1) {
+      final updatedItem = myPropertiesList[index].copyWith(
+        isFavourite: !(myPropertiesList[index].isFavourite ?? false),
+      );
+      myPropertiesList[index] = updatedItem;
+    }
+
+    // ✅ كمان لازم تحدث الـ list بتاعت الفلتر لو هي اللي ظاهرة
+    final filterIndex = myPropertiesListFilter.indexWhere(
+      (item) => item.sId == id,
+    );
+    if (filterIndex != -1) {
+      final updatedFilterItem = myPropertiesListFilter[filterIndex].copyWith(
+        isFavourite:
+            !(myPropertiesListFilter[filterIndex].isFavourite ?? false),
+      );
+      myPropertiesListFilter[filterIndex] = updatedFilterItem;
+    }
+    emit(Updated());
+  }
 }

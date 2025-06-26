@@ -166,3 +166,6 @@ late TextEditingController whatsController;
 late TextEditingController areaController;
 late TextEditingController priceController;
 late TextEditingController insuranceOrDownController;
+late TextEditingController nameSubController;
+late TextEditingController phoneSubController;
+late TextEditingController emailSubController;

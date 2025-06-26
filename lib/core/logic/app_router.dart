@@ -170,8 +170,18 @@ class AppRouter {
       case screens.termsScreen:
         return MaterialPageRoute<String>(builder: (_) => const TermsScreen());
       case screens.favouriteScreen:
+        final args = routeSettings.arguments as Map<String, dynamic>;
+        final settingsCubit = args['settingsCubit'] as SettingsCubit;
+        final homeLandingCubit = args['homeLandingCubit'] as HomeLandingCubit;
         return MaterialPageRoute<String>(
-          builder: (_) => const FavouritesScreen(),
+          builder:
+              (_) => MultiBlocProvider(
+                providers: [
+                  BlocProvider.value(value: settingsCubit),
+                  BlocProvider.value(value: homeLandingCubit),
+                ],
+                child: FavouritesScreen(),
+              ),
         );
       case screens.contactScreen:
         return MaterialPageRoute<String>(

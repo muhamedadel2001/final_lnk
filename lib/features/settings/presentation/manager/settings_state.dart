@@ -41,8 +41,18 @@ final class GetOneSubAccountSuccess extends SettingsState {}
 
 final class GetOneSubAccountFailure extends SettingsState {}
 
-final class DeleteSubAccountFailure extends SettingsState {}
+final class DeleteSubAccountFailure extends SettingsState {
+  final String? msg;
+
+  DeleteSubAccountFailure(this.msg);
+}
 
 final class DeleteSubAccountLoading extends SettingsState {}
 
 final class DeleteSubAccountSuccess extends SettingsState {}
+
+final class GetFavouriteLoading extends SettingsState {}
+
+final class GetFavouriteSuccess extends SettingsState {}
+
+final class GetFavouriteFailure extends SettingsState {}

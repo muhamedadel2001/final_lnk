@@ -98,4 +98,8 @@ class ResponsesUseCase {
       context: context,
     );
   }
+
+  Future addToFav({required String id, required BuildContext context}) {
+    return responsesRepo.addToFav(id: id, context: context);
+  }
 }

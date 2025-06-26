@@ -53,4 +53,5 @@ abstract class ResponsesRepo {
     required String id,
     required BuildContext context,
   });
+  Future addToFav({required String id, required BuildContext context});
 }
