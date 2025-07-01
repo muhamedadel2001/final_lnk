@@ -34,5 +34,6 @@ abstract class SettingsRepo {
     required BuildContext context,
     required String lang,
   });
-  // Future logout(BuildContext context);
+  Future logout(BuildContext context);
+  Future deleteAcc(BuildContext context);
 }

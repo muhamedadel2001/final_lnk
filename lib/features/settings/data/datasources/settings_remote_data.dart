@@ -104,4 +104,12 @@ class SettingsRemoteData {
     );
     return MyFavouriteModel.fromJson(response);
   }
+
+  Future logout() async {
+    await apiConsumer.post("${ApiConstants.logoutEndpoint}");
+  }
+
+  Future deleteAcc() async {
+    await apiConsumer.delete("${ApiConstants.profileEndpoint}");
+  }
 }

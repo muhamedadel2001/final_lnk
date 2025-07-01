@@ -148,7 +148,15 @@
   "yes": "Yes",
   "cancel": "Cancel",
   "deleteSureProperty":"Are you sure you want to delete this property ?",
-  "deleteSureSub":"Are you sure you want to delete this account ?"
+  "deleteSureSub":"Are you sure you want to delete this account ?",
+  "deleteSureLogout":"Are you sure you want to logout ?",
+  "deleteSureAcc":"Are you sure you want to delete your account ?",
+  "weAreHereToHelp":"We are here to help",
+  "weAreHereToHelpDes":"Contact us anytime and we will be happy to answer you.",
+  "callUsForSub": "Call us to learn about our subscription plans and exclusive offers. Our team will guide you through the process and help you choose the best plan.\nIf we miss your call, leave a message, and we’ll get back to you with all the details soon.",
+  "subscriptionRequired":"Subscription Required",
+  "contactUsToUnlock":"Contact us\n to subscribe and Unlock All Features",
+  "whatsApp":"WhatsApp"
 }
 
 

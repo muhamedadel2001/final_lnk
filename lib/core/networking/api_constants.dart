@@ -6,6 +6,7 @@ class ApiConstants {
       'http://147.79.101.225:5894/uploads/listingImages/';
   static const String signupEndpoint = 'auth/register';
   static const String loginEndpoint = 'auth/login';
+  static const String logoutEndpoint = 'auth/logout';
   static const String cityEndpoint = 'city';
   static const String apartmentEndpoint = 'apartment';
   static const String typeOfRentEndpoint = 'typeOfRent';

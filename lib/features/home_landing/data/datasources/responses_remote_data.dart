@@ -17,6 +17,17 @@ import '../../../auth/data/models/type_of_rent_model.dart';
 class ResponsesRemoteData {
   final ApiConsumer apiConsumer;
   ResponsesRemoteData({required this.apiConsumer});
+
+  Future<bool> isActive() async {
+    final response = await apiConsumer.get(
+      headers: {
+        "Cookie": "accessToken=${MyCache.getString(key: MyCacheKeys.token)}",
+      },
+      "${ApiConstants.homeEndpoint}/activation",
+    );
+    return response['isActive'];
+  }
+
   Future<ListsModel> getOneList({
     required String lang,
     required String id,

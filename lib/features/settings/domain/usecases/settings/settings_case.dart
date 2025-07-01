@@ -66,7 +66,11 @@ class SettingsUseCase {
     return settingsRepo.getMyFavourite(context: context, lang: lang);
   }
 
-  /* Future logout(BuildContext context) {
-    return controlSettingsRepo.logout(context);
-  }*/
+  Future logout(BuildContext context) {
+    return settingsRepo.logout(context);
+  }
+
+  Future deleteAcc(BuildContext context) {
+    return settingsRepo.deleteAcc(context);
+  }
 }

@@ -91,6 +91,13 @@ class GetStartedScreen extends StatelessWidget {
                         screens.homeLandingScreen,
                         (route) => false,
                       )
+                      : MyCache.getBool(key: MyCacheKeys.onBoardingViewed) ==
+                          true
+                      ? Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        screens.loginScreen,
+                        (route) => false,
+                      )
                       : Navigator.pushNamed(context, screens.onBoardingScreen);
                 },
 

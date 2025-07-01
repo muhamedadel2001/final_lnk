@@ -8,9 +8,12 @@ import 'api_consumer.dart';
 class DioConsumer extends ApiConsumer {
   final Dio dio;
   DioConsumer({required this.dio}) {
+    dio.options = BaseOptions(
+      connectTimeout: Duration(seconds: 90),
+      receiveTimeout: Duration(seconds: 90),
+    );
     dio.options.baseUrl = ApiConstants.baseUrl;
   }
-
   @override
   Future<dynamic> post(
     String path, {

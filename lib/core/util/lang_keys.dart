@@ -155,4 +155,12 @@ class LangKeys {
   static String get cancel => 'cancel'.tr();
   static String get deleteSureProperty => 'deleteSureProperty'.tr();
   static String get deleteSureSub => 'deleteSureSub'.tr();
+  static String get deleteSureLogout => 'deleteSureLogout'.tr();
+  static String get deleteSureAcc => 'deleteSureAcc'.tr();
+  static String get weAreHereToHelp => 'weAreHereToHelp'.tr();
+  static String get weAreHereToHelpDes => 'weAreHereToHelpDes'.tr();
+  static String get callUsForSub => 'callUsForSub'.tr();
+  static String get subscriptionRequired => 'subscriptionRequired'.tr();
+  static String get contactUsToUnlock => 'contactUsToUnlock'.tr();
+  static String get whatsApp => 'whatsApp'.tr();
 }

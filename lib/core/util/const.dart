@@ -2,6 +2,7 @@ import 'package:final_lnk/core/util/property_model.dart';
 import 'package:flutter/cupertino.dart';
 
 const String kLogo = 'assets/my_logo.png';
+const String subImage = 'assets/Group.png';
 /*
 
 const String kLogo = 'assets/imgs/on_boarding/logo.png';

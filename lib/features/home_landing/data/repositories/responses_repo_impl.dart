@@ -96,6 +96,16 @@ class ResponsesRepoImpl implements ResponsesRepo {
   }
 
   @override
+  Future<Either<Failure, bool>> isActive() async {
+    try {
+      final result = await responsesRemoteData.isActive();
+      return Right(result);
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
   Future<Either<Failure, FinishingModel>> getFinishingType({
     required String lang,
   }) async {

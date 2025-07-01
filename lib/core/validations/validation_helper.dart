@@ -6,20 +6,16 @@ import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
-import 'package:skeletonizer/skeletonizer.dart';
-
 import '../../features/home_landing/data/models/create_request_model.dart';
 import '../../features/settings/data/model/profile_model.dart';
 import '../util/lang_keys.dart';
 
 class Validations {
   static final RegExp _arabicRegex = RegExp(r'[\u0600-\u06FF]');
-
   static String? egyptianPhoneValidation(String? val) {
     if (val == null || val.trim().isEmpty) {
       return LangKeys.fieldRequired;
     }
-
     final cleaned = val.trim();
 
     if (_arabicRegex.hasMatch(cleaned)) {

@@ -162,4 +162,34 @@ class SettingsRepoImpl implements SettingsRepo {
       return Left(Failure.handleError(e));
     }
   }
+
+  @override
+  Future logout(BuildContext context) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final result = await settingsRemoteData.logout();
+        return Right(result);
+      } else {
+        CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+        return Left(Failure.handleError('No Internet Connection !'));
+      }
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
+
+  @override
+  Future deleteAcc(BuildContext context) async {
+    try {
+      if (await networkInfo.isConnected!) {
+        final result = await settingsRemoteData.deleteAcc();
+        return Right(result);
+      } else {
+        CustomAlerts.showMySnackBar(context, 'No Internet Connection !');
+        return Left(Failure.handleError('No Internet Connection !'));
+      }
+    } catch (e) {
+      return Left(Failure.handleError(e));
+    }
+  }
 }

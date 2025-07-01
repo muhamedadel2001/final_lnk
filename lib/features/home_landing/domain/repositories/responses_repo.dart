@@ -19,6 +19,7 @@ abstract class ResponsesRepo {
     required String id,
     required BuildContext context,
   });
+  Future<Either<Failure, bool>> isActive();
   Future<Either<Failure, RequestModel>> getOneRequest({
     required String lang,
     required String id,

@@ -104,7 +104,6 @@ class PropertiesCubit extends Cubit<PropertiesState> {
 
   AreasModel? areasModel;
   TypeOfRentModel? typeOfRentModel;
-
   Future<void> getAllInputsPropertiesFilter({required String lang}) async {
     emit(GetInputsLoading());
     final results = await Future.wait([
@@ -217,7 +216,6 @@ class PropertiesCubit extends Cubit<PropertiesState> {
       myPropertiesList[index] = updatedItem;
     }
 
-    // ✅ كمان لازم تحدث الـ list بتاعت الفلتر لو هي اللي ظاهرة
     final filterIndex = myPropertiesListFilter.indexWhere(
       (item) => item.sId == id,
     );

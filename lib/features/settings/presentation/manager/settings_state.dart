@@ -56,3 +56,9 @@ final class GetFavouriteLoading extends SettingsState {}
 final class GetFavouriteSuccess extends SettingsState {}
 
 final class GetFavouriteFailure extends SettingsState {}
+
+final class LogoutLoading extends SettingsState {}
+
+final class LogoutSuccess extends SettingsState {}
+
+final class LogoutFailure extends SettingsState {}

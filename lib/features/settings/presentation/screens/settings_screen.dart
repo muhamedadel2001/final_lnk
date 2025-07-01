@@ -1,6 +1,9 @@
+import 'package:final_lnk/core/databases/cache/my_cache.dart';
+import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
+import 'package:final_lnk/core/widgets/custom_dialog.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +18,17 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('setting screen');
-    return BlocBuilder<SettingsCubit, SettingsState>(
+    return BlocConsumer<SettingsCubit, SettingsState>(
+      listener: (context, state) {
+        if (state is LogoutSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            screens.loginScreen,
+            (route) => false,
+          );
+          MyCache.removeFromCache(key: MyCacheKeys.token);
+        }
+      },
       buildWhen: (previous, current) => current is Updated,
       builder: (context, state) {
         print('setting screen rebuild');
@@ -109,13 +122,28 @@ class SettingsScreen extends StatelessWidget {
                   isDanger: true,
                   title: LangKeys.logout,
                   hasIcon: true,
-                  callBack: () {},
+                  callBack: () {
+                    showCustomDialog(context, LangKeys.deleteSureLogout, () {
+                      SettingsCubit.get(context).logout(context);
+                      Navigator.pop(context);
+                    });
+                  },
                 ),
                 const SizedBox(height: 22),
-                Center(
-                  child: Text(
-                    LangKeys.deleteAcc,
-                    style: getStyleBold16(context).copyWith(color: primaryClr),
+                GestureDetector(
+                  onTap: () {
+                    showCustomDialog(context, LangKeys.deleteSureAcc, () {
+                      SettingsCubit.get(context).deleteAcc(context);
+                      Navigator.pop(context);
+                    });
+                  },
+                  child: Center(
+                    child: Text(
+                      LangKeys.deleteAcc,
+                      style: getStyleBold16(
+                        context,
+                      ).copyWith(color: primaryClr),
+                    ),
                   ),
                 ),
                 SizedBox(height: 35.h),

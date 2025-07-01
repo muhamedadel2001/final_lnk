@@ -26,6 +26,10 @@ class ResponsesUseCase {
     return responsesRepo.getOneList(lang: lang, context: context, id: id);
   }
 
+  Future<Either<Failure, bool>> isActive() {
+    return responsesRepo.isActive();
+  }
+
   Future<Either<Failure, RequestModel>> getOneRequestCall({
     required String lang,
     required String id,

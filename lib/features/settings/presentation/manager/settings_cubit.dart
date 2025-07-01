@@ -197,4 +197,38 @@ class SettingsCubit extends Cubit<SettingsState> {
   void toggleFavoriteLocally(String id) {
     emit(GetFavouriteSuccess());
   }
+
+  logout(BuildContext context) async {
+    emit(LogoutLoading());
+    try {
+      final result = await settingsUseCase.logout(context);
+      result.fold(
+        (failure) {
+          emit(LogoutFailure());
+        },
+        (success) {
+          emit(LogoutSuccess());
+        },
+      );
+    } catch (err) {
+      emit(LogoutFailure());
+    }
+  }
+
+  deleteAcc(BuildContext context) async {
+    emit(LogoutLoading());
+    try {
+      final result = await settingsUseCase.deleteAcc(context);
+      result.fold(
+        (failure) {
+          emit(LogoutFailure());
+        },
+        (success) {
+          emit(LogoutSuccess());
+        },
+      );
+    } catch (err) {
+      emit(LogoutFailure());
+    }
+  }
 }

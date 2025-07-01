@@ -4,12 +4,8 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
-import 'package:final_lnk/core/databases/cache/my_cache.dart';
-import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
-import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
-import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
@@ -42,15 +38,12 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/start_model.dart';
-import '../../../../core/util/const.dart';
 import '../../../../core/util/lang_keys.dart';
-import '../../../../core/util/property_model.dart';
 import '../../../auth/data/models/areas_model.dart';
 import '../../../auth/data/models/cities_model.dart';
 import '../../../auth/data/models/finishing_model.dart';
 import '../../../auth/data/models/type_of_rent_model.dart';
 import '../../../auth/data/models/user_selection.dart';
-import '../../../main_home/data/models/user_model.dart';
 import '../../../properties/presentation/screens/properties_screen.dart';
 import '../../../requests/presentaion/screens/requests_screen.dart';
 import '../../../settings/presentation/screens/settings_screen.dart';
@@ -70,6 +63,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   String propertyStatus = LangKeys.sale;
   String payment = LangKeys.cash;
   String propertyType = '';
+  bool isActive = true;
   String? finishing;
   String? furnishing;
   bool isRequest = false;
@@ -112,7 +106,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   int cnt = 0;
 
   onTransition(int idx) {
-    if (index != idx) {
+    if (index != idx && isActive == true) {
       index = idx;
       if (screens[idx] == null) {
         screens[idx] = _getPage(idx);
@@ -269,14 +263,18 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
   }
 
   void toggleDial() {
-    isDialOpen = !isDialOpen;
-    emit(ScreenChanged());
+    if (isActive) {
+      isDialOpen = !isDialOpen;
+      emit(ScreenChanged());
+    }
   }
 
   void closeDial() {
-    if (isDialOpen) {
-      isDialOpen = false;
-      emit(ScreenChanged());
+    if (isActive) {
+      if (isDialOpen) {
+        isDialOpen = false;
+        emit(ScreenChanged());
+      }
     }
   }
 
@@ -370,6 +368,14 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     });
   }
 
+  isActiveMethod() async {
+    final result = await responsesUseCase.isActive();
+    result.fold((failure) => {emit(ScreenChanged())}, (success) {
+      isActive = success;
+      emit(ScreenChanged());
+    });
+  }
+
   changeValue() {
     emit(ChangeValue());
   }
@@ -446,13 +452,10 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
         context,
       ).toggleFavoriteLocal(id: id, isRequest: isRequest); // الرئيسية
     }
-
-    // ✨ 2. الريكوست الحقيقي للسيرفر
     final result = await responsesUseCase.addToFav(id: id, context: context);
 
     result.fold(
       (failure) {
-        // ✨ 3. رجّع التغيير لو فشل
         if (isFromProperties) {
           PropertiesCubit.get(context).toggleFavoriteLocally(id); // rollback
         } else if (isFromRequests) {
