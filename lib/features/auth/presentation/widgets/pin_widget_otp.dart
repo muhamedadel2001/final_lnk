@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/colors.dart';
+import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
@@ -26,12 +27,7 @@ class PinWidgetOtp extends StatelessWidget {
       textDirection: TextDirection.ltr,
       child: Pinput(
         controller: pinOtpController,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return LangKeys.fieldRequired;
-          }
-          return null;
-        },
+        validator: Validations.validateOtp,
         length: 4,
         defaultPinTheme: defaultPinTheme,
         focusedPinTheme: defaultPinTheme.copyWith(

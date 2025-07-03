@@ -163,4 +163,6 @@ class LangKeys {
   static String get subscriptionRequired => 'subscriptionRequired'.tr();
   static String get contactUsToUnlock => 'contactUsToUnlock'.tr();
   static String get whatsApp => 'whatsApp'.tr();
+  static String get selectServiceArea => 'selectServiceArea'.tr();
+  static String get otpNotValid => 'otpNotValid'.tr();
 }

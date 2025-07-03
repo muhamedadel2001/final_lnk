@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines,
     this.maxLength,
     this.validator,
+    this.suffix,
   });
 
   final TextStyle? style;
@@ -27,6 +28,7 @@ class CustomTextField extends StatelessWidget {
   final Color? borderClr;
   final double? textHeight;
   final double? cursourHeight;
+  final Widget? suffix;
   final TextEditingController controller;
   final TextInputType? keyboardType;
   final String? hintText;
@@ -50,6 +52,7 @@ class CustomTextField extends StatelessWidget {
         maxLength: maxLength,
         maxLines: maxLines ?? 1,
         decoration: InputDecoration(
+          suffix: suffix,
           suffixText: suffixText,
           suffixStyle: getStyleBold13(
             context,

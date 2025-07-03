@@ -118,8 +118,8 @@ class _ProfileScreenState extends State<ProfileScreen>
                                     cubit.updateImageMethod();
                                   },
                                   child: Container(
-                                    width: 65.w,
-                                    height: 65.h,
+                                    width: 60.w,
+                                    height: 60.w,
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
@@ -128,9 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                       ),
                                     ),
                                     child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(
-                                        32.5.w,
-                                      ),
+                                      borderRadius: BorderRadius.circular(30.w),
                                       child:
                                           cubit.profileImage != null
                                               ? Image.file(
@@ -142,6 +140,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                                                 'assets/imgs/user_circle.png',
                                               )
                                               : CachedNetworkImage(
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        const Icon(
+                                                          Icons.error,
+                                                          color:
+                                                              Colors.redAccent,
+                                                        ),
                                                 imageUrl:
                                                     "${ApiConstants.userUrlImages}${cubit.myImage}",
                                                 fit: BoxFit.cover,

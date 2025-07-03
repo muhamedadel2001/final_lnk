@@ -53,6 +53,18 @@ class Validations {
     return null;
   }
 
+  static String? validateOtp(String? val) {
+    if (val == null || val.trim().isEmpty) {
+      return LangKeys.fieldRequired;
+    }
+
+    if (!RegExp(r'^\d{4}$').hasMatch(val.trim())) {
+      return LangKeys.otpNotValid;
+    }
+
+    return null;
+  }
+
   static String? emailValidation(String? val) {
     if (val == null || val.trim().isEmpty) {
       return LangKeys.fieldRequired;

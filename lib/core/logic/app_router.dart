@@ -45,6 +45,7 @@ import '../../features/settings/presentation/manager/settings_cubit.dart';
 import '../../features/settings/presentation/screens/widgets/language_screen.dart';
 import '../connection/network_info.dart';
 import '../util/screens.dart' as screens;
+import 'app_singleton.dart';
 
 class AppRouter {
   late Widget startScreen;
@@ -70,7 +71,7 @@ class AppRouter {
                     (context) => AuthCubit(
                       signupUseCase: SignupUseCase(
                         authRepositories: AuthRepositoriesImpl(
-                          apiConsumer: DioConsumer(dio: Dio()),
+                          apiConsumer: AppSingletons.apiConsumer,
                         ),
                       ),
                     ),
@@ -141,16 +142,9 @@ class AppRouter {
                     (context) => HomeLandingCubit(
                       ResponsesUseCase(
                         responsesRepo: ResponsesRepoImpl(
-                          networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                          networkInfo: AppSingletons.networkInfo,
                           responsesRemoteData: ResponsesRemoteData(
-                            apiConsumer: DioConsumer(
-                              dio: Dio(
-                                BaseOptions(
-                                  connectTimeout: Duration(seconds: 90),
-                                  receiveTimeout: Duration(seconds: 90),
-                                ),
-                              ),
-                            ),
+                            apiConsumer: AppSingletons.apiConsumer,
                           ),
                         ),
                       ),

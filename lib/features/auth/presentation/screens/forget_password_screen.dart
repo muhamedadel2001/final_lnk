@@ -25,7 +25,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   @override
   void initState() {
-    emailController = TextEditingController();
+    phoneController = TextEditingController();
     super.initState();
   }
 
@@ -33,7 +33,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   void dispose() {
     super.dispose();
     form.currentState?.dispose();
-    emailController.dispose();
+    phoneController.dispose();
   }
 
   @override
@@ -91,10 +91,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         ),
                         SizedBox(height: 42.h),
                         TitledCustomTextField(
-                          validator: Validations.emailValidation,
-                          keyboardType: TextInputType.emailAddress,
-                          title: LangKeys.email,
-                          controller: emailController,
+                          validator: Validations.egyptianPhoneValidation,
+                          keyboardType: TextInputType.phone,
+                          title: LangKeys.phoneNumber,
+                          controller: phoneController,
                         ),
                         SizedBox(height: 92.h),
                         PrimaryButton(
@@ -103,7 +103,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                                 if (form.currentState!.validate())
                                   {
                                     authCubit.forgetPassword(
-                                      text: emailController,
+                                      text: phoneController,
                                     ),
                                   },
                               },

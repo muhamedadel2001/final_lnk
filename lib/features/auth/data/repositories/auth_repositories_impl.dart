@@ -44,7 +44,7 @@ class AuthRepositoriesImpl implements AuthRepositories {
       await apiConsumer.post(
         ApiConstants.verifyEndpoint,
         data: {
-          "email": emailController.text,
+          "email": phoneController.text,
           "otp": int.parse(pinOtpController.text),
         },
       );
@@ -143,7 +143,7 @@ class AuthRepositoriesImpl implements AuthRepositories {
       await apiConsumer.put(
         ApiConstants.changePassEndpoint,
         data: {
-          "email": emailController.text,
+          "email": phoneController.text,
           "password": passwordController.text,
         },
       );

@@ -1,4 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,7 @@ class SelectedServiceAreas extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 16.w),
-                Text('Select Service Areas', style: getStyle20(context)),
+                Text(LangKeys.selectServiceArea, style: getStyle20(context)),
               ],
             ),
           ],

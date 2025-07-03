@@ -134,7 +134,7 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                             Text(LangKeys.didntReceive),
                             InkWell(
                               onTap: () {
-                                cubit.resendPass(text: emailController);
+                                cubit.resendPass(text: phoneController);
                               },
                               child: Text(
                                 LangKeys.resend,

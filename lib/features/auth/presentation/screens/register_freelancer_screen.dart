@@ -9,10 +9,8 @@ import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/get_inputs_list.dart';
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/widgets/primary_button.dart';
@@ -106,7 +104,18 @@ class _RegisterFreelancerScreenState extends State<RegisterFreelancerScreen> {
                     SizedBox(height: 18.h),
                     TitledCustomTextField(
                       validator: Validations.passwordValidation,
-                      obsecureText: true,
+                      obsecureText: AuthCubit.get(context).isVisible,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          AuthCubit.get(context).isVisibleFirstMethod();
+                        },
+                        child: Icon(
+                          AuthCubit.get(context).isVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: primaryClr,
+                        ),
+                      ),
                       title: LangKeys.password,
                       controller: passwordController,
                     ),

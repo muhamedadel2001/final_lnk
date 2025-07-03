@@ -4,6 +4,7 @@ import 'package:data_connection_checker_tv/data_connection_checker.dart';
 import 'package:dio/dio.dart';
 import 'package:final_lnk/core/connection/network_info.dart';
 import 'package:final_lnk/core/databases/api/dio_consumer.dart';
+import 'package:final_lnk/core/logic/app_singleton.dart';
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
@@ -35,7 +36,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
-
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/start_model.dart';
 import '../../../../core/util/lang_keys.dart';
@@ -81,16 +81,9 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
           (context) => MainHomeCubit(
             GetHomeUseCase(
               homeRepo: HomeRepoImpl(
-                networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                networkInfo: AppSingletons.networkInfo,
                 userRemoteData: UserRemoteData(
-                  apiConsumer: DioConsumer(
-                    dio: Dio(
-                      BaseOptions(
-                        connectTimeout: Duration(seconds: 60),
-                        receiveTimeout: Duration(seconds: 60),
-                      ),
-                    ),
-                  ),
+                  apiConsumer: AppSingletons.apiConsumer,
                 ),
                 userLocalData: UserLocalData(),
               ),
@@ -122,16 +115,9 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
             (context) => MainHomeCubit(
               GetHomeUseCase(
                 homeRepo: HomeRepoImpl(
-                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  networkInfo: AppSingletons.networkInfo,
                   userRemoteData: UserRemoteData(
-                    apiConsumer: DioConsumer(
-                      dio: Dio(
-                        BaseOptions(
-                          connectTimeout: Duration(seconds: 60),
-                          receiveTimeout: Duration(seconds: 60),
-                        ),
-                      ),
-                    ),
+                    apiConsumer: AppSingletons.apiConsumer,
                   ),
                   userLocalData: UserLocalData(),
                 ),
@@ -145,16 +131,9 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
             (context) => PropertiesCubit(
               PropertiesUseCases(
                 propertiesRepo: PropertiesRepoImpl(
-                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  networkInfo: AppSingletons.networkInfo,
                   propertiesRemoteData: PropertiesRemoteData(
-                    apiConsumer: DioConsumer(
-                      dio: Dio(
-                        BaseOptions(
-                          connectTimeout: Duration(seconds: 30),
-                          receiveTimeout: Duration(seconds: 30),
-                        ),
-                      ),
-                    ),
+                    apiConsumer: AppSingletons.apiConsumer,
                   ),
                   propertiesLocalData: PropertiesLocalData(),
                 ),
@@ -168,16 +147,9 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
             (context) => RequestsCubit(
               RequestsUseCases(
                 requestsRepo: RequestsRepoImpl(
-                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  networkInfo: AppSingletons.networkInfo,
                   requestsRemoteData: RequestsRemoteData(
-                    apiConsumer: DioConsumer(
-                      dio: Dio(
-                        BaseOptions(
-                          connectTimeout: Duration(seconds: 30),
-                          receiveTimeout: Duration(seconds: 30),
-                        ),
-                      ),
-                    ),
+                    apiConsumer: AppSingletons.apiConsumer,
                   ),
                   requestsLocalData: RequestsLocalData(),
                 ),
@@ -191,16 +163,9 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
             (context) => SettingsCubit(
               SettingsUseCase(
                 settingsRepo: SettingsRepoImpl(
-                  networkInfo: NetworkInfoImpl(DataConnectionChecker()),
+                  networkInfo: AppSingletons.networkInfo,
                   settingsRemoteData: SettingsRemoteData(
-                    apiConsumer: DioConsumer(
-                      dio: Dio(
-                        BaseOptions(
-                          connectTimeout: Duration(seconds: 60),
-                          receiveTimeout: Duration(seconds: 60),
-                        ),
-                      ),
-                    ),
+                    apiConsumer: AppSingletons.apiConsumer,
                   ),
                   settingsLocalData: SettingsLocalData(),
                 ),

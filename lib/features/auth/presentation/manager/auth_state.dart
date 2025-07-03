@@ -5,6 +5,8 @@ sealed class AuthState {}
 
 final class AuthInitial extends AuthState {}
 
+final class AuthChangePass extends AuthState {}
+
 class LoginLoading extends AuthState {}
 
 class LoginSuccess extends AuthState {}

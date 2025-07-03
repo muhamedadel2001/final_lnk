@@ -8,9 +8,10 @@ import 'api_consumer.dart';
 class DioConsumer extends ApiConsumer {
   final Dio dio;
   DioConsumer({required this.dio}) {
+    print('new object dio');
     dio.options = BaseOptions(
-      connectTimeout: Duration(seconds: 90),
-      receiveTimeout: Duration(seconds: 90),
+      connectTimeout: Duration(seconds: 80),
+      receiveTimeout: Duration(seconds: 80),
     );
     dio.options.baseUrl = ApiConstants.baseUrl;
   }

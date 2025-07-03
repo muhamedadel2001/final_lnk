@@ -4,7 +4,6 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:final_lnk/core/widgets/custom_text_field.dart';
 import 'package:final_lnk/core/widgets/primary_button.dart';
-import 'package:final_lnk/features/settings/data/model/profile_model.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,11 +36,12 @@ class PersonalDetailsTab extends StatelessWidget {
 
           BlocConsumer<SettingsCubit, SettingsState>(
             listener: (context, state) {
-              if (state is UpdateLoading)
+              if (state is UpdateLoading && cubit.profileImage != null) {
                 CustomAlerts.showMyWaitingSnackBar(
                   context,
                   LangKeys.waitingMessage,
                 );
+              }
             },
             builder: (context, state) {
               return Center(

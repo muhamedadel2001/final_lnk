@@ -1,9 +1,6 @@
 import 'package:final_lnk/core/logic/custom_alerts.dart';
-import 'package:final_lnk/core/util/colors.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/core/widgets/custom_alert_dialog.dart';
 import 'package:final_lnk/core/widgets/primary_button.dart';
-import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -88,6 +85,7 @@ class _AddSubScreenState extends State<AddSubScreen> {
                     validator: Validations.egyptianPhoneValidation,
                     title: LangKeys.phoneNumber,
                     controller: phoneSubController,
+                    keyboardType: TextInputType.phone,
                   ),
                   SizedBox(height: 100.h),
                   Center(

@@ -36,13 +36,13 @@
   "select": "Select ..",
   "validEmail": "Email must be validate !",
   "verifyCode": "Verify code ",
-  "verifyCodeDes": "code has been sent to your email",
+  "verifyCodeDes": "code has been sent to your phone",
   "resend": "Resend code",
   "submit": "Submit",
   "didntReceive": "Didn't receive code ?",
   "otpVerified": "Otp has been verified success ",
   "forgetPassTitle": "Forget Password",
-  "forgetPassDes": "A verification code will be sent to you, please provide us with your email  to send it to you.",
+  "forgetPassDes": "A verification code will be sent to you, please provide us with your phone  to send it to you.",
   "sendCode": "Send code",
   "sendSuccess": "code has been sent success",
   "resetPassword": "Reset password",
@@ -156,7 +156,9 @@
   "callUsForSub": "Call us to learn about our subscription plans and exclusive offers. Our team will guide you through the process and help you choose the best plan.\nIf we miss your call, leave a message, and we’ll get back to you with all the details soon.",
   "subscriptionRequired":"Subscription Required",
   "contactUsToUnlock":"Contact us\n to subscribe and Unlock All Features",
-  "whatsApp":"WhatsApp"
+  "whatsApp":"WhatsApp",
+  "selectServiceArea": "select areas",
+  "otpNotValid": "OTP must contains 4 numbers !"
 }
 
 

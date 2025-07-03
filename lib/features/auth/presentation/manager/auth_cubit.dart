@@ -116,4 +116,10 @@ class AuthCubit extends Cubit<AuthState> {
     final Either<Failure, Unit> result = await signupUseCase.callChangePass();
     result.fold((failure) => emit(ChangeError()), (_) => emit(ChangeSuccess()));
   }
+
+  bool isVisible = true;
+  isVisibleFirstMethod() {
+    isVisible = !isVisible;
+    emit(AuthChangePass());
+  }
 }

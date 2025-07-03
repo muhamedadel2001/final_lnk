@@ -88,6 +88,7 @@ class _RegisterAgencyScreenState extends State<RegisterAgencyScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TitledCustomTextField(
+                      hintText: 'وكالة ريماكس Ex: Remax agnecy or ',
                       validator: Validations.globalValidation,
                       title: LangKeys.agencyName,
                       controller: name,
@@ -100,13 +101,25 @@ class _RegisterAgencyScreenState extends State<RegisterAgencyScreen> {
                     ),
                     SizedBox(height: 18.h),
                     TitledCustomTextField(
+                      keyboardType: TextInputType.phone,
                       validator: Validations.egyptianPhoneValidation,
                       title: LangKeys.phoneNumber,
                       controller: phoneController,
                     ),
                     SizedBox(height: 18.h),
                     TitledCustomTextField(
-                      obsecureText: true,
+                      obsecureText: AuthCubit.get(context).isVisible,
+                      suffix: GestureDetector(
+                        onTap: () {
+                          AuthCubit.get(context).isVisibleFirstMethod();
+                        },
+                        child: Icon(
+                          AuthCubit.get(context).isVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: primaryClr,
+                        ),
+                      ),
                       validator: Validations.passwordValidation,
                       title: LangKeys.password,
                       controller: passwordController,

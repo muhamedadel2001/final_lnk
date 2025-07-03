@@ -22,6 +22,7 @@ class TitledCustomTextField extends StatelessWidget {
     this.maxLines,
     this.maxLength,
     this.validator,
+    this.suffix,
   });
   final String title;
   final String? Function(String?)? validator;
@@ -30,6 +31,7 @@ class TitledCustomTextField extends StatelessWidget {
   final bool? obsecureText;
   final Color? borderClr;
   final double? textHeight;
+  final Widget? suffix;
   final double? cursourHeight;
   final TextEditingController controller;
   final TextInputType? keyboardType;
@@ -50,6 +52,7 @@ class TitledCustomTextField extends StatelessWidget {
           obsecureText: obsecureText,
           keyboardType: keyboardType,
           hintText: hintText,
+          suffix: suffix,
         ),
       ],
     );
