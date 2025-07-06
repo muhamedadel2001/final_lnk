@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:final_lnk/features/main_home/presentation/manager/main_home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,12 +7,9 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import '../../../../core/widgets/main_sub.dart';
-import '../../../../core/widgets/subscription_screen.dart';
 import '../manager/home_landing_cubit.dart';
-
 class HomeLanding extends StatefulWidget {
   const HomeLanding({super.key});
-
   @override
   State<HomeLanding> createState() => _HomeLandingState();
 }
@@ -21,9 +17,9 @@ class HomeLanding extends StatefulWidget {
 class _HomeLandingState extends State<HomeLanding> {
   @override
   void initState() {
-    print('kk');
     HomeLandingCubit.get(context).isActiveMethod();
     super.initState();
+
   }
 
   @override

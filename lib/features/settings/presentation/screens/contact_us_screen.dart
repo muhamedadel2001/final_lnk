@@ -2,12 +2,10 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../core/util/lang_keys.dart';
 
 class ContactUsScreen extends StatelessWidget {
   const ContactUsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +39,7 @@ class ContactUsScreen extends StatelessWidget {
                 Expanded(
                   child: ContactOptionCard(
                     onTap: () async {
-                      await launchUrl(Uri(scheme: 'tel', path: '01095430467'));
+                      await launchUrl(Uri(scheme: 'tel', path: '01115558590'));
                     },
                     icon: Icons.phone_in_talk_outlined,
                     title: LangKeys.contactUs,
@@ -53,7 +51,7 @@ class ContactUsScreen extends StatelessWidget {
                   child: ContactOptionCard(
                     onTap: () async {
                       final Uri whatsappUri = Uri.parse(
-                        'https://wa.me/201095430467',
+                        'https://wa.me/201115558590',
                       );
                       if (await canLaunchUrl(whatsappUri)) {
                         await launchUrl(

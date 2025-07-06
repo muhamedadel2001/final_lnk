@@ -24,8 +24,7 @@ class CreatePropertyModel {
   final List<String> additional;
   final String title;
   final String description;
-  final String whatsApp;
-  final String phoneNumber;
+
   final List<dynamic>? images;
   CreatePropertyModel({
     required this.type,
@@ -50,8 +49,6 @@ class CreatePropertyModel {
     required this.additional,
     required this.title,
     required this.description,
-    required this.whatsApp,
-    required this.phoneNumber,
     this.images,
   });
 
@@ -78,8 +75,6 @@ class CreatePropertyModel {
     'additional': additional,
     'title': title,
     'description': description,
-    'whatsApp': whatsApp,
-    'phoneNumber': phoneNumber,
     if (images != null)
       'images': await Future.wait(
         images!.map(

@@ -195,9 +195,7 @@ class Validations {
     BuildContext context,
   ) {
     if (titleController.text.trim().isNotEmpty &&
-        descriptionController.text.trim().isNotEmpty &&
-        isValidEgyptianPhone(phoneController.text) &&
-        isValidEgyptianPhone(whatsController.text)) {
+        descriptionController.text.trim().isNotEmpty) {
       if (addPropertyCubit.isRequest) {
         addPropertyCubit.createProperty(
           model: CreateRequestModel(
@@ -239,8 +237,6 @@ class Validations {
             additional: addPropertyCubit.userSelection.additionalFeatures!,
             title: titleController.text,
             description: descriptionController.text,
-            whatsApp: whatsController.text,
-            phoneNumber: phoneController.text,
           ),
           context: context,
           endPoint: ApiConstants.addRequestEndpoint,
@@ -264,7 +260,6 @@ class Validations {
     if (isValidEgyptianPhone(phoneController.text) &&
         name.text.trim().isNotEmpty &&
         emailController.text.trim().isNotEmpty) {
-      print('enter');
       await settingsCubit.updateProfile(
         context: context,
         profileData:

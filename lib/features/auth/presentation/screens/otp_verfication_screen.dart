@@ -115,7 +115,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                         SizedBox(height: 60.h),
                         PinWidgetOtp(),
                         SizedBox(height: 40.h),
-
                         SizedBox(height: 40.h),
                         PrimaryButton(
                           callBack:

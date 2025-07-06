@@ -10,7 +10,6 @@ import '../../../../../core/logic/custom_alerts.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/titled_custom_text_field.dart';
-import '../../../data/models/create_request_model.dart';
 import 'additional_features.dart';
 import 'footer.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
@@ -84,21 +83,6 @@ class ThirdPageAddProperty extends StatelessWidget {
                       controller: descriptionController,
                       maxLength: 500,
                       maxLines: 5,
-                    ),
-                    const SizedBox(height: 33),
-                    Text(
-                      LangKeys.contactInfo,
-                      style: getStyle20(context).copyWith(fontSize: 20.sp),
-                    ),
-                    const SizedBox(height: 14),
-                    TitledCustomTextField(
-                      title: LangKeys.phoneNumber,
-                      controller: phoneController,
-                    ),
-                    const SizedBox(height: 22),
-                    TitledCustomTextField(
-                      title: LangKeys.whatsNumber,
-                      controller: whatsController,
                     ),
                     const SizedBox(height: 40),
                     Footer(

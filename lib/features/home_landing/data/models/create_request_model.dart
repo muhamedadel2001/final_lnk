@@ -22,8 +22,7 @@ class CreateRequestModel {
   final List<String> additional;
   final String title;
   final String description;
-  final String whatsApp;
-  final String phoneNumber;
+
   CreateRequestModel({
     required this.type,
     required this.typeOfRequest,
@@ -45,8 +44,6 @@ class CreateRequestModel {
     required this.additional,
     required this.title,
     required this.description,
-    required this.whatsApp,
-    required this.phoneNumber,
   });
 
   Future<Map<String, dynamic>> toJson() async => {
@@ -70,7 +67,5 @@ class CreateRequestModel {
     'additional': additional,
     'title': title,
     'description': description,
-    'whatsApp': whatsApp,
-    'phoneNumber': phoneNumber,
   };
 }

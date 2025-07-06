@@ -178,8 +178,6 @@ class _ForthPageAddPropertyState extends State<ForthPageAddProperty> {
                                 : null,
                         title: titleController.text,
                         description: descriptionController.text,
-                        whatsApp: whatsController.text,
-                        phoneNumber: phoneController.text,
                         images: selectedImages,
                       ),
                       context: context,

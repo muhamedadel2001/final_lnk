@@ -67,9 +67,8 @@ class SubscriptionDialog extends StatelessWidget {
                               ),
                             ),
                             onPressed: () async {
-                              print('asd');
                               await launchUrl(
-                                Uri(scheme: 'tel', path: '01095430467'),
+                                Uri(scheme: 'tel', path: '01115558590'),
                               );
                             },
                             child: Text(
@@ -97,7 +96,7 @@ class SubscriptionDialog extends StatelessWidget {
                             ),
                             onPressed: () async {
                               final Uri whatsappUri = Uri.parse(
-                                'https://wa.me/201095430467',
+                                'https://wa.me/201115558590',
                               );
                               if (await canLaunchUrl(whatsappUri)) {
                                 await launchUrl(
