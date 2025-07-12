@@ -3,9 +3,7 @@ import 'package:final_lnk/features/auth/data/models/areas_model.dart';
 import 'package:final_lnk/features/auth/data/models/cities_model.dart';
 import 'package:final_lnk/features/auth/data/models/finishing_model.dart';
 import 'package:final_lnk/features/auth/data/models/type_of_rent_model.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
 import 'package:final_lnk/features/requests/data/models/requests_model.dart';
-
 import '../../../../core/databases/api/api_consumer.dart';
 import '../../../../core/databases/cache/my_cache.dart';
 import '../../../../core/databases/cache/my_cache_keys.dart';
@@ -33,7 +31,6 @@ class RequestsRemoteData {
         'searchText': query,
       },
     );
-    print(response);
     return RequestsModel.fromJson(response);
   }
 
@@ -118,7 +115,6 @@ class RequestsRemoteData {
         "maxPrice": maxPrice,
       },
     );
-    print(response);
     return RequestsModel.fromJson(response);
   }
 }

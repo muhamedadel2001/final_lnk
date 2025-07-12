@@ -1,4 +1,4 @@
-import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';

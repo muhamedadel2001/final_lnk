@@ -1,14 +1,12 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/colors.dart';
-import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/accounts_widgets.dart';
 import 'package:final_lnk/features/settings/presentation/screens/widgets/personal_details_widget.dart';

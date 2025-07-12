@@ -5,8 +5,6 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/fonts.dart';
 import '../../../../core/widgets/primary_button.dart';
 

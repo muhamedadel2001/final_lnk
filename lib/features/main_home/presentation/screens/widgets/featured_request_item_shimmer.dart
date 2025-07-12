@@ -1,10 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:final_lnk/core/util/screens.dart' as screens;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/util/colors.dart';
-import '../../../../../core/widgets/favourite.dart';
 
 class FeaturedRequestItemShimmer extends StatelessWidget {
   const FeaturedRequestItemShimmer({super.key});

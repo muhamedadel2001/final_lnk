@@ -8,7 +8,6 @@ import 'api_consumer.dart';
 class DioConsumer extends ApiConsumer {
   final Dio dio;
   DioConsumer({required this.dio}) {
-    print('new object dio');
     dio.options = BaseOptions(
       connectTimeout: Duration(seconds: 80),
       receiveTimeout: Duration(seconds: 80),
@@ -38,12 +37,9 @@ class DioConsumer extends ApiConsumer {
       );
       return response.data;
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.statusCode}');
-      print('Error message: ${e.response?.data}');
       handleDioException(e);
       rethrow;
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Unexpected error occurred: $e');
     }
   }
@@ -64,12 +60,9 @@ class DioConsumer extends ApiConsumer {
       );
       return res.data;
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.statusCode}');
-      print('Error message: ${e.response?.data}');
       handleDioException(e);
       rethrow;
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Unexpected error occurred: $e');
     }
   }
@@ -94,12 +87,9 @@ class DioConsumer extends ApiConsumer {
       );
       return res.data;
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.statusCode}');
-      print('Error message: ${e.response?.data}');
       handleDioException(e);
       rethrow;
     } catch (e) {
-      print('Unexpected error: $e');
       throw Exception('Unexpected error occurred: $e');
     }
   }
@@ -123,11 +113,8 @@ class DioConsumer extends ApiConsumer {
           },
         ),
       );
-      print(res.statusCode);
       return res.data;
     } on DioException catch (e) {
-      print('Dio error: ${e.response?.statusCode}');
-      print('Error message: ${e.response?.data}');
       handleDioException(e);
       rethrow;
     } catch (e) {

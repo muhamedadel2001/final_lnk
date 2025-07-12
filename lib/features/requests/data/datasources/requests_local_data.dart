@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
-import 'package:final_lnk/features/main_home/data/models/user_model.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../../../core/databases/cache/my_cache.dart';

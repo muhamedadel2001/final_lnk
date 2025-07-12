@@ -2,8 +2,6 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/featur
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
-
-import '../../../../../core/logic/resp_calc.dart';
 import '../../manager/main_home_cubit.dart';
 import 'featured_request_item.dart';
 

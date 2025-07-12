@@ -4,12 +4,8 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/data/models/user_model.dart';
-import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:final_lnk/core/util/screens.dart' as screens;
-
-import '../../../../../core/util/colors.dart';
 
 class CustomAppbarHome extends StatelessWidget {
   final UserData userData;

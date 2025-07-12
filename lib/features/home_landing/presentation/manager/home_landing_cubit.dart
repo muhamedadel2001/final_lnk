@@ -1,9 +1,4 @@
-import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
-import 'package:dio/dio.dart';
-import 'package:final_lnk/core/connection/network_info.dart';
-import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/core/logic/app_singleton.dart';
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
@@ -35,7 +30,6 @@ import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import '../../../../core/logic/custom_alerts.dart';
 import '../../../../core/logic/start_model.dart';
 import '../../../../core/util/lang_keys.dart';
@@ -222,9 +216,7 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
           imageFiles.addAll(pickedFiles);
         }
       }
-    } catch (e) {
-      print('🚫 حدث خطأ أثناء اختيار الصور: $e');
-    }
+    } catch (e) {}
   }
 
   void toggleDial() {
@@ -278,7 +270,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     );
     result.fold(
       (failure) {
-        print(failure.errMessage);
         emit(GetOneFailure());
       },
       (success) {
@@ -366,7 +357,6 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
         },
       );
     } catch (err) {
-      print(err);
       emit(CreateFailure());
     }
   }
@@ -404,13 +394,11 @@ class HomeLandingCubit extends Cubit<HomeLandingState> {
     bool isFromRequests = false, // 🔄 فلاغ جديد نحدده من UI
     bool isSetting = false, // 🔄 فلاغ جديد نحدده من UI
   }) async {
-    // ✨ 1. تعديل محلي فوري (optimistic update)
     if (isFromProperties) {
       PropertiesCubit.get(context).toggleFavoriteLocally(id); // خصائص
     } else if (isFromRequests) {
       RequestsCubit.get(context).toggleFavoriteLocally(id);
     } else if (isSetting) {
-      print(id);
       SettingsCubit.get(context).toggleFavoriteLocally(id);
     } else {
       MainHomeCubit.get(

@@ -7,9 +7,8 @@ import 'package:final_lnk/features/home_landing/presentation/screens/widgets/sel
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/logic/get_inputs_list.dart';
-import '../../../../../core/util/const.dart';
+import '../../../../../core/util/const_controllers.dart';
 import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
 import '../../../../../core/widgets/titled_custom_drop_down_button.dart';
@@ -50,7 +49,6 @@ class _SecondPageAddPropertyState extends State<SecondPageAddProperty> {
                       title: LangKeys.floor,
                       callBack: (val) {
                         addPropertyCubit.userSelection.floorNom = val;
-                        print(addPropertyCubit.userSelection.floorNom);
                       },
                       dropDownList: List.generate(25, (val) => val.toString()),
                       hintText: LangKeys.select,

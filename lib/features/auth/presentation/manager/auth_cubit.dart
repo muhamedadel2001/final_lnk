@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:dartz/dartz.dart';
-import 'package:final_lnk/features/auth/data/models/cities_model.dart';
 import 'package:final_lnk/features/auth/data/models/create_freelance_account_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,11 +24,16 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AccountTypeSelected(type));
   }
 
-  Future<void> login({required String email, required String password}) async {
+  Future<void> login({
+    required String email,
+    required String password,
+    required BuildContext context,
+  }) async {
     emit(LoginLoading());
     final Either<Failure, Unit> result = await signupUseCase.callLogin(
       email: email,
       password: password,
+      context: context,
     );
     result.fold((failure) => emit(LoginError(failure.errMessage)), (_) {
       emit(LoginSuccess());

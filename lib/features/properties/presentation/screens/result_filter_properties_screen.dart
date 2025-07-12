@@ -65,7 +65,7 @@ class _ResultFilterPropertiesScreenState
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          CustomSliverAppBarResultFilter(title: 'Search result'),
+          CustomSliverAppBarResultFilter(title: LangKeys.searchResults),
           BlocBuilder<PropertiesCubit, PropertiesState>(
             builder: (context, state) {
               return state is GetPropertiesFilterDataSuccess &&

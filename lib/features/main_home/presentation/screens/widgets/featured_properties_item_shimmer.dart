@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import '../../../../../core/util/colors.dart';
-import '../../../../../core/widgets/favourite.dart';
 
 class FeaturedPropertyItemShimmer extends StatelessWidget {
   const FeaturedPropertyItemShimmer({super.key});

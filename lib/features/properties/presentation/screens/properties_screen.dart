@@ -87,9 +87,7 @@ class _PropertiesScreenState extends State<PropertiesScreen>
   }
 
   void onSearchChanged(String val) {
-    print('ss');
     final cubit = PropertiesCubit.get(context);
-
     if (_debounce?.isActive ?? false) _debounce!.cancel();
     _debounce = Timer(const Duration(milliseconds: 1500), () {
       _scrollController.animateTo(
@@ -144,7 +142,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
 
   @override
   Widget build(BuildContext context) {
-    print('properties widget');
     final cubit = PropertiesCubit.get(context);
     return BlocBuilder<PropertiesCubit, PropertiesState>(
       buildWhen: (prev, curr) {
@@ -157,7 +154,6 @@ class _PropertiesScreenState extends State<PropertiesScreen>
             curr is AddedToFavSuccess;
       },
       builder: (context, state) {
-        print('properties widget builder');
         return GestureDetector(
           onTap: () {
             FocusManager.instance.primaryFocus?.unfocus();

@@ -1,10 +1,8 @@
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
-import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
-
 import '../../../../core/databases/api/api_consumer.dart';
 import '../../../../core/databases/cache/my_cache.dart';
 import '../../../../core/databases/cache/my_cache_keys.dart';
@@ -53,7 +51,6 @@ class ResponsesRemoteData {
       "${ApiConstants.oneRequestEndpoint}$id",
       queryParameters: {"lang": lang},
     );
-    print(response);
     return RequestModel.fromJson(response);
   }
 

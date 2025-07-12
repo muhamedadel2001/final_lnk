@@ -1,5 +1,5 @@
 import 'package:final_lnk/core/logic/custom_alerts.dart';
-import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/validations/validation_helper.dart';
 import 'package:final_lnk/core/widgets/custom_text_field.dart';

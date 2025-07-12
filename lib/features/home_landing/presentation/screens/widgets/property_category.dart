@@ -3,7 +3,6 @@ import 'package:final_lnk/features/home_landing/presentation/screens/widgets/pro
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/util/lang_keys.dart';
 import 'option_box.dart';
 

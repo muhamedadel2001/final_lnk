@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/auth/data/models/areas_model.dart';
@@ -184,7 +183,6 @@ class PropertiesCubit extends Cubit<PropertiesState> {
         }
       },
       (success) {
-        print(success.properties!.length);
         final newList = success.properties ?? [];
         if (newList.isEmpty) {
           hasMoreDataPropertiesFilter = false;

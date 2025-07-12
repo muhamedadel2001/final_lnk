@@ -14,8 +14,13 @@ class SignupUseCase {
   Future<Either<Failure, Unit>> callLogin({
     required String email,
     required String password,
+    required BuildContext context,
   }) {
-    return authRepositories.login(email: email, password: password);
+    return authRepositories.login(
+      email: email,
+      password: password,
+      context: context,
+    );
   }
 
   Future<Either<Failure, CitiesModel>> getCitiesCall({required String lang}) {
@@ -44,6 +49,7 @@ class SignupUseCase {
   }) {
     return authRepositories.forgetPassword(text: text);
   }
+
   Future<Either<Failure, Unit>> callChangePass() {
     return authRepositories.changePassword();
   }

@@ -1,5 +1,4 @@
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +31,7 @@ class MyListItemSimilar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            lists.title!,
+            lists.title,
             // maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: getStyleBold16(context),
@@ -51,7 +50,7 @@ class MyListItemSimilar extends StatelessWidget {
                 child: SizedBox(
                   width: 100.w,
                   child: Text(
-                    lists.location!.name!,
+                    lists.location.name!,
                     style: getStyleBold13(
                       context,
                     ).copyWith(color: textSecondaryClr),

@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/logic/resp_calc.dart';
-
 class ProperyTypeBox extends StatelessWidget {
   const ProperyTypeBox({
     super.key,

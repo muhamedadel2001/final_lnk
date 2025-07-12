@@ -1,4 +1,4 @@
-package com.example.final_lnk
+package com.lnk.final_lnk
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -45,7 +45,7 @@ class _NomRoomsState extends State<NomRooms> {
           child: NomBox(
             title: '2',
             isSelected: ExpressionValidator.nomEqualString(
-              int.parse(addPropertyCubit.userSelection.roomsNom!),
+              int.parse(addPropertyCubit.userSelection.roomsNom),
               '2',
             ),
           ),

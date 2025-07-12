@@ -1,6 +1,4 @@
 import 'dart:io';
-
-import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/fonts.dart';
@@ -13,14 +11,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/util/colors.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/util/screens.dart';
 import '../../../../core/widgets/global_error_widget.dart';
-import '../../../properties/presentation/manager/properties_cubit.dart';
-import '../../../properties/presentation/screens/widgets/property_item.dart';
-import '../../../requests/presentaion/screens/widgets/request_feed_item.dart';
 
 class FavouritesScreen extends StatefulWidget {
   const FavouritesScreen({super.key});

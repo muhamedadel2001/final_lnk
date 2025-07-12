@@ -1,6 +1,5 @@
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/lists_feed_item_similar.dart';
-import 'package:final_lnk/features/main_home/presentation/screens/widgets/reques_feed_item_similar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/util/fonts.dart';

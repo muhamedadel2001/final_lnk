@@ -3,8 +3,6 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:final_lnk/core/util/screens.dart' as screens;
-
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/primary_button.dart';
 

@@ -4,14 +4,11 @@ import 'package:final_lnk/features/auth/presentation/widgets/pin_widget_otp.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/logic/custom_alerts.dart';
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
-import '../../../../core/util/const.dart';
+import '../../../../core/util/const_controllers.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../manager/auth_cubit.dart';
-import '../widgets/box_text_field.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 
 class OtpVerificationScreen extends StatefulWidget {
@@ -42,7 +39,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('otp');
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -87,7 +83,6 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
                     }
                   },
                   builder: (context, state) {
-                    print('otp builder');
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

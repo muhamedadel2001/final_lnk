@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:final_lnk/features/home_landing/data/models/additional_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
-import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/furnishing_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/lists_model.dart';
 import 'package:final_lnk/features/home_landing/data/models/requests_model.dart';
 import 'package:final_lnk/features/home_landing/domain/repositories/responses_repo.dart';
 import 'package:flutter/cupertino.dart';
-
 import '../../../../core/connection/network_info.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/logic/custom_alerts.dart';
@@ -171,7 +169,6 @@ class ResponsesRepoImpl implements ResponsesRepo {
         return Left(Failure.handleError('No Internet Connection !'));
       }
     } catch (e) {
-      print(e);
       return Left(Failure.handleError(e));
     }
   }

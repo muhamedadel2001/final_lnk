@@ -5,9 +5,6 @@ import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
-
-import '../../../../../core/logic/intl_logic.dart';
-import '../../../../../core/logic/resp_calc.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
 import '../../../../home_landing/presentation/manager/home_landing_cubit.dart';
@@ -160,7 +157,7 @@ class FeaturedPropertyItem extends StatelessWidget {
                               ),
                             ),
                           )
-                          : SizedBox.shrink(),
+                          : const SizedBox.shrink(),
                     ],
                   ),
                 ),

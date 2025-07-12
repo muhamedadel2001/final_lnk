@@ -4,7 +4,6 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/fonts.dart';
 import '../../data/on_boarding_model.dart';
 import '../../manager/cubit/on_boarding_cubit.dart';

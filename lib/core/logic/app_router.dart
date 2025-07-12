@@ -1,6 +1,3 @@
-import 'package:data_connection_checker_tv/data_connection_checker.dart';
-import 'package:dio/dio.dart';
-import 'package:final_lnk/core/databases/api/dio_consumer.dart';
 import 'package:final_lnk/features/auth/data/repositories/auth_repositories_impl.dart';
 import 'package:final_lnk/features/auth/domain/usecases/signup_usecase.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
@@ -40,10 +37,8 @@ import 'package:final_lnk/features/settings/presentation/screens/sub_acc_setails
 import 'package:final_lnk/features/settings/presentation/screens/terms_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../features/settings/presentation/manager/settings_cubit.dart';
 import '../../features/settings/presentation/screens/widgets/language_screen.dart';
-import '../connection/network_info.dart';
 import '../util/screens.dart' as screens;
 import 'app_singleton.dart';
 
@@ -71,6 +66,7 @@ class AppRouter {
                     (context) => AuthCubit(
                       signupUseCase: SignupUseCase(
                         authRepositories: AuthRepositoriesImpl(
+                          networkInfo: AppSingletons.networkInfo,
                           apiConsumer: AppSingletons.apiConsumer,
                         ),
                       ),

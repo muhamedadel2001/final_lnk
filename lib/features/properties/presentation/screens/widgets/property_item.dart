@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/core/util/screens.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/properties/data/models/properties_model.dart';
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
-import '../../../../../core/util/lang_keys.dart';
 import '../../../../../core/widgets/badge_on_image.dart';
 import '../../../../../core/widgets/favourite.dart';
 

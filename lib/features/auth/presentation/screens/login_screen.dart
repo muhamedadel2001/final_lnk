@@ -1,4 +1,4 @@
-import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/validations/validation_helper.dart';
@@ -26,7 +26,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    print('hiiii');
     phoneLoginController = TextEditingController();
     passwordLoginController = TextEditingController();
     super.initState();
@@ -42,7 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('login');
     final authCubit = BlocProvider.of<AuthCubit>(context);
 
     return GestureDetector(
@@ -122,6 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               authCubit.login(
                                 email: phoneLoginController.text,
                                 password: passwordLoginController.text,
+                                context: context,
                               );
                             }
                           },

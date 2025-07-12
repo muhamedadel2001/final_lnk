@@ -143,7 +143,6 @@ class _RequestsScreenState extends State<RequestsScreen>
 
   @override
   Widget build(BuildContext context) {
-    print('Requests widget');
     final cubit = RequestsCubit.get(context);
     return BlocBuilder<RequestsCubit, RequestsState>(
       buildWhen: (prev, curr) {
@@ -156,7 +155,6 @@ class _RequestsScreenState extends State<RequestsScreen>
             curr is LoadedMoreState;
       },
       builder: (context, state) {
-        print('Requests widget builder');
         return GestureDetector(
           onTap: () {
             FocusManager.instance.primaryFocus?.unfocus();
@@ -257,7 +255,6 @@ class _RequestsScreenState extends State<RequestsScreen>
                               );
                             }
                           } else {
-                            print('kk');
                             return Skeletonizer(
                               enabled: true,
                               child: RequestFeedItemLoading(),

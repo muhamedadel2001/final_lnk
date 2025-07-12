@@ -1,10 +1,7 @@
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/logic/manual_localization.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/util/fonts.dart';
 import '../../../../home_landing/presentation/screens/widgets/custom_radio_button.dart';

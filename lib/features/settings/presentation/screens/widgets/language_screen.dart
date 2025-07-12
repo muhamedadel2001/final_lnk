@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../../core/databases/cache/my_cache.dart';
 import '../../../../../../core/databases/cache/my_cache_keys.dart';
 import '../../manager/settings_cubit.dart';

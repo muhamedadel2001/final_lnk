@@ -2,10 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:final_lnk/core/errors/failure.dart';
 import 'package:final_lnk/features/auth/data/models/finishing_model.dart';
 import 'package:final_lnk/features/auth/data/models/type_of_rent_model.dart';
-import 'package:final_lnk/features/properties/data/datasources/properties_local_data.dart';
-import 'package:final_lnk/features/properties/data/datasources/properties_remote_data.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
-import 'package:final_lnk/features/properties/domain/repositories/properties_repo.dart';
 import 'package:final_lnk/features/requests/data/datasources/requests_local_data.dart';
 import 'package:final_lnk/features/requests/data/datasources/requests_remote_data.dart';
 import 'package:final_lnk/features/requests/data/models/requests_model.dart';
@@ -48,7 +44,6 @@ class RequestsRepoImpl implements RequestsRepo {
         return Right(localBooks);
       }
     } catch (e) {
-      print(e);
       return Left(Failure.handleError(e));
     }
   }
@@ -132,7 +127,6 @@ class RequestsRepoImpl implements RequestsRepo {
       );
       return Right(remoteServices);
     } catch (e) {
-      print(e);
       return Left(Failure.handleError(e));
     }
   }

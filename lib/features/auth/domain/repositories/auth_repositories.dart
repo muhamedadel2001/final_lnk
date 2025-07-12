@@ -14,6 +14,7 @@ abstract class AuthRepositories {
   Future<Either<Failure, Unit>> login({
     required String email,
     required String password,
+    required BuildContext context,
   });
   Future<Either<Failure, CitiesModel>> getCities({required String lang});
   Future<Either<Failure, AreasModel>> getAreas({

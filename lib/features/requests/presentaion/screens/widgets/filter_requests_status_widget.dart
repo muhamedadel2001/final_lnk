@@ -1,11 +1,7 @@
-import 'package:final_lnk/features/properties/presentation/manager/properties_cubit.dart';
-import 'package:final_lnk/features/properties/presentation/screens/widgets/filter_property_option_box_widget.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/util/lang_keys.dart';
-import '../../../../home_landing/presentation/screens/widgets/option_box.dart';
 import 'filter_requests_option_box_widget.dart';
 
 class FilterRequestsStatusWidget extends StatefulWidget {

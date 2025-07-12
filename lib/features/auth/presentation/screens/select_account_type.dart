@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
-import '../../../../core/util/const.dart';
+import '../../../../core/util/const_controllers.dart';
 import '../../../../core/widgets/primary_button.dart';
 
 class SelectAccountTypeScreen extends StatelessWidget {
@@ -16,7 +15,6 @@ class SelectAccountTypeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('accounttype');
     final cubit = AuthCubit.get(context);
     return Scaffold(
       appBar: AppBar(),
@@ -27,7 +25,6 @@ class SelectAccountTypeScreen extends StatelessWidget {
             return current is AccountTypeSelected;
           },
           builder: (context, state) {
-            print('accounttype builder');
             return Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

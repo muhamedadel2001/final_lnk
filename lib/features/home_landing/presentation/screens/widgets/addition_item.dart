@@ -1,6 +1,5 @@
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:flutter/material.dart';
-
 import 'custom_check_box.dart';
 
 class AdditionItem extends StatelessWidget {

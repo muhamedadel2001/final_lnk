@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/colors.dart';
@@ -59,7 +58,6 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
   @override
   Widget build(BuildContext context) {
     final propCubit = BlocProvider.of<PropertiesCubit>(context);
-    print(int.parse('1000000'));
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -258,7 +256,6 @@ class _FilterPropertiesScreenState extends State<FilterPropertiesScreen> {
                           toPriceController: toPriceController,
                         ),
                         SizedBox(height: 25.h),
-
                         Row(
                           children: [
                             Expanded(

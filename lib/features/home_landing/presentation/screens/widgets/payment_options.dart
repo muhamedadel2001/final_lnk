@@ -1,7 +1,6 @@
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../../core/util/lang_keys.dart';
 import 'installment_options.dart';
 import 'option_box.dart';

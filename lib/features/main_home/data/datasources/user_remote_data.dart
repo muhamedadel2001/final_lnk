@@ -1,4 +1,3 @@
-import 'package:final_lnk/features/auth/data/models/user_model.dart';
 import 'package:final_lnk/features/main_home/data/models/user_model.dart';
 
 import '../../../../../core/databases/api/api_consumer.dart';

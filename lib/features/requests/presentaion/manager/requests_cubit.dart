@@ -1,13 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:final_lnk/features/requests/domain/usecases/properties_usecases.dart';
-import 'package:flutter/cupertino.dart'
-    show BuildContext, TextEditingController;
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:meta/meta.dart';
-
 import '../../../../core/logic/start_model.dart';
-import '../../../../core/util/const.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../auth/data/models/areas_model.dart';
 import '../../../auth/data/models/cities_model.dart';
@@ -15,7 +10,6 @@ import '../../../auth/data/models/finishing_model.dart';
 import '../../../auth/data/models/type_of_rent_model.dart';
 import '../../../auth/data/models/user_selection.dart';
 import '../../data/models/requests_model.dart';
-
 part 'requests_state.dart';
 
 class RequestsCubit extends Cubit<RequestsState> {
@@ -189,7 +183,6 @@ class RequestsCubit extends Cubit<RequestsState> {
         }
       },
       (success) {
-        print(success.requests!.length);
         final newList = success.requests ?? [];
         if (newList.isEmpty) {
           hasMoreDataRequestsFilter = false;

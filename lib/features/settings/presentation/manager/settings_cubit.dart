@@ -1,7 +1,5 @@
 import 'dart:io';
-import 'package:bloc/bloc.dart';
-import 'package:final_lnk/core/util/const.dart';
-import 'package:final_lnk/core/widgets/custom_dialog.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/features/settings/data/model/create_sub_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_favourite_model.dart';
 import 'package:final_lnk/features/settings/data/model/my_list_model.dart';
@@ -11,7 +9,6 @@ import 'package:final_lnk/features/settings/domain/usecases/settings/settings_ca
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:meta/meta.dart';
 import '../../../../core/logic/file_utils.dart';
 import '../../data/model/one_sub_account_model.dart';
 import '../../data/model/profile_model.dart';
@@ -40,7 +37,6 @@ class SettingsCubit extends Cubit<SettingsState> {
     final result = await settingsUseCase.getMyProfileCall(context: context);
     result.fold(
       (failure) {
-        print(failure.errMessage);
         emit(ProfileFailure());
       },
       (success) {
@@ -163,7 +159,6 @@ class SettingsCubit extends Cubit<SettingsState> {
     );
     result.fold(
       (failure) {
-        print(failure.errMessage);
         emit(DeleteSubAccountFailure(failure.errMessage));
       },
       (success) {

@@ -4,10 +4,7 @@ import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../core/logic/resp_calc.dart';
 import '../../../../core/util/colors.dart';
-import '../../../../core/widgets/custom_chip.dart';
 import 'areas_dialog.dart';
 
 class SelectedServiceAreas extends StatelessWidget {
@@ -25,7 +22,7 @@ class SelectedServiceAreas extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () async {
-                    final result = await showDialog(
+                    await showDialog(
                       barrierDismissible: false,
                       context: context,
                       builder:

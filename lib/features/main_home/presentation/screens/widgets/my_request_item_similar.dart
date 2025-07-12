@@ -31,7 +31,7 @@ class MyRequestItemSimilar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            requests.title!,
+            requests.title,
             // maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: getStyleBold16(context),
@@ -50,7 +50,7 @@ class MyRequestItemSimilar extends StatelessWidget {
                 child: SizedBox(
                   width: 100.w,
                   child: Text(
-                    requests.location!.name!,
+                    requests.location.name,
                     style: getStyleBold13(
                       context,
                     ).copyWith(color: textSecondaryClr),
@@ -90,7 +90,7 @@ class MyRequestItemSimilar extends StatelessWidget {
                 child: SizedBox(
                   width: 100.w,
                   child: Text(
-                    requests.finishing!.name!,
+                    requests.finishing!.name,
                     style: getStyleBold13(
                       context,
                     ).copyWith(color: textSecondaryClr),
@@ -107,7 +107,7 @@ class MyRequestItemSimilar extends StatelessWidget {
               SizedBox(width: 2.w),
               Flexible(
                 child: Text(
-                  requests.area!,
+                  requests.area,
                   style: getStyleBold13(
                     context,
                   ).copyWith(color: textSecondaryClr),

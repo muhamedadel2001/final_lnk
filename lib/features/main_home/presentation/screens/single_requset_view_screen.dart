@@ -1,10 +1,8 @@
 import 'dart:io';
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/core/widgets/custom_alert_dialog.dart';
 import 'package:final_lnk/core/widgets/custom_dialog.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/main_home/presentation/screens/widgets/contact_details.dart';
@@ -51,7 +49,6 @@ class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('one request');
     final cubit = HomeLandingCubit.get(context);
     return BlocConsumer<HomeLandingCubit, HomeLandingState>(
       listener: (context, state) {
@@ -60,7 +57,6 @@ class _SingleRequsetViewScreenState extends State<SingleRequsetViewScreen> {
         }
       },
       builder: (context, state) {
-        print('one request build');
         return state is GetOneSuccess ||
                 state is DeletePropertyFailure ||
                 state is DeletePropertySuccess ||

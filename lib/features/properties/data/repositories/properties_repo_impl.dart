@@ -46,7 +46,6 @@ class PropertiesRepoImpl implements PropertiesRepo {
         return Right(localBooks);
       }
     } catch (e) {
-      print(e);
       return Left(Failure.handleError(e));
     }
   }
@@ -130,7 +129,6 @@ class PropertiesRepoImpl implements PropertiesRepo {
       );
       return Right(remoteServices);
     } catch (e) {
-      print(e);
       return Left(Failure.handleError(e));
     }
   }

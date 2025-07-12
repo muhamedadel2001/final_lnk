@@ -3,8 +3,6 @@ import 'package:final_lnk/features/main_home/presentation/screens/widgets/photo_
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../core/logic/resp_calc.dart';
-
 class PhotosListView extends StatelessWidget {
   const PhotosListView({super.key});
 

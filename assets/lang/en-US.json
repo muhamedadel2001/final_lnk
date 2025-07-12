@@ -158,7 +158,8 @@
   "contactUsToUnlock":"Contact us\n to subscribe and Unlock All Features",
   "whatsApp":"WhatsApp",
   "selectServiceArea": "select areas",
-  "otpNotValid": "OTP must contains 4 numbers !"
+  "otpNotValid": "OTP must contains 4 numbers !",
+  "searchResults": "Search results"
 }
 
 

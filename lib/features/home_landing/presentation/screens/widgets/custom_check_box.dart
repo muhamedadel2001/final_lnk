@@ -10,7 +10,6 @@ class CustomCheckBox extends StatelessWidget {
     return Container(
       width: 24,
       height: 24,
-      // padding: EdgeInsets.all(3),
       decoration: BoxDecoration(
         border: Border.all(color: const Color(0xffE0E0E0), width: 1.4),
         borderRadius: BorderRadius.circular(6),

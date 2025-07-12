@@ -1,5 +1,3 @@
-import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
-
 class UserSelection {
   String? city;
   String? cityId;

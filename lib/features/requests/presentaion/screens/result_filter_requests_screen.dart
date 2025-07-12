@@ -3,7 +3,6 @@ import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
 import 'package:final_lnk/core/widgets/global_empty_data.dart';
 import 'package:final_lnk/features/properties/presentation/screens/widgets/custom_sliver_app_bar_result_filter.dart';
 import 'package:final_lnk/features/requests/presentaion/manager/requests_cubit.dart';
-import 'package:final_lnk/features/requests/presentaion/screens/widgets/my_request_item.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/request_feed_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +65,7 @@ class _ResultFilterRequestsScreenState
       body: CustomScrollView(
         controller: _scrollController,
         slivers: [
-          CustomSliverAppBarResultFilter(title: 'Search result'),
+          CustomSliverAppBarResultFilter(title: LangKeys.searchResults),
           BlocBuilder<RequestsCubit, RequestsState>(
             builder: (context, state) {
               return state is GetRequestsFilterDataSuccess &&

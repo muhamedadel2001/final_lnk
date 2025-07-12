@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:final_lnk/core/util/fonts.dart';
@@ -52,7 +51,6 @@ class _SingleResidentialPropertyViewState
 
   @override
   Widget build(BuildContext context) {
-    print('one list');
     final cubit = HomeLandingCubit.get(context);
     return BlocConsumer<HomeLandingCubit, HomeLandingState>(
       listener: (context, state) {
@@ -61,7 +59,6 @@ class _SingleResidentialPropertyViewState
         }
       },
       builder: (context, state) {
-        print('one list rebuild');
         return state is GetOneSuccess ||
                 state is DeletePropertyFailure ||
                 state is DeletePropertySuccess ||

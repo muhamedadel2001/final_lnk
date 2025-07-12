@@ -1,11 +1,8 @@
 import 'package:final_lnk/core/util/lang_keys.dart';
-import 'package:final_lnk/features/home_landing/data/models/apartments_model.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/propery_type_box.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/util/property_model.dart';
 
 class PropertyTypesGirdView extends StatefulWidget {
   const PropertyTypesGirdView({super.key});

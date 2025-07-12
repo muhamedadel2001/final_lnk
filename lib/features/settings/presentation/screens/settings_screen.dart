@@ -17,7 +17,6 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('setting screen');
     return BlocConsumer<SettingsCubit, SettingsState>(
       listener: (context, state) {
         if (state is LogoutSuccess) {
@@ -31,7 +30,6 @@ class SettingsScreen extends StatelessWidget {
       },
       buildWhen: (previous, current) => current is Updated,
       builder: (context, state) {
-        print('setting screen rebuild');
         return Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15, top: 20),
           child: SingleChildScrollView(

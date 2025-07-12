@@ -1,9 +1,8 @@
 import 'package:final_lnk/core/logic/custom_alerts.dart';
 import 'package:final_lnk/core/networking/api_constants.dart';
-import 'package:final_lnk/core/util/const.dart';
+import 'package:final_lnk/core/util/const_controllers.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/features/home_landing/data/models/create_property_model.dart';
-import 'package:final_lnk/features/home_landing/data/models/create_request_model.dart';
 import 'package:final_lnk/features/home_landing/presentation/manager/home_landing_cubit.dart';
 import 'package:final_lnk/features/home_landing/presentation/screens/widgets/property_photo_box.dart';
 import 'package:flutter/material.dart';

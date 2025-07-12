@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:final_lnk/features/auth/data/models/cities_model.dart';
 import 'package:final_lnk/features/auth/data/models/finishing_model.dart';
 import 'package:final_lnk/features/auth/data/models/type_of_rent_model.dart';
-import 'package:final_lnk/features/properties/data/models/properties_model.dart';
 import 'package:final_lnk/features/requests/data/models/requests_model.dart';
 import 'package:flutter/cupertino.dart';
 

@@ -1,11 +1,8 @@
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../core/util/fonts.dart';
 import '../../../../../core/widgets/custom_text_field.dart';
-import '../../manager/properties_cubit.dart';
 
 class FilterPropertiesAreaWidget extends StatelessWidget {
   final TextEditingController fromAreaController;

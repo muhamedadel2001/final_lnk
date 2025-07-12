@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:easy_localization/easy_localization.dart';
 
 class LangKeys {
@@ -165,4 +163,5 @@ class LangKeys {
   static String get whatsApp => 'whatsApp'.tr();
   static String get selectServiceArea => 'selectServiceArea'.tr();
   static String get otpNotValid => 'otpNotValid'.tr();
+  static String get searchResults => 'searchResults'.tr();
 }

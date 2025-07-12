@@ -1,8 +1,8 @@
 import 'package:final_lnk/core/util/fonts.dart';
+import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/logic/get_inputs_list.dart';
 import '../../../../core/util/colors.dart';
 
@@ -41,7 +41,7 @@ class _AreasDialogState extends State<AreasDialog> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            'Select Service Areas',
+            LangKeys.selectServiceArea,
             style: getStyle20(context),
             textAlign: TextAlign.left,
           ),
@@ -122,10 +122,9 @@ class _AreasDialogState extends State<AreasDialog> {
               names: selectedAreas,
               ids: selectedAreasId,
             );
-            print(cubit.userSelection.serviceAreaId);
             Navigator.pop(context);
           },
-          child: const Text('Done'),
+          child: Text(LangKeys.save),
         ),
       ],
     );

@@ -5,7 +5,7 @@ import 'package:final_lnk/features/settings/presentation/manager/settings_cubit.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../core/util/const.dart';
+import '../../../../core/util/const_controllers.dart';
 import '../../../../core/util/lang_keys.dart';
 import '../../../../core/validations/validation_helper.dart';
 import '../../../../core/widgets/titled_custom_text_field.dart';

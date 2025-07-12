@@ -8,6 +8,7 @@ import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/util/screens.dart' as screens;
 import '../../../../core/widgets/main_sub.dart';
 import '../manager/home_landing_cubit.dart';
+
 class HomeLanding extends StatefulWidget {
   const HomeLanding({super.key});
   @override
@@ -19,17 +20,14 @@ class _HomeLandingState extends State<HomeLanding> {
   void initState() {
     HomeLandingCubit.get(context).isActiveMethod();
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    print('landing screen');
     final landingCubit = BlocProvider.of<HomeLandingCubit>(context);
     return BlocBuilder<HomeLandingCubit, HomeLandingState>(
       buildWhen: (previous, current) => current is ScreenChanged,
       builder: (context, state) {
-        print('landing screen builder');
         return Scaffold(
           body: Stack(
             children: [

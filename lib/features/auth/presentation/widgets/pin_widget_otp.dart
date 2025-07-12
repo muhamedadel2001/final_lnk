@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../../../core/util/const.dart';
-import '../../../../core/util/lang_keys.dart';
+import '../../../../core/util/const_controllers.dart';
 
 class PinWidgetOtp extends StatelessWidget {
   const PinWidgetOtp({super.key});

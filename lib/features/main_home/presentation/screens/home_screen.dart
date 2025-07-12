@@ -1,6 +1,5 @@
 import 'package:final_lnk/core/databases/cache/my_cache.dart';
 import 'package:final_lnk/core/databases/cache/my_cache_keys.dart';
-import 'package:final_lnk/core/networking/api_constants.dart';
 import 'package:final_lnk/core/util/fonts.dart';
 import 'package:final_lnk/core/util/lang_keys.dart';
 import 'package:final_lnk/core/widgets/global_error_widget.dart';
@@ -38,25 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
       lang: MyCache.getString(key: MyCacheKeys.language),
       context: context,
     );
-    print('home init');
     super.initState();
   }
 
   @override
   void dispose() {
-    print('close');
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final cubit = MainHomeCubit.get(context);
-    print('home');
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<MainHomeCubit, MainHomeState>(
           builder: (context, state) {
-            print('home after rebuild ');
             return state is GetHomeFailure
                 ? Center(
                   child: GlobalErrorWidget(imagePath: 'assets/imgs/user.png'),

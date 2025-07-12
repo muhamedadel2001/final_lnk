@@ -1,14 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_lnk/core/util/fonts.dart';
-import 'package:final_lnk/features/requests/data/models/requests_model.dart';
 import 'package:final_lnk/features/requests/presentaion/screens/widgets/my_request_item_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../core/networking/api_constants.dart';
 import '../../../../../core/util/colors.dart';
 import '../../../../../core/widgets/favourite.dart';
-import 'my_request_item.dart';
 
 class RequestFeedItemLoading extends StatelessWidget {
   const RequestFeedItemLoading({super.key});
